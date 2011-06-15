@@ -1,0 +1,158 @@
+#!/usr/bin/perl
+
+if ($#ARGV != 0) {
+  print "Usage: makeorders <input turn file>\n";
+  exit;
+}
+
+$FILE = "<" . $ARGV[0];
+open FILE or die "open failed for $FILE!";
+
+@data = <FILE>;
+close(FILE);
+
+$FILE_ADMIT = "orders_admit";
+open FILE_ADMIT or die "couldn't find orders_admit file";
+@admit = <FILE_ADMIT>;
+close FILE_ADMIT;
+
+$FILE_TOPNOTES = "orders_topnotes";
+open FILE_TOPNOTES or die "couldn't find orders_topnotes file";
+@topnote = <FILE_TOPNOTES>;
+close FILE_TOPNOTES;
+
+$endline = 0;
+$mestext = "";
+$count = 0;
+$locs = 0;
+$garrstart = 0;
+$garrend = 0;
+
+$previous_unit = 0;
+$numunits = 0;
+foreach $line (@data) {
+  $_ = $line;
+  if (/Olympia:TAG game (.*) turn (.*) report/) {
+    $turn = $2 + 1;
+    print "### TAG Orders Template for upcoming turn #$turn\n\n";
+  }
+    
+  if (/Order template/) {
+    $foundorders=1;
+    $ordercount=0;
+  }
+  if ($foundorders == 1 && substr($line,0,3) eq "end") {$foundorders=0;}
+  if (substr($line,0,4) eq "unit" && $foundorders==1) {
+    $numunits++;
+    @unitline2= split / /,$line;
+    $unitid[$numunits] = $unitline2[1];	#got unit ID
+#   if ($line =~ /\[([^\]]*)\]/) {
+#     $unitid[$numunits] = $1;
+#   }
+    $unitline[$numunits] = $line;
+    $orderq[$numunits] = 0;
+  }
+  if ($foundorders == 1 && /begin/) {
+    $beginline = $line;
+  }
+  if ($foundorders == 1) {$ordercount++;}
+  if ($foundorders == 1 && $ordercount >2) {
+    $orderq_text[$numunits][$orderq[$numunits]] = $line;
+    $orderq[$numunits]++;
+  }
+}
+for ($i=1;$i<=$numunits;$i++) {
+#  print $unitline[$i];
+  for ($j=1;$j<=$orderq[$i];$j++) {
+#    print $orderq_text[$i][$j];
+  }
+}
+
+print $beginline,"\n";
+
+$count = -1;
+  $print1=0;
+  $print2=0;
+  $print3=0;
+  $print4=0;
+foreach $line (@data) {
+  $count++;
+  $_ = $line;
+  if (/------------------------------------------------------------------------/) {
+    $unitblock=0;	#end of previous unit block
+    $whichunit=0;
+    if ($data[$count-1] =~ /\[([^\]]*)\]/) {
+      for ($i=1;$i<=$numunits;$i++) {
+        if ($1 eq $unitid[$i]) {$whichunit = $i;}
+      }
+      if ($previous_unit != 0) {
+        for($j=1;$j<$orderq[$previous_unit];$j++) {
+	  print $orderq_text[$previous_unit][$j];
+	}
+#print defend/admit/accept orders here
+        if ($previous_unit ==1) {
+	  foreach $note (@topnote) {
+	    print $note;
+	  }
+	  print "\n";
+	  if (length($admit[0]) > 0) {
+	    for ($j=1;$j<=$numunits;$j++) {
+	      print "   admit ",$unitid[$j],"\n";
+	      foreach $ad (@admit) {
+	        print "   admit ",$unitid[$j]," ",$ad,"\n";
+	      }
+	    }
+	  }
+	  print "\n";
+#	  print "   default Imperial\n";
+#	  foreach $ad (@admit) {
+#	    print "   defend ",$ad;
+#	  }
+	  print "\n";
+	} else {
+#	  $unitid[0] = "ID";
+#	  foreach $ad (@admit) {
+#            $ad =~ s/$unitid[$j-1]/$unitid[$j]/g;
+#	    $ad =~ s/admit/defend/g;
+#           print $ad;
+#          }
+	}
+      }
+      $unitblock = 1;
+      if ($whichunit == 0) {
+        $unitblock = 0;		#no info for this character
+      }
+      $previous_unit = $whichunit;
+      print $unitline[$whichunit];
+    }
+  }
+  if (/Noble points:/) {print "#$line";}
+  if (/Study points:/) {print "#$line";}
+  if (/The next NP will be received/) {print "#$line";}
+  if (/The next five nobles formed will be/) {print "#$line\n";}
+
+  if ($unitblock) {
+    if (/Location:/) {$print1 = 1;}
+    if (/Accepting:/) {$print2=0;}
+    if (/                                     ======/) {$print3=0;}
+    if (($line eq "" || $line eq "\n" || $line eq "   \n") && ($print4==1 || $print3==1)) {
+      $print4=0;
+      $print3=0;
+     }
+    if ($print1 == 1 || $print2==1 || $print3==1 || $print4==1) { print "#",$line; }
+    if (/Current piety:/) {print "#$line";}
+    if (/Current aura:/) {print "#$line";}
+    if (/Maximum aura:/) {print "#$line";}
+    if (/Dedicated to:/) {print "#$line";}
+    if (/Followers:/) {print "#$line";}
+    if (/Break point:/) { $print1 = 0; }
+    if (/Skills known:/ || /Followers:/ || /Prisoners:/) {$print2=1;}
+    if (/---  ----                              ------/) {$print3=1;}
+    if (/Capacity:/) {print "#$line";}
+    if (/      -----    -----    ---   ----/) {$print4=1;}
+  }
+}
+print "end\n";
+exit;
+
+
