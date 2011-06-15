@@ -1,0 +1,78 @@
+#!/usr/bin/perl
+use strict;
+if ($#ARGV+1 == 0) { 
+  print "Usage:  rep <options> <savefile> >> reportfile\n";
+  print "  exclusive options:  -text -raw -html\n";
+  print "  regular options:    -tab -tags\n";
+  exit;
+}
+
+my $fname = $ARGV[$#ARGV];
+
+if (! -e $fname) { 
+  print "File $fname does not exist\n";
+  exit;
+}
+my $time = time;
+my $tmpfile = "/tmp/save." . $time;
+
+my $html = 0;	# html report
+my $raw = 0;	# raw report
+my $text = 0;	# text report
+
+my $tags = 0;	# leave tags in or strip them out 
+my $entab = 0;	# use tabs instead of spaces 
+
+for (my $i=0;$i<=$#ARGV;$i++) {
+  if ($ARGV[$i] eq "-html") { $html = 1; }
+  if ($ARGV[$i] eq "-raw") { $raw = 1; }
+  if ($ARGV[$i] eq "-text") { $text = 1; }
+  if ($ARGV[$i] eq "-tags") { $tags = 1; }
+  if ($ARGV[$i] eq "-tab") { $entab = 1; }
+}
+
+#just make it text if not specified
+
+if (!$raw && !$html && !$text) { $text = 1; }
+
+#first call untangle to put the save file in proper order.  Must take input
+#file name on command line, and write out a file
+
+`untangle $fname > $tmpfile`;
+
+#text reports with/without tags and with/without tabs:
+if ($text && !$tags && $entab) {
+  #text with tabs:
+  print `texter < $tmpfile | entab`;
+} elsif ($text && !$tags && !$entab) {
+  #text without tabs:
+  print `texter < $tmpfile`;
+} elsif ($text && $tags && $entab)  {
+  #text with tags and tabs:
+  print `texter -t < $tmpfile | entab`;
+} elsif ($text && $tags && !$entab)  {
+  #text with tags, no tabs:
+  print `texter -t < $tmpfile | entab`;
+}
+#html reports are just with or without tags:
+if ($html && $tags) {
+  print `htmler -t < $tmpfile`;
+} elsif ($html && ! $tags) {
+  print `htmler < $tmpfile`;
+}
+#raw output is just a dump of the untangled file (I think):
+if ($raw) {
+  `cat $tmpfile`;
+}
+#clean up
+if (-e $tmpfile) { 
+  `rm $tmpfile`;
+}
+
+# if (player_notab(pl))
+#   strcpy(entab,"-notab");
+
+# tmp = sout("rep %s %s %s %s >> %s", form, tags, entab, fnam, report);
+# return system(tmp);
+#};
+

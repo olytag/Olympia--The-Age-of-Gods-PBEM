@@ -1,0 +1,4 @@
+#!/bin/sh
+
+#run the orders parser
+/Users/tagtest/bin/olytag -eM -l /Users/tagtest/lib > out 2>&1 < /dev/null

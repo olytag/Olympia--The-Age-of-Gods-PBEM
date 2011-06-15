@@ -1,0 +1,20 @@
+#!/bin/sh
+
+GAMEDIR=/u/oly/alpha
+LIB=$GAMEDIR/lib
+OLDTURN=`turn`
+
+cd $GAMEDIR
+
+mv before.tar before.tar-
+mv after.tar after.tar-
+
+(cd lib; tar -cf ../before.tar `ls | grep -v save`)
+
+/u/oly/bin/oly -l $LIB -rSM
+
+(cd lib; tar -cf ../after.tar `ls | grep -v save`)
+
+rcp after.tar candid:bak
+cd $LIB/save/$OLDTURN && ls | xargs compress
+

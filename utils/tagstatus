@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "Order Eater: -----------"
+ps -ef | grep olytag | grep -v grep
+echo "checkmail:   -----------"
+ps -ef | grep checkmail | grep -v grep
