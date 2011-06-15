@@ -1,0 +1,10 @@
+TZ=GMT
+PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/home/tagtest/bin
+* * * * * /usr/bin/getmail > /dev/null 2> /dev/null  # get every minute
+* * * * * /usr/bin/perl /home/tagtest/bin/runforever.pl > /dev/null 2> /dev/null  # get every minute
+0 12 * * 4 /usr/bin/perl /home/tagtest/bin/remind.pl > /dev/null 2> /dev/null
+#
+# restart the order scanner a couple of times a day
+#
+1 0,6,12,18 * * * touch /home/tagtest/lib/spool/stop
+
