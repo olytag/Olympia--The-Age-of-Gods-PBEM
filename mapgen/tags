@@ -1,0 +1,166 @@
+ADDEQU	z.c	/^#define ADDEQU(x, y, z)	(z = CARRY(x, (y)), x = LO/
+CARRY	z.c	/^#define CARRY(x, y)	((long)(x) + (long)(y) > MASK)/
+HIGH	z.c	/^#define HIGH(x)	LOW((x) >> N)$/
+LOW	z.c	/^#define LOW(x)	((unsigned)(x) & MASK)$/
+MUL	z.c	/^#define MUL(x, y, z)	{ long l = (long)(x) * (long)/
+Mcount	count.c	/^main() {$/
+Mj	j.c	/^main() {$/
+Mmapgen	mapgen.c	/^main()$/
+Mold	old.c	/^main()$/
+Mshuffle	shuffle.c	/^main() {$/
+Mz	z.c	/^main()$/
+NEST	z.c	/^#define NEST(TYPE, f, F)	TYPE f(xsubi) register un/
+REST	z.c	/^#define REST(v)	for (i = 0; i < 3; i++) { xsubi[i]/
+SEED	z.c	/^#define SEED(x0, x1, x2) (SET3(x, x0, x1, x2), SET/
+SET3	z.c	/^#define SET3(x, x0, x1, x2)	((x)[0] = (x0), (x)[1]/
+SETLOW	z.c	/^#define SETLOW(x, y, n) SET3(x, LOW((y)[n]), LOW((/
+abs	z.h	/^#define	abs(n)		((n) < 0 ? ((n) * -1) : (n))$/
+add_city_guild	old.c	/^add_city_guild(sl, skill, hidden)$/
+add_city_skill	old.c	/^add_city_skill(sl, skill, hidden)$/
+add_road	mapgen.c	/^add_road(from, to_loc, hidden, name)$/
+adjacent_tile_sup	mapgen.c	/^adjacent_tile_sup(row, col, dir)$/
+adjacent_tile_terr	mapgen.c	/^adjacent_tile_terr(row, col)$/
+adjacent_tile_water	mapgen.c	/^adjacent_tile_water(row, col)$/
+alloc_inside	mapgen.c	/^alloc_inside()$/
+asfail	z.c	/^asfail(char *file, int line, char *cond)$/
+assert	z.h	/^#define	assert(p)	if(!(p)) asfail(__FILE__, __LINE/
+assign_skills	old.c	/^assign_skills()$/
+bcopy	z.h	/^#define bcopy(a,b,n)		memcpy(b, a, n)$/
+bridge_caddy_corners	mapgen.c	/^bridge_caddy_corners()$/
+bridge_corner_sup	mapgen.c	/^bridge_corner_sup(row, col)$/
+bridge_map_hole_sup	mapgen.c	/^bridge_map_hole_sup(row, col)$/
+bridge_map_holes	mapgen.c	/^bridge_map_holes()$/
+bridge_mountain_ports	mapgen.c	/^bridge_mountain_ports()$/
+bridge_mountain_sup	mapgen.c	/^bridge_mountain_sup(row, col)$/
+bzero	z.h	/^#define bzero(a,n)		memset(a, '\\0', n)$/
+choose_random_stone_circle	mapgen.c	/^choose_random_stone_circle(l, avoid1, avoid2)$/
+clear_province_marks	mapgen.c	/^clear_province_marks()$/
+clear_subloc_marks	mapgen.c	/^clear_subloc_marks()$/
+collect_labeled_provinces	old.c	/^collect_labeled_provinces()$/
+copy_fp	z.c	/^copy_fp(a, b)$/
+count_cities	mapgen.c	/^count_cities()$/
+count_continents	mapgen.c	/^count_continents()$/
+count_subloc_coverage	mapgen.c	/^count_subloc_coverage()$/
+count_sublocs	mapgen.c	/^count_sublocs()$/
+count_tiles	mapgen.c	/^count_tiles()$/
+create_a_building	mapgen.c	/^create_a_building(sl, hidden, kind)$/
+create_a_city	mapgen.c	/^create_a_city(row, col, name, major)$/
+create_a_graveyard	mapgen.c	/^create_a_graveyard(row, col)$/
+create_a_subloc	mapgen.c	/^create_a_subloc(row, col, hidden, kind)$/
+dir_assert	mapgen.c	/^dir_assert()$/
+drand48	z.c	/^drand48()$/
+dump_continents	mapgen.c	/^dump_continents()$/
+dump_gates	mapgen.c	/^dump_gates()$/
+dump_roads	mapgen.c	/^dump_roads()$/
+fetch_inside_name	old.c	/^fetch_inside_name(l)$/
+fix_terrain	old.c	/^fix_terrain()$/
+fix_terrain_land	mapgen.c	/^fix_terrain_land()$/
+flood_inside	old.c	/^flood_inside()$/
+flood_inside_sup	old.c	/^flood_inside_sup(row, col, ins, kind, color)$/
+flood_land_clumps	mapgen.c	/^flood_land_clumps(row, col, name)$/
+flood_land_inside	mapgen.c	/^flood_land_inside(row, col, ins)$/
+flood_water_inside	mapgen.c	/^flood_water_inside(row, col, ins)$/
+fuzzy_one_bad	z.c	/^fuzzy_one_bad(char *one, char *two, int l1, int l2/
+fuzzy_one_extra	z.c	/^fuzzy_one_extra(char *one, char *two, int l1, int /
+fuzzy_one_less	z.c	/^fuzzy_one_less(char *one, char *two, int l1, int l/
+fuzzy_strcmp	z.c	/^fuzzy_strcmp(char *one, char *two)$/
+fuzzy_transpose	z.c	/^fuzzy_transpose(char *one, char *two, int l1, int /
+gate_continental_tour	mapgen.c	/^gate_continental_tour()$/
+gate_fan	old.c	/^gate_fan(one, two, three, four, five)$/
+gate_fan_sup	old.c	/^gate_fan_sup(where, start, end, l)$/
+gate_land_ring	mapgen.c	/^gate_land_ring(rings)$/
+gate_link_islands	mapgen.c	/^gate_link_islands(rings)$/
+gate_province_islands	mapgen.c	/^gate_province_islands(times)$/
+gate_stone_circles	mapgen.c	/^gate_stone_circles()$/
+gate_subloc	old.c	/^gate_subloc(a, b, key)$/
+getlin	z.c	/^getlin(FILE *fp)$/
+getlin_ew	z.c	/^getlin_ew(FILE *fp)$/
+i_strcmp	z.c	/^i_strcmp(char *s, char *t)$/
+i_strncmp	z.c	/^i_strncmp(char *s, char *t, int n)$/
+ilist	z.h	/^typedef int *ilist;$/
+ilist_append	z.c	/^ilist_append(ilist *l, int n)$/
+ilist_clear	z.c	/^ilist_clear(ilist *l)$/
+ilist_copy	z.c	/^ilist_copy(ilist l)$/
+ilist_delete	z.c	/^ilist_delete(ilist *l, int i)$/
+ilist_insert	z.c	/^ilist_insert(ilist *l, int pos, int n)$/
+ilist_len	z.h	/^#define ilist_len(a)		(((int *)(a)) == NULL ? 0 : /
+ilist_lookup	z.c	/^ilist_lookup(ilist l, int n)$/
+ilist_prepend	z.c	/^ilist_prepend(ilist *l, int n)$/
+ilist_reclaim	z.c	/^ilist_reclaim(ilist *l)$/
+ilist_rem_value	z.c	/^ilist_rem_value(ilist *l, int n)$/
+ilist_rem_value_uniq	z.c	/^ilist_rem_value_uniq(ilist *l, int n)$/
+ilist_scramble	z.c	/^ilist_scramble(ilist l)$/
+ilist_test	z.c	/^ilist_test()$/
+init_lower	z.c	/^init_lower()$/
+init_random	z.c	/^init_random()$/
+irand48	z.c	/^irand48(m)$/
+is_port_city	mapgen.c	/^is_port_city(row, col)$/
+isalpha	z.h	/^#define	isalpha(c)	(((c)>='a' && (c)<='z') || ((c)/
+isdigit	z.h	/^#define	isdigit(c)	((c) >= '0' && (c) <= '9')$/
+island_allowed	mapgen.c	/^island_allowed(row, col)$/
+iswhite	z.h	/^#define	iswhite(c)	((c) == ' ' || (c) == '\\t')$/
+krand48	z.c	/^krand48(xsubi, m)$/
+lcase	z.c	/^lcase(s)$/
+lcong48	z.c	/^lcong48(param)$/
+linehash	old.c	/^#define	linehash(t)	(strlen(t) < 2 ? 0 : ((t[0]) </
+link_roads	mapgen.c	/^link_roads(from, to, hidden, name)$/
+lrand48	z.c	/^lrand48()$/
+make_appropriate_subloc	mapgen.c	/^make_appropriate_subloc(row, col)$/
+make_gates	mapgen.c	/^make_gates()$/
+make_graveyards	mapgen.c	/^make_graveyards()$/
+make_islands	mapgen.c	/^make_islands()$/
+make_roads	mapgen.c	/^make_roads()$/
+make_special_cities	old.c	/^make_special_cities()$/
+map_init	mapgen.c	/^map_init()$/
+mark_bad_locs	mapgen.c	/^mark_bad_locs()$/
+mark_continent	old.c	/^mark_continent(row, col)$/
+mark_continent_ocean	old.c	/^mark_continent_ocean(row, col)$/
+max	z.h	/^#define	max(a,b)	((a) > (b) ? (a) : (b))$/
+min	z.h	/^#define	min(a,b)	((a) < (b) ? (a) : (b))$/
+mrand48	z.c	/^mrand48()$/
+my_free	z.c	/^my_free(void *ptr)$/
+my_malloc	z.c	/^my_malloc(unsigned size)$/
+my_realloc	z.c	/^my_realloc(void *ptr, unsigned size)$/
+name_guild	mapgen.c	/^name_guild(skill)$/
+new_gate	mapgen.c	/^new_gate(from, to, key)$/
+next	z.c	/^next()$/
+not_place_random_subloc	mapgen.c	/^not_place_random_subloc(kind, hidden)$/
+not_random_province	mapgen.c	/^not_random_province(row, col)		\/* oh, hack upon h/
+open_fps	mapgen.c	/^open_fps()$/
+place_random_subloc	mapgen.c	/^place_random_subloc(kind, hidden, terr)$/
+place_sublocations	mapgen.c	/^place_sublocations()$/
+print_continent	mapgen.c	/^print_continent(i)$/
+print_inside_locs	mapgen.c	/^print_inside_locs(n)$/
+print_inside_sublocs	mapgen.c	/^print_inside_sublocs(flag, row, col)$/
+print_map	mapgen.c	/^print_map()$/
+print_subloc_gates	mapgen.c	/^print_subloc_gates(n)		\/* and inside buildings.../
+print_sublocs	mapgen.c	/^print_sublocs()$/
+print_teaches	old.c	/^print_teaches(l)$/
+prov_dest	mapgen.c	/^prov_dest(t, dir)$/
+random_island	mapgen.c	/^random_island()$/
+random_province	mapgen.c	/^random_province(row, col, terr)$/
+random_province_gates	mapgen.c	/^random_province_gates(n)$/
+random_tile_from_each_region	mapgen.c	/^random_tile_from_each_region()$/
+randomize_dir_vector	mapgen.c	/^randomize_dir_vector()$/
+rc_to_region	mapgen.c	/^rc_to_region(int row, int col)$/
+read_map	mapgen.c	/^read_map()$/
+readfile	z.c	/^readfile(char *path)$/
+readlin	z.c	/^readlin()$/
+readlin_ew	z.c	/^readlin_ew()$/
+region_col	mapgen.c	/^region_col(int where)$/
+region_row	mapgen.c	/^region_row(int where)$/
+rnd	z.c	/^rnd(int low, int high)$/
+road	mapgen.c	/^struct road {$/
+seed48	z.c	/^seed48(seed16v)$/
+set_province_clumps	mapgen.c	/^set_province_clumps()$/
+set_regions	mapgen.c	/^set_regions()$/
+shift_tour_endpoints	mapgen.c	/^shift_tour_endpoints(l)$/
+show_gate_coverage	mapgen.c	/^show_gate_coverage()$/
+srand48	z.c	/^srand48(seedval)$/
+str_save	z.c	/^str_save(char *s)$/
+teach_comp	old.c	/^teach_comp(a, b)$/
+test_random	z.c	/^test_random()$/
+tile	mapgen.c	/^struct tile {$/
+tolower	z.h	/^#define	tolower(c)	(lower_array[c])$/
+toupper	z.h	/^#define	toupper(c)	(((c) >= 'a' && (c) <= 'z') ? (/
+unnamed_province_clumps	mapgen.c	/^unnamed_province_clumps()$/

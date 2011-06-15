@@ -1,0 +1,199 @@
+TMS ilist_len = 6478
+TMS inside_list = 14
+TMS inside_list = 14
+3)
+Start city #2 Rimmon at (42,75)
+Golden City #8 Golden City at (49,47)
+Imperical City #4 Imperial City at (53,51)
+Start city #5 Port Aurnos at (62,10)
+Start city #7 Yellowleaf at (66,78)
+Start city #3 Harn at (69,50)
+set_regions: named 12 land regions, 2 water regions
+set_province_clumps: named 2 areas
+Unnamed areas
+
+4,30	%	1 unnamed
+4,52	%	1 unnamed
+4,75	%	1 unnamed
+16,5	%	1 unnamed
+28,51	%	1 unnamed
+32,77	%	1 unnamed
+33,48	f	15 unnamed
+33,49	p	3 unnamed
+34,38	%	1 unnamed
+34,51	6	1 unnamed
+35,50	p	1 unnamed
+35,52	p	1 unnamed
+38,16	%	1 unnamed
+39,75	p	2 unnamed
+40,75	f	4 unnamed
+41,25	f	8 unnamed
+42,23	1	1 unnamed
+42,24	p	4 unnamed
+42,72	p	6 unnamed
+42,75	2	1 unnamed
+43,22	p	1 unnamed
+43,73	f	3 unnamed
+44,76	f	1 unnamed
+49,47	8	1 unnamed
+52,92	%	1 unnamed
+53,51	4	1 unnamed
+56,88	%	1 unnamed
+59,10	f	6 unnamed
+60,11	p	5 unnamed
+62,10	5	1 unnamed
+64,76	p	15 unnamed
+64,80	f	5 unnamed
+66,50	f	1 unnamed
+66,76	f	3 unnamed
+66,78	7	1 unnamed
+67,20	%	1 unnamed
+67,49	p	6 unnamed
+68,48	f	4 unnamed
+68,52	f	4 unnamed
+69,50	3	1 unnamed
+69,92	%	1 unnamed
+73,7	%	1 unnamed
+73,67	%	1 unnamed
+75,33	%	1 unnamed
+78,46	%	1 unnamed
+79,69	%	1 unnamed
+82,73	%	1 unnamed
+94,40	%	1 unnamed
+97,26	%	1 unnamed
+
+
+Continental gate tour:
+	(36, 7) -> (83,74)
+	(83,73) -> (14,21)
+	(16,20) -> (44, 7)
+	(43, 8) -> (53,10)
+	(54, 8) -> ( 5,19)
+	( 6,18) -> (11,54)
+	(12,54) -> (75,71)
+	(75,72) -> (88,30)
+	(89,30) -> (76, 9)
+	(76,10) -> (42,92)
+	(42,93) -> (32,82)
+	(34,82) -> (36, 9)
+
+
+Ring of stones:
+	(45, 8) in Cragstan
+	(27,35) in Tollus
+	(67,18) in Provinia
+	(85,74) in Camaris Island
+	(46,97) in Atnos
+	(86,25) in Ferenth
+	(29,91) in Krussos
+	(13,92) in Atala
+	(94,40) in Camaris
+	(73,20) in Ossicus
+	(12,10) in Idar
+	(15,37) in Ormos
+
+secret sea route at (5,53)
+secret sea route at (5,94)
+secret sea route at (7,24)
+secret sea route at (9,31)
+secret sea route at (10,16)
+secret sea route at (11,37)
+secret sea route at (12,46)
+secret sea route at (14,62)
+secret sea route at (16,8)
+secret sea route at (22,9)
+secret sea route at (24,28)
+secret sea route at (27,42)
+secret sea route at (27,56)
+secret sea route at (35,72)
+secret sea route at (37,22)
+secret sea route at (37,33)
+secret sea route at (50,12)
+secret sea route at (52,89)
+secret sea route at (52,93)
+secret sea route at (69,61)
+secret sea route at (75,23)
+secret sea route at (75,34)
+secret sea route at (78,42)
+secret sea route at (78,58)
+secret sea route at (83,72)
+secret sea route at (84,77)
+secret sea route at (85,7)
+secret sea route at (87,40)
+
+Land regions:
+
+name                          coord  nprovs  ncities  gates (out/in)
+----                          -----  ------  -------  --------------
+Provinia                    (33,41)    2175      144  42/60
+Idar                         (1,11)     245       12  12/10
+Atala                        (1,62)     654       41  19/15
+Ormos                        (8,32)     413       30  10/13
+Krussos                     (16,49)     674       43  20/23
+Tollus                      (24,13)     386       24  12/11
+Atnos                       (38,84)     174        9  12/6
+Cragstan                     (39,2)      80        7  11/7
+Camaris                     (69,81)    1101       76  22/22
+Ossicus                      (71,9)     190       13  12/8
+Camaris Island              (82,73)      34        2  9/4
+Ferenth                     (84,10)     352       27  11/8
+
+
+Oceans:
+
+name                          coord  nprovs  ncities  gates (out/in)
+----                          -----  ------  -------  --------------
+Great Sea                     (0,0)    3289        0  135/140
+Lake Camaris                (77,77)     233        0  4/4
+
+
+14 continents
+6478 land locs
+3522 water locs
+
+subloc counts:
+  2534 locs have 0 islands (71%)
+   819 locs have 1 island  (23%)
+   153 locs have 2 islands (4%)
+    15 locs have 3 islands (0%)
+     1 loc has 4 islands (0%)
+
+subloc coverage:
+  1712 locs have 0 sublocs (26%)
+  2786 locs have 1 subloc  (43%)
+  1668 locs have 2 sublocs (25%)
+   302 locs have 3 sublocs (4%)
+    10 locs have 4 sublocs (0%)
+land                           0
+ocean                          3522
+forest                         1977
+swamp                          632
+mountain                       1259
+plain                          1989
+desert                         621
+water                          0
+island                         1174
+ring of stones                 12
+mallorn grove                  268
+bog                            210
+cave                           1117
+city                           428
+guild                          0
+graveyard                      0
+ruins                          977
+battlefield                    653
+enchanted forest               297
+rocky hill                     295
+circle of trees                273
+pits                           201
+pasture                        296
+oasis                          217
+yew grove                      606
+sand pit                       203
+sacred grove                   309
+poppy field                    281
+temple                         0
+lair                           425
+
+highest province = 19999
+

@@ -1,0 +1,841 @@
+62871 gate 0
+LI
+ wh 10309
+GA
+ tl 11931
+
+72324 gate 0
+LI
+ wh 10335
+GA
+ tl 10310
+
+77034 gate 0
+LI
+ wh 10420
+GA
+ tl 12236
+
+72043 gate 0
+LI
+ wh 10710
+GA
+ tl 11906
+
+69701 gate 0
+LI
+ wh 10828
+GA
+ tl 12423
+ sk 230
+
+72300 gate 0
+LI
+ wh 11136
+GA
+ tl 10334
+
+73743 gate 0
+LI
+ wh 11907
+GA
+ tl 13231
+
+64751 gate 0
+LI
+ wh 11933
+GA
+ tl 10709
+
+61740 gate 0
+LI
+ wh 12236
+GA
+ tl 13313
+
+65656 gate 0
+LI
+ wh 12424
+GA
+ tl 12835
+
+70634 gate 0
+LI
+ wh 12735
+GA
+ tl 13406
+
+77185 gate 0
+LI
+ wh 12925
+GA
+ tl 10519
+
+72939 gate 0
+LI
+ wh 13313
+GA
+ tl 13521
+
+69732 gate 0
+LI
+ wh 13331
+GA
+ tl 13024
+
+65639 gate 0
+LI
+ wh 13404
+GA
+ tl 11036
+
+70579 gate 0
+LI
+ wh 13721
+GA
+ tl 10928
+
+64319 gate 0
+LI
+ wh 77014
+GA
+ tl 63897
+ sk 151
+
+69402 gate 0
+LI
+ wh 77014
+GA
+ tl 73604
+ sk 204
+
+59005 gate 0
+LI
+ wh 77014
+GA
+ tl 11822
+
+67657 gate 0
+LI
+ wh 77014
+GA
+ tl 11005
+ sk 251
+
+77241 gate 0
+LI
+ wh 77014
+GA
+ tl 12324
+
+60345 gate 0
+LI
+ wh 77014
+GA
+ tl 11007
+ sk 263
+
+65155 gate 0
+LI
+ wh 77014
+GA
+ tl 10608
+
+69263 gate 0
+LI
+ wh 75614
+GA
+ tl 77213
+ sk 240
+
+73554 gate 0
+LI
+ wh 75614
+GA
+ tl 71889
+ sk 214
+
+75776 gate 0
+LI
+ wh 75614
+GA
+ tl 11720
+ sk 129
+
+60938 gate 0
+LI
+ wh 75614
+GA
+ tl 10906
+ sk 219
+
+78761 gate 0
+LI
+ wh 75614
+GA
+ tl 10230
+
+69500 gate 0
+LI
+ wh 75614
+GA
+ tl 13024
+
+71218 gate 0
+LI
+ wh 75614
+GA
+ tl 10420
+ sk 181
+
+71949 gate 0
+LI
+ wh 69906
+GA
+ tl 68808
+ sk 123
+
+77616 gate 0
+LI
+ wh 69906
+GA
+ tl 73604
+ sk 171
+
+72926 gate 0
+LI
+ wh 69906
+GA
+ tl 12735
+
+67927 gate 0
+LI
+ wh 69906
+GA
+ tl 10706
+ sk 296
+
+69687 gate 0
+LI
+ wh 69906
+GA
+ tl 12204
+ sk 120
+
+78574 gate 0
+LI
+ wh 69906
+GA
+ tl 10232
+
+77418 gate 0
+LI
+ wh 69906
+GA
+ tl 12017
+
+60073 gate 0
+LI
+ wh 68808
+GA
+ tl 73910
+ sk 303
+
+59961 gate 0
+LI
+ wh 68808
+GA
+ tl 77014
+ sk 325
+
+66144 gate 0
+LI
+ wh 68808
+GA
+ tl 10533
+
+64157 gate 0
+LI
+ wh 68808
+GA
+ tl 13413
+
+62903 gate 0
+LI
+ wh 68808
+GA
+ tl 11107
+
+63189 gate 0
+LI
+ wh 68808
+GA
+ tl 10937
+ sk 257
+
+74521 gate 0
+LI
+ wh 68808
+GA
+ tl 12515
+ sk 157
+
+74350 gate 0
+LI
+ wh 73910
+GA
+ tl 69958
+ sk 297
+
+67765 gate 0
+LI
+ wh 73910
+GA
+ tl 69906
+ sk 268
+
+72845 gate 0
+LI
+ wh 73910
+GA
+ tl 12915
+
+68175 gate 0
+LI
+ wh 73910
+GA
+ tl 12715
+
+60172 gate 0
+LI
+ wh 73910
+GA
+ tl 11819
+ sk 132
+
+74186 gate 0
+LI
+ wh 73910
+GA
+ tl 11918
+ sk 159
+
+63633 gate 0
+LI
+ wh 73910
+GA
+ tl 11515
+ sk 315
+
+75988 gate 0
+LI
+ wh 67464
+GA
+ tl 73604
+ sk 265
+
+76549 gate 0
+LI
+ wh 67464
+GA
+ tl 78619
+ sk 126
+
+71215 gate 0
+LI
+ wh 67464
+GA
+ tl 10334
+
+63900 gate 0
+LI
+ wh 67464
+GA
+ tl 10521
+
+66678 gate 0
+LI
+ wh 67464
+GA
+ tl 13505
+
+62318 gate 0
+LI
+ wh 67464
+GA
+ tl 10331
+ sk 137
+
+67227 gate 0
+LI
+ wh 67464
+GA
+ tl 12924
+
+65588 gate 0
+LI
+ wh 63883
+GA
+ tl 77429
+ sk 323
+
+61385 gate 0
+LI
+ wh 63883
+GA
+ tl 67464
+ sk 242
+
+78509 gate 0
+LI
+ wh 63883
+GA
+ tl 12023
+
+77928 gate 0
+LI
+ wh 63883
+GA
+ tl 12811
+ sk 117
+
+76279 gate 0
+LI
+ wh 63883
+GA
+ tl 12224
+ sk 175
+
+71787 gate 0
+LI
+ wh 63883
+GA
+ tl 11524
+
+64035 gate 0
+LI
+ wh 63883
+GA
+ tl 12121
+
+69088 gate 0
+LI
+ wh 77429
+GA
+ tl 73604
+ sk 137
+
+65430 gate 0
+LI
+ wh 77429
+GA
+ tl 77014
+ sk 197
+
+64196 gate 0
+LI
+ wh 77429
+GA
+ tl 12926
+
+73426 gate 0
+LI
+ wh 77429
+GA
+ tl 12119
+ sk 133
+
+71804 gate 0
+LI
+ wh 77429
+GA
+ tl 13013
+
+77188 gate 0
+LI
+ wh 77429
+GA
+ tl 12223
+ sk 309
+
+74682 gate 0
+LI
+ wh 77429
+GA
+ tl 12814
+
+73491 gate 0
+LI
+ wh 63897
+GA
+ tl 77014
+ sk 118
+
+69189 gate 0
+LI
+ wh 63897
+GA
+ tl 73910
+ sk 136
+
+61339 gate 0
+LI
+ wh 63897
+GA
+ tl 10708
+ sk 247
+
+60971 gate 0
+LI
+ wh 63897
+GA
+ tl 10211
+ sk 161
+
+76854 gate 0
+LI
+ wh 63897
+GA
+ tl 11613
+ sk 272
+
+67143 gate 0
+LI
+ wh 63897
+GA
+ tl 12318
+ sk 117
+
+60041 gate 0
+LI
+ wh 63897
+GA
+ tl 12018
+ sk 226
+
+74560 gate 0
+LI
+ wh 69958
+GA
+ tl 63883
+ sk 122
+
+69510 gate 0
+LI
+ wh 69958
+GA
+ tl 77213
+ sk 220
+
+75305 gate 0
+LI
+ wh 69958
+GA
+ tl 10828
+ sk 236
+
+70107 gate 0
+LI
+ wh 69958
+GA
+ tl 12020
+
+71940 gate 0
+LI
+ wh 69958
+GA
+ tl 11816
+ sk 272
+
+74916 gate 0
+LI
+ wh 69958
+GA
+ tl 10908
+ sk 200
+
+73100 gate 0
+LI
+ wh 69958
+GA
+ tl 11523
+ sk 276
+
+74937 gate 0
+LI
+ wh 77213
+GA
+ tl 63897
+ sk 180
+
+63811 gate 0
+LI
+ wh 77213
+GA
+ tl 68808
+ sk 185
+
+74949 gate 0
+LI
+ wh 77213
+GA
+ tl 10433
+
+63588 gate 0
+LI
+ wh 77213
+GA
+ tl 10330
+ sk 117
+
+73082 gate 0
+LI
+ wh 77213
+GA
+ tl 10907
+
+66439 gate 0
+LI
+ wh 77213
+GA
+ tl 10133
+
+60476 gate 0
+LI
+ wh 77213
+GA
+ tl 10235
+ sk 280
+
+66690 gate 0
+LI
+ wh 71889
+GA
+ tl 67464
+ sk 250
+
+77613 gate 0
+LI
+ wh 71889
+GA
+ tl 75614
+ sk 331
+
+66863 gate 0
+LI
+ wh 71889
+GA
+ tl 12004
+
+59467 gate 0
+LI
+ wh 71889
+GA
+ tl 10212
+
+72695 gate 0
+LI
+ wh 71889
+GA
+ tl 11723
+ sk 257
+
+77144 gate 0
+LI
+ wh 71889
+GA
+ tl 10904
+ sk 286
+
+64528 gate 0
+LI
+ wh 71889
+GA
+ tl 10903
+ sk 118
+
+59088 gate 0
+LI
+ wh 59503
+GA
+ tl 69958
+ sk 127
+
+61387 gate 0
+LI
+ wh 59503
+GA
+ tl 73910
+ sk 312
+
+62762 gate 0
+LI
+ wh 59503
+GA
+ tl 11620
+
+59417 gate 0
+LI
+ wh 59503
+GA
+ tl 11917
+ sk 237
+
+76722 gate 0
+LI
+ wh 59503
+GA
+ tl 10519
+ sk 155
+
+72569 gate 0
+LI
+ wh 59503
+GA
+ tl 11037
+
+71874 gate 0
+LI
+ wh 59503
+GA
+ tl 11135
+ sk 135
+
+61172 gate 0
+LI
+ wh 73604
+GA
+ tl 71889
+ sk 233
+
+63194 gate 0
+LI
+ wh 73604
+GA
+ tl 63897
+ sk 331
+
+64479 gate 0
+LI
+ wh 73604
+GA
+ tl 10622
+ sk 203
+
+74689 gate 0
+LI
+ wh 73604
+GA
+ tl 12714
+
+71722 gate 0
+LI
+ wh 73604
+GA
+ tl 13621
+
+68605 gate 0
+LI
+ wh 73604
+GA
+ tl 11136
+
+69679 gate 0
+LI
+ wh 73604
+GA
+ tl 10109
+ sk 313
+
+68632 gate 0
+LI
+ wh 78619
+GA
+ tl 68808
+ sk 117
+
+66468 gate 0
+LI
+ wh 78619
+GA
+ tl 67464
+ sk 199
+
+61867 gate 0
+LI
+ wh 78619
+GA
+ tl 12235
+
+77273 gate 0
+LI
+ wh 78619
+GA
+ tl 12827
+ sk 230
+
+78925 gate 0
+LI
+ wh 78619
+GA
+ tl 12222
+ sk 296
+
+68620 gate 0
+LI
+ wh 78619
+GA
+ tl 13014
+
+68520 gate 0
+LI
+ wh 78619
+GA
+ tl 11818
+
+76239 gate 0
+LI
+ wh 77259
+GA
+ tl 63883
+ sk 236
+
+70288 gate 0
+LI
+ wh 77259
+GA
+ tl 78619
+ sk 117
+
+60716 gate 0
+LI
+ wh 77259
+GA
+ tl 11718
+
+67688 gate 0
+LI
+ wh 77259
+GA
+ tl 13405
+
+76028 gate 0
+LI
+ wh 77259
+GA
+ tl 11035
+
+75420 gate 0
+LI
+ wh 77259
+GA
+ tl 10711
+ sk 131
+
+63022 gate 0
+LI
+ wh 77259
+GA
+ tl 11208
+ sk 326
+

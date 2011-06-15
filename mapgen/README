@@ -1,0 +1,77 @@
+
+	Olympia Map generator 1.0		Instructions for Use
+	-------------------------		--------------------
+
+
+1.  Construct an ascii character map of the world.  Each character
+    represents one province.  Use the following characters to vary
+    terrain:
+
+	m or M		mountain
+	d or D		desert
+	p or P		plain
+	f or F		forest
+	; ~ " or :	sea lane
+	s or S		swamp
+	-		steppe
+	. , \ or space	ocean
+	o		random (30% forest/plain, 20% mountain, 10% swamp/desert)
+	?		hidden province
+
+	#		impassable region
+				will be a "hole" in the map
+	* or %		city
+
+2.  Take care when placing ? provinces.  The terrain type will be
+    inferred from one of the neighboring squares.
+
+3.  Create a Regions file of the form:
+
+	AA	Name of region AA
+	AB	Name of region AB
+	aa	Name of ocean aa
+	zz	Name of ocean zz
+
+    Do not use the letter 'o' in ocean/sea codes, since 'o' represents
+    plains on the map.  I would have used another character besides 'o'
+    for plains, but none looked as good visually.
+
+4.  Name regions and oceans by placing the two letter code for them
+    somewhere in the region.  Again, take care when placing the two
+    letter codes, as the terrain type of the two squares taken up by
+    the code will be inferred from neighboring provinces.
+
+5.  Delineate seas by varying the character used to represent them.
+    In this way, the first sea name will not flood-fill the entire
+    ocean, since it will be stopped at the border.  For example:
+
+		-------------------------
+		~~~~~~........    ,,,,,,,
+		~~~~~~~~...sa..    ,,,,,,
+		~~~sb~~~~...... as ,,cs,,
+		~~~~~~~~~......     ,,,,,
+		-------------------------
+
+	sa	Sea of Athens
+	sb	Sea of Boetia
+	as	Aedras Sea
+	cs	Carthas Sea
+
+    Spaces, ~'s ,'s and .'s may be used to represent seas.
+
+6.  Run the map generator:
+
+	mapgen < map 2> err
+
+    The loc file is the Olympia database libdir/loc file.
+    map should be your ascii character map.  The err file will contain
+    useful information about land continents as well as any
+    warnings issued during map generation.
+
+7.  Although the Olympia map will wrap at the edges, for the purposes
+    of flood-fill algorithms the map generator will stop at the edges.
+
+8.  A * may be placed on land regions to indicate that a named city
+    should go there.  Additional random cities will be scattered
+    across the map.  City names will be read from the "Cities" file.
+

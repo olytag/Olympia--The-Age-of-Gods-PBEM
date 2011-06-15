@@ -1,0 +1,1186 @@
+Script started on Wed Jun 22 21:35:15 1994
+€You have mail in /var/mail/skrenta
+€blekko:~/c/oly/g1/src$ €e€c€h€o€ €"€s€a€v€e€"€ €|€ €.€/€o€l€y€
+€	sizeof(struct box) = 80
+€load_db()
+€can't open lib/master: €No such file or directory
+€fast_scan failed, scan_all_boxes()
+€check_db()
+€INIT: post_production()
+€location_trades()
+€INIT: seed_initial_locations()
+€108~obsidian~[119] bought in Blyn~[ao7o] for 16
+€242~jade idols~[112] sold in Trion~[ao4u] for 16
+€237~ink~[108] bought in Dirbrand~[ap5t] for 40
+€269~fine cloaks~[103] sold in Eadgyth~[ao5z] for 56
+€237~chocolate~[104] sold in Raigor~[ao9z] for 30
+€274~rose perfume~[114] sold in Imperial city~[aa0m] for 43
+€149~saffron~[254] sold in Redwine~[ao5c] for 34
+€230~incense~[116] bought in Saltstone~[aa0n] for 30
+€269~silk~[115] bought in Ollayos~[ap4d] for 42
+€248~purple cloth~[113] sold in Winewood~[ap1n] for 39
+€136~myrhh~[253] sold in Ossa~[ao9h] for 45
+€124~soap~[110] bought in Faelgrar~[ao3p] for 27
+€192~pepper~[88] sold in Aethelarn~[ap1t] for 16
+€126~oranges~[251] sold in Cyrkarth~[ao6n] for 24
+€245~rugs~[86] sold in Pirn~[ap7o] for 53
+€253~licorice~[109] sold in Blacksoul~[ao7n] for 45
+€124~ochre~[117] bought in Othon~[ap9m] for 46
+€137~oranges~[251] sold in Dyot~[ak8q] for 24
+€269~fine cloaks~[103] sold in Sestun~[aj6w] for 56
+€132~saffron~[254] sold in Rathisa~[al3v] for 34
+€230~purple cloth~[113] bought in Rytor~[al8l] for 49
+€112~honey~[107] bought in Pantarastar~[ak4j] for 31
+€112~pepper~[88] bought in Coel~[al5u] for 28
+€220~ink~[108] sold in Dungon~[al8i] for 32
+€234~cardamom~[106] sold in Illa~[aj5m] for 33
+€136~licorice~[109] bought in Wavenhill~[al8z] for 55
+€261~ink~[108] sold in Adric~[al0z] for 32
+€224~jade idols~[112] sold in Boryn~[am2x] for 16
+€236~chocolate~[104] bought in Clyf~[al8w] for 40
+€152~myrhh~[253] bought in Nightfrost~[al4y] for 58
+€240~jade idols~[112] sold in Runesward~[al5g] for 16
+€222~pepper~[88] sold in Pictar~[ak9l] for 16
+€219~rugs~[86] sold in Cano~[al1e] for 53
+€244~old books~[111] bought in Orianna~[al2u] for 56
+€135~licorice~[109] bought in Rhonius~[ak3n] for 52
+€229~soap~[110] sold in City of the Shadows~[aj7m] for 20
+€57~oranges~[251] bought in Gravecarn~[ak9s] for 47
+€225~honey~[107] sold in Agate City~[aj9d] for 20
+€255~jeweled eggs~[118] sold in Kerreck~[ak1i] for 55
+€242~chocolate~[104] bought in Ceremon~[as9o] for 41
+€228~purple cloth~[113] sold in Skyllith~[at0g] for 39
+€185~pepper~[88] sold in Hyksos~[aa0s] for 16
+€261~fine cloaks~[103] bought in Ethna~[as1w] for 62
+€248~ink~[108] sold in Cleanbones~[aa0t] for 32
+€248~obsidian~[119] sold in Custyn~[as4y] for 9
+€72~myrhh~[253] bought in Kuneack~[an8e] for 64
+€243~incense~[116] sold in Geirrod~[aq2b] for 19
+€125~fine cloaks~[103] bought in Azure City~[ap2r] for 66
+€235~obsidian~[119] sold in Bragge~[aq0j] for 9
+€121~jade idols~[112] bought in Distran~[ao3z] for 23
+€222~ivory~[105] sold in Aeltra~[ao2s] for 22
+€121~cardamom~[106] bought in Grindor~[ao2d] for 41
+€262~silk~[115] sold in Draeden~[an8a] for 34
+€190~pepper~[88] sold in Dwalin~[ap8e] for 16
+€271~purple cloth~[113] sold in Phames~[ap0x] for 39
+€250~jeweled eggs~[118] bought in Hultor~[ao1m] for 63
+€119~honey~[107] bought in Wolfhair~[ao2c] for 28
+€128~cinnabar~[252] sold in Belwe~[aq2d] for 15
+€118~oranges~[251] bought in Eathelin~[ao8z] for 39
+€270~ochre~[117] sold in Haele~[aa0j] for 36
+€109~chocolate~[104] bought in Sweetwood~[ap0v] for 37
+€260~rugs~[86] sold in Cormyr~[aa0l] for 53
+€263~rose perfume~[114] sold in Damarck~[ap4x] for 43
+€149~saffron~[254] sold in Prytani~[aq1o] for 34
+€256~licorice~[109] sold in Craeven~[ao2e] for 45
+€121~ink~[108] bought in Rustan~[aq0e] for 40
+€248~old books~[111] sold in Astryde~[ao3y] for 45
+€229~soap~[110] sold in Greymage~[ap7w] for 20
+€250~fine cloaks~[103] sold in Kior~[as0r] for 56
+€222~ink~[108] bought in Salach~[ar0g] for 40
+€115~oranges~[251] sold in Lebrus~[ar7q] for 24
+€119~rugs~[86] bought in Darkwind~[aa0p] for 61
+€236~honey~[107] sold in Alldus~[ar1g] for 20
+€72~saffron~[254] bought in Caer City~[ar2t] for 44
+€256~chocolate~[104] sold in Dalamar~[ar0c] for 30
+€118~oranges~[251] bought in Nuncarth~[ar9y] for 39
+€270~jeweled eggs~[118] sold in Geatan~[at0w] for 55
+€231~soap~[110] bought in Calldwr~[aa0u] for 26
+€215~jade idols~[112] bought in Resh~[ar9o] for 24
+€136~rose perfume~[114] bought in Raskold~[as5x] for 49
+€249~fine cloaks~[103] sold in Eldead~[aa0q] for 56
+€130~saffron~[254] sold in Grimwall~[as1l] for 34
+€256~chocolate~[104] sold in Sardis~[ar1z] for 30
+€230~cardamom~[106] bought in Chiron~[an0q] for 39
+€208~obsidian~[119] sold in Sesklos~[am7o] for 9
+€217~incense~[116] sold in Northmold~[ar0m] for 19
+€240~licorice~[109] sold in Argon City~[ar5x] for 45
+€243~obsidian~[119] sold in Baraxes~[ar0j] for 9
+€249~ivory~[105] bought in Tywy~[aq8c] for 32
+€220~obsidian~[119] sold in Iche~[ar4h] for 9
+€114~chocolate~[104] bought in Storre~[aq9d] for 39
+€235~fine cloaks~[103] sold in Iniera~[aq2w] for 56
+€107~obsidian~[119] bought in Aesa~[an5c] for 22
+€231~ink~[108] bought in Miranth~[an7g] for 40
+€120~oranges~[251] bought in Fistrock~[an5f] for 45
+€140~saffron~[254] bought in Shavnor~[an3t] for 52
+€104~honey~[107] bought in Vril~[an5k] for 30
+€225~chocolate~[104] bought in Elderon~[ai5b] for 39
+€267~ochre~[117] sold in Esnar~[av1p] for 36
+€119~cardamom~[106] bought in Neuson~[av5n] for 42
+€121~jade idols~[112] bought in Fandrall~[au3e] for 26
+€220~ink~[108] sold in Davchar~[au2q] for 32
+€251~soap~[110] bought in Nantasarn~[au0s] for 30
+€130~saffron~[254] sold in Arkfire City~[au4j] for 34
+€266~rose perfume~[114] sold in Lookfar~[ai3g] for 43
+€241~cardamom~[106] sold in Chronos~[ai2l] for 33
+€126~saffron~[254] sold in Habyn~[ai1z] for 34
+€137~jeweled eggs~[118] bought in Rylla~[ai1n] for 60
+€123~honey~[107] bought in Eorforwic~[aw0u] for 26
+€119~chocolate~[104] bought in Aldain~[av9g] for 42
+€143~saffron~[254] bought in Farshadow~[av9o] for 53
+€135~old books~[111] bought in Delde City~[av9b] for 51
+€221~ink~[108] bought in Gutar~[aw0j] for 40
+€128~silk~[115] bought in Domin~[aw0n] for 41
+€110~soap~[110] bought in Pereswyff~[av1c] for 33
+€142~myrhh~[253] sold in Fassen~[au3w] for 45
+€219~ivory~[105] sold in Cospera~[av5g] for 22
+€117~cardamom~[106] bought in Hrodowald~[av1i] for 40
+€130~old books~[111] bought in Moonfire~[au9u] for 56
+€119~incense~[116] bought in Tendaughters~[av5b] for 29
+€263~rose perfume~[114] sold in Haertlinde~[au9r] for 43
+€119~oranges~[251] bought in Arkaune~[au6r] for 45
+€231~honey~[107] sold in Rysshop~[au2j] for 20
+€256~jeweled eggs~[118] bought in Pelthros~[au8d] for 64
+€117~cinnabar~[252] bought in Darcon~[av2g] for 40
+€256~fine cloaks~[103] bought in Hollian~[at6e] for 61
+€277~rose perfume~[114] sold in Birdan~[at7m] for 43
+€238~soap~[110] sold in Wetrock~[aa0w] for 20
+€238~chocolate~[104] sold in Alicor City~[au5d] for 30
+€63~cinnabar~[252] bought in Baeron~[au5f] for 32
+€209~ivory~[105] sold in Barebranch~[au0f] for 22
+€132~saffron~[254] sold in Aodhagan~[at6d] for 34
+€263~fine cloaks~[103] sold in Odana~[ai9m] for 56
+€246~obsidian~[119] bought in Elantir~[ai9o] for 19
+€243~purple cloth~[113] bought in Nassic~[ai6q] for 47
+€135~old books~[111] bought in Zaal~[ao1t] for 55
+€233~soap~[110] sold in Olmar~[ao5u] for 20
+€69~saffron~[254] bought in Harmakros~[aj0k] for 47
+€197~pepper~[88] sold in Illun~[ai4s] for 16
+€259~fine cloaks~[103] sold in Nyssa~[ai8f] for 56
+€223~incense~[116] sold in Alsvider~[ai8h] for 19
+€226~ink~[108] sold in Gildeath~[ai9s] for 32
+€122~silk~[115] bought in Norbus~[aj4l] for 43
+€259~licorice~[109] sold in Caden~[aj2t] for 45
+€292~jeweled eggs~[118] sold in Illinod~[aj9x] for 55
+€253~soap~[110] sold in Mallon~[ak4f] for 20
+€274~jeweled eggs~[118] bought in Garn City~[al3k] for 61
+€106~pepper~[88] bought in Coinbalth~[al1o] for 25
+€251~incense~[116] sold in Fearshadow~[an0u] for 19
+€275~licorice~[109] sold in Lassan~[am7a] for 45
+€211~soap~[110] bought in Diarmaoid~[am9z] for 33
+€240~cardamom~[106] sold in Buelthane~[an2v] for 33
+€228~honey~[107] bought in Proudrock~[aa0f] for 26
+€128~cinnabar~[252] bought in Othkar~[am9n] for 28
+€218~honey~[107] sold in Calanthe~[an1j] for 20
+€241~fine cloaks~[103] sold in Omournil~[at1n] for 56
+€221~honey~[107] bought in Notlbrob~[at1m] for 31
+€141~rose perfume~[114] bought in Halhere~[at3f] for 53
+€242~old books~[111] bought in Trullion~[at3c] for 51
+€264~rose perfume~[114] bought in Swinebroth~[as8j] for 49
+€236~licorice~[109] sold in Dorenth~[at2i] for 45
+€262~ochre~[117] sold in Dagr~[at8w] for 36
+€238~jade idols~[112] sold in Haakon~[at7b] for 16
+€272~rose perfume~[114] sold in Belgarth~[at6z] for 43
+€119~rugs~[86] bought in Barghan~[at9s] for 62
+€224~incense~[116] sold in Caase~[au7f] for 19
+€245~chocolate~[104] sold in Ulgor~[av6c] for 30
+€235~silk~[115] sold in Alera~[av3z] for 34
+€INIT: compute_dist()
+€INIT: seed_city_near_lists()
+€INIT: seed_cookies()
+€INIT: creating faery
+€faery loc is Forest~[ia2k]
+€INIT: creating hades
+€hades loc is Hades~[az4c]
+€INIT: creating cloudlands
+€Aerovia is in Cloud~[jd5e]
+€seed_monster_sublocs()
+€70101::0::Nobleman~[fa6z] stacks beneath Giant spider~[bq1t].
+€47085::0::Nobleman~[fa6z] stacks beneath us.
+€42740::0::Old man~[az4q] stacks beneath Giant spider~[im2k].
+€93382::0::Old man~[az4q] stacks beneath us.
+€51774::0::Old man~[ci2c] stacks beneath Pirate~[cc2v].
+€50233::0::Old man~[ci2c] stacks beneath us.
+€87404::0::Princess~[hp2m] stacks beneath Pirate~[ju0k].
+€102170::0::Princess~[hp2m] stacks beneath us.
+€87864::0::Princess~[hr0e] stacks beneath Cyclops~[ba2y].
+€42956::0::Princess~[hr0e] stacks beneath us.
+€56524::0::Knight~[da4u] stacks beneath Cyclops~[az4s].
+€42742::0::Knight~[da4u] stacks beneath us.
+€78139::0::Merchant~[gf6d] stacks beneath Cyclops~[gm4u].
+€79924::0::Merchant~[gf6d] stacks beneath us.
+€74930::0::Nobleman~[ft2s] stacks beneath Giant spider~[ce2w].
+€50754::0::Nobleman~[ft2s] stacks beneath us.
+€94993::0::Distressed Lady~[is4j] stacks beneath Pirate~[ho7j].
+€87271::0::Distressed Lady~[is4j] stacks beneath us.
+€70764::0::Princess~[fd2m] stacks beneath Pirate~[fc9k].
+€70684::0::Princess~[fd2m] stacks beneath us.
+€54146::0::Distressed Lady~[cr3i] stacks beneath Giant spider~[jl5x].
+€99973::0::Distressed Lady~[cr3i] stacks beneath us.
+€56889::0::Old man~[db8v] stacks beneath Pirate~[hh6n].
+€85429::0::Old man~[db8v] stacks beneath us.
+€80070::0::Merchant~[gn0k] stacks beneath Pirate~[hn0n].
+€86833::0::Merchant~[gn0k] stacks beneath us.
+€49274::0::Nobleman~[by5y] stacks beneath Giant spider~[ek2o].
+€65826::0::Nobleman~[by5y] stacks beneath us.
+€76232::0::Knight~[fy2u] stacks beneath Cyclops~[gt3p].
+€81713::0::Knight~[fy2u] stacks beneath us.
+€42755::0::Old man~[az5f] stacks beneath Pirate~[az5e].
+€42754::0::Old man~[az5f] stacks beneath us.
+€89482::0::Princess~[hx2k] stacks beneath Giant spider~[az5l].
+€42761::0::Princess~[hx2k] stacks beneath us.
+€66177::0::Princess~[el6b] stacks beneath Giant spider~[fx7d].
+€76085::0::Princess~[el6b] stacks beneath us.
+€74304::0::Merchant~[fq8q] stacks beneath Cyclops~[cm4y].
+€52888::0::Merchant~[fq8q] stacks beneath us.
+€91833::0::Knight~[ig2v] stacks beneath Giant spider~[bh4z].
+€44829::0::Knight~[ig2v] stacks beneath us.
+€91201::0::Knight~[id8n] stacks beneath Giant spider~[fk7p].
+€72717::0::Knight~[id8n] stacks beneath us.
+€58119::0::Distressed Lady~[dg6d] stacks beneath Pirate~[bm3v].
+€46099::0::Distressed Lady~[dg6d] stacks beneath us.
+€89786::0::Knight~[hy4c] stacks beneath Giant spider~[gi7l].
+€78953::0::Knight~[hy4c] stacks beneath us.
+€94199::0::Princess~[ip3v] stacks beneath Cyclops~[je2r].
+€98069::0::Princess~[ip3v] stacks beneath us.
+€51946::0::Distressed Lady~[ci8s] stacks beneath Cyclops~[ey2e].
+€69456::0::Distressed Lady~[ci8s] stacks beneath us.
+€42895::0::Princess~[ba0p] stacks beneath Giant spider~[ei9h].
+€65481::0::Princess~[ba0p] stacks beneath us.
+€42775::0::Knight~[az5z] stacks beneath Giant spider~[dx7o].
+€62576::0::Knight~[az5z] stacks beneath us.
+€93392::0::King's daughter~[im2u] stacks beneath Giant spider~[bx8b].
+€49069::0::King's daughter~[im2u] stacks beneath us.
+€42778::0::Distressed Lady~[az6c] stacks beneath Pirate~[js7z].
+€101847::0::Distressed Lady~[az6c] stacks beneath us.
+€90409::0::King's daughter~[ia8b] stacks beneath Cyclops~[hh6y].
+€85440::0::King's daughter~[ia8b] stacks beneath us.
+€94638::0::Old man~[ir0s] stacks beneath Giant spider~[fg7d].
+€71665::0::Old man~[ir0s] stacks beneath us.
+€92456::0::Distressed Lady~[ii6u] stacks beneath Giant spider~[jn0d].
+€100343::0::Distressed Lady~[ii6u] stacks beneath us.
+€77932::0::Merchant~[ge8e] stacks beneath Pirate~[dq3o].
+€60652::0::Merchant~[ge8e] stacks beneath us.
+€70521::0::Princess~[fc3d] stacks beneath Giant spider~[ji3y].
+€99142::0::Princess~[fc3d] stacks beneath us.
+€61799::0::Old man~[du7r] stacks beneath Giant spider~[ec5y].
+€63834::0::Old man~[du7r] stacks beneath us.
+€81137::0::Old man~[gr1l] stacks beneath Cyclops~[fi9f].
+€72239::0::Old man~[gr1l] stacks beneath us.
+€42789::0::Distressed Lady~[az6n] stacks beneath Cyclops~[jo1r].
+€100643::0::Distressed Lady~[az6n] stacks beneath us.
+€72727::0::Distressed Lady~[fk7z] stacks beneath Giant spider~[hg5q].
+€85146::0::Distressed Lady~[fk7z] stacks beneath us.
+€42790::0::Old man~[az6o] stacks beneath Pirate~[go5k].
+€80460::0::Old man~[az6o] stacks beneath us.
+€86712::0::Nobleman~[hm5w] stacks beneath Pirate~[cd7b].
+€50603::0::Nobleman~[hm5w] stacks beneath us.
+€49558::0::Distressed Lady~[bz6w] stacks beneath Cyclops~[ej9j].
+€65743::0::Distressed Lady~[bz6w] stacks beneath us.
+€42794::0::Merchant~[az6s] stacks beneath Giant spider~[cx8w].
+€55850::0::Merchant~[az6s] stacks beneath us.
+€42798::0::King's daughter~[az6w] stacks beneath Pirate~[bn4e].
+€46368::0::King's daughter~[az6w] stacks beneath us.
+€92890::0::Princess~[ik3m] stacks beneath Pirate~[cf8e].
+€51152::0::Princess~[ik3m] stacks beneath us.
+€77990::0::King's daughter~[gf0k] stacks beneath Giant spider~[ea9t].
+€63413::0::King's daughter~[gf0k] stacks beneath us.
+€100785::0::Princess~[jo7d] stacks beneath Pirate~[du3j].
+€61687::0::Princess~[jo7d] stacks beneath us.
+€55630::0::Princess~[cx0k] stacks beneath Giant spider~[gz3a].
+€83258::0::Princess~[cx0k] stacks beneath us.
+€68943::0::Old man~[ew2l] stacks beneath Cyclops~[iw0a].
+€95920::0::Old man~[ew2l] stacks beneath us.
+€89364::0::Nobleman~[hw7w] stacks beneath Cyclops~[jq6t].
+€101295::0::Nobleman~[hw7w] stacks beneath us.
+€76262::0::King's daughter~[fy3y] stacks beneath Cyclops~[ja6e].
+€97120::0::King's daughter~[fy3y] stacks beneath us.
+€57496::0::Knight~[de2e] stacks beneath Pirate~[hu0s].
+€88658::0::Knight~[de2e] stacks beneath us.
+€98978::0::Nobleman~[jh7q] stacks beneath Cyclops~[bd4i].
+€43772::0::Nobleman~[jh7q] stacks beneath us.
+€75127::0::Nobleman~[fu0h] stacks beneath Pirate~[cz5n].
+€56283::0::Nobleman~[fu0h] stacks beneath us.
+€93479::0::Knight~[im6d] stacks beneath Giant spider~[ip7j].
+€94291::0::Knight~[im6d] stacks beneath us.
+€66497::0::Distressed Lady~[em8j] stacks beneath Pirate~[gc7p].
+€77397::0::Distressed Lady~[em8j] stacks beneath us.
+€90705::0::Distressed Lady~[ib9l] stacks beneath Giant spider~[by5p].
+€49265::0::Distressed Lady~[ib9l] stacks beneath us.
+€82210::0::Old man~[gv2s] stacks beneath Giant spider~[ez9v].
+€69915::0::Old man~[gv2s] stacks beneath us.
+€42820::0::Nobleman~[az7s] stacks beneath Cyclops~[fh9y].
+€71998::0::Nobleman~[az7s] stacks beneath us.
+€42821::0::King's daughter~[az7t] stacks beneath Giant spider~[da7n].
+€56595::0::King's daughter~[az7t] stacks beneath us.
+€74861::0::Merchant~[ft0b] stacks beneath Cyclops~[az7u].
+€42822::0::Merchant~[ft0b] stacks beneath us.
+€48920::0::King's daughter~[bx2i] stacks beneath Giant spider~[hj4d].
+€85887::0::King's daughter~[bx2i] stacks beneath us.
+€90500::0::Merchant~[ib1o] stacks beneath Cyclops~[cn7i].
+€53210::0::Merchant~[ib1o] stacks beneath us.
+€47604::0::Princess~[bs1s] stacks beneath Pirate~[da4f].
+€56509::0::Princess~[bs1s] stacks beneath us.
+€42828::0::Merchant~[az8a] stacks beneath Pirate~[dz1w].
+€62948::0::Merchant~[az8a] stacks beneath us.
+€48763::0::Merchant~[bw6h] stacks beneath Cyclops~[il4j].
+€93173::0::Merchant~[bw6h] stacks beneath us.
+€46484::0::King's daughter~[bn8q] stacks beneath Cyclops~[ga5d].
+€76813::0::King's daughter~[bn8q] stacks beneath us.
+€95160::0::Knight~[it0u] stacks beneath Giant spider~[ej1q].
+€65542::0::Knight~[it0u] stacks beneath us.
+€58603::0::Distressed Lady~[di4t] stacks beneath Pirate~[iz9g].
+€96940::0::Distressed Lady~[di4t] stacks beneath us.
+€86271::0::Nobleman~[hk8x] stacks beneath Giant spider~[ee9j].
+€64443::0::Nobleman~[hk8x] stacks beneath us.
+€96782::0::Princess~[iz3e] stacks beneath Pirate~[de0s].
+€57458::0::Princess~[iz3e] stacks beneath us.
+€45641::0::Old man~[bk6f] stacks beneath Pirate~[gi0g].
+€78766::0::Old man~[bk6f] stacks beneath us.
+€91838::0::Old man~[ig3a] stacks beneath Giant spider~[cr7x].
+€54265::0::Old man~[ig3a] stacks beneath us.
+€76298::0::Merchant~[fy5i] stacks beneath Cyclops~[im1u].
+€93366::0::Merchant~[fy5i] stacks beneath us.
+€77439::0::Old man~[gc9f] stacks beneath Giant spider~[fc7t].
+€70641::0::Old man~[gc9f] stacks beneath us.
+€90801::0::Old man~[ic3d] stacks beneath Pirate~[en3i].
+€66626::0::Old man~[ic3d] stacks beneath us.
+€101835::0::King's daughter~[js7n] stacks beneath Giant spider~[dr8v].
+€61049::0::King's daughter~[js7n] stacks beneath us.
+€52282::0::Knight~[ck1q] stacks beneath Pirate~[bc1f].
+€43431::0::Knight~[ck1q] stacks beneath us.
+€86293::0::Princess~[hk9t] stacks beneath Pirate~[hg7r].
+€85199::0::Princess~[hk9t] stacks beneath us.
+€57550::0::King's daughter~[de4g] stacks beneath Giant spider~[gk6e].
+€79440::0::King's daughter~[de4g] stacks beneath us.
+€84393::0::Distressed Lady~[hd6r] stacks beneath Giant spider~[ig0a].
+€91760::0::Distressed Lady~[hd6r] stacks beneath us.
+€59172::0::Princess~[dk6q] stacks beneath Pirate~[gb3h].
+€77025::0::Princess~[dk6q] stacks beneath us.
+€60427::0::Nobleman~[dp4x] stacks beneath Giant spider~[bg9p].
+€44689::0::Nobleman~[dp4x] stacks beneath us.
+€69433::0::Merchant~[ey1h] stacks beneath Pirate~[jc3n].
+€97571::0::Merchant~[ey1h] stacks beneath us.
+€43853::0::King's daughter~[bd7l] stacks beneath Giant spider~[ee0f].
+€64205::0::King's daughter~[bd7l] stacks beneath us.
+€76768::0::Princess~[ga3k] stacks beneath Pirate~[is0g].
+€94886::0::Princess~[ga3k] stacks beneath us.
+€93792::0::Old man~[in8e] stacks beneath Cyclops~[df8t].
+€57927::0::Old man~[in8e] stacks beneath us.
+€42874::0::Nobleman~[az9u] stacks beneath Giant spider~[az9t].
+€42873::0::Nobleman~[az9u] stacks beneath us.
+€52632::0::Old man~[cl5c] stacks beneath Giant spider~[cz2v].
+€56213::0::Old man~[cl5c] stacks beneath us.
+€70705::0::Nobleman~[fd0f] stacks beneath Cyclops~[ji8g].
+€99254::0::Nobleman~[fd0f] stacks beneath us.
+€96681::0::King's daughter~[iy9h] stacks beneath Cyclops~[do8s].
+€60266::0::King's daughter~[iy9h] stacks beneath us.
+€72760::0::King's daughter~[fk9g] stacks beneath Giant spider~[ip0n].
+€94113::0::King's daughter~[fk9g] stacks beneath us.
+€57533::0::Princess~[de3p] stacks beneath Pirate~[fh2c].
+€71794::0::Princess~[de3p] stacks beneath us.
+€58648::0::Merchant~[di6m] stacks beneath Cyclops~[jj9y].
+€99558::0::Merchant~[di6m] stacks beneath us.
+€51325::0::Knight~[cg4v] stacks beneath Pirate~[dv1r].
+€61903::0::Knight~[cg4v] stacks beneath us.
+€42890::0::Old man~[ba0k] stacks beneath Giant spider~[ii2e].
+€92336::0::Old man~[ba0k] stacks beneath us.
+€75239::0::Princess~[fu4p] stacks beneath Cyclops~[ba0l].
+€42891::0::Princess~[fu4p] stacks beneath us.
+€42894::0::King's daughter~[ba0o] stacks beneath Giant spider~[bc9n].
+€43647::0::King's daughter~[ba0o] stacks beneath us.
+€92902::0::Knight~[ik3y] stacks beneath Cyclops~[hu0y].
+€88664::0::Knight~[ik3y] stacks beneath us.
+€45879::0::Princess~[bl5j] stacks beneath Cyclops~[hc9i].
+€84202::0::Princess~[bl5j] stacks beneath us.
+€85562::0::Nobleman~[hi1q] stacks beneath Giant spider~[bz9o].
+€49628::0::Nobleman~[hi1q] stacks beneath us.
+€58907::0::Distressed Lady~[dj6l] stacks beneath Pirate~[hv8t].
+€89127::0::Distressed Lady~[dj6l] stacks beneath us.
+€89958::0::Merchant~[hz0s] stacks beneath Cyclops~[hz1s].
+€89984::0::Merchant~[hz0s] stacks beneath us.
+€95076::0::King's daughter~[is7o] stacks beneath Cyclops~[bk1x].
+€45529::0::King's daughter~[is7o] stacks beneath us.
+€87659::0::Distressed Lady~[hq2h] stacks beneath Giant spider~[dp7p].
+€60497::0::Distressed Lady~[hq2h] stacks beneath us.
+€83027::0::King's daughter~[gy4d] stacks beneath Giant spider~[ba0z].
+€42905::0::King's daughter~[gy4d] stacks beneath us.
+€93161::0::Old man~[il3x] stacks beneath Pirate~[hu6z].
+€88821::0::Old man~[il3x] stacks beneath us.
+€53419::0::Old man~[co5j] stacks beneath Cyclops~[id7y].
+€91186::0::Old man~[co5j] stacks beneath us.
+€48592::0::Distressed Lady~[bv9s] stacks beneath Giant spider~[bj8m].
+€45440::0::Distressed Lady~[bv9s] stacks beneath us.
+€42915::0::Princess~[ba1j] stacks beneath Pirate~[du3h].
+€61685::0::Princess~[ba1j] stacks beneath us.
+€68026::0::Old man~[es7e] stacks beneath Pirate~[cn7g].
+€53208::0::Old man~[es7e] stacks beneath us.
+€46921::0::Old man~[bp5l] stacks beneath Giant spider~[jt6q].
+€102072::0::Old man~[bp5l] stacks beneath us.
+€90163::0::Old man~[hz8p] stacks beneath Giant spider~[ea6r].
+€63333::0::Old man~[hz8p] stacks beneath us.
+€63170::0::Old man~[ea0k] stacks beneath Cyclops~[ga4e].
+€76788::0::Old man~[ea0k] stacks beneath us.
+€94240::0::King's daughter~[ip5k] stacks beneath Cyclops~[cg7t].
+€51401::0::King's daughter~[ip5k] stacks beneath us.
+€42918::0::Nobleman~[ba1m] stacks beneath Cyclops~[eo5a].
+€66930::0::Nobleman~[ba1m] stacks beneath us.
+€66895::0::Old man~[eo3r] stacks beneath Pirate~[ft1x].
+€74909::0::Old man~[eo3r] stacks beneath us.
+€70932::0::Merchant~[fd8y] stacks beneath Pirate~[iq8y].
+€94592::0::Merchant~[fd8y] stacks beneath us.
+€89647::0::Old man~[hx8t] stacks beneath Cyclops~[il2u].
+€93132::0::Old man~[hx8t] stacks beneath us.
+€76774::0::King's daughter~[ga3q] stacks beneath Cyclops~[ip6i].
+€94264::0::King's daughter~[ga3q] stacks beneath us.
+€95914::0::King's daughter~[iv9u] stacks beneath Pirate~[gm2r].
+€79869::0::King's daughter~[iv9u] stacks beneath us.
+€54317::0::Distressed Lady~[cr9x] stacks beneath Giant spider~[fv8f].
+€75593::0::Distressed Lady~[cr9x] stacks beneath us.
+€48214::0::Merchant~[bu5e] stacks beneath Giant spider~[jf2p].
+€98327::0::Merchant~[bu5e] stacks beneath us.
+€46917::0::Old man~[bp5h] stacks beneath Cyclops~[ib6p].
+€90631::0::Old man~[bp5h] stacks beneath us.
+€50892::0::Knight~[ce8e] stacks beneath Cyclops~[fz7c].
+€76604::0::Knight~[ce8e] stacks beneath us.
+€90903::0::Princess~[ic7b] stacks beneath Giant spider~[er3g].
+€67664::0::Princess~[ic7b] stacks beneath us.
+€95713::0::Old man~[iv2b] stacks beneath Cyclops~[cr1e].
+€54090::0::Old man~[iv2b] stacks beneath us.
+€89249::0::Nobleman~[hw3l] stacks beneath Giant spider~[gb9m].
+€77186::0::Nobleman~[hw3l] stacks beneath us.
+€82470::0::King's daughter~[gw2s] stacks beneath Giant spider~[ba2k].
+€42942::0::King's daughter~[gw2s] stacks beneath us.
+€54941::0::Old man~[cu3x] stacks beneath Giant spider~[ho1u].
+€87126::0::Old man~[cu3x] stacks beneath us.
+€94280::0::Nobleman~[ip6y] stacks beneath Pirate~[eh3j].
+€65067::0::Nobleman~[ip6y] stacks beneath us.
+€52627::0::Old man~[cl4x] stacks beneath Cyclops~[iy2t].
+€96511::0::Old man~[cl4x] stacks beneath us.
+€42946::0::Nobleman~[ba2o] stacks beneath Giant spider~[cc1x].
+€50209::0::Nobleman~[ba2o] stacks beneath us.
+€99029::0::Old man~[jh9p] stacks beneath Giant spider~[ba2p].
+€42947::0::Old man~[jh9p] stacks beneath us.
+€50522::0::Knight~[cd3y] stacks beneath Giant spider~[ba2s].
+€42950::0::Knight~[cd3y] stacks beneath us.
+€60508::0::King's daughter~[dp8a] stacks beneath Cyclops~[hg4h].
+€85111::0::King's daughter~[dp8a] stacks beneath us.
+€57597::0::Merchant~[de6b] stacks beneath Giant spider~[ba2v].
+€42953::0::Merchant~[de6b] stacks beneath us.
+€84578::0::Distressed Lady~[he3u] stacks beneath Giant spider~[ja3z].
+€97063::0::Distressed Lady~[he3u] stacks beneath us.
+€42954::0::Old man~[ba2w] stacks beneath Pirate~[dc3o].
+€57012::0::Old man~[ba2w] stacks beneath us.
+€46755::0::Merchant~[bo9b] stacks beneath Cyclops~[fc5x].
+€70593::0::Merchant~[bo9b] stacks beneath us.
+€49369::0::Distressed Lady~[by9p] stacks beneath Giant spider~[fo2r].
+€73629::0::Distressed Lady~[by9p] stacks beneath us.
+€42960::0::Old man~[ba3c] stacks beneath Cyclops~[ej3o].
+€65592::0::Old man~[ba3c] stacks beneath us.
+€50943::0::Distressed Lady~[cf0d] stacks beneath Giant spider~[ff5o].
+€71364::0::Distressed Lady~[cf0d] stacks beneath us.
+€48881::0::Distressed Lady~[bx0v] stacks beneath Pirate~[ht9q].
+€88630::0::Distressed Lady~[bx0v] stacks beneath us.
+€70621::0::Princess~[fc6z] stacks beneath Cyclops~[hn0d].
+€86823::0::Princess~[fc6z] stacks beneath us.
+€42964::0::Nobleman~[ba3g] stacks beneath Cyclops~[ba3f].
+€42963::0::Nobleman~[ba3g] stacks beneath us.
+€76782::0::Distressed Lady~[ga3y] stacks beneath Pirate~[da8z].
+€56633::0::Distressed Lady~[ga3y] stacks beneath us.
+€42970::0::Old man~[ba3m] stacks beneath Cyclops~[ba3k].
+€42968::0::Old man~[ba3m] stacks beneath us.
+€46995::0::Princess~[bp8h] stacks beneath Cyclops~[jh6l].
+€98947::0::Princess~[bp8h] stacks beneath us.
+€42979::0::Old man~[ba3v] stacks beneath Cyclops~[ji2k].
+€99102::0::Old man~[ba3v] stacks beneath us.
+€81413::0::Princess~[gs2b] stacks beneath Spirit~[ja0v].
+€96981::0::Princess~[gs2b] stacks beneath us.
+€96409::0::Knight~[ix8v] stacks beneath Skeleton~[dy3g].
+€62724::0::Knight~[ix8v] stacks beneath us.
+€74574::0::Merchant~[fr9a] stacks beneath Undead~[ho0e].
+€87084::0::Merchant~[fr9a] stacks beneath us.
+€42990::0::Old man~[ba4g] stacks beneath Spirit~[ib4u].
+€90584::0::Old man~[ba4g] stacks beneath us.
+€60279::0::Nobleman~[do9f] stacks beneath Spirit~[ge8b].
+€77929::0::Nobleman~[do9f] stacks beneath us.
+€42995::0::Distressed Lady~[ba4l] stacks beneath Spirit~[dc9d].
+€57157::0::Distressed Lady~[ba4l] stacks beneath us.
+€61032::0::Distressed Lady~[dr8e] stacks beneath Spirit~[ba4o].
+€42998::0::Distressed Lady~[dr8e] stacks beneath us.
+€66111::0::Princess~[el3n] stacks beneath Skeleton~[ck1i].
+€52274::0::Princess~[el3n] stacks beneath us.
+€51042::0::Princess~[cf3y] stacks beneath Spirit~[gu8o].
+€82102::0::Princess~[cf3y] stacks beneath us.
+€83265::0::Merchant~[gz3h] stacks beneath Spirit~[fy4r].
+€76281::0::Merchant~[gz3h] stacks beneath us.
+€78862::0::King's daughter~[gi3y] stacks beneath Spirit~[fl7c].
+€72964::0::King's daughter~[gi3y] stacks beneath us.
+€92421::0::Knight~[ii5l] stacks beneath Skeleton~[fy9x].
+€76417::0::Knight~[ii5l] stacks beneath us.
+€79453::0::Old man~[gk6r] stacks beneath Skeleton~[fz8a].
+€76628::0::Old man~[gk6r] stacks beneath us.
+€43009::0::Merchant~[ba4z] stacks beneath Spirit~[ew8c].
+€69090::0::Merchant~[ba4z] stacks beneath us.
+€55041::0::Old man~[cu7t] stacks beneath Skeleton~[gy6z].
+€83101::0::Old man~[cu7t] stacks beneath us.
+€85085::0::Nobleman~[hg3h] stacks beneath Undead~[fn3o].
+€73392::0::Nobleman~[hg3h] stacks beneath us.
+€88739::0::Old man~[hu3v] stacks beneath Skeleton~[en8m].
+€66760::0::Old man~[hu3v] stacks beneath us.
+€93515::0::Old man~[im7n] stacks beneath Spirit~[cx0q].
+€55636::0::Old man~[im7n] stacks beneath us.
+€43016::0::Princess~[ba5g] stacks beneath Undead~[gh9i].
+€78742::0::Princess~[ba5g] stacks beneath us.
+€64418::0::Distressed Lady~[ee8k] stacks beneath Spirit~[je0o].
+€98014::0::Distressed Lady~[ee8k] stacks beneath us.
+€43017::0::Nobleman~[ba5h] stacks beneath Spirit~[ii1u].
+€92326::0::Nobleman~[ba5h] stacks beneath us.
+€86214::0::Nobleman~[hk6s] stacks beneath Skeleton~[ec6l].
+€63847::0::Nobleman~[hk6s] stacks beneath us.
+€78857::0::Merchant~[gi3t] stacks beneath Undead~[bl2e].
+€45796::0::Merchant~[gi3t] stacks beneath us.
+€73671::0::Knight~[fo4h] stacks beneath Spirit~[ek0e].
+€65764::0::Knight~[fo4h] stacks beneath us.
+€62175::0::Knight~[dw2d] stacks beneath Spirit~[gc8i].
+€77416::0::Knight~[dw2d] stacks beneath us.
+€80358::0::Merchant~[go1m] stacks beneath Skeleton~[hg2u].
+€85072::0::Merchant~[go1m] stacks beneath us.
+€61615::0::King's daughter~[du0p] stacks beneath Undead~[fa3i].
+€70006::0::King's daughter~[du0p] stacks beneath us.
+€49509::0::Distressed Lady~[bz4z] stacks beneath Skeleton~[bw7u].
+€48802::0::Distressed Lady~[bz4z] stacks beneath us.
+€63415::0::King's daughter~[ea9v] stacks beneath Spirit~[fy7f].
+€76347::0::King's daughter~[ea9v] stacks beneath us.
+€66106::0::Princess~[el3i] stacks beneath Skeleton~[fv6q].
+€75552::0::Princess~[el3i] stacks beneath us.
+€72268::0::Distressed Lady~[fj0i] stacks beneath Skeleton~[gy5o].
+€83064::0::Distressed Lady~[fj0i] stacks beneath us.
+€79769::0::Old man~[gl8v] stacks beneath Skeleton~[ba6p].
+€43051::0::Old man~[gl8v] stacks beneath us.
+€98718::0::Merchant~[jg7q] stacks beneath Spirit~[ec0i].
+€63688::0::Merchant~[jg7q] stacks beneath us.
+€78685::0::Knight~[gh7d] stacks beneath Skeleton~[hw6z].
+€89341::0::Knight~[gh7d] stacks beneath us.
+€71486::0::Nobleman~[fg0g] stacks beneath Spirit~[ba7h].
+€43069::0::Nobleman~[fg0g] stacks beneath us.
+€66081::0::Merchant~[el2j] stacks beneath Spirit~[cu5k].
+€54980::0::Merchant~[el2j] stacks beneath us.
+€49401::0::Princess~[bz0v] stacks beneath Undead~[hz9d].
+€90177::0::Princess~[bz0v] stacks beneath us.
+€71322::0::Old man~[ff3y] stacks beneath Undead~[ga4t].
+€76803::0::Old man~[ff3y] stacks beneath us.
+€48069::0::Knight~[bt9p] stacks beneath Skeleton~[fh5b].
+€71871::0::Knight~[bt9p] stacks beneath us.
+€43072::0::Old man~[ba7k] stacks beneath Undead~[gh7m].
+€78694::0::Old man~[ba7k] stacks beneath us.
+€92814::0::Distressed Lady~[ik0o] stacks beneath Spirit~[ew1l].
+€68917::0::Distressed Lady~[ik0o] stacks beneath us.
+€86032::0::Distressed Lady~[hj9s] stacks beneath Giant spider~[du0n].
+€61613::0::Distressed Lady~[hj9s] stacks beneath us.
+€58409::0::Princess~[dh7h] stacks beneath Chimera~[bq2k].
+€47102::0::Princess~[dh7h] stacks beneath us.
+€53051::0::Old man~[cn1f] stacks beneath Giant bird~[he0c].
+€84482::0::Old man~[cn1f] stacks beneath us.
+€54645::0::Merchant~[ct2n] stacks beneath Giant spider~[hx0j].
+€89429::0::Merchant~[ct2n] stacks beneath us.
+€59084::0::Nobleman~[dk3g] stacks beneath Lion~[ii1s].
+€92324::0::Nobleman~[dk3g] stacks beneath us.
+€64715::0::King's daughter~[ef9v] stacks beneath Ratspider~[ba8s].
+€43106::0::King's daughter~[ef9v] stacks beneath us.
+€96780::0::Knight~[iz3c] stacks beneath Minotaur~[dc4r].
+€57041::0::Knight~[iz3c] stacks beneath us.
+€90573::0::King's daughter~[ib4j] stacks beneath Giant lizard~[ba8u].
+€43108::0::King's daughter~[ib4j] stacks beneath us.
+€47276::0::Princess~[bq9c] stacks beneath Giant spider~[hb2w].
+€83774::0::Princess~[bq9c] stacks beneath us.
+€98888::0::Merchant~[jh4e] stacks beneath Giant spider~[dd1y].
+€57230::0::Merchant~[jh4e] stacks beneath us.
+€64266::0::Merchant~[ee2o] stacks beneath Ratspider~[fj2r].
+€72329::0::Merchant~[ee2o] stacks beneath us.
+€44191::0::Knight~[bf0l] stacks beneath Rat~[gg4g].
+€78350::0::Knight~[bf0l] stacks beneath us.
+€72004::0::Princess~[fi0e] stacks beneath Harpie~[gk7p].
+€79477::0::Princess~[fi0e] stacks beneath us.
+€92613::0::Merchant~[ij2v] stacks beneath Giant spider~[ez4q].
+€69780::0::Merchant~[ij2v] stacks beneath us.
+€44545::0::Princess~[bg4b] stacks beneath Lion~[hz9j].
+€90183::0::Princess~[bg4b] stacks beneath us.
+€98139::0::Merchant~[je5j] stacks beneath Rat~[gp9k].
+€80824::0::Merchant~[je5j] stacks beneath us.
+€85300::0::Princess~[hh1o] stacks beneath Chimera~[fw5s].
+€75788::0::Princess~[hh1o] stacks beneath us.
+€43118::0::Knight~[ba9e] stacks beneath Ratspider~[dv1o].
+€61900::0::Knight~[ba9e] stacks beneath us.
+€63810::0::Merchant~[ec5a] stacks beneath Ratspider~[is0t].
+€94899::0::Merchant~[ec5a] stacks beneath us.
+€84598::0::Princess~[he4o] stacks beneath Faery~[ft8d].
+€75071::0::Princess~[he4o] stacks beneath us.
+€74733::0::Princess~[fs5d] stacks beneath Minotaur~[ey4s].
+€69522::0::Princess~[fs5d] stacks beneath us.
+€97649::0::King's daughter~[jc6n] stacks beneath Faery~[jm0x].
+€100103::0::King's daughter~[jc6n] stacks beneath us.
+€50518::0::Old man~[cd3u] stacks beneath Giant lizard~[hm0i].
+€86568::0::Old man~[cd3u] stacks beneath us.
+€63214::0::Old man~[ea2c] stacks beneath Rat~[ex2p].
+€69207::0::Old man~[ea2c] stacks beneath us.
+€67076::0::Nobleman~[ep0q] stacks beneath Giant bird~[dv8d].
+€62071::0::Nobleman~[ep0q] stacks beneath us.
+€77433::0::Knight~[gc8z] stacks beneath Harpie~[gd8n].
+€77681::0::Knight~[gc8z] stacks beneath us.
+€50164::0::Knight~[cc0e] stacks beneath Ratspider~[bm2d].
+€46055::0::Knight~[cc0e] stacks beneath us.
+€80623::0::Old man~[gp1r] stacks beneath Giant bird~[fz9j].
+€76663::0::Old man~[gp1r] stacks beneath us.
+€46132::0::King's daughter~[bm5c] stacks beneath Chimera~[ia0h].
+€90207::0::King's daughter~[bm5c] stacks beneath us.
+€68313::0::Distressed Lady~[et8f] stacks beneath Minotaur~[bb0a].
+€43140::0::Distressed Lady~[et8f] stacks beneath us.
+€91218::0::Knight~[id9e] stacks beneath Lion~[gt7y].
+€81826::0::Knight~[id9e] stacks beneath us.
+€81494::0::Nobleman~[gs5e] stacks beneath Giant lizard~[ed5i].
+€64078::0::Nobleman~[gs5e] stacks beneath us.
+€101529::0::Princess~[jr5t] stacks beneath Faery~[cz0y].
+€56164::0::Princess~[jr5t] stacks beneath us.
+€59925::0::Knight~[dn5p] stacks beneath Chimera~[ia0f].
+€90205::0::Knight~[dn5p] stacks beneath us.
+€83230::0::Old man~[gz1y] stacks beneath Lion~[eh4e].
+€65088::0::Old man~[gz1y] stacks beneath us.
+€44379::0::King's daughter~[bf7r] stacks beneath Ratspider~[bb0s].
+€43158::0::King's daughter~[bf7r] stacks beneath us.
+€77312::0::Merchant~[gc4i] stacks beneath Lion~[ie8p].
+€91463::0::Merchant~[gc4i] stacks beneath us.
+€70579::0::Merchant~[fc5j] stacks beneath Harpie~[gu2k].
+€81942::0::Merchant~[fc5j] stacks beneath us.
+€90538::0::Old man~[ib3a] stacks beneath Faery~[cu0k].
+€54850::0::Old man~[ib3a] stacks beneath us.
+€63560::0::Nobleman~[eb5k] stacks beneath Giant bird~[fw5y].
+€75794::0::Nobleman~[eb5k] stacks beneath us.
+€43167::0::Merchant~[bb1b] stacks beneath Chimera~[gr3j].
+€81187::0::Merchant~[bb1b] stacks beneath us.
+€48803::0::Old man~[bw7v] stacks beneath Faery~[bt6d].
+€47979::0::Old man~[bw7v] stacks beneath us.
+€101743::0::Merchant~[js3z] stacks beneath Lion~[ep8p].
+€67283::0::Merchant~[js3z] stacks beneath us.
+€96441::0::Nobleman~[iy0b] stacks beneath Giant spider~[it9l].
+€95385::0::Nobleman~[iy0b] stacks beneath us.
+€44473::0::Old man~[bg1h] stacks beneath Ratspider~[bb1i].
+€43174::0::Old man~[bg1h] stacks beneath us.
+€43175::0::Distressed Lady~[bb1j] stacks beneath Lion~[hn8t].
+€87047::0::Distressed Lady~[bb1j] stacks beneath us.
+€94970::0::Merchant~[is3m] stacks beneath Chimera~[iv3e].
+€95742::0::Merchant~[is3m] stacks beneath us.
+€72994::0::Old man~[fl8g] stacks beneath Giant lizard~[he8f].
+€84693::0::Old man~[fl8g] stacks beneath us.
+€50237::0::King's daughter~[cc2z] stacks beneath Elf~[br6r].
+€47473::0::King's daughter~[cc2z] stacks beneath us.
+€55187::0::Nobleman~[cv3j] stacks beneath Minotaur~[fj3n].
+€72351::0::Nobleman~[cv3j] stacks beneath us.
+€52743::0::Nobleman~[cl9j] stacks beneath Minotaur~[dj2k].
+€58802::0::Nobleman~[cl9j] stacks beneath us.
+€90854::0::Old man~[ic5e] stacks beneath Harpie~[is9v].
+€95135::0::Old man~[ic5e] stacks beneath us.
+€94908::0::Nobleman~[is1c] stacks beneath Ratspider~[iu8n].
+€95621::0::Nobleman~[is1c] stacks beneath us.
+€102033::0::Princess~[jt5d] stacks beneath Giant spider~[ij1a].
+€92566::0::Princess~[jt5d] stacks beneath us.
+€85723::0::Nobleman~[hi7v] stacks beneath Centaur~[dr0d].
+€60823::0::Nobleman~[hi7v] stacks beneath us.
+€55276::0::Nobleman~[cv6u] stacks beneath Faery~[go5i].
+€80458::0::Nobleman~[cv6u] stacks beneath us.
+€47852::0::Princess~[bt1g] stacks beneath Giant bird~[be3z].
+€44023::0::Princess~[bt1g] stacks beneath us.
+€73794::0::Merchant~[fo9a] stacks beneath Harpie~[bb3i].
+€43226::0::Merchant~[fo9a] stacks beneath us.
+€45461::0::Princess~[bj9h] stacks beneath Rat~[fd4i].
+€70812::0::Princess~[bj9h] stacks beneath us.
+€61653::0::Princess~[du2b] stacks beneath Harpie~[cz3o].
+€56232::0::Princess~[du2b] stacks beneath us.
+€43237::0::Nobleman~[bb3t] stacks beneath Minotaur~[il4q].
+€93180::0::Nobleman~[bb3t] stacks beneath us.
+€43238::0::Old man~[bb3u] stacks beneath Minotaur~[ga3g].
+€76764::0::Old man~[bb3u] stacks beneath us.
+€89227::0::King's daughter~[hw2p] stacks beneath Chimera~[ir7d].
+€94805::0::King's daughter~[hw2p] stacks beneath us.
+€70531::0::Old man~[fc3n] stacks beneath Giant lizard~[bb4e].
+€43248::0::Old man~[fc3n] stacks beneath us.
+€95600::0::Old man~[iu7s] stacks beneath Giant lizard~[cf3g].
+€51024::0::Old man~[iu7s] stacks beneath us.
+€47748::0::Princess~[bs7g] stacks beneath Giant spider~[hu9e].
+€88878::0::Princess~[bs7g] stacks beneath us.
+€46813::0::Merchant~[bp1h] stacks beneath Lion~[cu5l].
+€54981::0::Merchant~[bp1h] stacks beneath us.
+€76914::0::Distressed Lady~[ga9a] stacks beneath Faery~[hz1d].
+€89969::0::Distressed Lady~[ga9a] stacks beneath us.
+€54225::0::Princess~[cr6j] stacks beneath Faery~[is5x].
+€95033::0::Princess~[cr6j] stacks beneath us.
+€97894::0::Old man~[jd5y] stacks beneath Chimera~[fs1c].
+€74628::0::Old man~[jd5y] stacks beneath us.
+€80654::0::Distressed Lady~[gp2w] stacks beneath Harpie~[ch3k].
+€51548::0::Distressed Lady~[gp2w] stacks beneath us.
+€99827::0::Distressed Lady~[jl0h] stacks beneath Centaur~[du7e].
+€61786::0::Distressed Lady~[jl0h] stacks beneath us.
+€43257::0::Old man~[bb4n] stacks beneath Giant spider~[bb4m].
+€43256::0::Old man~[bb4n] stacks beneath us.
+€91354::0::Distressed Lady~[ie4k] stacks beneath Faery~[jm6p].
+€100251::0::Distressed Lady~[ie4k] stacks beneath us.
+€69092::0::King's daughter~[ew8e] stacks beneath Elf~[jr4q].
+€101500::0::King's daughter~[ew8e] stacks beneath us.
+€43268::0::Nobleman~[bb4y] stacks beneath Giant spider~[eq1l].
+€67357::0::Nobleman~[bb4y] stacks beneath us.
+€87503::0::Old man~[hp6h] stacks beneath Ratspider~[hh0f].
+€85265::0::Old man~[hp6h] stacks beneath us.
+€55834::0::Merchant~[cx8g] stacks beneath Ratspider~[bj9f].
+€45459::0::Merchant~[cx8g] stacks beneath us.
+€65876::0::Nobleman~[ek4m] stacks beneath Chimera~[ib9i].
+€90702::0::Nobleman~[ek4m] stacks beneath us.
+€54801::0::Nobleman~[ct8n] stacks beneath Ratspider~[gs4j].
+€81473::0::Nobleman~[ct8n] stacks beneath us.
+€96974::0::King's daughter~[ja0o] stacks beneath Giant bird~[fy8o].
+€76382::0::King's daughter~[ja0o] stacks beneath us.
+€44024::0::Old man~[be4a] stacks beneath Chimera~[de6a].
+€57596::0::Old man~[be4a] stacks beneath us.
+€69274::0::King's daughter~[ex5e] stacks beneath Rat~[cb8y].
+€50132::0::King's daughter~[ex5e] stacks beneath us.
+€63230::0::Old man~[ea2s] stacks beneath Rat~[hy7m].
+€89874::0::Old man~[ea2s] stacks beneath us.
+€70632::0::Knight~[fc7k] stacks beneath Giant spider~[if6z].
+€91681::0::Knight~[fc7k] stacks beneath us.
+€71060::0::King's daughter~[fe3w] stacks beneath Giant spider~[fd4y].
+€70828::0::King's daughter~[fe3w] stacks beneath us.
+€69254::0::Distressed Lady~[ex4k] stacks beneath Giant bird~[js4i].
+€101752::0::Distressed Lady~[ex4k] stacks beneath us.
+€62462::0::Nobleman~[dx3e] stacks beneath Chimera~[fy9y].
+€76418::0::Nobleman~[dx3e] stacks beneath us.
+€54937::0::Old man~[cu3t] stacks beneath Giant spider~[io9c].
+€94076::0::Old man~[cu3t] stacks beneath us.
+€62123::0::Merchant~[dw0d] stacks beneath Elf~[bb7c].
+€43324::0::Merchant~[dw0d] stacks beneath us.
+€76412::0::Merchant~[fy9s] stacks beneath Giant bird~[ei4w].
+€65366::0::Merchant~[fy9s] stacks beneath us.
+€79960::0::Distressed Lady~[gm6e] stacks beneath Minotaur~[cw9n].
+€55607::0::Distressed Lady~[gm6e] stacks beneath us.
+€78034::0::Merchant~[gf2c] stacks beneath Ratspider~[bb7d].
+€43325::0::Merchant~[gf2c] stacks beneath us.
+€50414::0::King's daughter~[cc9u] stacks beneath Giant lizard~[ha9r].
+€83691::0::King's daughter~[cc9u] stacks beneath us.
+€62631::0::Knight~[dx9r] stacks beneath Rat~[fp3u].
+€73918::0::Knight~[dx9r] stacks beneath us.
+€86652::0::King's daughter~[hm3o] stacks beneath Centaur~[ee5w].
+€64352::0::King's daughter~[hm3o] stacks beneath us.
+€45695::0::Old man~[bk8h] stacks beneath Minotaur~[gd4n].
+€77577::0::Old man~[bk8h] stacks beneath us.
+€62319::0::Nobleman~[dw7r] stacks beneath Giant bird~[cp0r].
+€53557::0::Nobleman~[dw7r] stacks beneath us.
+€43334::0::Nobleman~[bb7m] stacks beneath Chimera~[bb7l].
+€43333::0::Nobleman~[bb7m] stacks beneath us.
+€61811::0::Knight~[du8d] stacks beneath Chimera~[hp4k].
+€87454::0::Knight~[du8d] stacks beneath us.
+€43719::0::Distressed Lady~[bd2h] stacks beneath Ratspider~[bb7t].
+€43341::0::Distressed Lady~[bd2h] stacks beneath us.
+€53503::0::Old man~[co8p] stacks beneath Harpie~[eu4k].
+€68474::0::Old man~[co8p] stacks beneath us.
+€43344::0::Merchant~[bb7w] stacks beneath Giant lizard~[jk0c].
+€99562::0::Merchant~[bb7w] stacks beneath us.
+€94852::0::Princess~[ir8y] stacks beneath Giant bird~[ic1l].
+€90757::0::Princess~[ir8y] stacks beneath us.
+€79111::0::Merchant~[gj3n] stacks beneath Centaur~[cu0l].
+€54851::0::Merchant~[gj3n] stacks beneath us.
+€50703::0::Knight~[ce0x] stacks beneath Chimera~[ck4t].
+€52363::0::Knight~[ce0x] stacks beneath us.
+€65849::0::Knight~[ek3l] stacks beneath Giant bird~[ff8p].
+€71443::0::Knight~[ek3l] stacks beneath us.
+€85840::0::Old man~[hj2i] stacks beneath Ratspider~[jo0b].
+€100601::0::Old man~[hj2i] stacks beneath us.
+€46883::0::Nobleman~[bp3z] stacks beneath Rat~[gc2z].
+€77277::0::Nobleman~[bp3z] stacks beneath us.
+€82480::0::Merchant~[gw3c] stacks beneath Centaur~[fw6f].
+€75801::0::Merchant~[gw3c] stacks beneath us.
+€93303::0::Nobleman~[il9j] stacks beneath Chimera~[cz3s].
+€56236::0::Nobleman~[il9j] stacks beneath us.
+€90244::0::Distressed Lady~[ia1s] stacks beneath Giant bird~[fk1u].
+€72566::0::Distressed Lady~[ia1s] stacks beneath us.
+€97573::0::King's daughter~[jc3p] stacks beneath Giant spider~[gz4l].
+€83295::0::King's daughter~[jc3p] stacks beneath us.
+€67503::0::Merchant~[eq7b] stacks beneath Harpie~[eb0e].
+€63424::0::Merchant~[eq7b] stacks beneath us.
+€58353::0::Distressed Lady~[dh5d] stacks beneath Ratspider~[ji8r].
+€99265::0::Distressed Lady~[dh5d] stacks beneath us.
+€80851::0::Merchant~[gq0l] stacks beneath Giant spider~[gv6p].
+€82311::0::Merchant~[gq0l] stacks beneath us.
+€85638::0::King's daughter~[hi4o] stacks beneath Centaur~[gd9j].
+€77703::0::King's daughter~[hi4o] stacks beneath us.
+€81167::0::King's daughter~[gr2p] stacks beneath Faery~[bx6n].
+€49029::0::King's daughter~[gr2p] stacks beneath us.
+€95487::0::Old man~[iu3j] stacks beneath Faery~[fl6p].
+€72951::0::Old man~[iu3j] stacks beneath us.
+€77377::0::Merchant~[gc6v] stacks beneath Rat~[bq0e].
+€47044::0::Merchant~[gc6v] stacks beneath us.
+€84567::0::King's daughter~[he3j] stacks beneath Lion~[bd0w].
+€43682::0::King's daughter~[he3j] stacks beneath us.
+€58992::0::Nobleman~[dj9s] stacks beneath Rat~[fn4q].
+€73420::0::Nobleman~[dj9s] stacks beneath us.
+€70073::0::Old man~[fa5x] stacks beneath Minotaur~[dx2s].
+€62450::0::Old man~[fa5x] stacks beneath us.
+€94309::0::Knight~[ip8b] stacks beneath Rat~[dl8s].
+€59486::0::Knight~[ip8b] stacks beneath us.
+€43392::0::Old man~[bb9s] stacks beneath Ratspider~[fp7h].
+€74009::0::Old man~[bb9s] stacks beneath us.
+€66241::0::Distressed Lady~[el8n] stacks beneath Minotaur~[ca7m].
+€49834::0::Distressed Lady~[el8n] stacks beneath us.
+€92016::0::Old man~[ig9w] stacks beneath Giant bird~[it2w].
+€95214::0::Old man~[ig9w] stacks beneath us.
+€90773::0::Old man~[ic2b] stacks beneath Giant bird~[co2f].
+€53337::0::Old man~[ic2b] stacks beneath us.
+€59897::0::Old man~[dn4n] stacks beneath Ratspider~[bb9y].
+€43398::0::Old man~[dn4n] stacks beneath us.
+€85176::0::Knight~[hg6u] stacks beneath Giant bird~[dh8b].
+€58429::0::Knight~[hg6u] stacks beneath us.
+€67388::0::Nobleman~[eq2q] stacks beneath Giant bird~[ig9m].
+€92006::0::Nobleman~[eq2q] stacks beneath us.
+€49511::0::Knight~[bz5b] stacks beneath Minotaur~[ja4a].
+€97064::0::Knight~[bz5b] stacks beneath us.
+€43410::0::Nobleman~[bc0k] stacks beneath Giant spider~[ci7h].
+€51909::0::Nobleman~[bc0k] stacks beneath us.
+€43414::0::Distressed Lady~[bc0o] stacks beneath Chimera~[ez3g].
+€69744::0::Distressed Lady~[bc0o] stacks beneath us.
+€49428::0::Nobleman~[bz1w] stacks beneath Giant spider~[hu0j].
+€88649::0::Nobleman~[bz1w] stacks beneath us.
+€44186::0::Merchant~[bf0g] stacks beneath Ratspider~[gv8b].
+€82349::0::Merchant~[bf0g] stacks beneath us.
+€82137::0::Distressed Lady~[gu9x] stacks beneath Ratspider~[hb3b].
+€83779::0::Distressed Lady~[gu9x] stacks beneath us.
+€75837::0::Princess~[fw7p] stacks beneath Giant bird~[cn7d].
+€53205::0::Princess~[fw7p] stacks beneath us.
+€96369::0::Old man~[ix7h] stacks beneath Elf~[hn1t].
+€86865::0::Old man~[ix7h] stacks beneath us.
+€101245::0::Princess~[jq4v] stacks beneath Elf~[gz8l].
+€83399::0::Princess~[jq4v] stacks beneath us.
+€43443::0::Old man~[bc1r] stacks beneath Faery~[dj4z].
+€58869::0::Old man~[bc1r] stacks beneath us.
+€53156::0::Knight~[cn5g] stacks beneath Elf~[jg9y].
+€98778::0::Knight~[cn5g] stacks beneath us.
+€78700::0::Princess~[gh7s] stacks beneath Minotaur~[dw3w].
+€62220::0::Princess~[gh7s] stacks beneath us.
+€101167::0::Princess~[jq1v] stacks beneath Centaur~[bv1p].
+€48381::0::Princess~[jq1v] stacks beneath us.
+€43448::0::Old man~[bc1w] stacks beneath Centaur~[eq8x].
+€67551::0::Old man~[bc1w] stacks beneath us.
+€90019::0::Nobleman~[hz3b] stacks beneath Giant bird~[cr5s].
+€54208::0::Nobleman~[hz3b] stacks beneath us.
+€48457::0::Old man~[bv4n] stacks beneath Giant bird~[il2s].
+€93130::0::Old man~[bv4n] stacks beneath us.
+€43452::0::Nobleman~[bc2a] stacks beneath Faery~[eg7q].
+€64918::0::Nobleman~[bc2a] stacks beneath us.
+€99123::0::Princess~[ji3f] stacks beneath Giant spider~[ir8h].
+€94835::0::Princess~[ji3f] stacks beneath us.
+€62832::0::Merchant~[dy7k] stacks beneath Harpie~[fh5u].
+€71890::0::Merchant~[dy7k] stacks beneath us.
+€79735::0::Old man~[gl7n] stacks beneath Giant lizard~[de4o].
+€57558::0::Old man~[gl7n] stacks beneath us.
+€43469::0::Old man~[bc2r] stacks beneath Ratspider~[dj0u].
+€58760::0::Old man~[bc2r] stacks beneath us.
+€49068::0::Nobleman~[bx8a] stacks beneath Harpie~[gr0x].
+€81123::0::Nobleman~[bx8a] stacks beneath us.
+€102375::0::Old man~[ju8h] stacks beneath Faery~[jb4a].
+€97324::0::Old man~[ju8h] stacks beneath us.
+€43476::0::Nobleman~[bc2y] stacks beneath Chimera~[ia3c].
+€90280::0::Nobleman~[bc2y] stacks beneath us.
+€70877::0::Knight~[fd6v] stacks beneath Giant bird~[cw2q].
+€55428::0::Knight~[fd6v] stacks beneath us.
+€95967::0::Princess~[iw1v] stacks beneath Centaur~[di4h].
+€58591::0::Princess~[iw1v] stacks beneath us.
+€80261::0::Knight~[gn7t] stacks beneath Faery~[jp2g].
+€100918::0::Knight~[gn7t] stacks beneath us.
+€60089::0::Knight~[do1x] stacks beneath Giant lizard~[it2v].
+€95213::0::Knight~[do1x] stacks beneath us.
+€78177::0::King's daughter~[gf7p] stacks beneath Giant spider~[jj5b].
+€99431::0::King's daughter~[gf7p] stacks beneath us.
+€49609::0::Old man~[bz8v] stacks beneath Chimera~[bc3w].
+€43500::0::Old man~[bz8v] stacks beneath us.
+€53852::0::Knight~[cq2a] stacks beneath Rat~[ju1z].
+€102211::0::Knight~[cq2a] stacks beneath us.
+€83979::0::Old man~[hc0t] stacks beneath Minotaur~[iu4t].
+€95523::0::Old man~[hc0t] stacks beneath us.
+€55860::0::Knight~[cx9g] stacks beneath Giant bird~[ey5o].
+€69544::0::Knight~[cx9g] stacks beneath us.
+€47752::0::Nobleman~[bs7k] stacks beneath Giant lizard~[iq2c].
+€94414::0::Nobleman~[bs7k] stacks beneath us.
+€66043::0::King's daughter~[el0x] stacks beneath Chimera~[ja8q].
+€97184::0::King's daughter~[el0x] stacks beneath us.
+€61001::0::Nobleman~[dr6z] stacks beneath Minotaur~[fr3v].
+€74439::0::Nobleman~[dr6z] stacks beneath us.
+€66526::0::Nobleman~[em9m] stacks beneath Ratspider~[eh9g].
+€65220::0::Nobleman~[em9m] stacks beneath us.
+€66281::0::Nobleman~[em0b] stacks beneath Harpie~[bw4p].
+€48719::0::Nobleman~[em0b] stacks beneath us.
+€78063::0::Merchant~[gf3f] stacks beneath Lion~[bf6m].
+€44348::0::Merchant~[gf3f] stacks beneath us.
+€62536::0::Merchant~[dx6a] stacks beneath Faery~[ii7t].
+€92481::0::Merchant~[dx6a] stacks beneath us.
+€81088::0::Distressed Lady~[gq9o] stacks beneath Chimera~[ee1b].
+€64227::0::Distressed Lady~[gq9o] stacks beneath us.
+€96417::0::Princess~[ix9d] stacks beneath Giant spider~[jc0k].
+€97490::0::Princess~[ix9d] stacks beneath us.
+€43533::0::Old man~[bc5d] stacks beneath Lion~[eg0w].
+€64742::0::Old man~[bc5d] stacks beneath us.
+€89392::0::Merchant~[hw8y] stacks beneath Lion~[fx5r].
+€76047::0::Merchant~[hw8y] stacks beneath us.
+€80949::0::Knight~[gq4f] stacks beneath Rat~[fa1e].
+€69950::0::Knight~[gq4f] stacks beneath us.
+€56933::0::Distressed Lady~[dc0n] stacks beneath Minotaur~[ey8p].
+€69623::0::Distressed Lady~[dc0n] stacks beneath us.
+€68508::0::Merchant~[eu5s] stacks beneath Centaur~[ia1x].
+€90249::0::Merchant~[eu5s] stacks beneath us.
+€71867::0::Old man~[fh4x] stacks beneath Giant bird~[ff4c].
+€71326::0::Old man~[fh4x] stacks beneath us.
+€81391::0::Old man~[gs1f] stacks beneath Giant spider~[cz5e].
+€56274::0::Old man~[gs1f] stacks beneath us.
+€43544::0::Nobleman~[bc5o] stacks beneath Rat~[gr6r].
+€81273::0::Nobleman~[bc5o] stacks beneath us.
+€62604::0::Nobleman~[dx8q] stacks beneath Lion~[eo4x].
+€66927::0::Nobleman~[dx8q] stacks beneath us.
+€66143::0::King's daughter~[el4t] stacks beneath Ratspider~[ei2g].
+€65298::0::King's daughter~[el4t] stacks beneath us.
+€43741::0::Nobleman~[bd3d] stacks beneath Chimera~[ia0m].
+€90212::0::Nobleman~[bd3d] stacks beneath us.
+€44671::0::Princess~[bg8x] stacks beneath Centaur~[eu3m].
+€68450::0::Princess~[bg8x] stacks beneath us.
+€56536::0::Knight~[da5g] stacks beneath Ratspider~[cl1p].
+€52541::0::Knight~[da5g] stacks beneath us.
+€95327::0::Nobleman~[it7f] stacks beneath Chimera~[bc5s].
+€43548::0::Nobleman~[it7f] stacks beneath us.
+€43549::0::Old man~[bc5t] stacks beneath Centaur~[gn9w].
+€80316::0::Old man~[bc5t] stacks beneath us.
+€92789::0::Old man~[ij9p] stacks beneath Giant spider~[je6f].
+€98161::0::Old man~[ij9p] stacks beneath us.
+€88666::0::Old man~[hu1a] stacks beneath Rat~[bx0u].
+€48880::0::Old man~[hu1a] stacks beneath us.
+€50094::0::Merchant~[cb7m] stacks beneath Giant bird~[be8h].
+€44135::0::Merchant~[cb7m] stacks beneath us.
+€62074::0::Old man~[dv8g] stacks beneath Elf~[gq7r].
+€81039::0::Old man~[dv8g] stacks beneath us.
+€84875::0::Distressed Lady~[hf5f] stacks beneath Giant spider~[it7t].
+€95341::0::Distressed Lady~[hf5f] stacks beneath us.
+€43557::0::Old man~[bc6b] stacks beneath Giant lizard~[gi1p].
+€78801::0::Old man~[bc6b] stacks beneath us.
+€87858::0::Distressed Lady~[hq9y] stacks beneath Harpie~[hc9o].
+€84208::0::Distressed Lady~[hq9y] stacks beneath us.
+€48901::0::Nobleman~[bx1p] stacks beneath Harpie~[ii5j].
+€92419::0::Nobleman~[bx1p] stacks beneath us.
+€92811::0::King's daughter~[ik0l] stacks beneath Harpie~[bc6k].
+€43566::0::King's daughter~[ik0l] stacks beneath us.
+€89179::0::Old man~[hw0t] stacks beneath Giant bird~[iy0z].
+€96465::0::Old man~[hw0t] stacks beneath us.
+€56392::0::Distressed Lady~[cz9s] stacks beneath Harpie~[gu9r].
+€82131::0::Distressed Lady~[cz9s] stacks beneath us.
+€70135::0::Old man~[fa8h] stacks beneath Chimera~[jr4v].
+€101505::0::Old man~[fa8h] stacks beneath us.
+€56729::0::King's daughter~[db2r] stacks beneath Rat~[bt5c].
+€47952::0::King's daughter~[db2r] stacks beneath us.
+€74241::0::Old man~[fq6f] stacks beneath Giant lizard~[ia0c].
+€90202::0::Old man~[fq6f] stacks beneath us.
+€54395::0::King's daughter~[cs2x] stacks beneath Rat~[ca0s].
+€49658::0::King's daughter~[cs2x] stacks beneath us.
+€59723::0::King's daughter~[dm7v] stacks beneath Giant bird~[dl6w].
+€59438::0::King's daughter~[dm7v] stacks beneath us.
+€96106::0::Merchant~[iw7e] stacks beneath Giant bird~[bc7f].
+€43587::0::Merchant~[iw7e] stacks beneath us.
+€100350::0::Knight~[jn0k] stacks beneath Chimera~[jl5k].
+€99960::0::Knight~[jn0k] stacks beneath us.
+€58018::0::Princess~[dg2g] stacks beneath Giant spider~[fg0t].
+€71499::0::Princess~[dg2g] stacks beneath us.
+€51896::0::Princess~[ci6u] stacks beneath Faery~[gr3i].
+€81186::0::Princess~[ci6u] stacks beneath us.
+€76424::0::Merchant~[fz0e] stacks beneath Lion~[jr5i].
+€101518::0::Merchant~[fz0e] stacks beneath us.
+€93425::0::Knight~[im4b] stacks beneath Giant spider~[bc7n].
+€43595::0::Knight~[im4b] stacks beneath us.
+€68182::0::Old man~[et3e] stacks beneath Giant bird~[ev8z].
+€68853::0::Old man~[et3e] stacks beneath us.
+€49493::0::Distressed Lady~[bz4j] stacks beneath Ratspider~[jr2u].
+€101452::0::Distressed Lady~[bz4j] stacks beneath us.
+€71773::0::Merchant~[fh1h] stacks beneath Ratspider~[jg7p].
+€98717::0::Merchant~[fh1h] stacks beneath us.
+€75917::0::Distressed Lady~[fx0r] stacks beneath Elf~[cv8t].
+€55327::0::Distressed Lady~[fx0r] stacks beneath us.
+€80832::0::Merchant~[gp9s] stacks beneath Harpie~[cd4e].
+€50528::0::Merchant~[gp9s] stacks beneath us.
+€81928::0::Distressed Lady~[gu1w] stacks beneath Faery~[dy1k].
+€62676::0::Distressed Lady~[gu1w] stacks beneath us.
+€76416::0::Princess~[fy9w] stacks beneath Giant lizard~[bc8d].
+€43611::0::Princess~[fy9w] stacks beneath us.
+€46152::0::Knight~[bm5w] stacks beneath Giant lizard~[bu8p].
+€48303::0::Knight~[bm5w] stacks beneath us.
+€48101::0::Distressed Lady~[bu0v] stacks beneath Giant spider~[bc8g].
+€43614::0::Distressed Lady~[bu0v] stacks beneath us.
+€43615::0::Princess~[bc8h] stacks beneath Ratspider~[bj7b].
+€45403::0::Princess~[bc8h] stacks beneath us.
+€58734::0::Old man~[di9u] stacks beneath Harpie~[ih5t].
+€92169::0::Old man~[di9u] stacks beneath us.
+€67094::0::Old man~[ep1i] stacks beneath Minotaur~[jm8y].
+€100312::0::Old man~[ep1i] stacks beneath us.
+€46657::0::Old man~[bo5h] stacks beneath Harpie~[ct0s].
+€54598::0::Old man~[bo5h] stacks beneath us.
+€71146::0::Old man~[fe7e] stacks beneath Faery~[gm7a].
+€79982::0::Old man~[fe7e] stacks beneath us.
+€84835::0::Old man~[hf3r] stacks beneath Giant spider~[gp3d].
+€80661::0::Old man~[hf3r] stacks beneath us.
+€52951::0::Merchant~[cm7j] stacks beneath Giant bird~[bc8t].
+€43627::0::Merchant~[cm7j] stacks beneath us.
+€43631::0::Knight~[bc8x] stacks beneath Elf~[bq4d].
+€47147::0::Knight~[bc8x] stacks beneath us.
+€98710::0::Old man~[jg7i] stacks beneath Centaur~[hd0d].
+€84223::0::Old man~[jg7i] stacks beneath us.
+€86306::0::Distressed Lady~[hl0g] stacks beneath Lion~[ga3x].
+€76781::0::Distressed Lady~[hl0g] stacks beneath us.
+€94791::0::Nobleman~[ir6p] stacks beneath Harpie~[ey1l].
+€69437::0::Nobleman~[ir6p] stacks beneath us.
+€77740::0::Distressed Lady~[ge0u] stacks beneath Chimera~[he1v].
+€84527::0::Distressed Lady~[ge0u] stacks beneath us.
+€54167::0::Merchant~[cr4d] stacks beneath Giant bird~[hf5g].
+€84876::0::Merchant~[cr4d] stacks beneath us.
+€74681::0::Old man~[fs3d] stacks beneath Faery~[fz2y].
+€76496::0::Old man~[fs3d] stacks beneath us.
+€43658::0::Princess~[bc9y] stacks beneath Giant spider~[de9u].
+€57694::0::Princess~[bc9y] stacks beneath us.
+€58566::0::Nobleman~[di3i] stacks beneath Minotaur~[fi3s].
+€72096::0::Nobleman~[di3i] stacks beneath us.
+€67983::0::Merchant~[es5n] stacks beneath Chimera~[hk8n].
+€86261::0::Merchant~[es5n] stacks beneath us.
+€81360::0::Distressed Lady~[gs0a] stacks beneath Ratspider~[hk3p].
+€86133::0::Distressed Lady~[gs0a] stacks beneath us.
+€63658::0::Old man~[eb9e] stacks beneath Lion~[gi3s].
+€78856::0::Old man~[eb9e] stacks beneath us.
+€52300::0::Nobleman~[ck2i] stacks beneath Lion~[fz5z].
+€76575::0::Nobleman~[ck2i] stacks beneath us.
+€43683::0::Knight~[bd0x] stacks beneath Minotaur~[fg3b].
+€71559::0::Knight~[bd0x] stacks beneath us.
+€51620::0::Princess~[ch6e] stacks beneath Minotaur~[hf6w].
+€84918::0::Princess~[ch6e] stacks beneath us.
+€65425::0::Princess~[ei7d] stacks beneath Ratspider~[em2l].
+€66343::0::Princess~[ei7d] stacks beneath us.
+€73939::0::Princess~[fp4p] stacks beneath Harpie~[bd1d].
+€43689::0::Princess~[fp4p] stacks beneath us.
+€88041::0::King's daughter~[hr6z] stacks beneath Giant bird~[bd1f].
+€43691::0::King's daughter~[hr6z] stacks beneath us.
+€96411::0::Distressed Lady~[ix8x] stacks beneath Rat~[jh1u].
+€98826::0::Distressed Lady~[ix8x] stacks beneath us.
+€43698::0::Distressed Lady~[bd1m] stacks beneath Giant spider~[in9r].
+€93831::0::Distressed Lady~[bd1m] stacks beneath us.
+€63707::0::Distressed Lady~[ec1b] stacks beneath Giant spider~[fn8d].
+€73511::0::Distressed Lady~[ec1b] stacks beneath us.
+€53373::0::Old man~[co3p] stacks beneath Giant spider~[hx1k].
+€89456::0::Old man~[co3p] stacks beneath us.
+€92620::0::Old man~[ij3c] stacks beneath Giant bird~[fd8s].
+€70926::0::Old man~[ij3c] stacks beneath us.
+€51566::0::Merchant~[ch4c] stacks beneath Chimera~[hz1c].
+€89968::0::Merchant~[ch4c] stacks beneath us.
+€43716::0::Distressed Lady~[bd2e] stacks beneath Ratspider~[ik5w].
+€92952::0::Distressed Lady~[bd2e] stacks beneath us.
+€81207::0::Knight~[gr4d] stacks beneath Giant lizard~[if9c].
+€91736::0::Knight~[gr4d] stacks beneath us.
+€94010::0::King's daughter~[io6o] stacks beneath Lion~[hx4j].
+€89533::0::King's daughter~[io6o] stacks beneath us.
+€100632::0::Nobleman~[jo1g] stacks beneath Centaur~[ee8w].
+€64430::0::Nobleman~[jo1g] stacks beneath us.
+€52573::0::Merchant~[cl2v] stacks beneath Giant bird~[gg2w].
+€78314::0::Merchant~[cl2v] stacks beneath us.
+€43727::0::Old man~[bd2p] stacks beneath Giant spider~[er3l].
+€67669::0::Old man~[bd2p] stacks beneath us.
+€43730::0::Old man~[bd2s] stacks beneath Rat~[gk4l].
+€79395::0::Old man~[bd2s] stacks beneath us.
+€51073::0::Nobleman~[cf5d] stacks beneath Giant bird~[jd2e].
+€97796::0::Nobleman~[cf5d] stacks beneath us.
+€43732::0::Old man~[bd2u] stacks beneath Rat~[bd2t].
+€43731::0::Old man~[bd2u] stacks beneath us.
+€61630::0::Distressed Lady~[du1e] stacks beneath Rat~[jb0r].
+€97237::0::Distressed Lady~[du1e] stacks beneath us.
+€54091::0::Merchant~[cr1f] stacks beneath Rat~[jb1z].
+€97271::0::Merchant~[cr1f] stacks beneath us.
+€44299::0::King's daughter~[bf4p] stacks beneath Ratspider~[ga2o].
+€76746::0::King's daughter~[bf4p] stacks beneath us.
+€47669::0::Distressed Lady~[bs4f] stacks beneath Lion~[jn8j].
+€100557::0::Distressed Lady~[bs4f] stacks beneath us.
+€52933::0::Knight~[cm6r] stacks beneath Giant bird~[ic8r].
+€90945::0::Knight~[cm6r] stacks beneath us.
+€47946::0::King's daughter~[bt4w] stacks beneath Chimera~[jt5j].
+€102039::0::King's daughter~[bt4w] stacks beneath us.
+€79870::0::Old man~[gm2s] stacks beneath Ratspider~[ig9c].
+€91996::0::Old man~[gm2s] stacks beneath us.
+€60654::0::King's daughter~[dq3q] stacks beneath Lion~[fx8j].
+€76117::0::King's daughter~[dq3q] stacks beneath us.
+€43742::0::Old man~[bd3e] stacks beneath Lion~[jq6d].
+€101279::0::Old man~[bd3e] stacks beneath us.
+€92579::0::Nobleman~[ij1n] stacks beneath Harpie~[ir2y].
+€94696::0::Nobleman~[ij1n] stacks beneath us.
+€51326::0::Knight~[cg4w] stacks beneath Harpie~[bl3m].
+€45830::0::Knight~[cg4w] stacks beneath us.
+€56675::0::Merchant~[db0p] stacks beneath Centaur~[ee2e].
+€64256::0::Merchant~[db0p] stacks beneath us.
+€43764::0::Distressed Lady~[bd4a] stacks beneath Ratspider~[dg0i].
+€57968::0::Distressed Lady~[bd4a] stacks beneath us.
+€95662::0::Knight~[iv0c] stacks beneath Chimera~[da1j].
+€56435::0::Knight~[iv0c] stacks beneath us.
+€101298::0::Old man~[jq6w] stacks beneath Ratspider~[bh6b].
+€44857::0::Old man~[jq6w] stacks beneath us.
+€76283::0::Nobleman~[fy4t] stacks beneath Lion~[hd6m].
+€84388::0::Nobleman~[fy4t] stacks beneath us.
+€57326::0::Distressed Lady~[dd5q] stacks beneath Giant lizard~[fi1f].
+€72031::0::Distressed Lady~[dd5q] stacks beneath us.
+€72011::0::King's daughter~[fi0l] stacks beneath Lion~[de8n].
+€57661::0::King's daughter~[fi0l] stacks beneath us.
+€82394::0::Nobleman~[gv9u] stacks beneath Rat~[ew5z].
+€69035::0::Nobleman~[gv9u] stacks beneath us.
+€85653::0::Distressed Lady~[hi5d] stacks beneath Ratspider~[bz7y].
+€49586::0::Distressed Lady~[hi5d] stacks beneath us.
+€76878::0::Distressed Lady~[ga7q] stacks beneath Rat~[iv8b].
+€95869::0::Distressed Lady~[ga7q] stacks beneath us.
+€99403::0::Merchant~[jj3z] stacks beneath Harpie~[en1q].
+€66582::0::Merchant~[jj3z] stacks beneath us.
+€78557::0::Princess~[gh2f] stacks beneath Ratspider~[bd5q].
+€43806::0::Princess~[gh2f] stacks beneath us.
+€59018::0::Nobleman~[dk0s] stacks beneath Elf~[em7f].
+€66467::0::Nobleman~[dk0s] stacks beneath us.
+€80684::0::Merchant~[gp4a] stacks beneath Ratspider~[ig8h].
+€91975::0::Merchant~[gp4a] stacks beneath us.
+€77104::0::Old man~[gb6i] stacks beneath Giant lizard~[bt7u].
+€48022::0::Old man~[gb6i] stacks beneath us.
+€62497::0::Knight~[dx4n] stacks beneath Giant lizard~[dc4p].
+€57039::0::Knight~[dx4n] stacks beneath us.
+€89552::0::Princess~[hx5c] stacks beneath Lion~[fk7c].
+€72704::0::Princess~[hx5c] stacks beneath us.
+€51499::0::Nobleman~[ch1n] stacks beneath Chimera~[en8h].
+€66755::0::Nobleman~[ch1n] stacks beneath us.
+€48241::0::Princess~[bu6f] stacks beneath Harpie~[dc6q].
+€57092::0::Princess~[bu6f] stacks beneath us.
+€43832::0::Knight~[bd6q] stacks beneath Minotaur~[fz4q].
+€76540::0::Knight~[bd6q] stacks beneath us.
+€95921::0::Merchant~[iw0b] stacks beneath Chimera~[gg7j].
+€78431::0::Merchant~[iw0b] stacks beneath us.
+€84443::0::Nobleman~[hd8p] stacks beneath Minotaur~[ce5w].
+€50832::0::Nobleman~[hd8p] stacks beneath us.
+€92697::0::Distressed Lady~[ij6b] stacks beneath Lion~[hu0n].
+€88653::0::Distressed Lady~[ij6b] stacks beneath us.
+€75941::0::Nobleman~[fx1p] stacks beneath Faery~[bd6x].
+€43839::0::Nobleman~[fx1p] stacks beneath us.
+€92095::0::King's daughter~[ih2x] stacks beneath Ratspider~[dt9x].
+€61597::0::King's daughter~[ih2x] stacks beneath us.
+€57641::0::Princess~[de7t] stacks beneath Faery~[cn1y].
+€53070::0::Princess~[de7t] stacks beneath us.
+€82158::0::King's daughter~[gv0s] stacks beneath Centaur~[ez6e].
+€69820::0::King's daughter~[gv0s] stacks beneath us.
+€77968::0::Old man~[ge9o] stacks beneath Giant spider~[fe0t].
+€70979::0::Old man~[ge9o] stacks beneath us.
+€52252::0::Old man~[ck0m] stacks beneath Lion~[it0t].
+€95159::0::Old man~[ck0m] stacks beneath us.
+€94794::0::Knight~[ir6s] stacks beneath Minotaur~[ep4h].
+€67171::0::Knight~[ir6s] stacks beneath us.
+€70910::0::Knight~[fd8c] stacks beneath Lion~[dm2w].
+€59594::0::Knight~[fd8c] stacks beneath us.
+€76911::0::Distressed Lady~[ga8x] stacks beneath Centaur~[bo0g].
+€46526::0::Distressed Lady~[ga8x] stacks beneath us.
+€50709::0::Merchant~[ce1d] stacks beneath Centaur~[be5l].
+€44061::0::Merchant~[ce1d] stacks beneath us.
+€94631::0::Old man~[ir0l] stacks beneath Chimera~[bd7o].
+€43856::0::Old man~[ir0l] stacks beneath us.
+€88411::0::Merchant~[ht1f] stacks beneath Lion~[bd7p].
+€43857::0::Merchant~[ht1f] stacks beneath us.
+€92780::0::Nobleman~[ij9g] stacks beneath Harpie~[eh2v].
+€65053::0::Nobleman~[ij9g] stacks beneath us.
+€Olympia immediate mode
+€200::0::You are now Gamemaster~[200].
+€200> €save_db()
+€200> €
+€check_db()
