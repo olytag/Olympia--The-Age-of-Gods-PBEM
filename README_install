@@ -1,0 +1,196 @@
+
+Installing and Running Olympia: The Age of Gods
+
+Olympia was orginally written by Rich Skrenta, with the Age of Gods
+derivation by Scott Turner.  Much thanks goes to them for open-sourcing 
+the code for these great games, offering a glimpse under the hood of early
+Play-By-Email gaming.  I have simply done some clean-up on the code
+to get it running under gcc 4.2 and documented how to start a game.
+It seems to work, but there are no guarantees.  -- "Valen", October, 2010
+
+-----
+
+This guide is written to work on a Mac running OSX 10.6.4, but should
+work under linux (or Windows running Cygwin) as well.  It is compiled 
+using the gcc compiler with the -m32 flag (32-bit option).
+
+o using Macports (or apt-get or whatever if under linux):
+
+  1) install getmail
+  2) install msmtp
+  3) install curl-ca-bundle
+
+o Create a game account on the host computer.  If you need to find/replace
+  in the code, the default is user "tag" with home directory /Users/tag
+
+o Create a game email address someplace (could be gmail.com)
+
+o Create the .getmail/getmailrc file to point to the mail server:
+-------------
+[retriever]
+type = SimplePOP3SSLRetriever
+server = pop.gmail.com
+username = XXXXXX
+password = YYYYYY
+
+[destination]
+type = Maildir
+path = ~/incoming/
+
+[options]
+verbose = 1
+message_log = ~/.getmail/gmail.log
+-------------
+
+o mkdir ~/incoming
+o mkdir ~/incoming/cur
+o mkdir ~/incoming/tmp
+o mkdir ~/incoming/old
+
+o Create the ~/.msmtprc file:
+
+-------------
+account default
+host smtp.gmail.com
+port 587
+timeout 30
+auth on
+user XXXXXXX@gmail.com
+password YYYYYYY
+auto_from off
+from testing
+tls on
+tls_starttls on
+tls_trust_file /opt/local/share/curl/curl-ca-bundle.crt
+logfile /Users/oly/.outgoing/msmtp.log
+-------------
+
+o chmod 700 ~/.msmtprc
+o chmod 700 ~/.getmail/getmailrc
+
+o mkdir ~/.outgoing
+
+o htpasswd -c -b ~/passwords.1 admin admin123
+
+  to set up the password file (replace .1 with the game number, and admin123
+  with a good password)
+
+o Add to .profile (or .tcshrc or whatever):
+
+   export PATH=$PATH:/opt/local/bin:/Users/tag/bin
+
+o configure the game source (src):
+
+  grep for all lines that say UPDATE and fix the addresses:
+
+  1) edit eat.c glob.c main.c times.c and change email addresses and URLs
+  2) edit glob.c to set the reply_host and the from_host email address
+
+  edit oly.h and set the DEFAULT_PASSWORD to something new, since the 
+  code is out in the wild
+
+o build the game source (src):
+
+  1) make
+  2) make install
+
+o edit the utilities source (utils):
+
+  1) cd ~/utils
+  2) addplayer.pl:  fix $accountDir and $libHome
+  3) build.sh:  fix TARGET if needed
+  4) checkmail.pl:  $mailDir, oldMailDir, $spoolfile, $charEmailFile,
+          $moderator_email, $game_email
+  5) scanner
+  6) tagacct.c: ACCT_and OLD_ACCT_DIR
+
+o build utilities (utils):
+
+  1) sh build.sh
+
+o build mapgen:
+
+  1) cd ~/mapgen
+  2) edit mapgen.c and make sure the #define for gates is as needed.  For
+     TAG, the suggested setting are to turn on the continental gate tour
+     and turn off the others.
+  2) make
+  3) make install
+
+  Note that the mapgen tool is from Olympia G2 (earlier version), but seems
+  to work with TAG without trouble.  It is slightly modified to allow
+  variable sized maps and to wrap N-S as well as E-W as per the TAG rules.
+
+o create the map
+
+  1) edit Map, Regions (see README in mapgen directory, and example)
+  2) run mapgen
+  3) mkdir ~/lib (make sure no ~/lib exists, first)
+  3) cp gate loc road ~/lib
+
+o configure the lib (main database).
+
+  1) cp -r ~/new/* ~/lib
+  2) follow directions in ~/lib/README for editing "system" and setup
+
+o mkdir ~/accounting
+
+o make some first user accounts:
+
+  in top level directory:
+
+    addplayer.pl <factionID> <character name> <start city> <faction  name> <email> <player name> <nation> <game#>
+e.g.:
+    addplayer.pl aa0 "Bart Simpson" "aj9a" "The Simpsons" bart@someadress.com "My Name" "Imperial Empire" 1
+    addplayer.pl aa0 "Bart Simpson" "" "The Simpsons" bart@someadress.com "My Name" "Imperial Empire" 1
+
+  this preps the new account, which will be added when the turn is run
+
+o initial run to get started:
+
+  1) mkdir -p ~/lib/save/1
+  2) olytag -aiMS -l ~/lib
+  3) exit with control-D
+
+
+o Install getmail crontab:
+
+  * * * * * /opt/local/bin/getmail > /dev/null 2> /dev/null  # get every minute
+
+o Install the documentation
+
+  1) cd ~/doc
+  2) make
+  3) move it to a web site
+
+o Install crontab for runforever.pl:
+
+  * * * * * /Users/tagtest/bin/runforever.pl > /dev/null 2> /dev/null  # get every minute
+
+  o Starts "checkmail.pl &", which polls the mail directory and copies to the oly spool
+
+  o Starts "scanner &", the continuously-running order eater
+
+o you can use "tagstatus" to check if checkmail.pl and scanner are running
+
+To run a turn:
+
+o touch ~/pause (and wait a minute, or kill olytag)
+o touch ~/lib/spool/stop (stops order eater)
+o cd
+o olytag -l ~/lib -r -S  (run and save)
+o olytag -l ~/lib -M (mail turns)
+o scanner & (restart order eater)
+o it's probably good to save the state (backup lib directory) before running
+  each turn
+o rm ~/pause
+
+To use "immediate" mode to test things out or fix problems:
+
+o touch ~/pause (and wait a minute, or kill olytag)
+o olytag -i -l ~/lib
+o type "h" to get a list of commands (trial and error)
+o if you want to save your changes, type "save".  You may want to keep a 
+  backup of your lib directory if you do this.
+o rm ~/pause
+
