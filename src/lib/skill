@@ -1,0 +1,2240 @@
+1000 skill 0
+na Shipcraft
+SK
+ tl 7
+ tu 0
+ of 1001 1002 1004 1005 1006 
+ gl 1090 1091 1092 1093 1094 1095 1096 1097 1098 
+
+1001 skill 0
+na Sailing
+SK
+ tl 14
+ tu -1
+ rs 1000
+
+1002 skill 0
+na Build Hull
+SK
+ tl 14
+ tu 0
+ rs 1000
+
+1004 skill 0
+na Fishing
+SK
+ tl 14
+ tu 0
+ rs 1000
+
+1005 skill 0
+na Add Sails to Ship
+SK
+ tl 14
+ tu 3
+ rs 1000
+ rq	11 10 0 \
+	77 1 1
+
+1006 skill 0
+na Add Rowing Ports to Ship
+SK
+ tl 14
+ tu 3
+ rs 1000
+ rq	11 10 0 \
+	77 2 1
+
+1090 skill 0
+na Add Keel to Ship
+SK
+ tl 14
+ tu 5
+ rs 1000
+ rq	11 10 0 \
+	79 1 1
+
+1091 skill 0
+na Add Fortification to Ship
+SK
+ tl 14
+ tu 7
+ rs 1000
+ rq	11 10 0 \
+	77 5 1
+
+1092 skill 0
+na Remove Keel from Ship
+SK
+ tl 14
+ tu 5
+ rs 1000
+ rq	11 10 0
+
+1093 skill 0
+na Remove Fortification from Ship
+SK
+ tl 14
+ tu 7
+ rs 1000
+ rq	11 15 0
+
+1094 skill 0
+na Navigate Deep Seas
+SK
+ tl 14
+ tu -1
+ rs 1001
+
+1095 skill 0
+na Add ram to ship
+SK
+ tl 28
+ tu 10
+ rs 1000
+ rq	11 3 0 \
+	77 3 1 \
+	79 1 1
+
+1096 skill 0
+na Remove Sails from Ship
+SK
+ tl 14
+ tu 3
+ rs 1000
+ rq	11 10 0
+
+1097 skill 0
+na Remove Rowing Ports from Ship
+SK
+ tl 14
+ tu 3
+ rs 1000
+ rq	11 10 0
+
+1098 skill 0
+na Remove Ram from Ship
+SK
+ tl 14
+ tu 7
+ rs 1000
+
+1100 skill 0
+na Combat
+SK
+ tl 7
+ tu 0
+ of 1102 1105 1106 1107 1108 
+ re 1131 1132 
+ gl 1190 1191 1192 1195 1194 
+
+1102 skill 0
+na Fight to the death
+SK
+ tl 28
+ tu 0
+ rs 1100
+ ne 1
+
+1105 skill 0
+na Train Swordsmen
+SK
+ tl 14
+ tu 7
+ rs 1100
+
+1106 skill 0
+na Weaponsmithing
+SK
+ tl 14
+ tu 0
+ rs 1100
+
+1107 skill 0
+na Control Men in Battle
+SK
+ tl 28
+ tu 0
+ rs 1100
+ pc 3
+ tp 3
+ pp 10
+
+1108 skill 0
+na Instill Combat Discipline
+SK
+ tl 14
+ tu 0
+ rs 1100
+
+1131 skill 0
+na Combat Tactics
+SK
+ tl 28
+ tu 0
+ rs 1100
+ tp 7
+
+1132 skill 0
+na Defense Tactics
+SK
+ tl 28
+ tu 0
+ rs 1100
+ tp 7
+
+1190 skill 0
+na Train Mounted
+SK
+ tl 14
+ tu 0
+ rs 1100
+
+1191 skill 0
+na Train Paladin
+SK
+ tl 14
+ tu 0
+ rs 1100
+
+1192 skill 0
+na Train Armored Troops
+SK
+ tl 14
+ tu 0
+ rs 1100
+
+1194 skill 0
+na Construct catapult
+SK
+ tl 14
+ tu 14
+ rs 1100
+ rq	77 30 1 \
+	80 3 1 \
+	11 30 0
+ pr 61
+
+1195 skill 0
+na Use beasts in battle
+SK
+ tl 28
+ tu 0
+ rs 1100
+ pc 10
+ tp 3
+ pp 10
+
+1200 skill 0
+na Stealth
+SK
+ tl 14
+ tu 0
+ of 1201 1202 1203 1204 1205 
+ re 1230 1231 1232 1233 
+ gl 1290 1291 1292 
+
+1201 skill 0
+na Petty thievery
+SK
+ tl 14
+ tu 7
+ pl 1
+ rs 1200
+
+1202 skill 0
+na Determine inventory of character
+SK
+ tl 14
+ tu 7
+ rs 1200
+
+1203 skill 0
+na Determine skills of character
+SK
+ tl 14
+ tu 7
+ rs 1200
+
+1204 skill 0
+na Determine character's lord
+SK
+ tl 14
+ tu 7
+ rs 1200
+
+1205 skill 0
+na Conceal faction
+SK
+ tl 28
+ tu 0
+ rs 1200
+
+1230 skill 0
+na Learn of richest nearby noble
+SK
+ tl 14
+ tu 7
+ rs 1200
+
+1231 skill 0
+na Torture prisoner
+SK
+ tl 28
+ tu 7
+ rs 1200
+
+1232 skill 0
+na Conceal identity of trader
+SK
+ tl 14
+ tu 0
+ rs 1200
+
+1233 skill 0
+na Sneak into structure
+SK
+ tl 28
+ tu 3
+ rs 1200
+
+1290 skill 0
+na Conceal self
+SK
+ tl 28
+ tu 3
+ rs 1200
+ pc 35
+ tp 7
+
+1291 skill 0
+na Conceal Nation
+SK
+ tl 28
+ tu 7
+ rs 1200
+
+1292 skill 0
+na Assassinate Noble
+SK
+ tl 14
+ tu 7
+ rs 1200
+ pc 50
+ tp 14
+
+1300 skill 0
+na Persuasion
+SK
+ tl 14
+ tu 0
+ of 1301 1302 1303 1304 
+ re 1330 1331 1332 1333 
+ gl 1390 
+
+1301 skill 0
+na Bribe noble
+SK
+ tl 14
+ tu 7
+ rs 1300
+
+1302 skill 0
+na Raise peasant mob
+SK
+ tl 14
+ tu 7
+ rs 1300
+
+1303 skill 0
+na Rally peasant mob
+SK
+ tl 28
+ tu 7
+ rs 1300
+
+1304 skill 0
+na Train angry peasants
+SK
+ tl 14
+ tu 0
+ rs 1300
+
+1330 skill 0
+na Persuade oathbound noble
+SK
+ tl 28
+ tu 7
+ rs 1300
+
+1331 skill 0
+na Incite mob violence
+SK
+ tl 28
+ tu 0
+ rs 1300
+
+1332 skill 0
+na Summon wild men
+SK
+ tl 28
+ tu 1
+ rs 1300
+
+1333 skill 0
+na Persuade wild men to remain
+SK
+ tl 28
+ tu 7
+ rs 1332
+
+1390 skill 0
+na Encourage Population Growth
+SK
+ tl 14
+ tu 7
+ rs 1300
+
+1400 skill 0
+na Construction
+SK
+ tl 7
+ tu 0
+ of 1401 1402 
+ gl 1490 1491 1492 1493 1494 
+
+1401 skill 0
+na Construct siege tower
+SK
+ tl 14
+ tu 14
+ rs 1400
+ rq	77 30 1 \
+	11 30 0
+ pr 62
+
+1402 skill 0
+na Stone quarrying
+SK
+ tl 14
+ tu -1
+ pl 1
+ rs 1400
+
+1490 skill 0
+na Build City
+SK
+ tl 14
+ tu -1
+ rs 1400
+
+1491 skill 0
+na Fortify Castle
+SK
+ tl 21
+ tu -1
+ rs 1400
+
+1492 skill 0
+na Strengthen Castle Walls
+SK
+ tl 21
+ tu -1
+ rs 1400
+
+1493 skill 0
+na Add Moat to Castle
+SK
+ tl 21
+ tu -1
+ rs 1400
+
+1494 skill 0
+na Widen Entrance
+SK
+ tl 14
+ tu 7
+ rs 1400
+
+1500 skill 0
+na Alchemy
+SK
+ tl 14
+ tu 0
+ of 1501 1502 1503 
+ re 1530 1531 1532 1533 
+ gl 1590 1591 
+
+1501 skill 0
+na Brew healing potion
+SK
+ tl 28
+ tu 7
+ rs 1500
+ rq	65 1 1
+
+1502 skill 0
+na Brew potion of death
+SK
+ tl 28
+ tu 10
+ rs 1500
+ rq	64 1 1
+
+1503 skill 0
+na Collect rare elements
+SK
+ tl 14
+ tu 0
+ rs 1500
+
+1530 skill 0
+na Extract venom from ratspider
+SK
+ tl 28
+ tu 7
+ rs 1500
+ rq	81 1 1
+ pr 63
+
+1531 skill 0
+na Make potion of slavery
+SK
+ tl 28
+ tu 7
+ rs 1500
+ rq	63 1 1
+
+1532 skill 0
+na Record skill on scroll
+SK
+ tl 28
+ tu 7
+ rs 1500
+
+1533 skill 0
+na Turn lead into gold
+SK
+ tl 28
+ tu 7
+ rs 1500
+
+1590 skill 0
+na Make potion of weightlessness
+SK
+ tl 28
+ tu 7
+ rs 1500
+ rq	71 1 1
+
+1591 skill 0
+na Make Potion of Fiery Death
+SK
+ tl 28
+ tu 14
+ rs 1500
+ rq	66 1 1
+
+1600 skill 0
+na Forestry
+SK
+ tl 7
+ tu 0
+ of 1601 1602 1603 1604 1605 
+ re 1630 1631 
+
+1601 skill 0
+na Construct battering ram
+SK
+ tl 14
+ tu 14
+ rs 1600
+ rq	77 30 1 \
+	79 5 1 \
+	11 30 0
+ pr 60
+
+1602 skill 0
+na Harvest lumber
+SK
+ tl 14
+ tu -1
+ pl 1
+ rs 1600
+
+1603 skill 0
+na Harvest yew
+SK
+ tl 14
+ tu -1
+ pl 1
+ rs 1600
+
+1604 skill 0
+na Collect rare foliage
+SK
+ tl 14
+ tu 0
+ rs 1600
+
+1605 skill 0
+na Harvest opium
+SK
+ tl 14
+ tu 0
+ rs 1600
+
+1630 skill 0
+na Harvest mallorn wood
+SK
+ tl 14
+ tu 0
+ rs 1600
+
+1631 skill 0
+na Improve opium production
+SK
+ tl 14
+ tu 7
+ rs 1605
+
+1700 skill 0
+na Mining
+SK
+ tl 7
+ tu 0
+ of 1701 1702 1703 
+ re 1730 1731 
+ gl 1790 1791 
+
+1701 skill 0
+na Mine iron
+SK
+ tl 14
+ tu -1
+ rs 1700
+ rq	11 10 0
+
+1702 skill 0
+na Mine gold
+SK
+ tl 14
+ tu -1
+ rs 1700
+ rq	11 10 0
+
+1703 skill 0
+na Build Mine Shaft
+SK
+ tl 21
+ tu -1
+ rs 1700
+
+1730 skill 0
+na Mine mithril
+SK
+ tl 14
+ tu -1
+ rs 1700
+ rq	11 10 0
+
+1731 skill 0
+na Mine gate crystal
+SK
+ tl 14
+ tu -1
+ rs 1700
+ rq	11 10 0
+
+1790 skill 0
+na Add Wooden Shoring
+SK
+ tl 21
+ tu 7
+ rs 1700
+ rq	11 10 0 \
+	77 25 1
+
+1791 skill 0
+na Add Iron Shoring
+SK
+ tl 21
+ tu 14
+ rs 1700
+ rq	11 10 0 \
+	79 10 1
+
+1800 skill 0
+na Trading
+SK
+ tl 7
+ tu 0
+ of 1801 1802 1803 1804 1805 
+ re 1830 1831 1832 
+ gl 1890 1891 
+
+1801 skill 0
+na Build Wagons
+SK
+ tl 14
+ tu 7
+ rs 1800
+ rq	52 2 1 \
+	77 5 1
+ pr 35
+
+1802 skill 0
+na Increase Demand
+SK
+ tl 14
+ tu 7
+ rs 1800
+
+1803 skill 0
+na Decrease Demand
+SK
+ tl 14
+ tu 7
+ rs 1800
+
+1804 skill 0
+na Increase Supply
+SK
+ tl 14
+ tu 7
+ rs 1800
+
+1805 skill 0
+na Decrease Supply
+SK
+ tl 14
+ tu 7
+ rs 1800
+
+1830 skill 0
+na Smuggle Goods
+SK
+ tl 14
+ tu 0
+ rs 1800
+
+1831 skill 0
+na Smuggle Men
+SK
+ tl 14
+ tu 0
+ rs 1800
+
+1832 skill 0
+na Avoid Taxes
+SK
+ tl 14
+ tu 0
+ rs 1800
+
+1890 skill 0
+na Hide Money
+SK
+ tl 14
+ tu 3
+ rs 1800
+
+1891 skill 0
+na Hide Item
+SK
+ tl 14
+ tu 3
+ rs 1800
+
+1900 skill 0
+na Ranger
+SK
+ tl 7
+ tu 0
+ of 1901 1902 1903 
+ re 1930 1931 1932 
+ gl 1990 
+
+1901 skill 0
+na Spot Hidden Noble
+SK
+ tl 14
+ tu -1
+ rs 1900
+ pc 21
+ tp 7
+
+1902 skill 0
+na Archery
+SK
+ tl 28
+ tu 7
+ rs 1900
+
+1903 skill 0
+na Find Food in Wilderness
+SK
+ tl 14
+ tu 7
+ rs 1900
+
+1930 skill 0
+na Catch wild horses
+SK
+ tl 14
+ tu -1
+ pl 1
+ rs 1900
+
+1931 skill 0
+na Train wild horse to riding horse
+SK
+ tl 14
+ tu 5
+ rs 1900
+
+1932 skill 0
+na Train wild horse to warmount
+SK
+ tl 28
+ tu 10
+ rs 1900
+
+1990 skill 0
+na Protect Noble
+SK
+ tl 14
+ tu -1
+ rs 1900
+ pc 7
+ tp 7
+
+2000 skill religion
+na Church of Eres
+SK
+ tl 21
+ tu 0
+ re 2030 2031 2032 2033 2034 2035 2036 2037 2038 \
+	2039 2040 
+ np 1
+ RL
+ na Eres
+ st 1000
+ wk 1700
+ pl 295
+ an 302
+ tr 1
+ ER
+
+2030 skill 0
+na Fierce wind
+SK
+ tl 28
+ tu 7
+ hs 1
+ rs 2000
+ pt 1
+
+2031 skill 0
+na Dissipate storm
+SK
+ tl 28
+ tu 7
+ hs 1
+ rs 2000
+
+2032 skill 0
+na Renew storm strength
+SK
+ tl 28
+ tu 3
+ hs 1
+ rs 2000
+
+2033 skill 0
+na Storm Fury
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2000
+
+2034 skill 0
+na Seize control of storm
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2000
+ pt 5
+
+2035 skill 0
+na Fog of death
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2000
+
+2036 skill 0
+na Summon rain
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2000
+
+2037 skill 0
+na Summon wind
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2000
+
+2038 skill 0
+na Summon fog
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2000
+
+2039 skill 0
+na Direct storm
+SK
+ tl 28
+ tu 1
+ hs 1
+ rs 2000
+
+2040 skill 0
+na Summon Water Elemental
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2000
+ pt 7
+
+2100 skill religion
+na Church of Anteus
+SK
+ tl 21
+ tu 0
+ re 2130 2131 2132 2133 2134 2135 2136 2137 
+ np 1
+ RL
+ na Anteus
+ st 1700
+ wk 1000
+ pl 296
+ an 303
+ tr 4
+ ER
+
+2130 skill 0
+na Find Mountain Trail
+SK
+ tl 28
+ tu 1
+ hs 1
+ rs 2100
+ pt 1
+
+2131 skill 0
+na Obscure Mountain Trails
+SK
+ tl 28
+ tu 7
+ rs 2100
+ pt 5
+
+2132 skill 0
+na Improve Mining
+SK
+ tl 28
+ tu 7
+ rs 2100
+ pt 3
+
+2133 skill 0
+na Conceal Mine
+SK
+ tl 28
+ tu 30
+ rs 2100
+ pt 5
+
+2134 skill 0
+na Protect Mine
+SK
+ tl 28
+ tu 7
+ rs 2100
+ pt 3
+
+2135 skill 0
+na Bless Building
+SK
+ tl 28
+ tu 7
+ rs 2100
+ pt 3
+
+2136 skill 0
+na Weaken Building
+SK
+ tl 28
+ tu 3
+ rs 2100
+
+2137 skill 0
+na Boulder Trap
+SK
+ tl 28
+ tu 7
+ rs 2100
+ pt 7
+
+2200 skill religion
+na Church of Dol
+SK
+ tl 21
+ tu 0
+ re 2231 2232 2233 2234 2235 
+ np 1
+ RL
+ na Dol
+ st 1500
+ wk 1600
+ pl 297
+ an 304
+ tr 3
+ ER
+
+2231 skill 0
+na Bird spy
+SK
+ tl 28
+ tu 3
+ hs 1
+ rs 2200
+ pt 1
+
+2232 skill 0
+na Capture beasts
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2200
+ ne 1
+
+2233 skill 0
+na Breed beasts
+SK
+ tl 28
+ tu 7
+ hs 1
+ rs 2200
+
+2234 skill 0
+na Detect Beasts
+SK
+ tl 28
+ tu 3
+ hs 1
+ rs 2200
+ pt 2
+
+2235 skill 0
+na Snake Trap
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2200
+ pt 7
+
+2300 skill religion
+na Church of Timeid
+SK
+ tl 21
+ tu 0
+ re 2330 2331 2332 2333 2334 2335 2336 
+ np 1
+ RL
+ na Timeid
+ st 1600
+ wk 1500
+ pl 316
+ an 305
+ tr 2
+ ER
+
+2330 skill 0
+na Find Forest Trail
+SK
+ tl 28
+ tu 1
+ hs 1
+ rs 2300
+ pt 1
+
+2331 skill 0
+na Obscure Forest Trails
+SK
+ tl 28
+ tu 7
+ hs 1
+ rs 2300
+ pt 5
+
+2332 skill 0
+na Improve Forestry
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2300
+ pt 3
+
+2333 skill 0
+na Reveal Forest
+SK
+ tl 28
+ tu 7
+ hs 1
+ rs 2300
+ pt 2
+
+2334 skill 0
+na Create Dense Thicket
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2300
+ pt 7
+
+2335 skill 0
+na Create Deadfall
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2300
+ pt 7
+
+2336 skill 0
+na Recruit Elves
+SK
+ tl 28
+ tu 7
+ hs 1
+ rs 2300
+ pt 3
+
+2400 skill religion
+na Church of Ham
+SK
+ tl 21
+ tu 0
+ re 2430 2431 2432 2433 2434 2436 
+ np 1
+ RL
+ na Ham
+ st 1300
+ wk 1400
+ pl 298
+ an 306
+ tr 14
+ ER
+
+2430 skill 0
+na Enchant City Guards
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2400
+ pt 4
+
+2431 skill 0
+na Urchin Spy
+SK
+ tl 28
+ tu 1
+ hs 1
+ rs 2400
+ pt 3
+
+2432 skill 0
+na Draw Crowds
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2400
+ pt 3
+
+2433 skill 0
+na Arrange Mugging
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2400
+ pt 7
+
+2434 skill 0
+na Receive vision
+SK
+ tl 28
+ tu 10
+ rs 2400
+ pt 3
+
+2436 skill 0
+na Shroud location from magical scry
+SK
+ tl 14
+ tu 3
+ rs 2400
+
+2500 skill religion
+na Church of Kireus
+SK
+ tl 21
+ tu 0
+ re 2530 2531 2532 2533 2534 
+ np 1
+ RL
+ na Kireus
+ st 1400
+ wk 1300
+ pl 299
+ an 307
+ tr 6
+ ER
+
+2530 skill 0
+na Improve Quarrying
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2500
+ pt 3
+
+2531 skill 0
+na Improve Smithing
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2500
+ pt 3
+
+2532 skill 0
+na Edge of Kireus
+SK
+ tl 28
+ tu 7
+ hs 1
+ rs 2500
+ pt 5
+
+2533 skill 0
+na Create Mithril
+SK
+ tl 28
+ tu 20
+ hs 1
+ rs 2500
+ pt 10
+
+2534 skill 0
+na Set Quicksand Trap
+SK
+ tl 28
+ tu 7
+ rs 2500
+ pt 7
+
+2600 skill religion
+na Church of Halon
+SK
+ tl 21
+ tu 0
+ re 2630 2631 2632 2633 2634 2635 
+ np 1
+ RL
+ na Halon
+ st 1100
+ wk 1200
+ pl 300
+ an 308
+ tr 14
+ ER
+
+2630 skill 0
+na Calm Angry Peasants
+SK
+ tl 28
+ tu 7
+ hs 1
+ rs 2600
+ pt 2
+
+2631 skill 0
+na Improve Charisma
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2600
+ pt 3
+
+2632 skill 0
+na Mesmerize Crowd
+SK
+ tl 28
+ tu 1
+ hs 1
+ rs 2600
+ pt 5
+
+2633 skill 0
+na Improve Taxes
+SK
+ tl 28
+ tu 7
+ hs 1
+ rs 2600
+ pt 3
+
+2634 skill 0
+na Guard Loyalty
+SK
+ tl 28
+ tu 1
+ hs 1
+ rs 2600
+ pt 2
+
+2635 skill 0
+na Instill Fanaticism
+SK
+ tl 28
+ tu 20
+ hs 1
+ hp 1
+ rs 2600
+ pt 6
+
+2700 skill religion
+na Church of Domingo
+SK
+ tl 21
+ tu 0
+ re 2730 2731 2732 2733 
+ np 1
+ RL
+ na Domingo
+ st 1200
+ wk 1100
+ pl 301
+ an 309
+ tr 16
+ ER
+
+2730 skill 0
+na Find Hidden Location
+SK
+ tl 28
+ tu 7
+ hs 1
+ rs 2700
+ pt 2
+
+2731 skill 0
+na Conceal Wilderness Location
+SK
+ tl 28
+ tu 30
+ hs 1
+ hp 1
+ rs 2700
+ pt 10
+
+2732 skill 0
+na Mists of Concealment
+SK
+ tl 28
+ tu 7
+ hs 1
+ hp 1
+ rs 2700
+ pt 5
+
+2733 skill 0
+na Train Ninjas
+SK
+ tl 28
+ tu 20
+ hs 1
+ hp 1
+ rs 2700
+ pt 6
+
+2800 skill magic
+na Magic
+SK
+ tl 14
+ tu 0
+ of 2801 2802 2803 2804 
+ re 2830 2831 2832 2833 2834 2835 2836 2837 2838 \
+	2839 2840 2841 
+ np 1
+
+2801 skill 0
+na Meditate
+SK
+ tl 14
+ tu 7
+ pl 1
+ rs 2800
+
+2802 skill 0
+na Perform common tasks for gold
+SK
+ tl 14
+ tu 7
+ pl 1
+ rs 2800
+
+2803 skill 0
+na Appear common
+SK
+ tl 14
+ tu 1
+ rs 2800
+
+2804 skill 0
+na View current aura level of others
+SK
+ tl 28
+ tu 7
+ rs 2800
+
+2830 skill 0
+na Speed casting of next spell
+SK
+ tl 28
+ tu 4
+ rs 2800
+
+2831 skill 0
+na Reveal abilities of another mage
+SK
+ tl 28
+ tu 7
+ rs 2800
+
+2832 skill 0
+na Tap health for aura
+SK
+ tl 28
+ tu 7
+ rs 2800
+
+2833 skill 0
+na Modern magic script
+SK
+ tl 28
+ tu 7
+ pl 1
+ rs 2800
+
+2834 skill 0
+na Shroud abilities from scry
+SK
+ tl 28
+ tu 3
+ rs 2800
+
+2835 skill 0
+na Detect ability scry
+SK
+ tl 28
+ tu 7
+ rs 2800
+
+2836 skill 0
+na Dispel ability shroud
+SK
+ tl 28
+ tu 3
+ rs 2800
+
+2837 skill 0
+na Advanced meditation
+SK
+ tl 28
+ tu 28
+ pl 1
+ rs 2800
+
+2838 skill 0
+na Hinder meditation
+SK
+ tl 28
+ tu 10
+ rs 2800
+
+2839 skill 0
+na Save speeded cast
+SK
+ tl 28
+ tu 7
+ rs 2830
+
+2840 skill 0
+na Lightning bolt
+SK
+ tl 28
+ tu 0
+ cs 1
+ rs 2800
+ pt 10
+
+2841 skill 0
+na Create Dirt Golem
+SK
+ tl 14
+ tu 14
+ rs 2800
+ pt 10
+
+2900 skill magic
+na Scrying
+SK
+ tl 21
+ tu 0
+ of 2901 
+ re 2930 2931 2932 2933 2934 2935 2936 2937 2938 \
+	2939 2940 
+ np 1
+
+2901 skill 0
+na Scry location
+SK
+ tl 28
+ tu 7
+ rs 2900
+
+2930 skill 0
+na Shroud location from magical scry
+SK
+ tl 14
+ tu 3
+ rs 2900
+
+2931 skill 0
+na Dispel location shroud
+SK
+ tl 28
+ tu 3
+ rs 2900
+
+2932 skill 0
+na Ciphered writing of Areth-Pirn
+SK
+ tl 28
+ tu 7
+ pl 1
+ rs 2900
+
+2933 skill 0
+na Create magical barrier
+SK
+ tl 28
+ tu 10
+ rs 2900
+
+2934 skill 0
+na Remove magical barrier
+SK
+ tl 28
+ tu 7
+ rs 2900
+
+2935 skill 0
+na Locate character
+SK
+ tl 28
+ tu 10
+ rs 2900
+
+2936 skill 0
+na Detect location scry
+SK
+ tl 28
+ tu 7
+ rs 2900
+
+2937 skill 0
+na Farcasting
+SK
+ tl 28
+ tu 7
+ rs 2900
+
+2938 skill 0
+na Save farcast state
+SK
+ tl 28
+ tu 7
+ rs 2937
+
+2939 skill 0
+na Banish undead
+SK
+ tl 28
+ tu 7
+ rs 2900
+
+2940 skill 0
+na Foresee Defense
+SK
+ tl 28
+ tu 0
+ cs 1
+ rs 2900
+ pt 10
+
+3000 skill magic
+na Gatecraft
+SK
+ tl 21
+ tu 0
+ of 3001 3002 
+ re 3030 3031 3032 3033 3034 3035 3036 3037 3038 \
+	3039 
+ np 1
+
+3001 skill 0
+na Detect gates
+SK
+ tl 14
+ tu 7
+ rs 3000
+
+3002 skill 0
+na Jump through gate
+SK
+ tl 14
+ tu 1
+ rs 3000
+
+3030 skill 0
+na Teleport
+SK
+ tl 14
+ tu 1
+ rs 3000
+
+3031 skill 0
+na Seal gate
+SK
+ tl 14
+ tu 7
+ rs 3000
+
+3032 skill 0
+na Unseal gate with key
+SK
+ tl 14
+ tu 7
+ rs 3000
+
+3033 skill 0
+na Notify if gate unsealed
+SK
+ tl 14
+ tu 7
+ rs 3000
+
+3034 skill 0
+na Forcefully unseal gate
+SK
+ tl 28
+ tu 7
+ rs 3000
+
+3035 skill 0
+na Reveal gate key
+SK
+ tl 28
+ tu 7
+ rs 3000
+
+3036 skill 0
+na Notify of gate jumps
+SK
+ tl 14
+ tu 7
+ rs 3000
+
+3037 skill 0
+na Language of the Ancients
+SK
+ tl 28
+ tu 7
+ pl 1
+ rs 3000
+
+3038 skill 0
+na Reverse jump through gate
+SK
+ tl 28
+ tu 1
+ rs 3000
+
+3039 skill 0
+na Drain Mana
+SK
+ tl 28
+ tu 0
+ cs 1
+ rs 3000
+ pt 10
+
+3100 skill magic
+na Artifact construction
+SK
+ tl 28
+ tu 0
+ of 3101 3102 3103 3104 
+ re 3130 3131 3132 3133 3134 3135 3136 3137 3138 \
+	3139 
+ np 1
+
+3101 skill 0
+na Detect Artifact
+SK
+ tl 14
+ tu 7
+ rs 3100
+ pt 2
+
+3102 skill 0
+na Reveal Artifacts
+SK
+ tl 14
+ tu 7
+ rs 3100
+ pt 4
+
+3103 skill 0
+na Destroy artifact
+SK
+ tl 14
+ tu 7
+ rs 3100
+ pt 2
+
+3104 skill 0
+na Deep Identify
+SK
+ tl 28
+ tu 7
+ rs 3100
+ pt 4
+
+3130 skill 0
+na Forge auraculum
+SK
+ tl 28
+ tu 14
+ rs 3100
+ rq	1 100 1 \
+	82 5 1
+ ne 1
+
+3131 skill 0
+na Mutate Artifact
+SK
+ tl 14
+ tu 30
+ rs 3100
+ pt 8
+
+3132 skill 0
+na Conceal Artifacts
+SK
+ tl 14
+ tu 7
+ rs 3100
+ pt 4
+
+3133 skill 0
+na Obscure Artifact
+SK
+ tl 14
+ tu 14
+ rs 3100
+ pt 8
+
+3134 skill 0
+na Forge magical weapon
+SK
+ tl 28
+ tu 7
+ rs 3100
+
+3135 skill 0
+na Forge magical armor
+SK
+ tl 28
+ tu 7
+ rs 3100
+
+3136 skill 0
+na Forge magical bow
+SK
+ tl 28
+ tu 7
+ rs 3100
+
+3137 skill 0
+na Remove Obscurity
+SK
+ tl 14
+ tu 7
+ rs 3100
+ pt 4
+
+3138 skill 0
+na Arcane symbols
+SK
+ tl 28
+ tu 7
+ pl 1
+ rs 3100
+
+3139 skill 0
+na Forge palantir
+SK
+ tl 28
+ tu 10
+ rs 3100
+ rq	82 1 1 \
+	83 1 1
+ pt 8
+
+3200 skill magic
+na Necromancy
+SK
+ tl 28
+ tu 0
+ of 3201 3202 3203 
+ re 3230 3231 3232 3233 3234 3235 3236 3237 3238 
+ np 1
+
+3201 skill 0
+na Summon ghost warriors
+SK
+ tl 28
+ tu 0
+ rs 3200
+
+3202 skill 0
+na Raise undead
+SK
+ tl 28
+ tu -1
+ pl 1
+ rs 3200
+
+3203 skill 0
+na Aura blast
+SK
+ tl 28
+ tu 1
+ rs 3200
+
+3230 skill 0
+na Runes of Evil
+SK
+ tl 28
+ tu 7
+ pl 1
+ rs 3200
+
+3231 skill 0
+na Summon demon lord
+SK
+ tl 28
+ tu 7
+ rs 3200
+
+3232 skill 0
+na Renew demon bond
+SK
+ tl 28
+ tu 7
+ rs 3200
+
+3233 skill 0
+na Banish demon lord
+SK
+ tl 28
+ tu 7
+ rs 3200
+
+3234 skill 0
+na Eating of the dead
+SK
+ tl 28
+ tu 14
+ rs 3200
+ rq	63 1 1
+
+3235 skill 0
+na Absorb aura blast
+SK
+ tl 28
+ tu 0
+ rs 3200
+
+3236 skill 0
+na Raise soldiers
+SK
+ tl 28
+ tu 0
+ cs 1
+ rs 3200
+ pt 10
+
+3237 skill 0
+na Create Flesh Golem
+SK
+ tl 21
+ tu 14
+ rs 3200
+ pt 15
+
+3238 skill 0
+na Transcend death
+SK
+ tl 28
+ tu 0
+ rs 3200
+ np 1
+
+3300 skill magic
+na Advanced sorcery
+SK
+ tl 28
+ tu 0
+ re 3330 3331 3332 3333 
+
+3330 skill 0
+na Trance
+SK
+ tl 28
+ tu 28
+ rs 3300
+
+3331 skill 0
+na Teleport items
+SK
+ tl 28
+ tu 3
+ rs 3300
+
+3332 skill 0
+na Fireball
+SK
+ tl 28
+ tu 0
+ cs 1
+ rs 3300
+ pt 10
+
+3333 skill 0
+na Create Iron Golem
+SK
+ tl 28
+ tu 14
+ rs 3300
+ rq	79 100 1
+ pt 20
+
+3400 skill 0
+na Heroism
+SK
+ tl 14
+ tu 0
+ of 3401 3402 3403 
+ gl 3480 3481 3482 3483 3484 3485 3486 3487 3488 \
+	3489 3490 
+ np 1
+
+3401 skill 0
+na Swordplay
+SK
+ tl 14
+ tu 3
+ rs 3400
+
+3402 skill 0
+na Defense
+SK
+ tl 14
+ tu 3
+ rs 3400
+
+3403 skill 0
+na Personal Fight to the Death
+SK
+ tl 14
+ tu 0
+ rs 3400
+
+3480 skill 0
+na Avoid Wounds
+SK
+ tl 14
+ tu -1
+ rs 3400
+ pc 10
+ tp 7
+
+3481 skill 0
+na Avoid Illness
+SK
+ tl 14
+ tu -1
+ rs 3400
+ pc 10
+ tp 7
+
+3482 skill 0
+na Improved Recovery
+SK
+ tl 14
+ tu -1
+ rs 3400
+ pc 10
+ tp 7
+
+3483 skill 0
+na Survive fatal wound
+SK
+ tl 14
+ tu 0
+ rs 3400
+ ne 1
+
+3484 skill 0
+na Forced March
+SK
+ tl 14
+ tu 1
+ rs 3400
+
+3485 skill 0
+na Extra Melee Attacks
+SK
+ tl 14
+ tu -1
+ rs 3400
+ pc 50
+ tp 7
+
+3486 skill 0
+na Extra Missile Attacks
+SK
+ tl 14
+ tu -1
+ rs 3400
+ pc 50
+ tp 7
+
+3487 skill 0
+na Acute Senses
+SK
+ tl 14
+ tu -1
+ rs 3400
+ tp 7
+
+3488 skill 0
+na Improved Explore
+SK
+ tl 14
+ tu -1
+ rs 3400
+ tp 7
+
+3489 skill 0
+na Uncanny Accuracy
+SK
+ tl 14
+ tu -1
+ rs 3400
+
+3490 skill 0
+na Blinding Speed
+SK
+ tl 14
+ tu -1
+ rs 3400
+
+3500 skill religion
+na Basic Religion
+SK
+ tl 14
+ tu 0
+ of 3501 3502 3503 3504 3505 3506 3507 3508 3509 \
+	3510 
+ re 3530 3531 3532 3533 
+
+3501 skill 0
+na Heal
+SK
+ tl 14
+ tu 7
+ hp 1
+ rs 3500
+ pt 3
+
+3502 skill 0
+na Last rites
+SK
+ tl 14
+ tu 7
+ hs 1
+ rs 3500
+ pt 5
+
+3503 skill 0
+na Create Holy Symbol
+SK
+ tl 14
+ tu 14
+ rs 3500
+ rq	1 100 1
+ np 1
+ pt 5
+
+3504 skill 0
+na Dedicate Temple
+SK
+ tl 14
+ tu 7
+ rs 3500
+ rq	1 500 1
+ pt 5
+
+3505 skill 0
+na Devotional Prayer
+SK
+ tl 14
+ tu 7
+ rs 3500
+
+3506 skill 0
+na Bless Follower
+SK
+ tl 14
+ tu 1
+ rs 3500
+ pt 1
+
+3507 skill 0
+na Gather Holy Plant
+SK
+ tl 14
+ tu 7
+ rs 3500
+ pt 1
+
+3508 skill 0
+na Create Holy Instruction
+SK
+ tl 14
+ tu 7
+ pl 1
+ rs 3500
+
+3509 skill 0
+na Proselytise
+SK
+ tl 14
+ tu -1
+ pl 1
+ rs 3500
+ pt 3
+
+3510 skill 0
+na Banish undead
+SK
+ tl 14
+ tu 7
+ rs 3500
+
+3530 skill 0
+na Resurrect dead noble
+SK
+ tl 28
+ tu 30
+ hs 1
+ hp 1
+ rs 3500
+
+3531 skill 0
+na Protection from Aura Blast
+SK
+ tl 14
+ tu -1
+ rs 3500
+
+3532 skill 0
+na Hinder Meditation
+SK
+ tl 14
+ tu 7
+ rs 3500
+ pt 3
+
+3533 skill 0
+na Vision of Holy Terrain
+SK
+ tl 14
+ tu 7
+ rs 3500
+ pt 3
+

@@ -1,0 +1,67 @@
+
+Game Setup:
+
+* Make the map & loc, etc. files
+
+	- For 2 nation game:
+	   - 40x40 (roughly)
+	   - Use "*" to indicate where cities are
+	   - run mapgen until balanced cities on Mandor/Imperia
+	   - Turn off gates except continental tour (in mapgen.c)
+	   - Rename cities & continents appropriately.  Check city terrain.
+	   - Eliminate Pen island from gate tour
+
+* Copy the files from New into the Lib directory for the new game
+
+* Create the log, spool, save, orders, and fact directories in lib
+
+* Fill in the proper game # in the host lines in system, game_num,
+  xsize, ysize
+
+  game_num	game number
+  from_host	moderator email
+  reply_host	orders email
+  xsize
+  ysize
+
+* other options (probably will not need to change these): 
+
+  turn_limit	non-zero if you want to limit the max # of turns 
+		in a sample game
+  free		set to 1 for a free game
+  turn_charge	0
+  mp_antipathy	mages and priests hate each other.  Turns on Staff of the Sun
+  survive_np	Survive Fatal Wound requires a noble point to be expended
+  death_nps	if 0 -- no NPs reclaimed on death
+		if 1 -- 1 NP reclaimed on death
+		if 2 -- all invested NP reclaimed on death
+  guild_teaching	guilds teach their skill
+  accounting_dir	points to the accounting info (from addplayer.pl)
+  accounting_prog	tagacct
+  times_pay	how much the Times pays for a rumor or press
+  open_ended	is game open-ended (if 0, it has win conditions)
+  cpp		point to cpp program (only needed if #defines are allowed)
+  full_markets	(doesn't seem to ever be checked in the source)
+  output_tags	include XML tags in the output.  These get stripped out
+		by default, if the user is requesting TEXT reports.
+  html_path	where to write the HTML turn reports
+  html_passwords	name of the password file for the web site
+  num_books	max # of books for sale in a market each month
+  market_age	max number of month good remain on market
+  claim_give	if 1, allow deposit into CLAIM fund
+
+* Fill in the capitals in the nation file.
+
+* Balance the skills in the starting cities.  Pen get 1000 1100 1600,
+  others get 1100 (e.g., "te 1100"  under SL)
+	
+* Then seed with oly -i -S.  Check after to make sure that the number
+  of towers in the major cities is reasonable.  Quit immediate mode
+  with ^D, not "quit" or "exit".
+
+* Make sure that clouldand cities don't show up in "near cities" (nc)
+  in loc file.
+
+* Create the orders mailing address.
+
+* Create HTML directories in Web structure.

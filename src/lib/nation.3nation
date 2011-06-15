@@ -1,0 +1,30 @@
+900 nation 0
+na Imperial Empire
+NA
+ na Imperial Empire
+ ci Imperialist
+ cp <fill this in with capital>
+ ps 2800 2900 3000 3100 3200 3300 
+ js 14
+
+901 nation 0
+na Mandor Confederacy
+NA
+ na Mandor Confederacy
+ ci Mandorean
+ cp <fill this in with capital>
+ ps 2000 2100 2200 2300 2400 2500 2600 2700 
+ js 14
+
+902 nation 0
+na Pen
+NA
+ na Pen
+ ci Pen
+ pl 5
+ ne 1
+ js 14
+ cp <fill this in with capital>
+ ps 2000 2100 2200 2300 2400 2500 2600 2700 2800 \
+	2900 3000 3100 3200 3300 
+

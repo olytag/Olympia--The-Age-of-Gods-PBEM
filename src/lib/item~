@@ -1,0 +1,1778 @@
+1 item 0
+na gold
+CH
+CM
+ sr 1
+IT
+ pl gold
+IM
+ oc -55
+
+10 item 0
+na peasant
+IT
+ pl peasants
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 1
+ df 1
+ mt 1
+IM
+ oc -6
+
+11 item 0
+na worker
+IT
+ pl workers
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 1
+ df 1
+ mt 2
+
+12 item 0
+na soldier
+IT
+ pl soldiers
+ wt 100
+ lc -1
+ mu 1
+ pr 1
+ at 5
+ df 5
+ mt 2
+
+13 item 0
+na archer
+IT
+ pl archers
+ wt 100
+ lc -1
+ mu 1
+ pr 1
+ at 1
+ df 1
+ mi 35
+ mt 3
+
+14 item 0
+na knight
+IT
+ pl knights
+ wt 400
+ lc -1
+ rc -1
+ mu 1
+ pr 1
+ at 90
+ df 90
+ mt 5
+
+15 item 0
+na paladin
+IT
+ pl paladins
+ wt 400
+ lc -1
+ rc -1
+ mu 1
+ pr 1
+ at 180
+ df 180
+ mt 2
+
+16 item 0
+na pikeman
+IT
+ pl pikemen
+ wt 100
+ lc -1
+ mu 1
+ pr 1
+ at 5
+ df 20
+ mt 3
+
+17 item 0
+na blessed soldier
+IT
+ pl blessed soldiers
+ wt 100
+ lc -1
+ mu 1
+ pr 1
+ at 5
+ df 5
+
+18 item undead
+na ghost warrior
+IT
+ pl ghost warriors
+ mu 1
+ pr 1
+
+19 item 0
+na sailor
+IT
+ pl sailors
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 1
+ df 1
+ mt 2
+
+20 item 0
+na lt. foot
+IT
+ pl lt. foot
+ wt 100
+ lc -1
+ mu 1
+ pr 1
+ at 30
+ df 30
+ mt 3
+
+21 item 0
+na lt. xbowman
+IT
+ pl lt. xbowmen
+ wt 100
+ lc -1
+ mu 1
+ pr 1
+ at 1
+ df 1
+ mi 15
+ mt 2
+
+22 item 0
+na elite archer
+IT
+ pl elite archers
+ wt 100
+ lc -1
+ mu 1
+ pr 1
+ at 1
+ df 1
+ mi 45
+ mt 4
+
+23 item 0
+na angry peasant
+IT
+ pl angry peasants
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 2
+ df 1
+ mt 2
+
+24 item 0
+na pirate
+IT
+ pl pirates
+ wt 100
+ lc -1
+ mu 1
+ pr 1
+ at 10
+ df 10
+ mt 3
+
+25 item 0
+na elf
+IT
+ pl elves
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 50
+ df 50
+ mi 100
+ sp 100
+ ap 317
+
+26 item undead
+na spirit
+IT
+ pl spirits
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 50
+ df 50
+
+27 item 0
+na postulant
+IT
+ pl postulants
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 1
+ df 1
+ ug 1
+
+28 item 0
+na fanatic
+IT
+ pl fanatics
+ wt 100
+ lc -1
+ mu 100
+ pr 1
+ at 10
+ df 5
+ ug 1
+
+29 item 0
+na ninja
+IT
+ pl ninjas
+ wt 100
+ lc -1
+ mu 100
+ at 5
+ df 5
+ ug 1
+ mt 2
+
+30 item 0
+na angel
+IT
+ pl angels
+ wt 100
+ lc 100
+ rc 100
+ fc 100
+ mu 100
+ pr 1
+ at 25
+ df 100
+
+31 item undead
+na undead
+IT
+ pl undead
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 25
+ df 1
+
+32 item 0
+na savage
+IT
+ pl savages
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 1
+ df 1
+ wi 1
+ ap 318
+
+33 item undead
+na skeleton
+IT
+ pl skeletons
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 5
+ df 5
+ wi 5
+
+34 item 0
+na barbarian
+IT
+ pl barbarians
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 2
+ df 1
+ wi 1
+
+35 item 0
+na wagon
+IT
+ pl wagons
+ wt 500
+ lc 1000
+ rc 500
+ pr 1
+ an 1
+
+36 item 0
+na skirmisher
+IT
+ pl skirmishers
+ wt 100
+ lc -1
+ mu 100
+ pr 1
+ at 3
+ df 3
+ mt 1
+
+37 item 0
+na hvy. foot
+IT
+ pl hvy. foot
+ wt 100
+ lc -1
+ mu 100
+ pr 1
+ at 60
+ df 60
+ mt 4
+
+38 item 0
+na hvy. xbowman
+IT
+ pl hvy. xbowmen
+ wt 100
+ lc -1
+ mu 100
+ pr 1
+ at 1
+ df 1
+ mi 75
+ mt 2
+
+39 item 0
+na elvish arrow
+IT
+ pl elvish arrows
+ wt 1
+
+40 item 0
+na hvy. crossbow
+IT
+ pl hvy. crossbows
+ wt 20
+
+41 item 0
+na horse archer
+IT
+ pl horse archers
+ wt 400
+ lc -1
+ rc -1
+ mu 100
+ pr 1
+ at 1
+ df 20
+ mi 40
+ mt 3
+
+42 item 0
+na common task
+IT
+ pl common tasks
+
+43 item 0
+na cavalier
+IT
+ pl cavaliers
+ wt 400
+ lc -1
+ rc -1
+ mu 1
+ pr 1
+ at 75
+ df 75
+ mt 4
+
+44 item 0
+na wagon
+IT
+ pl wagons
+ wt 500
+ lc 1000
+ rc 500
+ pr 1
+ an 1
+
+45 item 0
+na hvy. wagon
+IT
+ pl hvy. wagons
+ wt 1100
+ lc 1800
+ rc 900
+ pr 1
+ an 1
+
+46 item 0
+na war wagon
+IT
+ pl warwagons
+ wt 1100
+ lc 1800
+ rc 900
+ pr 1
+ an 1
+
+51 item 0
+na wild horse
+IT
+ pl wild horses
+ wt 300
+ lc -1
+ rc -1
+ pr 1
+ an 1
+ bp 15
+
+52 item 0
+na riding horse
+IT
+ pl riding horses
+ wt 300
+ lc 300
+ rc 150
+ pr 1
+ an 1
+ bp 25
+
+53 item 0
+na warmount
+IT
+ pl warmounts
+ wt 300
+ lc 400
+ rc 200
+ pr 1
+ an 1
+
+54 item 0
+na winged horse
+IT
+ pl winged horses
+ wt 300
+ lc 150
+ rc 150
+ fc 150
+ pr 1
+ an 1
+
+55 item 0
+na nazgul
+IT
+ pl nazgul
+ wt 300
+ lc 150
+ rc 150
+ fc 150
+ pr 1
+ an 1
+ at 360
+ df 360
+ wi 6
+ sp 3
+ ap 319
+
+56 item undead
+na zombie
+IT
+ pl zombies
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 15
+ df 15
+ wi 5
+
+57 item undead
+na wight
+IT
+ pl wights
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 75
+ df 75
+ wi 6
+
+59 item 0
+na flotsam
+IT
+ pl flotsam
+ wt 30
+
+60 item 0
+na battering ram
+IT
+ pl battering rams
+ wt 3000
+ pr 1
+ at 30
+ df 250
+
+61 item 0
+na catapult
+IT
+ pl catapults
+ wt 3000
+ pr 1
+ at 25
+ df 200
+ mi 25
+
+62 item 0
+na siege tower
+IT
+ pl siege towers
+ wt 3000
+ pr 1
+ df 100
+
+63 item 0
+na ratspider venom
+IT
+ pl ratspider venom
+
+64 item 0
+na lana bark
+IT
+ pl lana bark
+ wt 1
+ bp 23
+
+65 item 0
+na avinia leaf
+IT
+ pl avinia leaves
+ wt 1
+ bp 31
+
+66 item 0
+na spiny root
+IT
+ pl spiny roots
+ wt 1
+ bp 43
+
+67 item 0
+na farrenstone
+IT
+ pl farrenstone
+ wt 1
+ bp 47
+
+68 item 0
+na yew
+IT
+ pl yew
+ wt 3
+ bp 28
+
+69 item 0
+na elfstone
+IT
+ pl elfstones
+ wt 1
+IM
+ uk 16
+
+70 item 0
+na mallorn wood
+IT
+ pl mallorn wood
+ wt 30
+ bp 29
+ 
+71 item 0
+na pretus bones
+IT
+ pl pretus bones
+ wt 1
+ bp 18
+
+72 item 0
+na longbow
+IT
+ pl longbows
+ wt 3
+
+73 item 0
+na plate armor
+IT
+ pl plate armor
+ wt 5
+
+74 item 0
+na longsword
+IT
+ pl longswords
+ wt 5
+
+75 item 0
+na pike
+IT
+ pl pikes
+ wt 5
+
+76 item 0
+na ox
+IT
+ pl oxen
+ wt 1000
+ lc 1500
+ rc -1
+ pr 1
+ an 1
+ bp 100
+
+77 item 0
+na wood
+IT
+ pl wood
+ wt 30
+ bp 13
+
+78 item 0
+na stone
+IT
+ pl stone
+ wt 100
+ bp 8
+
+79 item 0
+na iron
+IT
+ pl iron
+ wt 10
+ bp 30
+
+80 item 0
+na leather
+IT
+ pl leather
+ wt 30
+ bp 50
+
+81 item 0
+na ratspider
+IT
+ pl ratspiders
+ wt 1
+ at 5
+ df 5
+ ca 1
+ wi 5
+ sp 15
+
+82 item 0
+na mithril
+IT
+ pl mithril
+ wt 5
+
+83 item 0
+na gate crystal
+IT
+ pl gate crystals
+ wt 1
+
+84 item 0
+na blank scroll
+IT
+ pl blank scrolls
+ wt 2
+
+85 item 0
+na lt. crossbow
+IT
+ pl lt. crossbows
+ wt 10
+
+86 item trade_good
+na rug
+IT
+ tg 80
+ pl rugs
+ wt 200
+ bp 125
+
+87 item 0
+na fish
+IT
+ pl fish
+ wt 2
+ bp 2
+
+88 item trade_good
+na pepper
+IT
+ tg 400
+ pl pepper
+ wt 5
+ bp 10
+
+89 item trade_good
+na pipeweed
+IT
+ tg 400
+ pl pipeweed
+ wt 10
+ bp 27
+
+90 item trade_good
+na ale
+IT
+ tg 400
+ pl ale
+ wt 50
+ bp 13
+
+91 item trade_good
+na wool
+IT
+ tg 400
+ pl wool
+ wt 200
+ bp 19
+
+92 item 0
+na jewels
+IT
+ pl jewels
+ wt 3
+
+93 item 0
+na opium
+IT
+ pl opium
+ wt 1
+
+94 item 0
+na woven basket
+IT
+ pl woven baskets
+ wt 1
+ bp 4
+
+95 item 0
+na clay pot
+IT
+ pl clay pots
+ wt 5
+ bp 7
+
+96 item 0
+na tax cookie
+IT
+ pl tax cookies
+
+97 item 0
+na fish oil
+IT
+ pl fish oil
+ wt 10
+
+98 item 0
+na drum
+IT
+ pl drums
+ wt 2
+IM
+ uk 7
+
+99 item 0
+na hide
+IT
+ pl hides
+ wt 50
+ bp 130
+
+101 item 0
+na mob cookie
+IT
+ pl mob cookies
+
+102 item trade_good
+na lead
+IT
+ tg 400
+ pl lead
+ wt 500
+ bp 10
+
+103 item trade_good
+na fine cloak
+IT
+ tg 80
+ pl fine cloaks
+ wt 15
+ bp 140
+
+104 item trade_good
+na chocolate
+IT
+ tg 80
+ pl chocolate
+ wt 25
+ bp 115
+
+105 item trade_good
+na ivory
+IT
+ tg 400
+ pl ivory
+ wt 100
+ bp 40
+
+106 item trade_good
+na cardamom
+IT
+ tg 80
+ pl cardamom
+ wt 5
+ bp 205
+
+107 item trade_good
+na honey
+IT
+ tg 400
+ pl honey
+ wt 100
+ bp 20
+
+108 item trade_good
+na ink
+IT
+ tg 80
+ pl ink
+ wt 50
+ bp 160
+
+109 item trade_good
+na licorice
+IT
+ tg 80
+ pl licorice
+ wt 50
+ bp 110
+
+110 item trade_good
+na soap
+IT
+ tg 400
+ pl soap
+ wt 50
+ bp 11
+
+111 item trade_good
+na old book
+IT
+ tg 8
+ pl old books
+ wt 25
+ bp 1200
+
+112 item trade_good
+na jade idol
+IT
+ tg 8
+ pl jade idols
+ wt 10
+ bp 1900
+
+113 item trade_good
+na purple cloth
+IT
+ tg 400
+ pl purple cloth
+ wt 100
+ bp 36
+
+114 item trade_good
+na rose perfume
+IT
+ tg 8
+ pl rose perfume
+ wt 3
+ bp 2150
+
+115 item trade_good
+na silk
+IT
+ tg 400
+ pl silk
+ wt 50
+ bp 35
+
+116 item trade_good
+na incense
+IT
+ tg 80
+ pl incense
+ wt 10
+ bp 185
+
+117 item trade_good
+na ochre
+IT
+ tg 80
+ pl ochre
+ wt 25
+ bp 195
+
+118 item trade_good
+na jeweled egg
+IT
+ tg 8
+ pl jeweled eggs
+ wt 2
+ bp 2200
+
+119 item trade_good
+na obsidian
+IT
+ tg 400
+ pl obsidian
+ wt 500
+ bp 31
+
+251 item trade_good
+na orange
+IT
+ tg 400
+ pl oranges
+ wt 100
+ bp 21
+
+252 item trade_good
+na cinnabar
+IT
+ tg 80
+ pl cinnabar
+ wt 50
+ bp 165
+
+253 item trade_good
+na myrrh
+IT
+ tg 80
+ pl myrrh
+ wt 4
+ bp 210
+
+254 item trade_good
+na saffron
+IT
+ tg 8
+ pl saffron
+ wt 1
+ bp 2250
+
+255 item trade_good
+na dried fish
+IT
+ tg 400
+ pl dried fish
+ wt 5
+ bp 8
+
+256 item trade_good
+na tallow
+IT
+ tg 80
+ pl tallow
+ wt 50
+ bp 35
+
+257 item trade_good
+na candles
+IT
+ tg 80
+ pl candles
+ wt 25
+ bp 85
+
+258 item trade_good
+na wax
+IT
+ tg 80
+ pl wax
+ wt 50
+ bp 45
+
+259 item trade_good
+na sugar
+IT
+ tg 400
+ pl sugar
+ wt 100
+ bp 6
+
+260 item trade_good
+na salt
+IT
+ tg 400
+ pl salt
+ wt 100
+ bp 5
+
+261 item trade_good
+na pitch
+IT
+ pl pitch
+ wt 100
+ bp 50
+
+262 item trade_good
+na linen
+IT
+ tg 400
+ pl linen
+ wt 100
+ bp 18
+
+263 item trade_good
+na beans
+IT
+ tg 400
+ pl beans
+ wt 100
+ bp 14
+
+264 item trade_good
+na walnuts
+IT
+ tg 80
+ pl walnuts
+ wt 100
+ bp 145
+
+265 item trade_good
+na flax
+IT
+ tg 400
+ pl flax
+ wt 100
+ bp 12
+
+266 item trade_good
+na flute
+IT
+ tg 8
+ pl flutes
+ wt 5
+ bp 1500
+
+267 item trade_good
+na cassava
+IT
+ tg 80
+ pl cassava
+ wt 100
+ bp 170
+
+268 item trade_good
+na plum wine
+IT
+ tg 80
+ pl plum wine
+ wt 50
+ bp 130
+
+269 item trade_good
+na vinegar
+IT
+ tg 80
+ pl vinegar
+ wt 50
+ bp 80
+
+270 item trade_good
+na tea
+IT
+ tg 400
+ pl tea
+ wt 25
+ bp 15
+
+271 item 0
+na centaur
+IT
+ pl centaurs
+ wt 300
+ lc 150
+ rc 150
+ pr 1
+ an 1
+ at 30
+ df 30
+ mi 30
+ ca 1
+ wi 6
+ ap 320
+
+272 item 0
+na minotaur
+IT
+ pl minotaurs
+ wt 500
+ lc -1
+ rc -1
+ pr 1
+ an 1
+ at 30
+ df 5
+ ca 1
+ wi 5
+ sp 15
+ ap 321
+
+273 item 0
+na undead cookie
+IT
+ pl undead cookies
+
+274 item 0
+na fog cookie
+IT
+ pl fog cookies
+
+275 item 0
+na wind cookie
+IT
+ pl wind cookies
+
+276 item 0
+na rain cookie
+IT
+ pl rain cookies
+
+277 item 0
+na mage menial cookie
+IT
+ pl mage menial cookies
+
+278 item 0
+na giant spider
+IT
+ pl giant spiders
+ wt 100
+ lc -1
+ rc -1
+ pr 1
+ an 1
+ at 150
+ df 100
+ ca 1
+ wi 5
+ sp 25
+ ap 322
+
+279 item 0
+na rat
+IT
+ pl rats
+ wt 20
+ lc -1
+ pr 1
+ an 1
+ at 3
+ df 3
+ ca 1
+ wi 5
+ ap 323
+
+280 item 0
+na lion
+IT
+ pl lions
+ wt 300
+ lc -1
+ rc -1
+ pr 1
+ an 1
+ at 100
+ df 100
+ ca 1
+ wi 5
+ sp 25
+ ap 324
+
+281 item 0
+na giant bird
+IT
+ pl giant birds
+ wt 100
+ lc -1
+ rc -1
+ fc -1
+ pr 1
+ an 1
+ at 300
+ df 250
+ ca 1
+ wi 5
+ ap 325
+
+282 item 0
+na giant lizard
+IT
+ pl giant lizards
+ wt 100
+ lc -1
+ rc -1
+ pr 1
+ an 1
+ at 80
+ df 80
+ ca 1
+ wi 5
+ sp 10
+ ap 326
+
+283 item 0
+na bandit
+IT
+ pl bandits
+ wt 100
+ lc 100
+ mu 1
+ pr 1
+ at 3
+ df 3
+ wi 1
+ sp 100
+ ap 327
+
+284 item 0
+na chimera
+IT
+ pl chimera
+ wt 100
+ lc -1
+ rc -1
+ pr 1
+ an 1
+ at 250
+ df 250
+ ca 1
+ wi 5
+ sp 5
+ ap 328
+
+285 item 0
+na harpie
+IT
+ pl harpies
+ wt 100
+ lc -1
+ rc -1
+ fc -1
+ pr 1
+ an 1
+ at 80
+ df 120
+ ca 1
+ wi 5
+ sp 15
+ ap 329
+
+286 item 0
+na dragon
+IT
+ pl dragons
+ wt 5000
+ lc -1
+ rc -1
+ fc 5000
+ pr 1
+ an 1
+ at 1500
+ df 1500
+ ca 1
+ sp 10
+ ap 330
+
+287 item 0
+na orc
+IT
+ pl orcs
+ wt 100
+ lc 100
+ rc -1
+ mu 1
+ pr 1
+ at 20
+ df 15
+ ca 1
+ wi 7
+ sp 500
+ ap 331
+
+288 item 0
+na gorgon
+IT
+ pl gorgons
+ wt 100
+ lc -1
+ rc -1
+ pr 1
+ an 1
+ at 10
+ df 20
+ ca 1
+ wi 5
+ sp 10
+ ap 332
+
+289 item 0
+na wolf
+IT
+ pl wolves
+ wt 100
+ lc -1
+ rc -1
+ pr 1
+ an 1
+ at 5
+ df 5
+ ca 1
+ wi 5
+ sp 10
+ ap 333
+
+290 item 0
+na crystal orb
+IT
+ pl crystal orbs
+ wt 1
+IM
+ uk 9
+ oc 7
+
+291 item 0
+na cyclops
+IT
+ pl cyclops
+ wt 200
+ lc 200
+ mu 1
+ pr 1
+ at 25
+ df 75
+ ca 1
+ wi 6
+ sp 15
+ ap 334
+
+292 item 0
+na giant
+IT
+ pl giants
+ wt 200
+ lc 600
+ mu 1
+ pr 1
+ at 75
+ df 25
+ ca 1
+ wi 6
+ sp 15
+ ap 335
+
+293 item 0
+na faery
+IT
+ pl faerie
+ wt 10
+ lc 10
+ mu 1
+ pr 1
+ at 1
+ df 1
+ mi 1
+
+294 item 0
+na petty thief cookie
+IT
+ pl petty thief cookies
+
+295 item 0
+na golden seagrass
+IT
+ pl golden seagrass
+ wt 1
+
+296 item 0
+na firewort
+IT
+ pl firewort
+ wt 1
+
+297 item 0
+na beastnip
+IT
+ pl beastnip
+ wt 1
+
+298 item 0
+na elf poppy
+IT
+ pl elf poppies
+ wt 1
+
+299 item 0
+na ironwood
+IT
+ pl ironwood
+ wt 1
+
+300 item 0
+na king's fern
+IT
+ pl king's ferns
+ wt 1
+
+301 item 0
+na moon palm
+IT
+ pl moon palms
+ wt 1
+
+302 item 0
+na otter
+IT
+ pl otters
+ wt 10
+ lc 20
+ pr 1
+ an 1
+ at 10
+ df 10
+ sp 5
+
+303 item 0
+na mole
+IT
+ pl moles
+ wt 10
+ lc 20
+ pr 1
+ an 1
+ at 10
+ df 10
+ sp 5
+
+304 item 0
+na bull
+IT
+ pl bulls
+ wt 10
+ lc 20
+ pr 1
+ an 1
+ at 10
+ df 10
+ sp 5
+
+305 item 0
+na eagle
+IT
+ pl eagles
+ wt 10
+ lc 20
+ pr 1
+ an 1
+ at 10
+ df 10
+ sp 5
+
+306 item 0
+na monkey
+IT
+ pl monkeys
+ wt 10
+ lc 20
+ pr 1
+ an 1
+ at 10
+ df 10
+ sp 5
+
+307 item 0
+na hare
+IT
+ pl hares
+ wt 10
+ lc 20
+ pr 1
+ an 1
+ at 10
+ df 10
+ sp 5
+
+308 item 0
+na wardog
+IT
+ pl wardogs
+ wt 10
+ lc 20
+ pr 1
+ an 1
+ at 10
+ df 10
+ wi 5
+ sp 15
+
+309 item 0
+na sand rat
+IT
+ pl sand rats
+ wt 10
+ lc 20
+ pr 1
+ an 1
+ at 10
+ df 10
+ wi 5
+ sp 5
+
+310 item 0
+na balrog
+IT
+ pl balrogs
+ wt 1000
+ lc -1
+ rc -1
+ fc 1000
+ pr 1
+ an 1
+ at 1000
+ df 1000
+ ca 1
+ sp 5
+ ap 336
+
+311 item 0
+na dirt golem
+IT
+ pl dirt golem
+ wt 500
+ lc 1000
+ pr 1
+ at 125
+ df 125
+ ca 1
+ ug 1
+
+312 item 0
+na flesh golem
+IT
+ pl flesh golems
+ wt 750
+ lc 2000
+ pr 1
+ at 250
+ df 250
+ ca 1
+ ug 1
+
+313 item 0
+na iron golem
+IT
+ pl iron golems
+ wt 2500
+ lc 5000
+ pr 1
+ at 500
+ df 500
+ ca 1
+ ug 1
+
+314 item undead
+na lesser demon
+IT
+ pl lesser demons
+ wt 100
+ lc 100
+ mu 100
+ pr 1
+ at 250
+ df 250
+
+315 item undead
+na greater demon
+IT
+ pl greater demons
+ wt 100
+ lc 100
+ mu 100
+ pr 1
+ at 500
+ df 500
+
+316 item 0
+na green rose
+IT
+ pl green roses
+ wt 1
+
+317 item animal-part
+na elf ear
+IT
+ pl elf ears
+ wt 1
+ bp 2
+
+318 item animal-part
+na savage ear
+IT
+ pl savage ears
+ wt 1
+ bp 2
+
+319 item animal-part
+na nazgul tail
+IT
+ pl nazgul tail
+ wt 1
+ bp 40
+
+320 item animal-part
+na centaur hide
+IT
+ pl centaur hides
+ wt 10
+ bp 5
+
+321 item animal-part
+na minotaur hide
+IT
+ pl minotaur hides
+ wt 15
+ bp 5
+
+322 item animal-part
+na spider eye
+IT
+ pl spider eyes
+ wt 1
+ bp 2
+
+323 item animal-part
+na rat tail
+IT
+ pl rat tails
+ wt 1
+ bp 1
+
+324 item animal-part
+na lion mane
+IT
+ pl lion manes
+ wt 5
+ bp 5
+
+325 item animal-part
+na giant bird feather
+IT
+ pl giant bird feathers
+ wt 1
+ bp 10
+
+326 item animal-part
+na lizard tail
+IT
+ pl lizard tails
+ wt 5
+ bp 5
+
+327 item animal-part
+na bandit ear
+IT
+ pl bandit ears
+ wt 1
+ bp 1
+
+328 item animal-part
+na chimera eye
+IT
+ pl chimera eyes
+ wt 1
+ bp 10
+
+329 item animal-part
+na harpie feather
+IT
+ pl harpie feathers
+ wt 1
+ bp 5
+
+330 item animal-part
+na dragon scale
+IT
+ pl dragon scales
+ wt 50
+ bp 40
+
+331 item animal-part
+na orc scalp
+IT
+ pl orc scalp
+ wt 2
+ bp 4
+
+332 item animal-part
+na gorgon liver
+IT
+ pl gorgon livers
+ wt 2
+ bp 10
+
+333 item animal-part
+na wolf hide
+IT
+ pl wolf hides
+ wt 5
+ bp 3
+
+334 item animal-part
+na cyclops eye
+IT
+ pl cyclops eyes
+ wt 1
+ bp 8
+
+335 item animal-part
+na giant's tongue
+IT
+ pl giants' tongues
+ wt 10
+ bp 10
+
+336 item animal-part
+na balrog horn
+IT
+ pl balrog horn
+ wt 5
+ bp 300
