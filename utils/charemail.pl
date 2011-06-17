@@ -9,9 +9,14 @@ $home = "/home/tagtest";
 #player-characters
 #
 #     Internal ID                  Type
+# *  1-9999             9999     reserved (items, skills)
+# *
+# *  10,000-19,999    10,000     provinces               (CCNN: AA00-DV99)
 # *  20,000-26,759      6760     player entities         (CCN)
 # *  26,760-33,519      6760     lucky characters        (CNC)
-#
+# *  33,520-36,119      2600     lucky locs              (CNN) 
+# *  36,120-102,400   66,279     sublocs, runoff         (CCNC)
+
 # master:
 #   20002	1.49	fact/20002	Faction Three
 #
@@ -25,6 +30,7 @@ foreach $i (`ls -1 [2-3][0-9][0-9][0-9][0-9]*`) {
   @stuff = `grep " em " $i`;
   $email[$n] = substr($stuff[0],4);
   chomp $email[$n];
+  $email[$n] =~ s/ /,/g,$email[$n]; # replace space in email list with comma
   @stuff2 = `grep " pw " $i`;
   if ($#stuff >= 0) {
     $pwd[$n] = substr($stuff2[0],4);
@@ -82,6 +88,21 @@ sub licenseplate
     $plate = $letters[$b] . $a . $letters[$n];
     return $plate;
   }
+  # usually former refugees fall into this category
+  {
+    $id -= 36120;
+    $a = $id % 26;
+    $id /= 26;
+    $id = int $id;
+    $b = $id % 10;
+    $id /= 10;
+    $id = int $id;
+    $c = $id % 26;
+    $id /= 26;
+    $id = int $id;
+    $plate = $letters[$id] . $letters[$c] . $b . $letters[$a];
+    return $plate;
+  }
 }
 #        if (l < 33520)                  /* CNC */
 #        {
@@ -96,3 +117,31 @@ sub licenseplate
 #                return sout("%c%d%c", letters[b], a, letters[n]);
 #        }
 #
+#        if (l < 36120)                  /* CNN */
+#        {
+#                l -= 33520;
+#
+#                n = l % 10;
+#                l /= 10;
+#
+#                a = l % 10;
+#                b = l / 10;
+#
+#                return sout("%c%d%d", letters[b], a, n);
+#        }
+#
+#        {                               /* CCNC */
+#                l -= 36120;
+#
+#                a = l % 26;
+#                l /= 26;
+#
+#                b = l % 10;
+#                l /= 10;
+#
+#                c = l % 26;
+#                l /= 26;
+#
+#                return sout("%c%c%d%c", letters[l], letters[c], b, letters[a]);
+#        }
+

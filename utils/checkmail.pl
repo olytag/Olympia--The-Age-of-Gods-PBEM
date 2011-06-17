@@ -12,6 +12,9 @@ $charEmailFile = "/home/tagtest/lib/char_email.txt";
 $moderator_email = "moderator\@olytag.com";
 $game_email = "tagtest\@olytag.com";	#orders email address
 
+$webpass = "missiveZZZ";	#set by the web page - change it and make them match
+$gameno = 1;
+
 while (1>0) {	#run forever
 
   if (!-e $mailDir) { print "no mail dir!\n"; exit; }
@@ -90,6 +93,8 @@ sub parse_and_save()
   # write everything after the begin line
 
   foreach $line (@data) {
+    #ignore HTML
+    if ($line =~ /Content-Type: text\/html/) { last; }
 
     # handling for the #forwardto command (usually ignored)
 
@@ -164,7 +169,7 @@ sub parse_and_save()
 }
 sub forwardto()
 { 
-  if (length($from_address) < 5 || $from_address !~ /\@/) {
+  if (length($from_address) < 5 || ($from_address !~ /\@/ && $from_address !~ /website/)) {
     print "Not a valid email address\n";
     return;
   }
@@ -181,12 +186,14 @@ sub forwardto()
   foreach $line (@charlist) {
     ($id,$junk,$junk,$email,$charname,$pwd) = split /\t/,$line;
     chomp $pwd;
-
     # match both fromid and password
 
-    if ($mypwd eq $pwd && $id =~ /$from_id/) { 
+    if (($mypwd eq $pwd || $mypwd eq $webpass)  && $id =~ /$from_id/) { 
       $valid_pwd = 1;
       $from_char = $charname;
+      #if it came from the web site, then set the from_address so
+      #we can send an Ack email
+      if ($from_address =~ /website/) { $from_address = $email; }
     }
 
     # or match the from address and password
@@ -208,7 +215,7 @@ sub forwardto()
   #the fromid
 
   if (!$valid_pwd) {
-    open MSGFILE,">/tmp/$file.tmpmsg";
+    open MSGFILE,">/tmp/$file.tmpmsg_fail";
     print MSGFILE "From: $game_email\n";
     print MSGFILE "To: $from_address\n";
     print MSGFILE "Bcc: $moderator_email\n";
@@ -218,11 +225,14 @@ sub forwardto()
     print MSGFILE "Diplomatic missive not delivered.  Please use one of\n";
     print MSGFILE "your valid noble IDs or your faction ID and send the\n";
     print MSGFILE "message with the password associated with your accout.\n";
+    print MSGFILE "Or visit: http://olytag.com/$gameno and log in to your account.\n\n";
+    print MSGFILE "Also, HTML \"Rich Text\" emails are not allowed - please be\n";
+    print MSFGILE "sure to use plain test in your email program.\n";
     print MSGFILE "------------- Original Message ------------\n\n";
     print MSGFILE @data;
     close MSGFILE;
-    `msmtp -t < /tmp/$file.tmpmsg`;
-    `rm /tmp/$file.tmpmsg`;
+    `msmtp -t < /tmp/$file.tmpmsg_fail`;
+    `rm /tmp/$file.tmpmsg_fail`;
   #} elsif ($forward_email eq "") {
   #  open MSGFILE,">/tmp/$file.tmpmsg";
   #  print MSGFILE "From: $game_email\n";
@@ -258,6 +268,7 @@ sub forwardto()
       print MSGFILE "<your message here>\n";
       print MSGFILE "#end\n";
       print MSGFILE "(no spaces allowed between the colons and IDs)\n\n";
+      print MSGFILE "Or visit: http://olytag.com/$gameno and log in to your account.\n\n";
       close MSGFILE;
 #print "wrote file, now mailing...\n";
       `msmtp -t < /tmp/$file.tmpmsg`;
