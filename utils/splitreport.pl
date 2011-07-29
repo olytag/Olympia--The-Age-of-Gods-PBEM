@@ -80,11 +80,15 @@ foreach $line (@data) {
     if ($garrstart2 > 0 && $count > ($garrstart2+2) && $garrend2 == 0) {
       $garrend2 = $count-2;
     }
+    if (length($data[$count-2]) > 20) {
+      $tempfield = substr($data[$count-2],0,length($data[$count-2])-1) . " "
+       . $data[$count-1];
+    } else {
+      $tempfield = $data[$count-1];
+    }
+    print "->",$tempfield;
     $inner = 0;					#init for inner hidden locs
-    @fields = split /,/,$data[$count-1];	#one line before section
-    @fields2 = split /,/,$data[$count-2];	#two lines before section,
-						#since some titles are
-						#two lines long
+    @fields = split /,/,$tempfield;		#one line before section
     $market[$locs] = 0;
     $other[$locs] = 0;
     if ($fields[1] eq " desert" || $fields[1] eq " plain" || 
@@ -95,6 +99,7 @@ foreach $line (@data) {
 	$fields[1] eq " ship" || $fields[1] eq " cloud" ||
 	$fields[1] eq " graveyard" || $fields[1] eq " underground" ||
         $fields[1] eq " faery hill" || $fields[2] eq " mine-shaft"  ||
+        $fields[1] eq " sewer" || $fields[1] eq " tunnel" ||
         $fields[1] eq " Trading Guild" || 
 	$fields[1] eq " Shipcraft Guild" ||
 	$fields[1] eq " Combat Guild" || 
@@ -107,44 +112,21 @@ foreach $line (@data) {
 	$fields[1] eq " Ranger Guild" ||
         $fields[1] eq " Heroism Guild")
     {
-      if ($data[$count-1] =~ /\[([^\]]*)\]/) {
+      if ($tempfield =~ /\[([^\]]*)\]/) {
         $locid[$locs] = $1;
-        $locations[$locs] = $data[$count-1];
+        $locations[$locs] = $tempfield;
         $locpos[$locs] = $count - 1;
+        if (length($data[$count-2]) > 20) { $locpos[$locs] = $count - 2;}
         if ($fields[1] eq " port city" || $fields[1] eq " city") {
   	  $market[$locs] = 1;
+        }
+        if ($fields[1] eq " Trading Guild") {
+          $market[$locs] = 2;
         }
 	if ($fields[1] eq " ship") {
 	  $other[$locs] = 1;
 	}
 	$locfull[$locs] = 0;	#is this a full report?
-        $locs++;
-      }
-    }
-    if ($fields2[1] eq " Trading Guild" || 
-	$fields2[1] eq " Shipcraft Guild" ||
-	$fields2[1] eq " Combat Guild" || 
-	$fields2[1] eq " Stealth Guild" || 
-	$fields2[1] eq " Persuasion Guild" ||
-	$fields2[1] eq " Construction Guild" || 
-	$fields2[1] eq " Alchemy Guild" || 
-	$fields2[1] eq " Forestry Guild" || 
-	$fields2[1] eq " Mining Guild" || 
-	$fields2[1] eq " Ranger Guild" ||
-        $fields2[1] eq " Heroism Guild" || 
-	$fields2[1] eq " graveyard" ||
-	$fields2[1] eq " ship" ||
-        $fields2[2] eq " mine-shaft") {
-      if ($data[$count-2] =~ /\[([^\]]*)\]/) {
-        $locid[$locs] = $1;
-        $locations[$locs] = $data[$count-2];
-        $locpos[$locs] = $count - 2;
-	if ($fields2[1] eq " Trading Guild") {
-	  $market[$locs] = 2;
-	}
-	if ($fields2[1] eq " ship") {
-	  $other[$locs] = 1;
-	}
         $locs++;
       }
     }
