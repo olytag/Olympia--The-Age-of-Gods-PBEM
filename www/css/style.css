@@ -1,0 +1,82 @@
+* {margin: 0; padding: 0;}
+body { min-width:779px; max-width: 1003px; margin: 40px 0; padding: 0; font-family: "Book Antiqua", Georgia, Serif; font-size: 90%; background-color: #041940; color: #E6CDA5 }
+#page { width: 90%; margin-left: auto; margin-right: auto; padding: 10px; background:#041940 url(images/93.jpg) repeat center center; color:#E6CDA5 }
+#wrap { width: 90%; margin: 40px auto; padding: 0; background:#E6CDA5 url(images/bg18.jpg) repeat; color: #000; }
+
+#head { position: relative; height: 160px; margin: 0; padding: 0; background: transparent url(images/sword.gif) no-repeat 70% top; color: #041940 }
+#title { padding: 25px 0 0 0; font-family: "Book Antiqua", Georgia, Serif; font-size: 1.9em; text-align: center; color: #020201; background-color: transparent }
+#title a:link, #title a:visited { color: #020201; text-decoration: none; background-color: transparent }
+#title a:hover { color: #796307; background-color: transparent }
+#desc { padding: 15px 20px 0px 20px; text-align: center; font-style: italic; }
+
+#left { float: left; width: 30%; margin: 0px; padding: 0 0 0 10px; background: transparent; color: #000; }
+#left h2 { margin: 0px; padding: 0px 5px 5px 5px; font-size: 1.2em; background-color: transparent; color: #000 }
+#left a:link, #left a:visited { color: #041940; background-color: transparent; }
+#left a:hover { color: #796307; background-color: transparent; }
+#left .menu { width: 30%; margin: 0px; padding: 10px 5px 30px 10px; }
+#left ul { margin: 0px; padding: 0 5px 0 0; }
+#left ul li { list-style-type: none; margin: 0px; padding: 0px 5px 30px 0px; }
+#left ul ul li { list-style-type: none; background: transparent; color: #020201; margin: 0px 15px 0px 5px; padding: 0px 5px 5px 5px; }
+#left ul.children { margin: 0px; padding: 5px 5px 0px 0px; }
+#left ul.children li { margin: 0px; padding: 0px 5px 5px 12px; }
+
+#content { float: right; width: 65%; margin: 0; padding: 0px 10px 0px 10px; }
+#content .post { margin: 0px; padding: 10px 0px 10px 0px; line-height: 20px; background: transparent; }
+#content p {margin-bottom: 10px;}
+#content .post blockquote { padding-top: 0px; padding-bottom: 0px; }
+#content .post blockquote p { text-indent: 0; margin: 5px 0 0 0; padding: 10px 0px 20px 5px; }
+#content ul { margin: 0px; padding: 0 5px 0 20px; }
+#content li { list-style-type: circle;  color: #020201; margin: 0px 5px 0px 5px; padding: 0px 5px 5px 0px; }
+#content ol { margin: 0px; padding: 0 5px 0 20px; }
+#content ol li { list-style-type: decimal;  color: #020201; margin: 0px 5px 0px 5px; padding: 0px 5px 5px 0px; }
+
+
+#foot { clear: both; height: 30px; text-align: center; padding: 20px 0 0 0 }
+
+#commentlist { margin: 0px; padding: 0px; }
+#commentlist ol { padding: 0!important; }
+#commentlist li { list-style-type: none!important; margin: 10px 0px 10px 0px; padding: 5px 15px 0px 15px; border: 1px solid #83745D; background-color: #E9D3AF; color: #041940; }
+#commentlist p { margin: 0px; padding: 10px 5px; }
+#commentlist .commentmeta { font-weight: bold; margin-bottom: 10px; }
+#commentlist .alt { background-color: #E7CBA2; border-color: #020201; color: #000; }
+#commentlist blockquote { background-color: #E9D3AF; border: 1px solid #83745D; color: #000; }
+#commentlist .alt blockquote { border-color: #020201; }
+#commentform p { margin: 10px 0px 0px 0px; padding: 0px; }
+#commentform textarea { width: 350px; }
+
+.meta { margin: 2px 0px 0px 0px; padding: 0px 20px 5px 0; font-size: 0.75em; font-weight: bold; }
+
+.postmetadata { font-size: 0.75em; font-weight: bold; }
+
+a:link, a:visited { color: #041940; background-color: transparent }
+a:hover { color: #796307; }
+blockquote { background-color: transparent; color: #000; margin-left: 10px; margin-right: 15px; padding: 10px 20px 10px 30px; font-style: italic; }
+h1 { margin: 0px; padding: 2px 0 2px 0; background: transparent; color:#020201;  font-size: 1.5em; }
+h1 a { text-decoration: none; }
+h1 a:link, h1 a:visited { color: #041940; background-color: transparent;}
+h1 a:hover { color: #796307; background-color: transparent; }
+h2 { background-color: transparent; color:#020201;  font-size: 1.3em; } 
+h3 { background-color: transparent; color:#020201;  font-size: 1.2em; } 
+h4 { background-color: transparent; color:#020201;  font-size: 1.0em; } 
+form { margin: 0px; padding: 0px; }
+form input, form textarea, form submit { border: 1px solid #020201; background-color:#E9D3AF; }
+
+
+img.centered {display:block; margin: 0 auto 5px auto; border:1px solid #83745D; padding:2px; }
+
+img.alignright { display: inline; border:1px solid #83745D; margin:5px 7px 0 7px; padding:4px; vertical-align: middle; }
+
+img.alignleft { display: inline; border:1px solid #83745D; margin:5px 7px 0 7px; padding:4px; vertical-align: middle; }
+
+img.border { border:1px solid #83745D; padding:2px; }
+
+.alignleft { float:left; text-align:left; }
+
+.alignright { float:right; text-align:right; }
+
+acronym { cursor: help; border-bottom: 1px dotted #796307 }
+
+.clearleft { clear: left; }
+
+
+
