@@ -82,7 +82,7 @@ d_bind_storm(struct command *c)
 	wout(c->who, "Bound %s to %s.", box_name(storm), box_name(ship));
 	return TRUE;
 }
-#endif 0
+#endif
 
 static void
 move_storm(int storm, int dest)
@@ -192,7 +192,7 @@ move_bound_storms(int ship, int where)
 		move_storm(storm, where);
 	}
 }
-#endif 0
+#endif
 
 int
 new_storm(int new, int sk, int aura, int where)
@@ -389,7 +389,7 @@ dissipate_storm(int storm, int show)
 
 		rp_misc(storm)->bind_storm = 0;
 	}
-#endif 0
+#endif
 
 	delete_box(storm);
 }

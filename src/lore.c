@@ -1,5 +1,6 @@
 
 #include	<stdio.h>
+#include	<string.h>
 #include	"z.h"
 #include	"oly.h"
 
@@ -542,7 +543,7 @@ gm_show_all_skills(int pl, int use_texi)
 		}
 	}
 	next_skill;
-#endif 0
+#endif
 
 #if 0
 	loop_skill(sk)
@@ -555,7 +556,7 @@ gm_show_all_skills(int pl, int use_texi)
 		}
 	}
 	next_skill;
-#endif 0
+#endif
 
 	out_path = 0;
 	out_alt_who = 0;

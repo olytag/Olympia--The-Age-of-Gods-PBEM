@@ -9,6 +9,7 @@
  */
 
 #include	<stdio.h>
+#include	<stdlib.h>
 #include	"z.h"
 #include	"oly.h"
 
@@ -2217,7 +2218,7 @@ num_attacks(struct fight *f, int type)
 
   return max(1, p->experience/8);
 };
-#endif HERO
+#endif // HERO
 
 /*
  *  Fri Nov  8 15:24:48 1996 -- Scott Turner
@@ -2248,7 +2249,7 @@ do_attack(int attacker, struct fight **l_a, struct fight **l_b, int type)
    */
   attacks = num_attacks(f, type);
   for (i=0;i<attacks;i++) {
-#endif HERO   
+#endif // HERO   
     if (is_siege_engine(f->kind) && siege_engine_useful(l_b)) {
       g = l_b[0];		/* set defender to structure */
       assert(g->kind == FK_fort);
@@ -2269,7 +2270,7 @@ do_attack(int attacker, struct fight **l_a, struct fight **l_b, int type)
 	type = UNCANNY;
 	uncanny++;
       };
-#endif HERO
+#endif // HERO
       num_defend = total_defenders(l_b, l_a, type);
       assert(num_defend > 0);
       man = rnd(1, num_defend);
@@ -2286,7 +2287,7 @@ do_attack(int attacker, struct fight **l_a, struct fight **l_b, int type)
     wout(VECT, "    With uncanny accuracy, %s fires into the back row %s times!",
 	 box_name(f->unit), nice_num(uncanny));
   };
-#endif HERO
+#endif // HERO
   return kills;
 }
 
@@ -2513,7 +2514,7 @@ special_attack(struct fight **l_a, int i, struct fight **l_b, int type)
     g = find_defender(l_b, man, l_a, MELEE);
     resolve_hit(l_a, f, l_b, g, man, MELEE); /* f tries to hit g */
   };
-#endif HERO
+#endif // HERO
 
   /*
    *  Other special attacks.
@@ -2591,7 +2592,7 @@ resolve_dead(struct fight **l_a)
 	  / 100;
       };
       g->new_health = max(g->new_health - damage, 0);
-#endif HERO
+#endif // HERO
       /*
        *  Now (possibly) adjust g->num to take the noble out of the
        *  battle.
@@ -2601,13 +2602,13 @@ resolve_dead(struct fight **l_a)
       if (!has_skill(g->unit, sk_personal_fttd) ||
 	  count_any(g->unit, FALSE, FALSE) > 1 ||
 	  g->new_health <= p_char(g->unit)->personal_break_point) {
-#endif HERO      
+#endif // HERO      
 	g->num -= g->tmp_num;
 #ifdef HERO
       } else {
 	wout(VECT,"      %s heroically continues to fight!",box_name(g->unit));
       };
-#endif HERO      
+#endif // HERO      
     } else {
       g->num -= g->tmp_num;
       wout(VECT,"      %s loses %s %s.",box_name(g->unit),nice_num(g->tmp_num),
@@ -2752,7 +2753,7 @@ deduct_dead(struct fight **l_a, struct fight **l_b, int inherit)
 		    {
 			num_to_kill = rnd(0, num_to_kill/2);
 		    }
-#endif 0
+#endif
 
 /*
  *  The following assert has failed in the past when a unit has
@@ -2869,7 +2870,7 @@ determine_noble_wounds(struct fight **l)
 
 #ifdef HERO
 	return;
-#endif HERO
+#endif // HERO
 	
 	for (i = 0; i < ilist_len(l); i++)
 	{
@@ -4363,7 +4364,7 @@ v_attack(struct command *c)
 
 	return TRUE;
 }
-#endif 0
+#endif
 
 static int
 loc_guarded(int where, int except)
@@ -4817,7 +4818,7 @@ int d_attack_tactics(struct command *c)
        p->experience * TACTICS_LIMIT);
   return TRUE;
 };
-#endif 0
+#endif
 
 /*
  *  DEFENSE_TACTICS
@@ -4844,7 +4845,7 @@ int v_defense_tactics(struct command *c)
 
   return TRUE;
 };
-#endif 0
+#endif
      
 int v_defense_tactics(struct command *c)
 {

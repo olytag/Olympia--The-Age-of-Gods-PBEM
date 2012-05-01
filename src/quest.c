@@ -587,7 +587,7 @@ new_artifact(int who)
 
 	return new;
 }
-#endif 0
+#endif
 
 static int
 new_monster(int where)

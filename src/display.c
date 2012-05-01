@@ -360,7 +360,7 @@ liner_desc_ship(int n)
 #if 0
   if (fee = board_fee(n))
     strcat(buf, ", %s per 100 wt. to board", gold_s(fee));
-#endif 0
+#endif
 
   return sout("%s", buf);
 }

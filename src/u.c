@@ -506,7 +506,7 @@ add_char_damage(int who, int amount, int inherit)
 		 rnd(1,100) > p->health &&
 #ifdef HERO
 		 rnd(1,100) > min((2*skill_exp(who, sk_avoid_illness)), 80) &&
-#endif HERO		 
+#endif // HERO		 
 		 !has_artifact(who, ART_SICKNESS, 0, 0, 0)) 
 	{
 		p->sick = TRUE;
@@ -1689,7 +1689,7 @@ add_item(int who, int item, int qty)
 
 #ifndef NEW_TRADE
 			investigate_possible_trade(who, item, old);
-#endif NEW_TRADE
+#endif // NEW_TRADE
 			return;
 		}
 
@@ -1701,7 +1701,7 @@ add_item(int who, int item, int qty)
 
 #ifndef NEW_TRADE
 	investigate_possible_trade(who, item, 0);
-#endif NEW_TRADE
+#endif // NEW_TRADE
 }
 
 
@@ -1779,7 +1779,7 @@ move_item(int from, int to, int item, int qty)
 #if 0
 			if (subkind(item) == sub_npc_token)
 				move_token(item, from, to);
-#endif 0
+#endif // 0
 		}
 
 		return TRUE;

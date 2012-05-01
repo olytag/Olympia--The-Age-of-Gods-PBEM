@@ -61,7 +61,7 @@ int v_incite(), v_forget(), v_garrison();
 int v_fly(), d_fly(), v_sneak(), d_sneak();;
 #if 0
 int v_exhume(), d_exhume();
-#endif 0
+#endif
 int v_admit(), v_hostile(), v_defend(), v_neutral(), v_att_clear();
 int v_hide(), d_hide(), v_contact(), v_seek(), d_seek();
 int v_opium(), v_get(), v_breed(), d_breed(), v_decree(), v_ungarrison();
@@ -70,7 +70,7 @@ int v_fee(), v_ferry(), v_split();
 int v_board(), v_unload();
 #if 0
 int v_bind_storm(), d_bind_storm();
-#endif 0
+#endif
 int v_credit(), v_xyzzy(), v_plugh();
 int v_fullname(), v_times();
 int v_accept();
@@ -164,7 +164,7 @@ num_args_req max_args arg_types[] cmd_checker
  0, 0, {0, 0, 0, 0, 0}, NULL},
 {"c",  "board",     v_board,      NULL,       NULL,       0,  0,  2,
  0, 0, {0, 0, 0, 0, 0}, NULL},
-#endif 0
+#endif
 {"c",  "border",    v_border,     NULL,       NULL,       0,  0,  0,
  2, 2, {0, 0, 0, 0, 0}, NULL, NULL},
 {"c",  "breed",     v_breed,      d_breed,    NULL,       7,  0,  3,
@@ -206,7 +206,7 @@ num_args_req max_args arg_types[] cmd_checker
 #if 0
 {"c",  "exhume",    v_exhume,     d_exhume,   NULL,       7,  0,  , 3,
  0, 0, {0, 0, 0, 0, 0}, NULL},
-#endif, NULL 0
+#endif // , NULL 0
 {"c",  "explore",   v_explore,    d_explore,  NULL,       7,  0,  3,
  0, 0, {0, 0, 0, 0, 0}, NULL, NULL},
 {"c",  "fee",       v_fee,        NULL,       NULL,       0,  0,  1,

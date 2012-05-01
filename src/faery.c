@@ -536,7 +536,7 @@ v_use_faery_stone(struct command *c)
   
   return TRUE;
 }
-#endif 0
+#endif
 
 /*
  *  Thu Oct  8 18:10:22 1998 -- Scott Turner

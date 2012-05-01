@@ -650,7 +650,7 @@ build_tbl[] =
 	0, 0,					/* required item #2, 1/5 qty */
 	"New mine"				/* default name */
     },
-#endif 0
+#endif
     {
 	"shaft",
 	sk_deepen_mine, 0,
@@ -976,7 +976,7 @@ create_new_building(struct command *c, struct build_ent *bi, int where)
 	  gen_item(where, item_gate_crystal, 1);
 	mine_production(where);
       }
-#endif 0
+#endif
 
     /*
    *  Thu Jan  2 14:46:05 1997 -- Scott Turner

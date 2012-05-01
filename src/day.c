@@ -472,7 +472,7 @@ heal_char_sup(int who)
 	 *
 	 */
 	chance += skill_exp(who, sk_improved_recovery);
-#endif HERO	
+#endif // HERO	
 
 	if (char_sick(who) && rnd(1,100) <= chance)
 	{
@@ -2153,7 +2153,7 @@ dead_body_rot()
       kill_char(i, MATES, S_nothing);
     };
   } next_lost_soul
-#endif 0
+#endif
 
   loop_dead_body(i) {
     owner = item_unique(i);

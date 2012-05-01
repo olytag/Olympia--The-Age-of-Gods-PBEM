@@ -125,7 +125,7 @@ seller_list(int where, int except)
 	 */
 	if (ilist_len(l) > 0)
 		qsort(l, (unsigned) ilist_len(l), sizeof(int), seller_comp);
-#endif NEW_TRADE
+#endif // NEW_TRADE
 
 	loop_trade(where, t)
 	{
@@ -141,7 +141,7 @@ seller_list(int where, int except)
 	 */
 	if (ilist_len(l) > 0)
 		qsort(l, (unsigned) ilist_len(l), sizeof(int), seller_comp);
-#endif NEW_TRADE
+#endif // NEW_TRADE
 
 	return l;
 }
@@ -187,7 +187,7 @@ buyer_list(int where, int except)
 	 */
 	if (ilist_len(l) > 0)
 		qsort(l, (unsigned) ilist_len(l), sizeof(int), buyer_comp);
-#endif NEW_TRADE
+#endif // NEW_TRADE
 
 	return l;
 }
@@ -236,7 +236,7 @@ attempt_trade(struct trade *buyer, struct trade *seller)
 #else
 static int
 attempt_trade(struct trade *buyer, struct trade *seller, int cost)
-#endif NEW_TRADE     
+#endif // NEW_TRADE     
 {
 	int item = buyer->item;
 	int qty;
@@ -284,7 +284,7 @@ attempt_trade(struct trade *buyer, struct trade *seller, int cost)
 	 *
 	 */
 	if (!cost || cost < seller->cost) cost = seller->cost;
-#endif NEW_TRADE
+#endif // NEW_TRADE
 	
 	/*
 	 *  Buyer->cost too low.
@@ -319,7 +319,7 @@ attempt_trade(struct trade *buyer, struct trade *seller, int cost)
 #else
 	cost = seller->cost * qty;
 	item_cost = seller->cost;
-#endif NEW_TRADE
+#endif // NEW_TRADE
 
 	/*
 	 *  Determine where
@@ -674,7 +674,7 @@ match_all_trades()
 	}
 	next_loc;
 }
-#endif NEW_TRADE
+#endif // NEW_TRADE
 
 #ifndef NEW_TRADE
 static void
@@ -763,7 +763,7 @@ match_all_trades()
 	}
 	next_loc;
 }
-#endif NEW_TRADE
+#endif // NEW_TRADE
 
 
 #ifndef NEW_TRADE
@@ -846,7 +846,7 @@ investigate_possible_trade(int who, int item, int old_has)
 	if (check)
 		ilist_append(&trades_to_check, who);
 }
-#endif NEW_TRADE
+#endif // NEW_TRADE
 
 struct trade *
 find_trade(int who, int kind, int item)
@@ -1043,7 +1043,7 @@ v_sell(struct command *c)
 #ifndef NEW_TRADE
 		if (market_here(c->who))
 			scan_trades(t, buyer_list(where, c->who));
-#endif NEW_TRADE
+#endif // NEW_TRADE
 	}
 
 	return TRUE;

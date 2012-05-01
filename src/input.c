@@ -943,7 +943,7 @@ evening_phase()
 #ifndef NEW_TRADE
 		if (ilist_len(trades_to_check) > 0)
 			check_validated_trades();
-#endif NEW_TRADE
+#endif // NEW_TRADE
 	}
 	ilist_reclaim(&l);
 
@@ -1096,7 +1096,7 @@ process_orders()
 	ping_garrisons();
 #if 0
 	check_token_units();			/* XXX/NOTYET -- temp fix */
-#endif 0
+#endif
 
 	process_interrupted_units();		/* happens on day 0 */
 	process_player_orders();

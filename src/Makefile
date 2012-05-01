@@ -64,4 +64,4 @@ install:
 $(OLYOBJ):	z.h oly.h oly3.h $(HEADERS)
 z.o:		z.h
 io.o:		io.c z.h oly.h $(HEADERS)
-	$(CC) $(CFLAGS) -c io.c 2>&1 | grep -v multi-char
+	$(CC) $(CFLAGS) -c -Wno-multichar io.c

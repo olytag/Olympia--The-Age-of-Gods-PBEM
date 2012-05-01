@@ -135,7 +135,7 @@ d_explore(struct command *c)
 	 *
 	 */
 	chance += min(50, skill_exp(c->who, sk_improved_explore));
-#endif HERO	
+#endif // HERO	
 
 	if (r <= chance)
 	{

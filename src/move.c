@@ -274,7 +274,7 @@ parse_exit_dir(struct command *c, int where, char *zero_arg)
   if (zero_arg)
     wout(c->who, "No visible %s route from %s.",
 	 full_dir_s[dir], box_name(where));
-#endif 0
+#endif
   
   return NULL;
 }
@@ -635,7 +635,7 @@ land_check(struct command *c, struct exit_view *v, int show)
     }
     return FALSE;
   }
-#endif 0
+#endif
 
   return TRUE;
 }
@@ -1474,7 +1474,7 @@ v_move(struct command *c)
 	if (prepend) prepend_order(player(c->who), c->who, c->line);
 	return TRUE;
 }
-#endif 0
+#endif
 
 
 void
@@ -1692,7 +1692,7 @@ check_arrival_effects(int who, int where, int flying)
 	  wout(VECT, traps[i].flying);
 	  continue;
 	};
-#endif HERO
+#endif // HERO
 
 	/*
 	 *  Otherwise you get attacked.  Note that the ship
@@ -1768,7 +1768,7 @@ d_move(struct command *c)
 
 	return TRUE;
 }
-#endif 0
+#endif
 
 void
 init_ocean_chars()
@@ -2734,7 +2734,7 @@ d_sail(struct command *c)
 	mark_loc_stack_known(ship, v->destination);
 #if 0	
 	move_bound_storms(ship, v->destination);
-#endif 0
+#endif
 	if (ferry_horn(ship))		/* clear ferry horn signal */
 		p_magic(ship)->ferry_flag = 0;
 
@@ -2887,7 +2887,7 @@ int attack_okay(struct command *c, int target)
       wout(c->who, "%s is not here.",box_name(target));
       return FALSE;
   };
-#endif 0
+#endif
     
   if (char_really_hidden(target) && !contacted(target, c->who)) {
     wout(c->who, "%s is not here.",box_name(target));

@@ -51,7 +51,7 @@ call_savage(int where, int to_where, int who, int why)
 
 #if 0
 	init_load_sup(new);   /* make ready to execute commands immediately */
-#endif 0
+#endif
 
 	return TRUE;
 }
