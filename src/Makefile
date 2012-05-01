@@ -38,7 +38,7 @@ HEADERS =	loop.h code.h dir.h display.h etc.h garr.h loc.h order.h \
 all:	oly
 
 oly:	$(OBJECTS)
-	$(CC) $(CFLAGS) -o tester $(OBJECTS) $(LFLAGS)
+	$(CC) $(CFLAGS) -o olytag $(OBJECTS) $(LFLAGS)
 
 ztar:
 	tar -czf ../tagsrc.tar.Z *.[ch] Makefile
@@ -59,7 +59,7 @@ tags:
 	ctags -t *.[ch]
 
 install:
-	mkdir ~/bin; cp tester ~/bin/olytag
+	mkdir ~/bin; cp olytag ~/bin/olytag
 
 $(OLYOBJ):	z.h oly.h oly3.h $(HEADERS)
 z.o:		z.h
