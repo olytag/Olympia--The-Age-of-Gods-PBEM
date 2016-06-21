@@ -19,6 +19,11 @@
 #include	<stdio.h>
 #include	"z.h"
 
+void set_regions();
+void set_province_clumps();
+void not_random_province(long *row, long *col);
+void random_province(long *row, long *col, long terr);
+void make_appropriate_subloc(long row, long col, int unused);
 
 /*VLN	#define		LEN		256
 */
@@ -26,7 +31,7 @@
 #define		GATE_TIMES	0	/* VLN number of gates?  was 25 */
 #define		GATES_CONTINENTAL_TOUR	1	/* on or off */
 #define		GATES_OTHER 0	/* the rest of the gates */
-#define		GATES_STONE_CIRCLES 1	/* on or off */
+#define		GATES_STONE_CIRCLES 0	/* on or off */
 
 
 #define		TRUE		1
@@ -1781,7 +1786,7 @@ fprintf(stderr, "    assuming 'forest'\n");
 }
 
 
-set_regions()
+void set_regions()
 {
 	FILE *fp;
 	char buf[LEN];
@@ -1955,7 +1960,7 @@ long ins;
  *  Name groups of provinces
  */
 
-set_province_clumps()
+void set_province_clumps()
 {
 	FILE *fp;
 	char buf[LEN];
@@ -2763,9 +2768,7 @@ mark_bad_locs()
  *  (Except for the lost city and the city of the ancients)
  */
 
-not_random_province(row, col)		/* oh, hack upon hack ... */
-long *row;
-long *col;
+void not_random_province(long *row, long *col)		/* oh, hack upon hack ... */
 {
 	long n;
 	long r, c;
@@ -2809,10 +2812,7 @@ long hidden;
 }
 
 
-random_province(row, col, terr)
-long *row;
-long *col;
-long terr;
+void random_province(long *row, long *col, long terr)
 {
 	long n;
 	long r, c;
@@ -3093,9 +3093,7 @@ struct {
 };
 
 
-make_appropriate_subloc(row, col)
-long row;
-long col;
+void make_appropriate_subloc(long row, long col, int unused)
 {
 	long terr;
 	long sum = 0;
