@@ -223,7 +223,7 @@ void *
 my_malloc(unsigned size)
 {
 	char *p, *np;
-	extern void *malloc(uint);
+	// extern void *malloc(uint);
 	int i;
 
 	size += sizeof(int);
@@ -257,7 +257,7 @@ my_realloc(void *ptr, unsigned size)
 #else
 	extern void *realloc(uint);
 #endif
-	extern void *malloc(uint);
+	// extern void *malloc(uint);
 	
 	if (p == NULL)
 		return my_malloc(size);

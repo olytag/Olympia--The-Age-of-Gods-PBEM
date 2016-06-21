@@ -8,6 +8,14 @@
 #include	<sys/types.h>
 #include	<sys/stat.h>
 
+void set_html_pass(int pl);
+void setup_html_dir(int pl);
+void write_factions();
+void write_forwards();
+void write_email();
+void write_totimes();
+void write_player_list();
+
 /*
  *  pretty_data_files:  include parenthesisted names in the data files,
  *  to make them easier to read.
@@ -443,7 +451,7 @@ call_init_routines()
 	init_random();		/* seed random number generator */
 }
 
-write_totimes()
+void write_totimes()
 {
 	FILE *fp;
 	char *fnam;
@@ -475,7 +483,7 @@ write_totimes()
 }
 
 
-write_email()
+void write_email()
 {
 	FILE *fp;
 	char *fnam;
@@ -649,7 +657,7 @@ write_nations_lists()
   } next_nation;
 }
 
-write_player_list()
+void write_player_list()
 {
 	FILE *fp;
 	char *fnam;
@@ -717,7 +725,7 @@ write_forward_sup(int who_for, int target, FILE *fp)
 }
 
 
-write_forwards()
+void write_forwards()
 {
 	FILE *fp;
 	char *fnam;
@@ -773,7 +781,7 @@ write_faction_sup(int who_for, int target, FILE *fp)
 }
 
 
-write_factions()
+void write_factions()
 {
 	FILE *fp;
 	char *fnam;
@@ -1102,7 +1110,7 @@ setup_html_all()
   /* copy_public_turns(); */
 }
 
-setup_html_dir(pl)
+void setup_html_dir(pl)
 int pl;
 {
   char fnam[LEN];
@@ -1136,7 +1144,7 @@ int pl;
   fclose(fp);
 }
 
-set_html_pass(int pl)
+void set_html_pass(int pl)
 {
   char buf[LEN];
   struct entity_player *p;
@@ -1163,7 +1171,7 @@ Usage:
   system(buf);
 }
 
-output_html_rep(int pl)
+void output_html_rep(int pl)
 {
   char *report, *fnam;
   int ret;
@@ -1202,7 +1210,7 @@ output_html_rep(int pl)
  *  map.
  *
  */
-output_html_map(int pl)
+void output_html_map(int pl)
 {
   char *info, *fnam;
   int ret;

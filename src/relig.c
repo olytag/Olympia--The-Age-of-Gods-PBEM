@@ -4,6 +4,9 @@
 #include	"z.h"
 #include	"oly.h"
 
+void
+add_piety(int who, int amount, int use_limit);
+
 /*
  *  Wed Oct 30 11:54:25 1996 -- Scott Turner
  *
@@ -134,13 +137,13 @@ has_piety(int who, int amount)
  *  Add piety.
  *
  */
-int
+void
 add_piety(int who, int amount, int use_limit)
 {
   int religion = is_priest(who);
   int limit;
 
-  if (!religion) return FALSE;
+  if (!religion) return;
     
   /*
    *  Should we limit piety?

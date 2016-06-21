@@ -451,7 +451,7 @@ void tags_on()
   options.output_tags++;
 };
 
-tagout(who, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac)
+void tagout(who, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac)
 int who;
 char *format;
 long a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac;

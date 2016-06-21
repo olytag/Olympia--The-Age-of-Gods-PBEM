@@ -165,7 +165,7 @@ v_quit(struct command *c)
 	int target = c->a;
 
 	if (target == 0)
-	  if (c->who == gm_player) return;
+	  if (c->who == gm_player) return FALSE;
 	  else target = c->who;
 
 	if (target != c->who && c->who != gm_player)
