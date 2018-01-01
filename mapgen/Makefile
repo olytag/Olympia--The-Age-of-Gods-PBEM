@@ -15,7 +15,7 @@ clobber:	clean
 	rm -f mapgen
 
 install:
-	mkdir ~/bin;cp mapgen ~/bin
+	mkdir -p ~/bin;cp mapgen ~/bin
 
 mapgen.o:	mapgen.c z.h
 z.o:		z.c z.h
