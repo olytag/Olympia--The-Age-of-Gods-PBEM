@@ -2278,11 +2278,20 @@ v_widen_entrance(struct command *c)
   int workers;
   struct entity_subloc *p;
 
+	if (!valid_box(where)) {
+	  wout(c->who, "You must specify a location to widen.");
+	  return FALSE;
+	}
+
+  if (!rp_subloc(where)) {
+	  wout(c->who, "You canot widen that.");
+	  return FALSE;
+	}
 
   if (subloc(where) != subloc(c->who)) {
     wout(c->who, "You must be outside the location to widen it.");
     return FALSE;
-  };
+  }
 
   workers = effective_workers(c->who);
 
