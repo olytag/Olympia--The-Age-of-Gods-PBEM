@@ -130,7 +130,7 @@ o create the map
 
 o configure the lib (main database).
 
-  1) cp -r ~/new/* ~/lib
+  1) cp -r src/lib/* ~/lib
   2) follow directions in ~/lib/README for editing "system" and setup
 
 o mkdir ~/accounting
