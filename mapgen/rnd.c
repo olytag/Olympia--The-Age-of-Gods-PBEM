@@ -1,7 +1,15 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
 #include <string.h>
+
+// #define bcopy(a,b,n)       memcpy(b, a, n)
+// #define bzero(a,  n)       memset(a, 0, n)
 
 /*
  *  Random number generator built on top of MD5
@@ -94,11 +102,11 @@ xMD5Update(struct xMD5Context *ctx, byte const *buf, long len)
 
 	t = 64 - (t & 0x3f);	/* Space available in ctx->in (at least 1) */
 	if ((unsigned)t > len) {
-		bcopy(buf, (byte *)ctx->in + 64 - (unsigned)t, len);
+        memcpy((byte *)ctx->in + 64 - (unsigned)t, buf, len); // bcopy(buf, (byte *)ctx->in + 64 - (unsigned)t, len);
 		return;
 	}
 	/* First chunk is an odd size */
-	bcopy(buf,(byte *)ctx->in + 64 - (unsigned)t, (unsigned)t);
+	memcpy((byte *)ctx->in + 64 - (unsigned)t, buf, (unsigned)t); // bcopy(buf,(byte *)ctx->in + 64 - (unsigned)t, (unsigned)t);
 	byteSwap(ctx->in, 16);
 	xMD5Transform(ctx->buf, ctx->in);
 	buf += (unsigned)t;
@@ -106,7 +114,7 @@ xMD5Update(struct xMD5Context *ctx, byte const *buf, long len)
 
 	/* Process data in 64-byte chunks */
 	while (len >= 64) {
-		bcopy(buf, ctx->in, 64);
+		memcpy(ctx->in, buf, 64); // bcopy(buf, ctx->in, 64);
 		byteSwap(ctx->in, 16);
 		xMD5Transform(ctx->buf, ctx->in);
 		buf += 64;
@@ -114,7 +122,7 @@ xMD5Update(struct xMD5Context *ctx, byte const *buf, long len)
 	}
 
 	/* Handle any remaining bytes of data. */
-	bcopy(buf, ctx->in, len);
+	memcpy(ctx->in, buf, len); // bcopy(buf, ctx->in, len);
 }
 
 /*
@@ -134,13 +142,13 @@ xMD5Final(byte digest[16], struct xMD5Context *ctx)
 	count = 56 - 1 - count;
 
 	if (count < 0) {	/* Padding forces an extra block */
-		bzero(p, count+8);
+        memset(p, 0, count+8); // bzero(p, count+8);
 		byteSwap(ctx->in, 16);
 		xMD5Transform(ctx->buf, ctx->in);
 		p = (byte *)ctx->in;
 		count = 56;
 	}
-	bzero(p, count+8);
+	memset(p, 0, count+8); // bzero(p, count+8);
 	byteSwap(ctx->in, 14);
 
 	/* Append length in bits and transform */
@@ -149,8 +157,8 @@ xMD5Final(byte digest[16], struct xMD5Context *ctx)
 	xMD5Transform(ctx->buf, ctx->in);
 
 	byteSwap(ctx->buf, 4);
-	bcopy(ctx->buf, digest, 16);
-	bzero(ctx,sizeof(ctx));
+	memcpy(digest, ctx->buf, 16); // bcopy(ctx->buf, digest, 16);
+	memset(ctx, 0, sizeof(*ctx)); // bzero(ctx,sizeof(ctx));
 }
 
 
