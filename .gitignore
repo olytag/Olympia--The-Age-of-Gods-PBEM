@@ -1,3 +1,2 @@
-*.o
 .idea/
-olytag
+cmake-build-debug/

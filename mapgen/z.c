@@ -1,9 +1,16 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
 #include	<stdlib.h>
 #include	<stdio.h>
 #include	<string.h>
+#include <io.h>
 #include	"z.h"
 
-
+// #define bcopy(a,b,n)       memcpy(b, a, n)
+// #define bzero(a,  n)       memset(a, 0, n)
 
 /*
  *  malloc safety checks:
@@ -33,7 +40,7 @@ my_malloc(unsigned size)
 		exit(1);
 	}
 
-	bzero(p, size);
+    memset(p, 0, size); // bzero(p, size);
 
 	*((long *) p) = size;
 	*((long *) (p + size)) = 0xABCF;
@@ -108,6 +115,7 @@ asfail(char *file, long line, char *cond)
 	fprintf(stderr, "assertion failure: %s (%ld): %s\n",
 						file, line, cond);
 	abort();
+    /* NOT REACHED */
 	exit(1);
 }
 
@@ -501,10 +509,8 @@ fuzzy_strcmp(char *one, char *two)
  *  that iterations can proceed from index 0.
  */
 
-void
-ilist_append(ilist *l, long n)
-{
-	long *base;
+void ilist_append(ilist *l, ilist_box n) {
+	ilist_box *base;
 
 	if (*l == NULL)
 	{
@@ -531,10 +537,8 @@ ilist_append(ilist *l, long n)
 }
 
 
-void
-ilist_prepend(ilist *l, long n)
-{
-	long *base;
+void ilist_prepend(ilist *l, ilist_box n) {
+	ilist_box *base;
 	long i;
 
 	if (*l == NULL)
@@ -609,7 +613,7 @@ ilist_insert(ilist *l, long pos, long n)
 void
 ilist_delete(ilist *l, long i)
 {
-	long *base;
+	ilist_box *base;
 	long j;
 
 	assert(i >= 0 && i < ilist_len(*l));		/* bounds check */
@@ -625,7 +629,7 @@ ilist_delete(ilist *l, long i)
 void
 ilist_clear(ilist *l)
 {
-	long *base;
+	ilist_box *base;
 
 	if (*l != NULL)
 	{
@@ -638,7 +642,7 @@ ilist_clear(ilist *l)
 void
 ilist_reclaim(ilist *l)
 {
-	long *base;
+	ilist_box *base;
 
 	if (*l != NULL)
 	{
@@ -649,9 +653,7 @@ ilist_reclaim(ilist *l)
 }
 
 
-long
-ilist_lookup(ilist l, long n)
-{
+long ilist_lookup(ilist l, ilist_box n) {
 	long i;
 
 	if (l == NULL)
@@ -665,9 +667,7 @@ ilist_lookup(ilist l, long n)
 }
 
 
-void
-ilist_rem_value(ilist *l, long n)
-{
+void ilist_rem_value(ilist *l, ilist_box n) {
 	long i;
 
 	for (i = ilist_len(*l) - 1; i >= 0; i--)
@@ -676,9 +676,7 @@ ilist_rem_value(ilist *l, long n)
 }
 
 
-void
-ilist_rem_value_uniq(ilist *l, long n)
-{
+void ilist_rem_value_uniq(ilist *l, ilist_box n) {
 	long i;
 
 	for (i = ilist_len(*l) - 1; i >= 0; i--)
@@ -695,8 +693,8 @@ ilist_rem_value_uniq(ilist *l, long n)
 ilist
 ilist_copy(ilist l)
 {
-	long *base;
-	long *copy_base;
+	ilist_box *base;
+	ilist_box *copy_base;
 
 	if (l == NULL)
 		return NULL;
@@ -705,7 +703,7 @@ ilist_copy(ilist l)
 	assert(&base[2] == l);
 
 	copy_base = my_malloc(base[1] * sizeof(*base));
-	bcopy(base, copy_base, (base[0] + 2) * sizeof(*base));
+    memcpy(copy_base, base, (base[0] + 2) * sizeof(*base)); // bcopy(base, copy_base, (base[0] + 2) * sizeof(*base));
 
 	return &copy_base[2];
 }
@@ -742,7 +740,7 @@ ilist_scramble(ilist l)
 		one = rnd(0, len-1);
 		two = rnd(0, len-1);
 
-		tmp = l[one];
+		tmp = (long)l[one];
 		l[one] = l[two];
 		l[two] = tmp;
 	}
@@ -757,7 +755,7 @@ ilist_test()
 	ilist y;
 
 	setbuf(stdout, NULL);
-	bzero(&x, sizeof(x));
+	memset(&x, 0, sizeof(x)); // bzero(&x, sizeof(x));
 
 	printf("len = %ld\n", ilist_len(x));
 
@@ -768,7 +766,7 @@ ilist_test()
 
 	printf("len = %ld\n", ilist_len(x));
 	for (i = 0; i < ilist_len(x); i++)
-		printf("%ld ", x[i]);
+		printf("%lld ", x[i]);
 	printf("\n");
 
 	for (i = 900; i < 1000; i++)
@@ -780,20 +778,20 @@ ilist_test()
 
 	printf("len = %ld\n", ilist_len(x));
 	for (i = 0; i < ilist_len(x); i++)
-		printf("%ld ", x[i]);
+		printf("%lld ", x[i]);
 	printf("\n");
 
 	ilist_delete(&x, 100);
 
 	printf("len = %ld\n", ilist_len(x));
 	for (i = 0; i < ilist_len(x); i++)
-		printf("%ld ", x[i]);
+		printf("%lld ", x[i]);
 	printf("\n");
 
 	printf("len before = %ld\n", ilist_len(x));
 	ilist_append(&x, 15);
 	printf("len after = %ld\n", ilist_len(x));
-	printf("x[0] = %ld\n", x[0]);
+	printf("x[0] = %lld\n", x[0]);
 
 	printf("ilist_lookup(998) == %ld\n", ilist_lookup(x, 998));
 
