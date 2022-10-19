@@ -1747,8 +1747,8 @@ void set_regions() {
     char buf[LEN];
     long row, col;
     long ins;
-    long land_count = 0;
-    long water_count = 0;
+    long sr_land_count = 0;
+    long sr_water_count = 0;
     long n;
     char *p;
 
@@ -1784,10 +1784,10 @@ void set_regions() {
         inside_names[ins] = str_save(p);
 
         if (map[row][col]->terrain == terr_ocean) {
-            water_count++;
+            sr_water_count++;
             flood_water_inside(row, col, ins);
         } else {
-            land_count++;
+            sr_land_count++;
             flood_land_inside(row, col, ins);
         }
     }
@@ -1796,7 +1796,7 @@ void set_regions() {
 
     fprintf(stderr,
             "set_regions: named %ld land regions, %ld water regions\n",
-            land_count, water_count);
+            sr_land_count, sr_water_count);
 
 /*
  *  Now locate unnamed regions
@@ -2143,26 +2143,27 @@ long create_a_subloc(long row, long col, long hidden, long kind) {
 }
 
 
-long create_a_building(long sl, long hidden, long kind) {
-
-    top_subloc++;
-    assert(top_subloc < MAX_SUBLOC);
-
-    subloc[top_subloc] = my_malloc(sizeof(struct tile));
-    subloc[top_subloc]->region = rnd_alloc_num(SUBLOC_LOW, SUBLOC_HIGH);
-    subloc[top_subloc]->inside = subloc[sl]->region;
-
-    subloc[top_subloc]->row = subloc[sl]->row;
-    subloc[top_subloc]->col = subloc[sl]->col;
-
-    subloc[top_subloc]->hidden = hidden;
-    subloc[top_subloc]->terrain = kind;
-    subloc[top_subloc]->depth = 4;
-
-    ilist_append(&subloc[sl]->subs, subloc[top_subloc]->region);
-
-    return top_subloc;
-}
+// mdhender: commented out; not used
+//long create_a_building(long sl, long hidden, long kind) {
+//
+//    top_subloc++;
+//    assert(top_subloc < MAX_SUBLOC);
+//
+//    subloc[top_subloc] = my_malloc(sizeof(struct tile));
+//    subloc[top_subloc]->region = rnd_alloc_num(SUBLOC_LOW, SUBLOC_HIGH);
+//    subloc[top_subloc]->inside = subloc[sl]->region;
+//
+//    subloc[top_subloc]->row = subloc[sl]->row;
+//    subloc[top_subloc]->col = subloc[sl]->col;
+//
+//    subloc[top_subloc]->hidden = hidden;
+//    subloc[top_subloc]->terrain = kind;
+//    subloc[top_subloc]->depth = 4;
+//
+//    ilist_append(&subloc[sl]->subs, subloc[top_subloc]->region);
+//
+//    return top_subloc;
+//}
 
 
 void count_sublocs(void) {
@@ -2671,55 +2672,57 @@ void mark_bad_locs(void) {
 }
 
 
-/*
- *  The 'not' refers to not desert and not swamp
- *  We don't want to make any cities there
- *  (Except for the lost city and the city of the ancients)
- */
+// mdhender: commented out; not used
+///*
+// *  The 'not' refers to not desert and not swamp
+// *  We don't want to make any cities there
+// *  (Except for the lost city and the city of the ancients)
+// */
+//
+//void not_random_province(long *row, long *col)        /* oh, hack upon hack ... */
+//{
+//    long n;
+//    long r, c;
+//    long sum = 0;
+//
+//    for (r = 0; r <= max_row; r++) {
+//        for (c = 0; c < max_col; c++) {
+//            if (map[r][c] && map[r][c]->terrain != terr_ocean &&
+//                map[r][c] && map[r][c]->terrain != terr_swamp &&
+//                map[r][c] && map[r][c]->terrain != terr_desert &&
+//                map[r][c]->mark == 0) {
+//                sum++;
+//            }
+//        }
+//    }
+//
+//    n = rnd(1, sum);
+//
+//    for (r = 0; r <= max_row; r++) {
+//        for (c = 0; c < max_col; c++) {
+//            if ((map[r][c] && map[r][c]->terrain != terr_ocean &&
+//                 map[r][c] && map[r][c]->terrain != terr_swamp &&
+//                 map[r][c] && map[r][c]->terrain != terr_desert &&
+//                 map[r][c]->mark == 0) && (--n <= 0)) {
+//                *row = r;
+//                *col = c;
+//                map[r][c]->mark = TRUE;
+//                return;
+//            }
+//        }
+//    }
+//
+//    assert(FALSE);
+//}
 
-void not_random_province(long *row, long *col)        /* oh, hack upon hack ... */
-{
-    long n;
-    long r, c;
-    long sum = 0;
 
-    for (r = 0; r <= max_row; r++) {
-        for (c = 0; c < max_col; c++) {
-            if (map[r][c] && map[r][c]->terrain != terr_ocean &&
-                map[r][c] && map[r][c]->terrain != terr_swamp &&
-                map[r][c] && map[r][c]->terrain != terr_desert &&
-                map[r][c]->mark == 0) {
-                sum++;
-            }
-        }
-    }
-
-    n = rnd(1, sum);
-
-    for (r = 0; r <= max_row; r++) {
-        for (c = 0; c < max_col; c++) {
-            if ((map[r][c] && map[r][c]->terrain != terr_ocean &&
-                 map[r][c] && map[r][c]->terrain != terr_swamp &&
-                 map[r][c] && map[r][c]->terrain != terr_desert &&
-                 map[r][c]->mark == 0) && (--n <= 0)) {
-                *row = r;
-                *col = c;
-                map[r][c]->mark = TRUE;
-                return;
-            }
-        }
-    }
-
-    assert(FALSE);
-}
-
-
-long not_place_random_subloc(long kind, long hidden) {
-    long row, col;
-
-    not_random_province(&row, &col);
-    return create_a_subloc(row, col, hidden, kind);
-}
+// mdhender: commented out; not used
+//long not_place_random_subloc(long kind, long hidden) {
+//    long row, col;
+//
+//    not_random_province(&row, &col);
+//    return create_a_subloc(row, col, hidden, kind);
+//}
 
 
 void random_province(long *row, long *col, long terr) {
@@ -2779,12 +2782,13 @@ void random_province(long *row, long *col, long terr) {
 }
 
 
-long place_random_subloc(long kind, long hidden, long terr) {
-    long row, col;
-
-    random_province(&row, &col, terr);
-    return create_a_subloc(row, col, hidden, kind);
-}
+// mdhender: commented out; not used
+//long place_random_subloc(long kind, long hidden, long terr) {
+//    long row, col;
+//
+//    random_province(&row, &col, terr);
+//    return create_a_subloc(row, col, hidden, kind);
+//}
 
 
 long random_island(void) {
