@@ -62,28 +62,6 @@ extern void asfail(char *file, long line, char *cond);
 #endif
 
 
-/*
- *  'ilist' reallocing array definitions
- */
-
-typedef long long int ilist_box;
-
-typedef ilist_box *ilist;
-
-#define ilist_len(a)		(((long *)(a)) == NULL ? 0 : ((long *)(a))[-2])
-
-extern void ilist_append(ilist *l, ilist_box n);
-extern void ilist_prepend(ilist *l, ilist_box n);
-extern void ilist_delete(ilist *l, long i);
-extern void ilist_clear(ilist *l);
-extern void ilist_reclaim(ilist *l);
-extern long ilist_lookup(ilist l, ilist_box n);
-extern void ilist_rem_value(ilist *l, ilist_box n);
-extern void ilist_rem_value_uniq(ilist *l, ilist_box n);
-extern ilist ilist_copy(ilist l);
-extern void ilist_scramble(ilist l);
-extern void ilist_insert(ilist *l, long pos, ilist_box n);
-
 extern long readfile(char *path);
 extern char *readlin();
 extern char *readlin_ew();
