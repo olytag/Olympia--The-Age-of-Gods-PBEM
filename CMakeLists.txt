@@ -5,11 +5,18 @@ include_directories(src)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DLINUX -DNEW_TRADE -L /tmp/olytag/build/unix")
 
+add_executable(ilist_test
+        mapgen/ilist_test.c
+        mapgen/rnd.c
+        mapgen/lists.c mapgen/lists.h
+        )
+target_include_directories(ilist_test PRIVATE mapgen/)
+
 add_executable(mapgen
         mapgen/mapgen.c mapgen/mapgen.h
         mapgen/z.c mapgen/z.h
         mapgen/rnd.c
-        )
+        mapgen/lists.c mapgen/lists.h)
 target_include_directories(mapgen PRIVATE mapgen/)
 
 #add_executable(oly
