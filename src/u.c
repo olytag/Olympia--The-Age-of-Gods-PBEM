@@ -1,3 +1,7 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include <sys/types.h>
@@ -6,8 +10,10 @@
 #include <sys/file.h>
 #include    <string.h>
 #include    <stdlib.h>
+#include <time.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 /*
@@ -177,8 +183,7 @@ new_char(int sk, int ni, int where, int health, int pl,
 }
 
 
-int
-loc_depth(n) {
+int loc_depth(int n) {
 
     switch (subkind(n)) {
         case sub_region:
@@ -990,8 +995,7 @@ count_any(int who) {
     return count_any_real(who, TRUE, TRUE);
 };
 
-int
-count_stack_any_real(int who, int ignore_ninjas, int ignore_angels) {
+int count_stack_any_real(int who, int ignore_ninjas, int ignore_angels) {
     int i;
     int sum = 0;
 
@@ -2386,19 +2390,11 @@ ship_cap(int ship) {
  *
  */
 void lock_tag() {
-    int fd;
-    int val;
-
-    fd = open(sout("%s/lock", libdir), O_RDONLY | O_CREAT, S_IRUSR);
-
+    char *name = sout("%s/lock", libdir);
+    int fd = open(name, O_RDONLY | O_CREAT, S_IRUSR);
     if (fd == -1) {
         fprintf(stderr, "Problem opening lock file?");
         exit(-1);
     };
-
-    if (flock(fd, LOCK_EX | LOCK_NB)) {
-        fprintf(stderr, "TAG already running in this directory!\n");
-        exit(-1);
-    };
-
+    file_lock(name, fd);
 };

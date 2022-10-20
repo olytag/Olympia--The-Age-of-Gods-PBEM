@@ -5,6 +5,10 @@ include_directories(src)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DLINUX -DNEW_TRADE")
 
+if(WIN32)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOLYTAG_CC_WINDOWS")
+endif()
+
 add_executable(checkcode
         src/checkcode.c
         )
@@ -32,15 +36,20 @@ add_executable(oly
         src/code.c
         src/sout.c
         src/loc.c
+        src/u.c
+
         src/helpers.c
+        src/os_windows.c src/os_linux.c src/os_mac.c
 
         src/z.h
         src/code.h
         src/loop.h
         src/sout.h
+        src/u.h
 
         src/forward.h
         src/types.h
+
 #        src/add.c
 #        src/adv.c
 #        src/alchem.c
