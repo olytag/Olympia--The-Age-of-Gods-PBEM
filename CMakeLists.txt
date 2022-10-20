@@ -36,6 +36,7 @@ add_executable(oly
         src/code.c
         src/sout.c
         src/loc.c
+        src/move.c
         src/u.c
 
         src/helpers.c

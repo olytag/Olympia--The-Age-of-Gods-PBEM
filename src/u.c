@@ -2324,7 +2324,7 @@ stage(char *s) {
     extern int time_self;
     static long old = 0;
     static long first = 0;
-    long t;
+    time_t t;
 
     if (!time_self) {
         if (s) {
