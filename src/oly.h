@@ -727,7 +727,10 @@ typedef signed char schar;
 #define        S_soul        2       /* kill to a lost soul */
 #define        S_nothing    3       /* kill completely */
 
+#ifndef OLY_FORWARD_sparse
+#define OLY_FORWARD_sparse
 typedef ilist sparse;
+#endif
 
 typedef struct {
     short day;            /* day of month */

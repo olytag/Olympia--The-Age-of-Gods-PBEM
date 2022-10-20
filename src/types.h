@@ -15,6 +15,11 @@
 typedef signed char schar;
 #endif
 
+#ifndef OLY_FORWARD_sparse
+#define OLY_FORWARD_sparse
+typedef ilist sparse;
+#endif
+
 #ifndef OLY_FORWARD_struct_command
 #define OLY_FORWARD_struct_command
 struct command {

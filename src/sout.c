@@ -1,10 +1,17 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
+#include <stdarg.h>
 #include    <stdio.h>
 #include    <limits.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
-
+#include "loop.h"
+#include "forward.h"
 
 #define        MAX_BUFFER    50
 #define        BUF_LEN        LEN
@@ -21,7 +28,7 @@ char *spaces;
 int spaces_len;
 
 
-init_spaces() {
+void init_spaces(void) {
     int i;
     /*VLN extern char *malloc(); */
 
@@ -66,24 +73,21 @@ initialize_buffer() {
  *  into it, and returns it.  Buffer will eventually be	reused.
  */
 
-char *
-sout(format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac)
-        char *format;
-        long a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac;
-{
-    char *buf;
+char *sout(char *format, ...) {
+    va_list args;
 
     assert(buffer_initialized);
 
-    buf = line_buffer[buf_index++];
+    char *buf = line_buffer[buf_index++];
     if (buf_index >= MAX_BUFFER) {
         buf_index = 0;
     }
 
-    sprintf(buf, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac);
+    va_start(args, format);
+    vsnprintf (buf, BUF_LEN, format, args );
+    va_end(args);
 
     assert(buf[BUF_LEN] == '\0');
-
     return buf;
 }
 
@@ -187,7 +191,7 @@ grab_fp(int player) {
 
 void
 open_logfile_nondestruct() {
-    mkdir(sout("%s/log", libdir), 0755);
+    makedir(sout("%s/log", libdir), 0755);
 }
 
 
@@ -199,7 +203,7 @@ open_logfile() {
     }
 
     system(sout("rm	-rf %s/log", libdir));
-    mkdir(sout("%s/log", libdir), 0755);
+    makedir(sout("%s/log", libdir), 0755);
 }
 
 
@@ -413,14 +417,15 @@ out_sup(int who, char *s) {
 }
 
 
-out(who, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac)
-        int who;
-        char *format;
-        long a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac;
-{
-    char buf[LEN];
+void out(int who, char *format, ...) {
+    va_list args;
 
-    sprintf(buf, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac);
+    char buf[LEN+1];
+    va_start(args, format);
+    vsnprintf (buf, LEN, format, args );
+    va_end(args);
+    buf[LEN] = 0;
+
     out_sup(who, buf);
 }
 
@@ -432,41 +437,43 @@ void tags_on() {
     options.output_tags++;
 };
 
-void tagout(who, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac)
-        int who;
-        char *format;
-        long a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac;
-{
-    char buf[LEN];
+void tagout(int who, char *format, ...) {
+    va_list args;
 
-    if (options.output_tags < 1) { return; }
+    if (options.output_tags < 1) {
+        return;
+    }
 
-    sprintf(buf, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac);
+    char buf[LEN+1];
+    va_start(args, format);
+    vsnprintf (buf, LEN, format, args );
+    va_end(args);
+    buf[LEN] = 0;
+
     out_sup(who, buf);
 }
 
 
-wout(who, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac)
-        int who;
-        char *format;
-        long a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac;
-{
-    char buf[LEN];
+void wout(int who, char *format, ...) {
+    va_list args;
 
-    sprintf(buf, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac);
+    char buf[LEN+1];
+    va_start(args, format);
+    vsnprintf (buf, LEN, format, args );
+    va_end(args);
+    buf[LEN] = 0;
+
     out_sup(who, buf);
 }
 
 
-wiout(who, ind, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac)
-        int who;
-        int ind;
-        char *format;
-        long a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac;
-{
-    char buf[LEN];
-
-    sprintf(buf, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac);
+void wiout(int who, int ind, char *format, ...) {
+    va_list args;
+    char buf[LEN+1];
+    va_start(args, format);
+    vsnprintf (buf, LEN, format, args );
+    va_end(args);
+    buf[LEN] = 0;
 
     second_indent = ind;
     out_sup(who, buf);
@@ -594,11 +601,9 @@ match_lines(int who, char *s) {
 }
 
 
-log_output(k, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac)
-        int k;
-        char *format;
-        long a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac;
-{
+void log_output(int k, char *format, ...) {
+    va_list args;
+
     int save_out_path = out_path;
     int save_out_alt_who = out_alt_who;
 
@@ -607,7 +612,15 @@ log_output(k, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac)
     out_path = MASTER;
     out_alt_who = k;
 
-    out(gm_player, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac);
+    // todo: we should pass parameters directly to out rather than copying the code from out to here
+    // out(gm_player, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac);
+    char buf[LEN+1];
+    va_start(args, format);
+    vsnprintf (buf, LEN, format, args );
+    va_end(args);
+    buf[LEN] = 0;
+
+    out_sup(gm_player, buf);
 
     out_path = save_out_path;
     out_alt_who = save_out_alt_who;

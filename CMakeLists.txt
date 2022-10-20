@@ -30,11 +30,13 @@ add_executable(oly
         src/z.c
         src/swear.c
         src/code.c
+        src/sout.c
         src/helpers.c
 
         src/z.h
         src/code.h
         src/loop.h
+        src/sout.h
 
         src/forward.h
         src/types.h
