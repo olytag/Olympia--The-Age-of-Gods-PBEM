@@ -1,3 +1,10 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_SOUT_H
+#define OLYTAG_SOUT_H
 
 /*
  *  Possible desinations of output:
@@ -43,7 +50,7 @@ extern void initialize_buffer();
 
 extern char *comma_append(char *s, char *t);
 
-extern char *sout();
+extern char *sout(char *format, ...);
 
 extern ilist out_vector;
 
@@ -73,3 +80,4 @@ extern int out_alt_who;            /* used if path == MASTER */
 extern char *spaces;
 extern int spaces_len;
 
+#endif //OLYTAG_SOUT_H

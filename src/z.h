@@ -112,6 +112,4 @@ extern char *readlin_ew();
 
 extern char *eat_leading_trailing_whitespace(char *s);
 
-#include "forward.h"
-
 #endif //OLYTAG_Z_H

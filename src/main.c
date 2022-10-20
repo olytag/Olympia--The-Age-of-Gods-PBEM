@@ -11,6 +11,7 @@
 #include    "oly.h"
 #include    <sys/types.h>
 #include    <sys/stat.h>
+#include "forward.h"
 
 void set_html_pass(int pl);
 
