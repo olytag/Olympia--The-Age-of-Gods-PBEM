@@ -1,3 +1,11 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_OLY_H
+#define OLYTAG_OLY_H
+
 #include "oly3.h"
 
 typedef unsigned char uchar;
@@ -2030,3 +2038,4 @@ extern ilist new_players;        /* new players added this turn */
 #define ALT (1 << 4)
 
 
+#endif //OLYTAG_OLY_H

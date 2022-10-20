@@ -1,3 +1,10 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_Z_H
+#define OLYTAG_Z_H
 
 /* VLN#define	SYSV
 */
@@ -104,3 +111,7 @@ extern char *readlin();
 extern char *readlin_ew();
 
 extern char *eat_leading_trailing_whitespace(char *s);
+
+#include "forward.h"
+
+#endif //OLYTAG_Z_H

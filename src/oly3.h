@@ -1,3 +1,11 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_OLY3_H
+#define OLYTAG_OLY3_H
+
 /*
  *  Defines to turn on/control the Oly 3 Changes
  *  Thu Jun 27 11:20:01 1996 -- Scott Turner
@@ -46,3 +54,5 @@
  */
 #define MOAT_MATERIAL 200
 #define MOAT_EFFORT 4000
+
+#endif //OLYTAG_OLY3_H

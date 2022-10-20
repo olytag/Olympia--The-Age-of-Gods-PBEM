@@ -1,3 +1,7 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    <unistd.h>
@@ -37,10 +41,7 @@ int time_self = FALSE;        /* print timing info */
 int save_flag = FALSE;
 int acct_flag = FALSE;
 
-main(argc, argv)
-        int argc;
-        char **argv;
-{
+int main(int argc, char **argv) {
     extern int optind, opterr;
     extern char *optarg;
     int errflag = 0;
@@ -275,7 +276,7 @@ main(argc, argv)
 
     if (map_flag) {
         int load_cmap();
-        void print_map();
+        //void print_map();
         if (load_cmap()) {
             print_map(stdout);
         }
@@ -356,8 +357,8 @@ main(argc, argv)
          */
         if (unspool_first_flag) {
             setbuf(stdout, NULL);
-            mkdir(sout("%s/orders", libdir), 0755);
-            mkdir(sout("%s/spool", libdir), 0777);
+            makedir(sout("%s/orders", libdir), 0755);
+            makedir(sout("%s/spool", libdir), 0777);
             chmod(sout("%s/spool", libdir), 0777);
             read_spool(mail_now);
         };
@@ -449,7 +450,7 @@ main(argc, argv)
 }
 
 
-call_init_routines() {
+void call_init_routines(void) {
 
     init_lower();
     dir_assert();
@@ -612,7 +613,7 @@ v_nationlist(struct command *c) {
  *  Add DM to all the lists.
  *
  */
-write_nations_lists() {
+void write_nations_lists(void) {
     FILE *fp;
     char *fnam;
     int i;
@@ -715,7 +716,7 @@ void write_player_list() {
 }
 
 
-write_forward_sup(int who_for, int target, FILE *fp) {
+void write_forward_sup(int who_for, int target, FILE *fp) {
     int pl;
     char *s, *u;
 
@@ -768,7 +769,7 @@ void write_forwards() {
 }
 
 
-write_faction_sup(int who_for, int target, FILE *fp) {
+void write_faction_sup(int who_for, int target, FILE *fp) {
     int pl;
     char *s, *u;
 
@@ -1010,7 +1011,7 @@ send_rep(int pl, int turn) {
     return TRUE;
 }
 
-mail_reports() {
+void mail_reports(void) {
     int pl;
     int i;
 
@@ -1056,7 +1057,7 @@ preprocess(char *in, char *out, char *args) {
  *  Add stuff to write out the %d.pre file.
  *
  */
-setup_html_all() {
+void setup_html_all(void) {
     int pl;
     char fnam[LEN];
     char fnam2[LEN];
@@ -1112,9 +1113,7 @@ setup_html_all() {
     /* copy_public_turns(); */
 }
 
-void setup_html_dir(pl)
-        int pl;
-{
+void setup_html_dir(int pl) {
     char fnam[LEN];
     char fnam2[LEN];
     FILE *fp;
@@ -1122,7 +1121,7 @@ void setup_html_dir(pl)
     /* read and execute for all. */
     umask(S_IWGRP | S_IWOTH);
     sprintf(fnam, "%s/%d/%s", options.html_path, game_number, box_code_less(pl));
-    mkdir(fnam, 0777);
+    makedir(fnam, 0777);
     umask(S_IWGRP | S_IXGRP | S_IWOTH | S_IXOTH);
 
     sprintf(fnam2, "%s/.htaccess", fnam);
@@ -1226,7 +1225,7 @@ void output_html_map(int pl) {
      *
      */
     umask(S_IWGRP | S_IWOTH);
-    (void) mkdir(info, 0777);
+    (void) makedir(info, 0777);
     umask(S_IWOTH | S_IXOTH);
 
     /*
