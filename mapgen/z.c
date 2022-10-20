@@ -1,9 +1,16 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
 #include	<stdlib.h>
 #include	<stdio.h>
 #include	<string.h>
+#include <io.h>
 #include	"z.h"
 
-
+// #define bcopy(a,b,n)       memcpy(b, a, n)
+// #define bzero(a,  n)       memset(a, 0, n)
 
 /*
  *  malloc safety checks:
@@ -33,7 +40,7 @@ my_malloc(unsigned size)
 		exit(1);
 	}
 
-	bzero(p, size);
+    memset(p, 0, size); // bzero(p, size);
 
 	*((long *) p) = size;
 	*((long *) (p + size)) = 0xABCF;
@@ -108,6 +115,7 @@ asfail(char *file, long line, char *cond)
 	fprintf(stderr, "assertion failure: %s (%ld): %s\n",
 						file, line, cond);
 	abort();
+    /* NOT REACHED */
 	exit(1);
 }
 
@@ -489,329 +497,4 @@ fuzzy_strcmp(char *one, char *two)
 	return FALSE;
 }
 
-
-#define		ILIST_ALLOC	6	/* doubles with each realloc */
-
-
-/*
- *  Reallocing array handler
- *
- *  Length is stored in ilist[0], maximum in ilist[1].
- *  The user-visible ilist is shifted to &ilist[2], so
- *  that iterations can proceed from index 0.
- */
-
-void
-ilist_append(ilist *l, long n)
-{
-	long *base;
-
-	if (*l == NULL)
-	{
-		base = my_malloc(sizeof(**l) * ILIST_ALLOC);
-		base[1] = ILIST_ALLOC;
-
-		*l = &base[2];
-	}
-	else
-	{
-		base = (*l)-2;
-		assert(&base[2] == *l);
-
-		if (base[0] + 2 >= base[1])
-		{
-			base[1] *= 2;
-			base = my_realloc(base, base[1] * sizeof(*base));
-			*l = &base[2];
-		}
-	}
-
-	base[ base[0] + 2] = n;
-	base[0]++;
-}
-
-
-void
-ilist_prepend(ilist *l, long n)
-{
-	long *base;
-	long i;
-
-	if (*l == NULL)
-	{
-		base = my_malloc(sizeof(**l) * ILIST_ALLOC);
-		base[1] = ILIST_ALLOC;
-
-		*l = &base[2];
-	}
-	else
-	{
-		base = (*l)-2;
-		assert(&base[2] == *l);
-
-		if (base[0] + 2 >= base[1])
-		{
-			base[1] *= 2;
-			base = my_realloc(base, base[1] * sizeof(*base));
-			*l = &base[2];
-		}
-	}
-
-	base[0]++;
-	for (i = base[0]+1; i > 2; i--)
-		base[i] = base[i-1];
-	base[2] = n;
-}
-
-
-#if 0
-
-/*  not tested  */
-
-void
-ilist_insert(ilist *l, long pos, long n)
-{
-	long *base;
-	long i;
-
-	if (*l == NULL)
-	{
-		base = my_malloc(sizeof(**l) * ILIST_ALLOC);
-		base[1] = ILIST_ALLOC;
-
-		*l = &base[2];
-	}
-	else
-	{
-		base = (*l)-2;
-		assert(&base[2] == *l);
-
-		if (base[0] + 2 >= base[1])
-		{
-			base[1] *= 2;
-			base = my_realloc(base, base[1] * sizeof(*base));
-			*l = &base[2];
-		}
-	}
-
-	base[0]++;
-	pos += 2;
-
-	for (i = base[0]+1; i > pos; i--)
-		base[i] = base[i-1];
-
-	base[pos] = n;
-}
-
-#endif
-
-
-void
-ilist_delete(ilist *l, long i)
-{
-	long *base;
-	long j;
-
-	assert(i >= 0 && i < ilist_len(*l));		/* bounds check */
-	base = (*l)-2;
-
-	for (j = i+2; j <= base[0]; j++)
-		base[j] = base[j+1];
-
-	base[0]--;
-}
-
-
-void
-ilist_clear(ilist *l)
-{
-	long *base;
-
-	if (*l != NULL)
-	{
-		base = (*l)-2;
-		base[0] = 0;
-	}
-}
-
-
-void
-ilist_reclaim(ilist *l)
-{
-	long *base;
-
-	if (*l != NULL)
-	{
-		base = (*l)-2;
-		my_free(base);
-	}
-	*l = NULL;
-}
-
-
-long
-ilist_lookup(ilist l, long n)
-{
-	long i;
-
-	if (l == NULL)
-		return -1;
-
-	for (i = 0; i < ilist_len(l); i++)
-		if (l[i] == n)
-			return i;
-
-	return -1;
-}
-
-
-void
-ilist_rem_value(ilist *l, long n)
-{
-	long i;
-
-	for (i = ilist_len(*l) - 1; i >= 0; i--)
-		if ((*l)[i] == n)
-			ilist_delete(l, i);
-}
-
-
-void
-ilist_rem_value_uniq(ilist *l, long n)
-{
-	long i;
-
-	for (i = ilist_len(*l) - 1; i >= 0; i--)
-		if ((*l)[i] == n)
-		{
-			ilist_delete(l, i);
-			break;
-		}
-}
-
-
-#if 1
-
-ilist
-ilist_copy(ilist l)
-{
-	long *base;
-	long *copy_base;
-
-	if (l == NULL)
-		return NULL;
-
-	base = l-2;
-	assert(&base[2] == l);
-
-	copy_base = my_malloc(base[1] * sizeof(*base));
-	bcopy(base, copy_base, (base[0] + 2) * sizeof(*base));
-
-	return &copy_base[2];
-}
-
-#else
-
-ilist
-ilist_copy(ilist l)
-{
-	ilist new = NULL;
-	long i;
-
-	for (i = 0; i < ilist_len(l); i++)
-		ilist_append(&new, l[i]);
-
-	return new;
-}
-
-#endif
-
-
-void
-ilist_scramble(ilist l)
-{
-	long i;
-	long tmp;
-	long one, two;
-	long len;
-
-	len = ilist_len(l);
-
-	for (i = 0; i < len * 2; i++)
-	{
-		one = rnd(0, len-1);
-		two = rnd(0, len-1);
-
-		tmp = l[one];
-		l[one] = l[two];
-		l[two] = tmp;
-	}
-}
-
-
-void
-ilist_test()
-{
-	long i;
-	ilist x;
-	ilist y;
-
-	setbuf(stdout, NULL);
-	bzero(&x, sizeof(x));
-
-	printf("len = %ld\n", ilist_len(x));
-
-	for (i = 0; i < 100; i++)
-		ilist_append(&x, i);
-
-	assert(x[ilist_len(x)-1] == 99);
-
-	printf("len = %ld\n", ilist_len(x));
-	for (i = 0; i < ilist_len(x); i++)
-		printf("%ld ", x[i]);
-	printf("\n");
-
-	for (i = 900; i < 1000; i++)
-	{
-		ilist_prepend(&x, i);
-		if (x[ilist_len(x)-1] != 99)
-			fprintf(stderr, "fail: i = %ld\n", i);
-	}
-
-	printf("len = %ld\n", ilist_len(x));
-	for (i = 0; i < ilist_len(x); i++)
-		printf("%ld ", x[i]);
-	printf("\n");
-
-	ilist_delete(&x, 100);
-
-	printf("len = %ld\n", ilist_len(x));
-	for (i = 0; i < ilist_len(x); i++)
-		printf("%ld ", x[i]);
-	printf("\n");
-
-	printf("len before = %ld\n", ilist_len(x));
-	ilist_append(&x, 15);
-	printf("len after = %ld\n", ilist_len(x));
-	printf("x[0] = %ld\n", x[0]);
-
-	printf("ilist_lookup(998) == %ld\n", ilist_lookup(x, 998));
-
-	y = ilist_copy(x);
-	assert(ilist_len(x) == ilist_len(y));
-	for (i = 0; i < ilist_len(x); i++)
-	{
-		assert(&x[i] != &y[i]);
-		if (x[i] != y[i])
-		{
-			fprintf(stderr, "[%ld] different\n", i);
-			assert(FALSE);
-		}
-	}
-
-	printf("ilist_lookup(998) == %ld\n", ilist_lookup(x, 998));
-
-	ilist_clear(&x);
-	assert(ilist_len(x) == 0);
-}
 

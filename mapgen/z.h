@@ -1,3 +1,10 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_Z_H
+#define OLYTAG_Z_H
 
 
 #define	TRUE	1
@@ -55,26 +62,8 @@ extern void asfail(char *file, long line, char *cond);
 #endif
 
 
-/*
- *  'ilist' reallocing array definitions
- */
-
-typedef long *ilist;
-
-#define ilist_len(a)		(((long *)(a)) == NULL ? 0 : ((long *)(a))[-2])
-
-extern void ilist_append(ilist *l, long n);
-extern void ilist_prepend(ilist *l, long n);
-extern void ilist_delete(ilist *l, long i);
-extern void ilist_clear(ilist *l);
-extern void ilist_reclaim(ilist *l);
-extern long ilist_lookup(ilist l, long n);
-extern void ilist_rem_value(ilist *l, long n);
-extern void ilist_rem_value_uniq(ilist *l, long n);
-extern ilist ilist_copy(ilist l);
-extern void ilist_scramble(ilist l);
-extern void ilist_insert(ilist *l, long pos, long n);
-
 extern long readfile(char *path);
 extern char *readlin();
 extern char *readlin_ew();
+
+#endif //OLYTAG_Z_H
