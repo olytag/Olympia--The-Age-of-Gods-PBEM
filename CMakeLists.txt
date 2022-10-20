@@ -31,25 +31,19 @@ target_include_directories(ilist_test PRIVATE mapgen/)
 add_executable(oly
         src/main.c
 
-        src/z.c
-        src/swear.c
-        src/code.c
-        src/sout.c
+        src/code.c src/code.h
         src/loc.c
+        src/loop.h
         src/move.c
-        src/u.c
+        src/sout.c src/sout.h
+        src/swear.c
+        src/use.c src/use.h
+        src/u.c src/u.h
+        src/z.c src/z.h
 
         src/helpers.c
         src/os_windows.c src/os_linux.c src/os_mac.c
-
-        src/z.h
-        src/code.h
-        src/loop.h
-        src/sout.h
-        src/u.h
-
-        src/forward.h
-        src/types.h
+        src/types.h src/forward.h
 
 #        src/add.c
 #        src/adv.c
@@ -81,7 +75,6 @@ add_executable(oly
 #        src/loc.c
 #        src/lore.c
 #        src/make.c
-#        src/move.c
 #        src/necro.c
 #        src/npc.c
 #        src/order.c
@@ -99,8 +92,6 @@ add_executable(oly
 #        src/storm.c
 #        src/summary.c
 #        src/swear.c
-#        src/u.c
-#        src/use.c
 #        src/effect.c
 #        src/trading.c
 #        src/shipcraft.c
@@ -112,19 +103,14 @@ add_executable(oly
 #        src/artifacts.c
 #        src/map.c
 #        src/hero.c
-#        src/loop.h
-#        src/code.h
 #        src/dir.h
 #        src/display.h
 #        src/etc.h
 #        src/garr.h
 #        src/loc.h
 #        src/order.h
-#        src/sout.h
 #        src/stack.h
 #        src/swear.h
-#        src/u.h
-#        src/use.h
 #        src/effect.h
 #        src/relig.h
 #        src/combat.h
