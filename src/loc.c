@@ -1,7 +1,7 @@
 
-#include	<stdio.h>
-#include	"z.h"
-#include	"oly.h"
+#include    <stdio.h>
+#include    "z.h"
+#include    "oly.h"
 
 
 /*
@@ -9,120 +9,126 @@
  */
 
 int
-somewhere_inside(int a, int b)
-{
+somewhere_inside(int a, int b) {
 
-	if (a == b)
-		return FALSE;
+    if (a == b) {
+        return FALSE;
+    }
 
-	while (b > 0)
-	{
-		b = loc(b);
-		if (a == b)
-			return TRUE;
-	}
+    while (b > 0) {
+        b = loc(b);
+        if (a == b) {
+            return TRUE;
+        }
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 
 static void
-add_here(int who, ilist *l)
-{
-	int i;
-	struct loc_info *p;
+add_here(int who, ilist *l) {
+    int i;
+    struct loc_info *p;
 
-	assert(valid_box(who));
+    assert(valid_box(who));
 
-	ilist_append(l, who);
+    ilist_append(l, who);
 
-	p = rp_loc_info(who);
-	assert(p != NULL);
+    p = rp_loc_info(who);
+    assert(p != NULL);
 
-	for (i = 0; i < ilist_len(p->here_list); i++)
-		add_here(p->here_list[i], l);
+    for (i = 0; i < ilist_len(p->here_list); i++) {
+        add_here(p->here_list[i], l);
+    }
 }
 
 
 void
-all_here(int who, ilist *l)
-{
-	int i;
-	struct loc_info *p;
+all_here(int who, ilist *l) {
+    int i;
+    struct loc_info *p;
 
-	assert(valid_box(who));
+    assert(valid_box(who));
 
-	ilist_clear(l);
+    ilist_clear(l);
 
-	p = rp_loc_info(who);
+    p = rp_loc_info(who);
 
-	if (p == NULL)
-		return;
+    if (p == NULL) {
+        return;
+    }
 
-	for (i = 0; i < ilist_len(p->here_list); i++)
-		add_here(p->here_list[i], l);
+    for (i = 0; i < ilist_len(p->here_list); i++) {
+        add_here(p->here_list[i], l);
+    }
 }
 
 
 static void
-add_char_here(int who, ilist *l)
-{
-	int i;
-	struct loc_info *p;
+add_char_here(int who, ilist *l) {
+    int i;
+    struct loc_info *p;
 
-	assert(valid_box(who));
+    assert(valid_box(who));
 
-	ilist_append(l, who);
+    ilist_append(l, who);
 
-	p = rp_loc_info(who);
-	assert(p != NULL);
+    p = rp_loc_info(who);
+    assert(p != NULL);
 
-	for (i = 0; i < ilist_len(p->here_list); i++)
-		if (kind(p->here_list[i]) == T_char)
-			add_char_here(p->here_list[i], l);
+    for (i = 0; i < ilist_len(p->here_list); i++) {
+        if (kind(p->here_list[i]) == T_char) {
+            add_char_here(p->here_list[i], l);
+        }
+    }
 }
 
 
 void
-all_char_here(int who, ilist *l)
-{
-	int i;
-	struct loc_info *p;
+all_char_here(int who, ilist *l) {
+    int i;
+    struct loc_info *p;
 
-	assert(valid_box(who));
+    assert(valid_box(who));
 
-	ilist_clear(l);
+    ilist_clear(l);
 
-	p = rp_loc_info(who);
+    p = rp_loc_info(who);
 
-	if (p == NULL)
-		return;
+    if (p == NULL) {
+        return;
+    }
 
-	for (i = 0; i < ilist_len(p->here_list); i++)
-		if (kind(p->here_list[i]) == T_char)
-			add_char_here(p->here_list[i], l);
+    for (i = 0; i < ilist_len(p->here_list); i++) {
+        if (kind(p->here_list[i]) == T_char) {
+            add_char_here(p->here_list[i], l);
+        }
+    }
 }
 
 
 void
-all_stack(int who, ilist *l)
-{
-	int i;
-	struct loc_info *p;
+all_stack(int who, ilist *l) {
+    int i;
+    struct loc_info *p;
 
-	assert(valid_box(who));
+    assert(valid_box(who));
 
-	ilist_clear(l);
-	ilist_append(l, who);
+    ilist_clear(l);
+    ilist_append(l, who);
 
-	p = rp_loc_info(who);
+    p = rp_loc_info(who);
 
-	if (p == NULL)
-		return;
+    if (p == NULL) {
+        return;
+    }
 
-	for (i = 0; i < ilist_len(p->here_list); i++)
-		if (kind(p->here_list[i]) == T_char)
-			add_char_here(p->here_list[i], l);
+    for (i = 0; i < ilist_len(p->here_list); i++) {
+        if (kind(p->here_list[i]) == T_char) {
+            add_char_here(p->here_list[i], l);
+        }
+    }
 }
 
 
@@ -131,14 +137,14 @@ all_stack(int who, ilist *l)
  */
 
 int
-region(int who)
-{
+region(int who) {
 
-	while (who > 0 &&
-	      (kind(who) != T_loc || loc_depth(who) != LOC_region))
-		who = loc(who);
+    while (who > 0 &&
+           (kind(who) != T_loc || loc_depth(who) != LOC_region)) {
+        who = loc(who);
+    }
 
-	return who;
+    return who;
 }
 
 
@@ -147,15 +153,15 @@ region(int who)
  */
 
 int
-province(int who)
-{
-  if (item_unique(who)) who = item_unique(who);
+province(int who) {
+    if (item_unique(who)) { who = item_unique(who); }
 
-	while (who > 0 &&
-	      (kind(who) != T_loc || loc_depth(who) != LOC_province))
-		who = loc(who);
+    while (who > 0 &&
+           (kind(who) != T_loc || loc_depth(who) != LOC_province)) {
+        who = loc(who);
+    }
 
-	return who;
+    return who;
 }
 
 
@@ -166,16 +172,13 @@ province(int who)
  */
 
 int
-subloc(int who)
-{
+subloc(int who) {
 
-	do
-	{
-		who = loc(who);
-	}
-	while (who > 0 && kind(who) != T_loc && kind(who) != T_ship);
+    do {
+        who = loc(who);
+    } while (who > 0 && kind(who) != T_loc && kind(who) != T_ship);
 
-	return who;
+    return who;
 }
 
 
@@ -191,85 +194,78 @@ subloc(int who)
  */
 
 int
-viewloc(int who)
-{
+viewloc(int who) {
 
-	while (who > 0 &&
-	       loc_depth(who) != LOC_province &&
-	       subkind(who) != sub_guild &&
-	       subkind(who) != sub_city &&
-	       subkind(who) != sub_graveyard &&
-	       subkind(who) != sub_faery_hill)
-	{
-		who = loc(who);
-	}
+    while (who > 0 &&
+           loc_depth(who) != LOC_province &&
+           subkind(who) != sub_guild &&
+           subkind(who) != sub_city &&
+           subkind(who) != sub_graveyard &&
+           subkind(who) != sub_faery_hill) {
+        who = loc(who);
+    }
 
-	return who;
+    return who;
 }
 
 
 int
-in_safe_now(int who)
-{
+in_safe_now(int who) {
 
-	do
-	{
-		if (safe_haven(who))
-			return TRUE;
+    do {
+        if (safe_haven(who)) {
+            return TRUE;
+        }
 
-		who = loc(who);
-	}
-	while (who > 0);
+        who = loc(who);
+    } while (who > 0);
 
-	return FALSE;
+    return FALSE;
 }
 
 
 void
-add_to_here_list(int loc, int who)
-{
+add_to_here_list(int loc, int who) {
 
-	assert(!in_here_list(loc, who));
-	ilist_append(&(p_loc_info(loc)->here_list), who);
-	assert(in_here_list(loc, who));
+    assert(!in_here_list(loc, who));
+    ilist_append(&(p_loc_info(loc)->here_list), who);
+    assert(in_here_list(loc, who));
 }
 
 
 void
-remove_from_here_list(int loc, int who)
-{
+remove_from_here_list(int loc, int who) {
 
-  assert(in_here_list(loc, who));
-  ilist_rem_value(&(rp_loc_info(loc)->here_list), who);
-  /*
-   *  Mon Apr 20 18:08:44 1998 -- Scott Turner
-   *
-   *  Thanks to Rich's nice encapsulation, this is the only
-   *  place we have to worry about someone being the last person
-   *  out of a subloc...so here's where we reset the fees.
-   *
-   *  Anyway, that's plan :-).
-   *
-   */
-  if (!ilist_len(rp_loc_info(loc)->here_list) &&
-      rp_subloc(loc)) {
-    rp_subloc(loc)->control.weight = 0;
-    rp_subloc(loc)->control.nobles = 0;
-    rp_subloc(loc)->control.men = 0;
+    assert(in_here_list(loc, who));
+    ilist_rem_value(&(rp_loc_info(loc)->here_list), who);
+    /*
+     *  Mon Apr 20 18:08:44 1998 -- Scott Turner
+     *
+     *  Thanks to Rich's nice encapsulation, this is the only
+     *  place we have to worry about someone being the last person
+     *  out of a subloc...so here's where we reset the fees.
+     *
+     *  Anyway, that's plan :-).
+     *
+     */
+    if (!ilist_len(rp_loc_info(loc)->here_list) &&
+        rp_subloc(loc)) {
+        rp_subloc(loc)->control.weight = 0;
+        rp_subloc(loc)->control.nobles = 0;
+        rp_subloc(loc)->control.men = 0;
 
-    rp_subloc(loc)->control2.weight = 0;
-    rp_subloc(loc)->control2.nobles = 0;
-    rp_subloc(loc)->control2.men = 0;
-  };
-      
-  assert(!in_here_list(loc, who));
+        rp_subloc(loc)->control2.weight = 0;
+        rp_subloc(loc)->control2.nobles = 0;
+        rp_subloc(loc)->control2.men = 0;
+    };
+
+    assert(!in_here_list(loc, who));
 }
 
 
 void
-set_where(int who, int new_loc)
-{
-	int old_loc;
+set_where(int who, int new_loc) {
+    int old_loc;
 
 /*
  *  This check could be expanded to make sure that new_loc is
@@ -277,21 +273,23 @@ set_where(int who, int new_loc)
  *  and making sure we don't go through who
  */
 
-	assert(who != new_loc);
+    assert(who != new_loc);
 
-	old_loc = loc(who);
+    old_loc = loc(who);
 
-	if (old_loc > 0)
-		remove_from_here_list(old_loc, who);
+    if (old_loc > 0) {
+        remove_from_here_list(old_loc, who);
+    }
 
-	if (new_loc > 0)
-		add_to_here_list(new_loc, who);
+    if (new_loc > 0) {
+        add_to_here_list(new_loc, who);
+    }
 
-	p_loc_info(who)->where = new_loc;
+    p_loc_info(who)->where = new_loc;
 
 #if 0
-	if (is_loc_or_ship(loc(who)))
-		assert(!is_prisoner(who));
+    if (is_loc_or_ship(loc(who)))
+        assert(!is_prisoner(who));
 #endif
 }
 
@@ -301,70 +299,69 @@ set_where(int who, int new_loc)
  */
 
 void
-mark_loc_stack_known(int stack, int where)
-{
-	int i;
+mark_loc_stack_known(int stack, int where) {
+    int i;
 
-	if (kind(stack) == T_char)
-		set_known(stack, where);
+    if (kind(stack) == T_char) {
+        set_known(stack, where);
+    }
 
-	loop_char_here(stack, i)
-	{
-		if (!is_prisoner(i))
-			set_known(i, where);
-	}
-	next_char_here;
+    loop_char_here(stack, i)
+            {
+                if (!is_prisoner(i)) {
+                    set_known(i, where);
+                }
+            }
+    next_char_here;
 }
 
 
 int
-in_here_list(int loc, int who)
-{
-	struct loc_info *p;
+in_here_list(int loc, int who) {
+    struct loc_info *p;
 
-	p = rp_loc_info(loc);
+    p = rp_loc_info(loc);
 
-	if (p == NULL)
-		return FALSE;
+    if (p == NULL) {
+        return FALSE;
+    }
 
-	return (ilist_lookup(p->here_list, who) != -1);
+    return (ilist_lookup(p->here_list, who) != -1);
 }
 
 
 int
-subloc_here(int where, int sk)
-{
-	int i;
-	int ret = 0;
+subloc_here(int where, int sk) {
+    int i;
+    int ret = 0;
 
-	loop_here(where, i)
-	{
-		if (kind(i) == T_loc && subkind(i) == sk)
-		{
-			ret = i;
-			break;
-		}
-	}
-	next_here;
+    loop_here(where, i)
+            {
+                if (kind(i) == T_loc && subkind(i) == sk) {
+                    ret = i;
+                    break;
+                }
+            }
+    next_here;
 
-	return ret;
+    return ret;
 }
 
 
 int
-count_loc_structures(int where, int a, int b)
-{
-	int sum = 0;
-	int i;
+count_loc_structures(int where, int a, int b) {
+    int sum = 0;
+    int i;
 
-	loop_here(where, i)
-	{
-		if (kind(i) == T_loc && (subkind(i) == a || subkind(i) == b))
-			sum++;
-	}
-	next_here;
+    loop_here(where, i)
+            {
+                if (kind(i) == T_loc && (subkind(i) == a || subkind(i) == b)) {
+                    sum++;
+                }
+            }
+    next_here;
 
-	return sum;
+    return sum;
 }
 
 
@@ -372,29 +369,28 @@ count_loc_structures(int where, int a, int b)
 static int
 province_owner(int where)
 {
-	int prov = province(where);
-	int city;
-	int castle;
+    int prov = province(where);
+    int city;
+    int castle;
 
-	city = city_here(prov);
+    city = city_here(prov);
 
-	castle = subloc_here(prov, sub_castle);
-	if (castle == 0 && city)
-		castle = subloc_here(city, sub_castle);
+    castle = subloc_here(prov, sub_castle);
+    if (castle == 0 && city)
+        castle = subloc_here(city, sub_castle);
 
-	if (castle)
-		return first_character(castle);
+    if (castle)
+        return first_character(castle);
 
-	return 0;
+    return 0;
 }
 #endif
 
 
 int
-building_owner(int where)
-{
+building_owner(int where) {
 
-	assert(loc_depth(where) == LOC_build);
-	return first_character(where);
+    assert(loc_depth(where) == LOC_build);
+    return first_character(where);
 }
 

@@ -4,9 +4,13 @@
  *
  */
 extern int get_all_effects(int what, int t, int st, int v);
+
 extern int get_effect(int what, int t, int st, int v);
+
 extern void update_effects(int what);
+
 extern int add_effect(int what, int t, int st, int duration, int value);
+
 extern void delete_effect(int what, int type, int st);
 
 /*
@@ -24,7 +28,7 @@ extern void delete_effect(int what, int type, int st);
   }; \
  * 
  */
-#define	loop_effects(what, e) \
+#define    loop_effects(what, e) \
 { int ll_i; \
   ilist ll_l = NULL, el = NULL; \
   int ll_check = 29; \
@@ -33,4 +37,4 @@ extern void delete_effect(int what, int type, int st);
   for (ll_i = 0; ll_i < ilist_len(ll_l); ll_i++) {  \
     e = (struct effect *) ll_l[ll_i];
 
-#define	next_effect	} assert(ll_check == 29); ilist_reclaim(&ll_l); }
+#define    next_effect    } assert(ll_check == 29); ilist_reclaim(&ll_l); }
