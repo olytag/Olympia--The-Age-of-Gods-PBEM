@@ -31,6 +31,7 @@ add_executable(oly
         src/swear.c
         src/code.c
         src/sout.c
+        src/loc.c
         src/helpers.c
 
         src/z.h

@@ -24,6 +24,7 @@ void determine_output_order();
 void do_times();
 void eat_loop(int mail_now);
 void extract_stacked_unit(int who);
+int first_character(int where);
 void flush_unit_orders(int old_pl, int who);
 void gen_include_section();
 void glob_init();
