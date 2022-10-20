@@ -1,10 +1,9 @@
 
 
-#include	<stdio.h>
-#include	<string.h>
-#include	"z.h"
-#include	"oly.h"
-
+#include    <stdio.h>
+#include    <string.h>
+#include    "z.h"
+#include    "oly.h"
 
 
 /*
@@ -23,87 +22,84 @@
 
 static char *letters = "abcdefghijklmnopqrstuvwxyz";
 
-main()
-{
-  char *stuff;
-  int_to_code(57913);
+main() {
+    char *stuff;
+    int_to_code(57913);
 }
 
 char *
-int_to_code(int l)
-{
-	int n, a, b, c;
+int_to_code(int l) {
+    int n, a, b, c;
 
-	if (l < 10000)
-	{
-		printf ("%d", l);
-	}
+    if (l < 10000) {
+        printf("%d", l);
+    }
 
-	if (l < 20000)			/* CCNN */
-	{
-		l -= 10000;
+    if (l < 20000)            /* CCNN */
+    {
+        l -= 10000;
 
-		n = l % 100;
-		l /= 100;
+        n = l % 100;
+        l /= 100;
 
-		a = l % 26;
-		b = l / 26;
+        a = l % 26;
+        b = l / 26;
 
-		printf("%c%c%02d", letters[b], letters[a], n);
-	}
+        printf("%c%c%02d", letters[b], letters[a], n);
+    }
 
-	if (l < 26760)			/* CCN */
-	{
-		l -= 20000;
+    if (l < 26760)            /* CCN */
+    {
+        l -= 20000;
 
-		n = l % 10;
-		l /= 10;
+        n = l % 10;
+        l /= 10;
 
-		a = l % 26;
-		b = l / 26;
+        a = l % 26;
+        b = l / 26;
 
-		printf("%c%c%d", letters[b], letters[a], n);
-	}
+        printf("%c%c%d", letters[b], letters[a], n);
+    }
 
-	if (l < 33520)			/* CNC */
-	{
-		l -= 26760;
+    if (l < 33520)            /* CNC */
+    {
+        l -= 26760;
 
-		n = l % 26;
-		l /= 26;
+        n = l % 26;
+        l /= 26;
 
-		a = l % 10;
-		b = l / 10;
+        a = l % 10;
+        b = l / 10;
 
-		printf("%c%d%c", letters[b], a, letters[n]);
-	}
+        printf("%c%d%c", letters[b], a, letters[n]);
+    }
 
-	if (l < 36120)			/* CNN */
-	{
-		l -= 33520;
+    if (l < 36120)            /* CNN */
+    {
+        l -= 33520;
 
-		n = l % 10;
-		l /= 10;
+        n = l % 10;
+        l /= 10;
 
-		a = l % 10;
-		b = l / 10;
+        a = l % 10;
+        b = l / 10;
 
-		printf("%c%d%d", letters[b], a, n);
-	}
+        printf("%c%d%d", letters[b], a, n);
+    }
 
-	{				/* CCNC */
-		l -= 36120;
+    {                /* CCNC */
+        l -= 36120;
 
-		a = l % 26;
-		l /= 26;
+        a = l % 26;
+        l /= 26;
 
-		b = l % 10;
-		l /= 10;
+        b = l % 10;
+        l /= 10;
 
-		c = l % 26;
-		l /= 26;
+        c = l % 26;
+        l /= 26;
 
-		printf("%c%c%d%c", letters[l], letters[c], b, letters[a]);
-	}
+        printf("%c%c%d%c", letters[l], letters[c], b, letters[a]);
+    }
 }
 

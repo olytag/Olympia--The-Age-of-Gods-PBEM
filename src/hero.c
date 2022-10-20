@@ -22,10 +22,10 @@
  * Skills marked with (+) only usable if you are not commanding men.
  *
  */
-#include	<stdio.h>
-#include	<unistd.h>
-#include	"z.h"
-#include	"oly.h"
+#include    <stdio.h>
+#include    <unistd.h>
+#include    "z.h"
+#include    "oly.h"
 
 /*
  *  Tue Nov 24 13:25:09 1998 -- Scott Turner
@@ -39,7 +39,7 @@
  *
  */
 
- 
+
 /*
  *  Tue Nov 24 13:36:28 1998 -- Scott Turner
  *
@@ -77,20 +77,21 @@
  *  quit after the first wound.
  */
 int
-v_personal_fight_to_death(struct command *c)
-{
-	int flag = c->a;
+v_personal_fight_to_death(struct command *c) {
+    int flag = c->a;
 
-	if (flag < 0)
-		flag = 0;
-	if (flag > 100)
-		flag = 100;
+    if (flag < 0) {
+        flag = 0;
+    }
+    if (flag > 100) {
+        flag = 100;
+    }
 
-	p_char(c->who)->personal_break_point = flag;
-	wout(c->who, "%s will now leave battle when he has "
-	     "%d health remaining", box_name(c->who), flag);
+    p_char(c->who)->personal_break_point = flag;
+    wout(c->who, "%s will now leave battle when he has "
+                 "%d health remaining", box_name(c->who), flag);
 
-	return TRUE;
+    return TRUE;
 }
 
 /*
@@ -101,24 +102,23 @@ v_personal_fight_to_death(struct command *c)
  *  
  */
 int
-v_forced_march(struct command *c)
-{
-  /*  Has a $10 cost */
-  if (!charge(c->who, 10)) {
-    wout(c->who, "Can't afford %s to prepare for a forced march.",
-	 gold_s(10));
-    return FALSE;
-  }
+v_forced_march(struct command *c) {
+    /*  Has a $10 cost */
+    if (!charge(c->who, 10)) {
+        wout(c->who, "Can't afford %s to prepare for a forced march.",
+             gold_s(10));
+        return FALSE;
+    }
 
-  if (get_effect(c->who, ef_forced_march, 0, 0)) {
-    wout(c->who, "You are already prepared for a forced march.");
-  } else if (!add_effect(c->who, ef_forced_march, 0, -1, 1)) {
-    wout(c->who, "For some reason, you cannot prepare for a forced march!");
-    return FALSE;
-  } else {
-    wout(c->who, "Now prepared to make the next move as a forced march.");
-  };
-  return TRUE;
+    if (get_effect(c->who, ef_forced_march, 0, 0)) {
+        wout(c->who, "You are already prepared for a forced march.");
+    } else if (!add_effect(c->who, ef_forced_march, 0, -1, 1)) {
+        wout(c->who, "For some reason, you cannot prepare for a forced march!");
+        return FALSE;
+    } else {
+        wout(c->who, "Now prepared to make the next move as a forced march.");
+    };
+    return TRUE;
 }
 
 /*
