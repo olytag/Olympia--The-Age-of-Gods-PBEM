@@ -1,3 +1,10 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_CODE_H
+#define OLYTAG_CODE_H
 
 extern char *int_to_code(int l);
 
@@ -32,3 +39,5 @@ extern char *plural_item_box(int item, int qty);
 extern char *box_name_qty(int item, int qty);
 
 extern char *box_name_kind(int n);
+
+#endif //OLYTAG_CODE_H

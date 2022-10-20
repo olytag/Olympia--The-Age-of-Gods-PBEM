@@ -1,22 +1,26 @@
-
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information. 
 
 #include    <stdio.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 /*
  *  Entity coding system
  *
- *  range	      extent	use
- *  1-9999	       9999	reserved (items, skills)
- *
- *  10,000-19,999    10,000	provinces		(CCNN: AA00-DV99)
- *  20,000-26,759      6760	player entities		(CCN)
- *  26,760-33,519      6760	lucky characters	(CNC)
- *  33,520-36,119      2600     lucky locs		(CNN)
- *  36,120-102,400   66,279	sublocs, runoff		(CCNC)
+ *  range           extent  use
+ *       1-  9,999   9,999  reserved (items, skills)
+ *  10,000- 19,999  10,000  provinces        (CCNN: AA00-DV99)
+ *  20,000- 26,759   6,760  player entities  (CCN)
+ *  26,760- 33,519   6,760  lucky characters (CNC)
+ *  33,520- 36,119   2,600  lucky locs       (CNN)
+ *  36,120-102,400  66,279  sublocs, runoff  (CCNC)
  */
 
 
@@ -673,14 +677,13 @@ rnd_alloc_num(int low, int high) {
 /*
  *  Entity coding system
  *
- *  range	      extent	use
- *  1-9999	       9999	reserved (items, skills)
- *
- *  10,000-19,999    10,000	provinces		(CCNN: AA00-DV99)
- *  20,000-26,759      6760	player entities		(CCN)
- *  26,760-33,519      6760	lucky characters	(CNC)
- *  33,520-36,119      2600     lucky locs		(CNN)
- *  36,120-102,400   66,279	sublocs, runoff		(CCNC)
+ *  range           extent  use
+ *       1-  9,999   9,999  reserved (items, skills)
+ *  10,000- 19,999  10,000  provinces        (CCNN: AA00-DV99)
+ *  20,000- 26,759   6,760  player entities  (CCN)
+ *  26,760- 33,519   6,760  lucky characters (CNC)
+ *  33,520- 36,119   2,600  lucky locs       (CNN)
+ *  36,120-102,400  66,279  sublocs, runoff  (CCNC)
  */
 
 

@@ -35,6 +35,7 @@ void init_load_sup(int who);
 void init_lower();
 void init_random();
 void init_spaces();
+int is_port_city(int where);
 void list_order_templates();
 int load_cmap_players();
 void load_db();
