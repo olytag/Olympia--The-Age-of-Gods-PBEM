@@ -9,23 +9,8 @@
 #include    <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
-#include    <sys/types.h>
 #include    <sys/stat.h>
 #include "forward.h"
-
-void set_html_pass(int pl);
-
-void setup_html_dir(int pl);
-
-void write_factions();
-
-void write_forwards();
-
-void write_email();
-
-void write_totimes();
-
-void write_player_list();
 
 /*
  *  pretty_data_files:  include parenthesisted names in the data files,
@@ -59,7 +44,7 @@ int main(int argc, char **argv) {
     int map_test_flag = FALSE;
     int unspool_first_flag = FALSE;
 
-    printf("\tsizeof(struct box) = %d\n", sizeof(struct box));
+    printf("\tsizeof(struct box) = %d\n", (int)sizeof(struct box));
     setbuf(stderr, NULL);
 
     umask(S_IRWXO);
@@ -883,7 +868,7 @@ send_rep(int pl, int turn) {
     char *cmd;
     int split_lines = player_split_lines(pl);
     int split_bytes = player_split_bytes(pl);
-    int formats = p_player(pl)->format;
+    int formats = (int)(p_player(pl)->format);
     int i;
     char *email;
 
@@ -1072,7 +1057,7 @@ void setup_html_all(void) {
         fprintf(stderr, "Can't open %s for writing?", fnam);
         fp = stderr;
     };
-    fprintf(fp, "<TABLE CELLSPACING=0 CELLPADDING=5 WIDTH=\"100%\" "
+    fprintf(fp, "<TABLE CELLSPACING=0 CELLPADDING=5 WIDTH=\"100%%\" "
                 "BGCOLOR=\"#48D1CC\" >\n");
 
     /* write and execute only for self. */
@@ -1306,3 +1291,4 @@ copy_public_turns()
     next_player;
 }
 #endif
+

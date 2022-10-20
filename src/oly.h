@@ -9,7 +9,10 @@
 #include "oly3.h"
 
 typedef unsigned char uchar;
+#ifndef OLY_FORWARD_schar
+#define OLY_FORWARD_schar
 typedef signed char schar;
+#endif
 
 #define        DEFAULT_PASSWORD    "defpwd123"
 
@@ -1431,6 +1434,8 @@ struct wait_arg {
     char *flag;
 };
 
+#ifndef OLY_FORWARD_struct_command
+#define OLY_FORWARD_struct_command
 struct command {
     int who;        /* entity this is under (redundant) */
     int wait;        /* time until completion */
@@ -1459,6 +1464,7 @@ struct command {
     struct wait_arg **wait_parse;    /* not saved */
     schar debug;        /* debugging check -- not saved */
 };
+#endif
 
 #define    numargs(c)    (ilist_len(c->parse) - 1)
 

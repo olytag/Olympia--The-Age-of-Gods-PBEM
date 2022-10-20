@@ -10,6 +10,16 @@
 #include <direct.h>
 #endif
 
+void bcopy(const void *src, void *dest, size_t n) {
+    memcpy(dest, src, n);
+}
+
+void bzero(void *s, size_t n) {
+    memset(s, 0, n);
+}
+
+
+
 int makedir(const char *path, int mode) {
     int rc;
 #ifdef __linux__

@@ -1,9 +1,14 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include <stdlib.h>
 #include    <string.h>
+#include <unistd.h> // mdhender: added for open(), close(), read()
 #include    "z.h"
-
+#include "forward.h"
 
 #if 1
 
@@ -122,6 +127,7 @@ mrand48() {
     next();
     /* sign-extend in case length of a long > 32 bits
                         (as on Honeywell) */
+    // todo: warning: integer overflow in expression '-2147483648' of type 'long int' results in '-2147483648' [-Woverflow]
     return ((l = ((long) x[2] << N) + x[1]) & HI_BIT ? l | -HI_BIT : l);
 }
 
@@ -731,17 +737,14 @@ rnd(int low, int high)
 
 #else	/* ifdef SYSV */
 
-init_random() {
+void init_random(void) {
     long l;
 
     srandom(l);
 }
 
 
-rnd(low, high)
-        int low;
-        int high;
-{
+int rnd(int low, int high) {
 
     return random() % (high - low + 1) + low;
 }

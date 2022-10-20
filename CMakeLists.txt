@@ -17,19 +17,25 @@ add_executable(ilist_test
         )
 target_include_directories(ilist_test PRIVATE mapgen/)
 
-add_executable(mapgen
-        mapgen/mapgen.c mapgen/mapgen.h
-        mapgen/z.c mapgen/z.h
-        mapgen/rnd.c
-        mapgen/lists.c mapgen/lists.h)
-target_include_directories(mapgen PRIVATE mapgen/)
+#add_executable(mapgen
+#        mapgen/mapgen.c mapgen/mapgen.h
+#        mapgen/z.c mapgen/z.h
+#        mapgen/rnd.c
+#        mapgen/lists.c mapgen/lists.h)
+#target_include_directories(mapgen PRIVATE mapgen/)
 
 add_executable(oly
         src/main.c
 
+        src/z.c
+        src/swear.c
         src/helpers.c
 
+        src/z.h
+        src/loop.h
+
         src/forward.h
+        src/types.h
 #        src/add.c
 #        src/adv.c
 #        src/alchem.c
