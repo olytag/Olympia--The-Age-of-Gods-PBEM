@@ -36,6 +36,7 @@ add_executable(oly
         src/loop.h
         src/move.c
         src/sout.c src/sout.h
+        src/stack.c src/stack.h
         src/swear.c
         src/use.c src/use.h
         src/u.c src/u.h
@@ -87,7 +88,6 @@ add_executable(oly
 #        src/scry.c
 #        src/seed.c
 #        src/sout.c
-#        src/stack.c
 #        src/stealth.c
 #        src/storm.c
 #        src/summary.c
@@ -109,7 +109,6 @@ add_executable(oly
 #        src/garr.h
 #        src/loc.h
 #        src/order.h
-#        src/stack.h
 #        src/swear.h
 #        src/effect.h
 #        src/relig.h
