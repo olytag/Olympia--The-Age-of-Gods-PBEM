@@ -1,9 +1,16 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
 #include    <stdio.h>
 #include    <sys/types.h>
 #include    <dirent.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 /*
@@ -351,7 +358,7 @@ failed_join(char *email, char *reason) {
 
     if (save_flag == FALSE) { return; }
 
-    sprintf(tmpfile, "failedjoin%d", getpid());
+    sprintf(tmpfile, "failedjoin%d", get_process_id());
     tmp = fopen(tmpfile, "w");
     fprintf(tmp, "From: %s\n", from_host);
     fprintf(tmp, "Subject: Failed attempt to join "

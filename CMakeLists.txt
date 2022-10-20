@@ -31,92 +31,74 @@ target_include_directories(ilist_test PRIVATE mapgen/)
 add_executable(oly
         src/main.c
 
+        src/add.c
+        src/adv.c
+        src/alchem.c
+        src/art.c
+        src/artifacts.c src/artifacts.h
+        src/basic.c
+        src/beast.c
+        src/build.c src/build.h
+        src/buy.c
+        src/c1.c
+        src/c2.c
+        src/check.c
+        src/checkcode.c
+        src/cloud.c
         src/code.c src/code.h
-        src/loc.c
+        src/combat.c src/combat.h
+        src/day.c
+        src/dir.c src/dir.h
+        src/display.c src/display.h
+        src/eat.c src/eat.h
+        src/effect.c src/effect.h
+        src/etc.h
+        src/faery.c
+        src/garr.c src/garr.h
+        src/gate.c
+        src/glob.c
+        src/gm.c
+        src/hades.c
+        src/hero.c
+        src/immed.c
+        src/input.c
+        src/io.c
+        src/kill.c src/kill.h
+        src/loc.c src/loc.h
         src/loop.h
+        src/lore.c
+        src/make.c
+        src/map.c
+        src/mining.c
         src/move.c
+        src/necro.c
+        src/npc.c
+        src/order.c src/order.h
+        src/perm.c
+        src/produce.c
+        src/quest.c src/quest.h
+        src/ranger.c
+        src/relig.c src/relig.h
+        src/report.c
+        src/savage.c
+        src/scry.c
+        src/seed.c
+        src/shipcraft.c
         src/sout.c src/sout.h
         src/stack.c src/stack.h
-        src/swear.c
-        src/use.c src/use.h
+        src/stealth.c
+        src/storm.c
+        src/summary.c
+        src/swear.c src/swear.h
+        src/times.c
+        src/trading.c
         src/u.c src/u.h
+        src/use.c src/use.h
+        src/win.c
         src/z.c src/z.h
 
         src/helpers.c
         src/os_windows.c src/os_linux.c src/os_mac.c
         src/types.h src/forward.h
-
-#        src/add.c
-#        src/adv.c
-#        src/alchem.c
-#        src/art.c
-#        src/basic.c
-#        src/beast.c
-#        src/build.c
-#        src/buy.c
-#        src/check.c
-#        src/c1.c
-#        src/c2.c
-#        src/cloud.c
-#        src/code.c
-#        src/combat.c
-#        src/day.c
-#        src/dir.c
-#        src/display.c
-#        src/eat.c
-#        src/faery.c
-#        src/garr.c
-#        src/gate.c
-#        src/glob.c
-#        src/gm.c
-#        src/hades.c
-#        src/immed.c
-#        src/input.c
-#        src/io.c
-#        src/loc.c
-#        src/lore.c
-#        src/make.c
-#        src/necro.c
-#        src/npc.c
-#        src/order.c
-#        src/perm.c
-#        src/produce.c
-#        src/quest.c
-#        src/relig.c
-#        src/report.c
-#        src/savage.c
-#        src/scry.c
-#        src/seed.c
-#        src/sout.c
-#        src/stealth.c
-#        src/storm.c
-#        src/summary.c
-#        src/swear.c
-#        src/effect.c
-#        src/trading.c
-#        src/shipcraft.c
-#        src/mining.c
-#        src/win.c
-#        src/kill.c
-#        src/ranger.c
-#        src/times.c
-#        src/artifacts.c
-#        src/map.c
-#        src/hero.c
-#        src/dir.h
-#        src/display.h
-#        src/etc.h
-#        src/garr.h
-#        src/loc.h
-#        src/order.h
-#        src/swear.h
-#        src/effect.h
-#        src/relig.h
-#        src/combat.h
-#        src/quest.h
-#        src/build.h
-#        src/kill.h
-#        src/artifacts.h
-#        src/eat.h
         )
 target_include_directories(oly PRIVATE src/)

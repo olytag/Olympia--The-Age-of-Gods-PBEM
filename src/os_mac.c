@@ -15,6 +15,9 @@ void file_lock(char *name, int fd) {
     exit(-1);
 };
 
+int get_process_id(void) {
+    return getpid();
+}
 
 int makedir(const char *path, int mode) {
     return = mkdir(path, mode);

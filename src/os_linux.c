@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <sys/file.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -21,6 +22,9 @@ void file_lock(char *name, int fd) {
     };
 };
 
+int get_process_id(void) {
+    return getpid();
+}
 
 int makedir(const char *path, int mode) {
     return = mkdir(path, mode);

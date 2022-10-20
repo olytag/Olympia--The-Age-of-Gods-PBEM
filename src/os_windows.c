@@ -17,6 +17,10 @@ void file_lock(char *name, int fd) {
     exit(-1);
 };
 
+// todo: implement
+int get_process_id(void) {
+    return 54321;
+}
 
 int makedir(const char *path, int mode) {
     return _mkdir(path);

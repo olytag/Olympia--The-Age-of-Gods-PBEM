@@ -1,3 +1,8 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
 /*
  *  Thu Oct  1 18:55:54 1998 -- Scott Turner
  *
@@ -7,6 +12,7 @@
 #include    <stdio.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 #define COMMON 1000
 #define UNUSUAL 10
@@ -59,8 +65,7 @@ char *artifact_names[] = {
         "Crown of Control over %s, %d charges.",        /* ART_CROWN */
         "Auraculum belonging to %s, +%s aura.",        /* ART_AURACULUM */
         "Carry Great Loads, +%d weight.",        /* ART_CARRY */
-        "The Pen Crown: (+%d, +%d) in combat, "
-        "%d uses as an Orb of Scrying.",               /* ART_PEN */
+        "The Pen Crown: (+%d, +%d) in combat, %d uses as an Orb of Scrying.",               /* ART_PEN */
 
         NULL
 };
