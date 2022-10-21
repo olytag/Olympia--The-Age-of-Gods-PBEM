@@ -21,12 +21,17 @@ add_executable(ilist_test
         )
 target_include_directories(ilist_test PRIVATE mapgen/)
 
-#add_executable(mapgen
-#        mapgen/mapgen.c mapgen/mapgen.h
-#        mapgen/z.c mapgen/z.h
-#        mapgen/rnd.c
-#        mapgen/lists.c mapgen/lists.h)
-#target_include_directories(mapgen PRIVATE mapgen/)
+add_executable(mapgen
+        mapgen/mapgen.c mapgen/mapgen.h
+        mapgen/z.c mapgen/z.h
+        mapgen/rnd.c
+        mapgen/lists.c mapgen/lists.h)
+target_include_directories(mapgen PRIVATE mapgen/)
+
+add_executable(prng_test
+        src/prng.c src/prng.h
+        src/prng_test.c)
+target_include_directories(prng_test PRIVATE src/)
 
 add_executable(oly
         src/main.c
@@ -99,5 +104,6 @@ add_executable(oly
         src/helpers.c
         src/os_windows.c src/os_linux.c src/os_mac.c
         src/types.h src/forward.h
+        src/prng.c src/prng.h
         )
 target_include_directories(oly PRIVATE src/)

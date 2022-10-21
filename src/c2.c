@@ -737,7 +737,7 @@ v_board(struct command *c) {
     };
 
     if (!valid_box(owner) ||
-        !(ship_fee = calc_entrance_fee(rp_subloc(ship)->control,
+        !(ship_fee = calc_entrance_fee(&rp_subloc(ship)->control,
                                        c, owner))) {
         wout(c->who, "%s is not being operated as a ferry "
                      "(no boarding FEE is set).",

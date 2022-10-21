@@ -60,6 +60,20 @@ struct make {
 typedef signed char schar;
 #endif
 
+#ifndef OLY_FORWARD_struct_skill_ent
+#define OLY_FORWARD_struct_skill_ent
+struct skill_ent {
+    int skill;
+    int days_studied;  /* days studied * TOUGH_NUM */
+    int experience;    /* experience level with skill */
+    char know;         /* SKILL_xxx */
+/*
+ *  Not saved:
+ */
+    char exp_this_month; /* flag for add_skill_experience() */
+};
+#endif //OLY_FORWARD_struct_skill_ent
+
 #ifndef OLY_FORWARD_sparse
 #define OLY_FORWARD_sparse
 typedef ilist sparse;

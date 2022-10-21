@@ -1097,18 +1097,19 @@ struct char_magic {
 #define        SKILL_learning    1    /* in the process of learning it */
 #define        SKILL_know    2    /* know it */
 
+#ifndef OLY_FORWARD_struct_skill_ent
+#define OLY_FORWARD_struct_skill_ent
 struct skill_ent {
     int skill;
-    int days_studied;        /* days studied * TOUGH_NUM */
-    int experience;        /* experience level with skill */
-    char know;            /* SKILL_xxx */
-
+    int days_studied;  /* days studied * TOUGH_NUM */
+    int experience;    /* experience level with skill */
+    char know;         /* SKILL_xxx */
 /*
  *  Not saved:
  */
-
-    char exp_this_month;        /* flag for add_skill_experience() */
+    char exp_this_month; /* flag for add_skill_experience() */
 };
+#endif //OLY_FORWARD_struct_skill_ent
 
 /*
  *  Thu Mar 20 12:05:50 1997 -- Scott Turner

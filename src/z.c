@@ -738,16 +738,16 @@ rnd(int low, int high)
 #else	/* ifdef SYSV */
 
 void init_random(void) {
-    long l;
-
-    srandom(l);
+    // mdhender: comment out for test building
+    //    long l;
+    //    srandom(l);
 }
 
-
-int rnd(int low, int high) {
-
-    return random() % (high - low + 1) + low;
-}
+// mdhender: comment out for test building
+//int rnd(int low, int high) {
+//
+//    return random() % (high - low + 1) + low;
+//}
 #endif    /* ifdef SYSV */
 
 

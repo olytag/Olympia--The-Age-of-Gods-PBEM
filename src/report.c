@@ -286,7 +286,9 @@ show_item_skills(int who, int num) {
 }
 
 
-int inv_item_comp(struct item_ent **a, struct item_ent **b) {
+int inv_item_comp(const void *q1, const void *q2) {
+    const struct item_ent **a = (const struct item_ent **)q1;
+    const struct item_ent **b = (const struct item_ent **)q2;
 
     return (*a)->item - (*b)->item;
 }

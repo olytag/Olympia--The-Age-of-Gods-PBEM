@@ -190,8 +190,7 @@ v_hinder_med(struct command *c) {
 }
 
 
-void
-hinder_med_omen(int who, int other) {
+void hinder_med_omen(int who, int other) {
 
     if (rnd(1, 100) < 50) { return; }
 
@@ -344,7 +343,7 @@ d_reveal_mage(struct command *c) {
                         }
 
                         if (c->use_exp > exp_journeyman) {
-                            list_skill_sup(c->who, e);
+                            list_skill_sup(c->who, e, "");
                         } else {
                             wout(c->who, "%s", box_name(e->skill));
                         }

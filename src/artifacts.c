@@ -706,8 +706,7 @@ has_artifact(int who, int type, int p1, int p2, int charges) {
  *  Find a combat bonus.
  *
  */
-int
-combat_artifact_bonus(int who, int part) {
+int combat_artifact_bonus(int who, int part, int *unused) {
     struct item_ent *e;
     int best = 0;
 

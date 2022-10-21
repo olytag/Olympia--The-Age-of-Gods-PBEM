@@ -4,13 +4,13 @@
 // Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
+#include <string.h>
 #include    <sys/types.h>
 #include    <dirent.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include    "z.h"
 #include    "oly.h"
-#include    "string.h"
 #include "forward.h"
 
 
@@ -1888,9 +1888,9 @@ include_orig(FILE *fp) {
              *  Terminate at 2nd space.  Obviously can be easily fooled.
              *
              */
-            c = (char *) index(s, ' ');
+            c = strchr(s, ' '); // (char *) index(s, ' ');
             if (c != (char *) NULL) {
-                c = (char *) index(c, ' ');
+                c = strchr(c, ' '); // (char *) index(c, ' ');
                 if (c != (char *) NULL) {
                     *c = 0;
                 }
@@ -1901,7 +1901,7 @@ include_orig(FILE *fp) {
              *  Terminate at first space.
              *
              */
-            c = (char *) index(s, ' ');
+            c = strchr(s, ' '); // (char *) index(s, ' ');
             if (c != (char *) NULL) {
                 *c = 0;
             };
