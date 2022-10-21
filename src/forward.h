@@ -281,7 +281,7 @@ void tagout(int who, char *format, ...);
 void tags_off();
 void tags_on();
 int test_bit(sparse kr, int i);
-void test_random();
+int test_random(void);
 void text_list_free(char **l);
 void touch_loc_after_move(int who, int where);
 void trade_suffuse_ring(int where);
@@ -511,6 +511,12 @@ int v_vision_reg(struct command *), d_vision_reg(struct command *);
 int v_use_cs(struct command *c);
 int v_implicit(struct command *c);
 int v_raze(struct command *), d_raze(struct command *);
+
+void ilist_append(ilist *l, int n);
+#ifndef ilist_len
+#define ilist_len(a)        (((int *)(a)) == NULL ? 0 : ((int *)(a))[-2])
+#endif //ilist_len
+void ilist_scramble(ilist l);
 
 // mdhender: temporary declarations to appease compiling on Windows with gcc
 void bcopy(const void *src, void *dest, size_t n);

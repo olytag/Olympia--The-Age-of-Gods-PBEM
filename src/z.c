@@ -751,50 +751,6 @@ void init_random(void) {
 #endif    /* ifdef SYSV */
 
 
-void
-test_random() {
-    int i;
-
-    if (isatty(1)) {
-        for (i = 0; i < 10; i++) {
-            printf("%3d  %3d  %3d  %3d  %3d  %3d  %3d  %3d  %3d  %3d\n",
-                   rnd(1, 10), rnd(1, 10), rnd(1, 10), rnd(1, 10),
-                   rnd(1, 10), rnd(1, 10), rnd(1, 10), rnd(1, 10),
-                   rnd(1, 10), rnd(1, 10));
-        }
-    } else {
-        for (i = 0; i < 100; i++) {
-            printf("%d\n", rnd(1, 10));
-        }
-    }
-
-    for (i = -10; i >= -16; i--) {
-        printf("rnd(%d, %d) == %d\n", -3, i, rnd(-3, i));
-    }
-
-    for (i = 0; i < 100; i++) {
-        printf("%d\n", rnd(1000, 9999));
-    }
-
-    {
-        ilist l = NULL;
-        int i;
-
-        for (i = 1; i <= 10; i++) {
-            ilist_append(&l, i);
-        }
-
-        ilist_scramble(l);
-
-        printf("Scramble:\n");
-
-        for (i = 0; i < ilist_len(l); i++) {
-            printf("%d\n", l[i]);
-        }
-    }
-}
-
-
 #define        ILIST_ALLOC    6    /* doubles with each realloc */
 
 

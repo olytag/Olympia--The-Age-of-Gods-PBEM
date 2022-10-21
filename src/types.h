@@ -26,6 +26,11 @@ struct harvest {
 };
 #endif //OLY_FORWARD_struct_harvest
 
+#ifndef OLY_FORWARD_ilist
+#define OLY_FORWARD_ilist
+typedef int *ilist;
+#endif //OLY_FORWARD_ilist
+
 #ifndef OLY_FORWARD_loc_control_ent
 #define OLY_FORWARD_loc_control_ent
 struct loc_control_ent {

@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
     extern int optind, opterr;
     extern char *optarg;
     int errflag = 0;
-    int c;
+    int c, i;
     int run_flag = FALSE;
     int add_flag = FALSE;
     int eat_flag = FALSE;
@@ -114,7 +114,12 @@ int main(int argc, char **argv) {
                 break;
 
             case 'R':        /* test random number generator */
-                test_random();
+                i = test_random();
+                if (i != 0) {
+                    printf("test random: failed\n");
+                    exit(2);
+                }
+                printf("test random: passed\n");
                 exit(0);
 
             case 'S':        /* save database when done */

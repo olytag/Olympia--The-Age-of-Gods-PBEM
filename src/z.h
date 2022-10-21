@@ -76,9 +76,14 @@ extern void asfail(char *file, int line, char *cond);
  *  'ilist' reallocing array definitions
  */
 
+#ifndef OLY_FORWARD_ilist
+#define OLY_FORWARD_ilist
 typedef int *ilist;
+#endif //OLY_FORWARD_ilist
 
+#ifndef ilist_len
 #define ilist_len(a)        (((int *)(a)) == NULL ? 0 : ((int *)(a))[-2])
+#endif //ilist_len
 
 extern void ilist_append(ilist *l, int n);
 

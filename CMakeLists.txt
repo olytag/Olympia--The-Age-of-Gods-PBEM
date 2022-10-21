@@ -105,5 +105,5 @@ add_executable(oly
         src/os_windows.c src/os_linux.c src/os_mac.c
         src/types.h src/forward.h
         src/prng.c src/prng.h
-        )
+        src/random_test.c)
 target_include_directories(oly PRIVATE src/)

@@ -19,7 +19,9 @@ int rnd(int low, int high) {
     if (n < 0) {
         n = -n;
     }
-    return n % (high - low + 1) + low;
+    n = n % (high - low + 1) + low;
+    //printf("rnd(%d,%d) %d\n", low, high, n);
+    return n;
 }
 
 

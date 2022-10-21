@@ -57,11 +57,12 @@ initialize_buffer() {
 
     buffer_initialized = TRUE;
 
-/*
- *  Make sure sout's arguments are appropriate to handle strings
- *  and	ints.
- */
-    assert(sizeof(char *) == sizeof(long));
+    // mdhender: this assert not needed with the changes to use stdargs.
+    ///*
+    // *  Make sure sout's arguments are appropriate to handle strings
+    // *  and	ints.
+    // */
+    //    assert(sizeof(char *) == sizeof(long));
 }
 
 
