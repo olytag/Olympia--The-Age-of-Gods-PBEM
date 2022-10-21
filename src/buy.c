@@ -1,6 +1,16 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
 #include    <stdio.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
+
+static int buyer_comp(struct trade **a, struct trade **b);
+static int seller_comp(struct trade **a, struct trade **b);
 
 /* #define NEW */
 /*
@@ -62,11 +72,7 @@ clear_all_trades(int who) {
 }
 
 
-static int
-seller_comp(a, b)
-        struct trade **a;
-        struct trade **b;
-{
+static int seller_comp(struct trade **a, struct trade **b) {
 
     if ((*a)->cost == (*b)->cost) {
         return (*a)->sort - (*b)->sort;
@@ -75,11 +81,7 @@ seller_comp(a, b)
     return (*a)->cost - (*b)->cost;
 }
 
-static int
-buyer_comp(a, b)
-        struct trade **a;
-        struct trade **b;
-{
+static int buyer_comp(struct trade **a, struct trade **b) {
 
     if ((*a)->cost == (*b)->cost) {
         return (*b)->sort - (*a)->sort;

@@ -1,3 +1,10 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_ETC_H
+#define OLYTAG_ETC_H
 
 extern int max_eff_aura(int who);                /* art.c */
 extern int has_auraculum(int who);                /* art.c */
@@ -19,3 +26,5 @@ extern void create_mine_info(int mine);                /* mining.c */
 extern struct entity_mine *get_mine_info(int where);            /* mining.c */
 extern void copy_file(char *file1, char *file2);                /* main.c */
 extern int nation(int who);                                     /* perm.c */
+
+#endif //OLYTAG_ETC_H

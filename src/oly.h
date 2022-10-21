@@ -1116,10 +1116,13 @@ struct skill_ent {
  *  Location control: whether or not we're open, fees.
  *
  */
+#ifndef OLY_FORWARD_loc_control_ent
+#define OLY_FORWARD_loc_control_ent
 struct loc_control_ent {
     int closed;
     int nobles, men, weight;
 };
+#endif
 
 struct item_ent {
     int item;

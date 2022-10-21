@@ -990,8 +990,7 @@ count_any_real(int who, int ignore_ninjas, int ignore_angels) {
     return sum;
 }
 
-int
-count_any(int who) {
+int count_any(int who, int j, int k) {
     return count_any_real(who, TRUE, TRUE);
 };
 
@@ -2161,8 +2160,7 @@ set_known(int who, int i) {
 
 static int dot_count = 0;
 
-void
-print_dot(int c) {
+void print_dot(int c) {
 
     if (dot_count == 0) {
         fprintf(stderr, "   ");

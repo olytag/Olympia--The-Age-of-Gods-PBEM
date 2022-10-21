@@ -43,7 +43,6 @@ add_executable(oly
         src/c1.c
         src/c2.c
         src/check.c
-        src/checkcode.c
         src/cloud.c
         src/code.c src/code.h
         src/combat.c src/combat.h

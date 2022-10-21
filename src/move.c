@@ -748,8 +748,7 @@ pay_fine(struct command *c, int fine, int ruler) {
     return TRUE;
 }
 
-int
-calc_entrance_fee(struct loc_control_ent *control, struct command *c, int ruler) {
+int calc_entrance_fee(struct loc_control_ent *control, struct command *c, int ruler) {
     int w_cost = 0, m_cost = 0, n_cost = 0;
     vector_stack(c->who, 1);
 

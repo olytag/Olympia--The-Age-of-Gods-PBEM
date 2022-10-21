@@ -1,10 +1,17 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
+#include <stdarg.h>
 #include    <stdio.h>
 #include    <sys/types.h>
 #include    <dirent.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 /*  order.c -- manage list of unit orders for each faction */
@@ -184,15 +191,15 @@ queue_stop(int pl, int who) {
 /*
  *  Loose, convenient interface for queue_order()
  */
+void queue(int who, char *format, ...) {
+    va_list args;
 
-queue(who, s, a1, a2, a3, a4, a5, a6, a7, a8, a9)
-        int who;
-        char *s;
-        long a1, a2, a3, a4, a5, a6, a7, a8, a9;
-{
-    char buf[LEN];
+    char buf[LEN+1];
+    va_start(args, format);
+    vsnprintf (buf, LEN, format, args );
+    va_end(args);
+    buf[LEN] = 0;
 
-    sprintf(buf, s, a1, a2, a3, a4, a5, a6, a7, a8, a9);
     queue_order(player(who), who, buf);
 }
 
@@ -315,7 +322,7 @@ save_orders() {
     int i;
 
     system(sout("rm -rf %s/orders", libdir));
-    mkdir(sout("%s/orders", libdir), 0755);
+    makedir(sout("%s/orders", libdir), 0755);
 
     loop_player(i)
             {

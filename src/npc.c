@@ -1,7 +1,13 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
+#include <stdlib.h>
 #include    <stdio.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 int
@@ -457,8 +463,7 @@ breed_okay(int who) {
  *  Drop useless stuff.
  *
  */
-static int
-auto_drop(who) {
+static int auto_drop(int who) {
     struct item_ent *e;
     int found_item = 0;
 

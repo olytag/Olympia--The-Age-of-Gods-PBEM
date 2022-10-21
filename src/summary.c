@@ -1,7 +1,13 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 #define    SHOW_TOP    FALSE
@@ -11,11 +17,7 @@
  *  Comparison is reversed so maximum will be first in list
  */
 
-static
-rank_comp(a, b)
-        int *a;
-        int *b;
-{
+static int rank_comp(int *a, int *b) {
 
     return bx[*b]->temp - bx[*a]->temp;
 }

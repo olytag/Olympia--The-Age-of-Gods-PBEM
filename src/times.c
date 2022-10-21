@@ -1,8 +1,16 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
 #include    <stdio.h>
 #include    <time.h>
 #include    <stdlib.h>
+#include <string.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
+
 
 /*
  *  Fri Mar  6 09:53:39 1998 -- Scott Turner

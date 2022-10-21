@@ -1,10 +1,18 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    <sys/types.h>
 #include    <dirent.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include    "z.h"
 #include    "oly.h"
 #include    "string.h"
+#include "forward.h"
+
 
 #define        MAX_ERR        50
 
@@ -1170,7 +1178,7 @@ admit_comment(struct command *c) {
     return "";
 };
 
-static first_admit_check = 1;
+static int first_admit_check = 1;
 
 void
 admit_check(struct command *c) {
@@ -1948,11 +1956,11 @@ eat(char *fnam, int mail_now) {
         sprintf(buf, "egrep -v '#include' %s > /tmp/cpp1.%d;"
                      "%s -P -imacros %s/defines /tmp/cpp1.%d"
                      " > /tmp/cpp.%d",
-                fnam, getpid(),
+                fnam, get_process_id(),
                 options.cpp,
-                libdir, getpid(), getpid());
+                libdir, get_process_id(), get_process_id());
         system(buf);
-        sprintf(fnam_cpp, "/tmp/cpp.%d", getpid());
+        sprintf(fnam_cpp, "/tmp/cpp.%d", get_process_id());
         fp = fopen(fnam_cpp, "r");
         /*
          *  Mon Mar  1 12:28:58 1999 -- Scott Turner
@@ -2050,9 +2058,9 @@ eat(char *fnam, int mail_now) {
 
     if (cpp) {
         char buf[LEN];
-        sprintf(buf, "/tmp/cpp1.%d", getpid());
+        sprintf(buf, "/tmp/cpp1.%d", get_process_id());
         unlink(buf);
-        sprintf(buf, "/tmp/cpp.%d", getpid());
+        sprintf(buf, "/tmp/cpp.%d", get_process_id());
         unlink(buf);
     };
 
@@ -2100,8 +2108,7 @@ write_remind_list() {
 }
 
 
-int
-read_spool(int mail_now) {
+int read_spool(int mail_now) {
     DIR *d;
     struct dirent *e;
     char fnam[LEN];
@@ -2152,8 +2159,8 @@ void
 eat_loop(int mail_now) {
 
     setbuf(stdout, NULL);
-    mkdir(sout("%s/orders", libdir), 0755);
-    mkdir(sout("%s/spool", libdir), 0777);
+    makedir(sout("%s/orders", libdir), 0755);
+    makedir(sout("%s/spool", libdir), 0777);
     chmod(sout("%s/spool", libdir), 0777);
 
     write_remind_list();

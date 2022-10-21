@@ -857,8 +857,7 @@ format_string(int i) {
  *  Added a loop over all the formats.
  *
  */
-int
-send_rep(int pl, int turn) {
+int send_rep(int pl, int turn) {
     struct entity_player *p;
     char report[LEN];
     FILE *fp;

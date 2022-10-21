@@ -10,6 +10,51 @@
 //           they've been copied here to allow forward.h to avoid warnings.
 //           i feel bad about all the pre-processor hacks this causes.
 
+#ifndef OLY_FORWARD_struct_harvest
+#define OLY_FORWARD_struct_harvest
+struct harvest {
+    int item;
+    int skill;
+    int worker;
+    int chance;       /* chance to get one each day, if nonzero */
+    char *got_em;
+    char *none_now;
+    char *none_ever;
+    char *task_desc;
+    int public;       /* 3rd party view, yes/no */
+    int piety;        /* Does it use piety? */
+};
+#endif //OLY_FORWARD_struct_harvest
+
+#ifndef OLY_FORWARD_loc_control_ent
+#define OLY_FORWARD_loc_control_ent
+struct loc_control_ent {
+    int closed;
+    int nobles, men, weight;
+};
+#endif
+
+#ifndef OLY_FORWARD_struct_make
+#define OLY_FORWARD_struct_make
+struct make {
+    int item;
+    int inp1;
+    int inp1_factor; /* # of inp1 needed to make 1 */
+    int inp2;
+    int inp2_factor; /* # of inp2 needed to make 1 */
+    int inp3;
+    int inp3_factor; /* # of inp3 needed to make 1 */
+    int req_skill;
+    int worker;      /* worker needed */
+    char *got_em;
+    int public;      /* does everyone see us make this */
+    int where;       /* place required for production */
+    int aura;        /* aura per unit required */
+    int factor;      /* multiplying qty factor, usuall 1 */
+    int days;        /* days to make each thing */
+};
+#endif //OLY_FORWARD_struct_make
+
 #ifndef OLY_FORWARD_schar
 #define OLY_FORWARD_schar
 typedef signed char schar;

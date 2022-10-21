@@ -556,8 +556,7 @@ create_combat_artifact(int piece) {
  *  (2) Otherwise, randomly instantiated.
  *
  */
-int
-create_random_artifact(int monster) {
+int create_random_artifact(int monster) {
     int select;
     int piece = create_unique_item(monster, sub_magic_artifact);
 

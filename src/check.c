@@ -1,8 +1,14 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 /*  check.c -- check database integrity and effect minor repairs */
@@ -630,7 +636,7 @@ check_magical_artifacts() {
  *  Always notes a database correction with a message to strerr.
  */
 
-check_db() {
+void check_db(void) {
     int i;
 
     stage("check_db()");

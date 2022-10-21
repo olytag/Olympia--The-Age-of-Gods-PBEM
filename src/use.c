@@ -1,4 +1,3 @@
-
 // olytag - Olympia: The Age of Gods
 //
 // Copyright (c) 2022 by the OlyTag authors.
@@ -1669,8 +1668,7 @@ list_skill_sup(int who, struct skill_ent *e)
 
 #else
 
-void
-list_skill_sup(int who, struct skill_ent *e, char *prefix) {
+void list_skill_sup(int who, struct skill_ent *e, char *prefix) {
 
     if (!prefix[0]) {
         tagout(who, "<tag type=skill id=%d skill=%d exp=%d>",

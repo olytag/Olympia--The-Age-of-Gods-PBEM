@@ -1,7 +1,12 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 /* region production routines */
@@ -289,19 +294,24 @@ item_gen_here(int where, int item) {
 }
 
 
+#ifndef OLY_FORWARD_struct_harvest
+#define OLY_FORWARD_struct_harvest
 struct harvest {
     int item;
     int skill;
     int worker;
-    int chance;        /* chance to get one each day, if nonzero */
+    int chance;       /* chance to get one each day, if nonzero */
     char *got_em;
     char *none_now;
     char *none_ever;
     char *task_desc;
-    int public;        /* 3rd party view, yes/no */
-    int piety;              /* Does it use piety? */
-}
-        harv_tbl[] = {
+    int public;       /* 3rd party view, yes/no */
+    int piety;        /* Does it use piety? */
+};
+#endif //OLY_FORWARD_struct_harvest
+
+
+struct harvest harv_tbl[] = {
         {
                 item_peasant,
                 0,
@@ -655,8 +665,9 @@ v_generic_harvest(struct command *c, int number, int days, struct harvest *t) {
      */
     avail = item_avail(where, t->item);
 
-    if (avail <= 0)
+    if (avail <= 0) {
         return i_generic_harvest(c, t);
+    }
 
     if (t->worker) {
         workers = has_item(c->who, t->worker);
@@ -783,8 +794,7 @@ d_generic_harvest(struct command *c, struct harvest *t) {
 }
 
 
-int
-i_generic_harvest(struct command *c, struct harvest *t) {
+int i_generic_harvest(struct command *c, struct harvest *t) {
     int where = subloc(c->who);
 
     if (t->item == item_fish && is_ship(where)) {
