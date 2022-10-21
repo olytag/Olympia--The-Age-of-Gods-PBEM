@@ -127,7 +127,12 @@ int main(int argc, char **argv) {
                 break;
 
             case 't':
-                ilist_test();
+                i = test_ilist();
+                if (i != 0) {
+                    printf("test ilist: failed\n");
+                    exit(2);
+                }
+                printf("test ilist: passed\n");
                 exit(0);
 
             case 'T':

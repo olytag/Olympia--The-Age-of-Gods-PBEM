@@ -100,10 +100,12 @@ add_executable(oly
         src/use.c src/use.h
         src/win.c
         src/z.c src/z.h
+        src/ilist.c src/ilist.h
 
         src/helpers.c
         src/os_windows.c src/os_linux.c src/os_mac.c
         src/types.h src/forward.h
         src/prng.c src/prng.h
-        src/random_test.c)
+        src/random_test.c
+        )
 target_include_directories(oly PRIVATE src/)

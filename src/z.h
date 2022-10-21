@@ -6,6 +6,8 @@
 #ifndef OLYTAG_Z_H
 #define OLYTAG_Z_H
 
+#include "ilist.h"
+
 /* VLN#define	SYSV
 */
 
@@ -71,43 +73,6 @@ extern void asfail(char *file, int line, char *cond);
 #define	assert(p)	if(!(p)) asfail(__FILE__, __LINE__, "p");
 #endif
 
-
-/*
- *  'ilist' reallocing array definitions
- */
-
-#ifndef OLY_FORWARD_ilist
-#define OLY_FORWARD_ilist
-typedef int *ilist;
-#endif //OLY_FORWARD_ilist
-
-#ifndef ilist_len
-#define ilist_len(a)        (((int *)(a)) == NULL ? 0 : ((int *)(a))[-2])
-#endif //ilist_len
-
-extern void ilist_append(ilist *l, int n);
-
-extern void ilist_add(ilist *l, int n);
-
-extern void ilist_prepend(ilist *l, int n);
-
-extern void ilist_delete(ilist *l, int i);
-
-extern void ilist_clear(ilist *l);
-
-extern void ilist_reclaim(ilist *l);
-
-extern int ilist_lookup(ilist l, int n);
-
-extern void ilist_rem_value(ilist *l, int n);
-
-extern void ilist_rem_value_uniq(ilist *l, int n);
-
-extern ilist ilist_copy(ilist l);
-
-extern void ilist_scramble(ilist l);
-
-extern void ilist_insert(ilist *l, int pos, int n);
 
 extern int readfile(char *path);
 

@@ -7,6 +7,7 @@
 #define OLYTAG_FORWARD_H
 
 #include <stdio.h>
+#include "ilist.h"
 #include "types.h"
 
 void add_aura(int who, int aura);
@@ -171,6 +172,9 @@ void market_report(int who, int where);
 void match_all_trades();
 int mine_depth(int where);
 void move_stack(int who, int where);
+void my_free(void *ptr);
+void *my_malloc(unsigned size);
+void *my_realloc(void *ptr, unsigned size);
 char *nation_s(int n);
 void natural_weather();
 int near_rocky_coast(int loc);
@@ -511,12 +515,6 @@ int v_vision_reg(struct command *), d_vision_reg(struct command *);
 int v_use_cs(struct command *c);
 int v_implicit(struct command *c);
 int v_raze(struct command *), d_raze(struct command *);
-
-void ilist_append(ilist *l, int n);
-#ifndef ilist_len
-#define ilist_len(a)        (((int *)(a)) == NULL ? 0 : ((int *)(a))[-2])
-#endif //ilist_len
-void ilist_scramble(ilist l);
 
 // mdhender: temporary declarations to appease compiling on Windows with gcc
 void bcopy(const void *src, void *dest, size_t n);
