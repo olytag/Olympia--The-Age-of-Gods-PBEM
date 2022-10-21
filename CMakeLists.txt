@@ -28,11 +28,6 @@ add_executable(mapgen
         mapgen/lists.c mapgen/lists.h)
 target_include_directories(mapgen PRIVATE mapgen/)
 
-add_executable(prng_test
-        src/prng.c src/prng.h
-        src/prng_test.c)
-target_include_directories(prng_test PRIVATE src/)
-
 add_executable(oly
         src/main.c
 
@@ -109,3 +104,8 @@ add_executable(oly
         src/random_test.c
         )
 target_include_directories(oly PRIVATE src/)
+
+add_executable(prng_test
+        src/prng.c src/prng.h
+        src/prng_test.c)
+target_include_directories(prng_test PRIVATE src/)
