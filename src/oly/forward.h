@@ -99,7 +99,6 @@ int effective_workers(int who);
 void experience_use_speedup(struct command *c);
 char *extra_item_info(int who, int item, int qty);
 void extract_stacked_unit(int who);
-void file_lock(char *name, int fd);
 int find_command(char *cmd);
 int find_nation(char *name);
 struct trade *find_trade(int i, int n, int item);
@@ -166,7 +165,6 @@ int los_province_distance(int who, int i);
 long MM(int item);
 void mail_reports();
 void make_tower_guild(int new, int skill);
-int makedir(const char *path, int mode);
 int market_here(int where);
 void market_report(int who, int where);
 void match_all_trades();
@@ -518,8 +516,8 @@ int v_raze(struct command *), d_raze(struct command *);
 // mdhender: temporary declarations to appease compiling on Windows with gcc
 void bcopy(const void *src, void *dest, size_t n);
 void bzero(void *s, size_t n);
-int get_process_id(void);
-long int random(void);;
+
+long int random(void);
 void srandom(unsigned int seed);
 
 #endif //OLYTAG_FORWARD_H

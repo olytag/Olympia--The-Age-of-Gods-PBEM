@@ -12,6 +12,7 @@
 #include    "oly.h"
 #include "loop.h"
 #include "forward.h"
+#include "os/generic.h"
 
 #define        MAX_BUFFER    50
 #define        BUF_LEN        LEN

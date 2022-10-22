@@ -11,6 +11,7 @@
 #include    "z.h"
 #include    "oly.h"
 #include "forward.h"
+#include "os/generic.h"
 
 
 /*

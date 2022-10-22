@@ -83,13 +83,15 @@ add_executable(oly
         src/oly/z.c src/oly/z.h
 
         src/oly/helpers.c
-        src/oly/os_windows.c src/oly/os_linux.c src/oly/os_mac.c
         src/oly/types.h src/oly/forward.h
 
         src/memory/memory.c src/memory/memory.h
+        src/os/linux.c src/os/linux.h
+        src/os/mac.c src/os/mac.h
+        src/os/windows.c src/os/windows.h
         src/random/sfc32.c src/random/sfc32.h
         src/random/random.c src/random/random.h
-        src/vectors/ilist.c src/vectors/ilist.h)
+        src/vectors/ilist.c src/vectors/ilist.h src/os/generic.h)
 target_include_directories(oly PRIVATE src/oly)
 
 
