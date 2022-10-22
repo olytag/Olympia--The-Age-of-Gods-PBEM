@@ -20,12 +20,21 @@
  *  Abandon all hope, ye who enter here.
  */
 
+#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "lists.h"
+#include <getopt.h>
 #include "z.h"
 #include "mapgen.h"
+#include "ilist.h"
+#include "ilist_test.h"
+#include "rlist.h"
+#include "prng_test.h"
+#include "random.h"
+#include "random_test.h"
+
+#define        SEED_FILE    "randseed"
 
 
 /*VLN	#define		LEN		256
@@ -249,11 +258,41 @@ long rc_to_region(long row, long col) {
     return reg;
 }
 
-int main(void) {
+int main(int argc, char **argv) {
+    for (int opt = getopt(argc, argv, "t:"); opt != EOF; opt = getopt(argc, argv, "t:")) {
+        switch (opt) {
+            case 't':
+                if (strcmp(optarg, "ilist") == 0) { // test ilist
+                    if (0 != test_ilist()) {
+                        printf("test %s: failed\n", optarg);
+                        exit(2);
+                    }
+                } else if (strcmp(optarg, "prng") == 0) { // test prng
+                    if (0 != test_prng()) {
+                        printf("test %s: failed\n", optarg);
+                        exit(2);
+                    }
+                } else if (strcmp(optarg, "random") == 0) { // test random number function
+                    if (0 != test_random()) {
+                        printf("test %s: failed\n", optarg);
+                        exit(2);
+                    }
+                } else {
+                    printf("error: unknown option \"-%c %s\"\n", opt, optarg);
+                    exit(2);
+                }
+                printf("test %s: passed\n", optarg);
+                exit(0);
+            default:
+                printf("error: unknown option '%c'\n", opt);
+                exit(2);
+        }
+    }
+
     clear_alloc_flag();
     dir_assert();
     open_fps();
-    load_seed();
+    load_seed(SEED_FILE);
     map_init();
     read_map();
     fix_terrain_land();
