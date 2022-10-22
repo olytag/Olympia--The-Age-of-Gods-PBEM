@@ -711,42 +711,9 @@ fuzzy_strcmp(char *one, char *two) {
 
 unsigned short seed[3];
 
-#ifdef SYSV
-void
-init_random()
-{
-    long l;
-
-    if (seed[0] == 0 && seed[1] == 0 && seed[2] == 0)
-    {
-        l = time(NULL);
-        seed[0] = l & 0xFFFF;
-        seed[1] = getpid();
-        seed[2] = l >> 16;
-    }
-}
-
-
-int
-rnd(int low, int high)
-{
-    extern double erand48();
-
-    return (int) (erand48(seed) * (high - low + 1) + low);
-}
-
-#else	/* ifdef SYSV */
-
 void init_random(void) {
     // mdhender: comment out for test building
     //    long l;
     //    srandom(l);
 }
-
-// mdhender: comment out for test building
-//int rnd(int low, int high) {
-//
-//    return random() % (high - low + 1) + low;
-//}
-#endif    /* ifdef SYSV */
 

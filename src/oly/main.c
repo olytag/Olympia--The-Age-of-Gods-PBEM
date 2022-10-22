@@ -114,13 +114,8 @@ int main(int argc, char **argv) {
                 break;
 
             case 'R':        /* test random number generator */
-                i = test_random();
-                if (i != 0) {
-                    printf("test random: failed\n");
-                    exit(2);
-                }
-                printf("test random: passed\n");
-                exit(0);
+                printf("error: '%s -R' has been replaced with 'random/random_test\n", argv[0]);
+                exit(2);
 
             case 'S':        /* save database when done */
                 save_flag = TRUE;

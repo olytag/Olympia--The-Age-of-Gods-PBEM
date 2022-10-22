@@ -237,7 +237,6 @@ int report_account_out(int pl, int who);
 void reseed_monster_sublocs();
 int reset_cast_where(int who);
 void restore_stack_actions(int who);;
-int rnd(int low, int high);
 int savage_hates(int where);
 void save_box(FILE *fp, int a);
 void save_db();

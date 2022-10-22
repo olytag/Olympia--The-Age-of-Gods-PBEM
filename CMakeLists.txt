@@ -13,21 +13,6 @@ if (WIN32)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOLYTAG_CC_WINDOWS")
 endif ()
 
-add_executable(checkcode
-        src/checkcode/main.c)
-target_include_directories(checkcode PRIVATE src/checkcode)
-
-add_executable(mapgen
-        src/mapgen/mapgen.c src/mapgen/mapgen.h
-        src/mapgen/z.c src/mapgen/z.h
-        src/mapgen/ilist.c src/mapgen/ilist.h
-        src/mapgen/ilist_test.c src/mapgen/ilist_test.h
-        src/mapgen/rlist.c src/mapgen/rlist.h
-        src/mapgen/prng.c src/mapgen/prng.h
-        src/mapgen/prng_test.c src/mapgen/prng_test.h
-        src/mapgen/random.c src/mapgen/random.h
-        src/mapgen/random_test.c src/mapgen/random_test.h)
-target_include_directories(mapgen PRIVATE src/mapgen)
 
 add_executable(oly
         src/oly/main.c
@@ -101,12 +86,39 @@ add_executable(oly
         src/oly/helpers.c
         src/oly/os_windows.c src/oly/os_linux.c src/oly/os_mac.c
         src/oly/types.h src/oly/forward.h
-        src/oly/prng.c src/oly/prng.h
-        src/oly/random_test.c)
+
+        src/random/sfc32.c src/random/sfc32.h
+        src/random/random.c src/random/random.h)
 target_include_directories(oly PRIVATE src/oly)
 
-add_executable(prng_test
-        src/prng_test/main.c
 
-        src/oly/prng.c src/oly/prng.h)
-target_include_directories(prng_test PRIVATE src/prng_test src/oly)
+add_executable(mapgen
+        src/mapgen/mapgen.c src/mapgen/mapgen.h
+        src/mapgen/z.c src/mapgen/z.h
+        src/mapgen/ilist.c src/mapgen/ilist.h
+        src/mapgen/ilist_test.c src/mapgen/ilist_test.h
+        src/mapgen/rlist.c src/mapgen/rlist.h
+        src/mapgen/prng.c src/mapgen/prng.h
+        src/mapgen/prng_test.c src/mapgen/sfc32_test.h
+        src/mapgen/random.c src/mapgen/random.h
+        src/mapgen/random_test.c src/mapgen/random_test.h)
+target_include_directories(mapgen PRIVATE src/mapgen)
+
+
+add_executable(checkcode
+        src/checkcode/main.c)
+target_include_directories(checkcode PRIVATE src/checkcode)
+
+
+add_executable(random_test
+        src/random/random_test.c
+        src/random/sfc32.c src/random/sfc32.h
+        src/random/random.c src/random/random.h)
+target_include_directories(random_test PRIVATE src/random)
+
+
+add_executable(sfc32_test
+        src/random/sfc32_test.c
+        src/random/sfc32.c src/random/sfc32.h)
+target_include_directories(sfc32_test PRIVATE src/random)
+

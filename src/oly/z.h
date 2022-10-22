@@ -7,6 +7,7 @@
 #define OLYTAG_Z_H
 
 #include "ilist.h"
+#include "random/random.h"
 
 /* VLN#define	SYSV
 */
@@ -58,8 +59,6 @@ extern int i_strncmp(char *s, char *t, int n);
 extern int i_strcmp(char *s, char *t);
 
 extern int fuzzy_strcmp(char *, char *);
-
-extern int rnd(int low, int high);
 
 /*
  *  Assertion verifier

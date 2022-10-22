@@ -4,10 +4,13 @@
 // Please see the LICENSE file in the root directory of this repository for further information.
 
 #include <stdio.h>
-#include "prng.h"
-#include "forward.h"
+#include "random.h"
+#include "sfc32.h"
 
-int test_random(void) {
+int main(void) {
+    // set stdout to flush like stderr
+    setbuf(stdout, NULL);
+
     int errors = 0;
 
     sfc32 *s = sfc32_init(0, 12345, 0, 1);
@@ -19,12 +22,12 @@ int test_random(void) {
     for (int i = 0; i < 10; i++) {
         uint32_t got = sfc32_next(s);
         if (got != expect1[i]) {
-            printf("sfc32: fail: expect %10u: got %10u\n", expect1[i], got);
+            printf("random: sfc32: expect %10u: got %10u\n", expect1[i], got);
             errors++;
         }
     }
     if (errors != 0) {
-        printf("test_random: test 1 failed\n");
+        printf("random: test 1 failed\n");
         return 2;
     }
 
@@ -48,7 +51,7 @@ int test_random(void) {
         }
     }
     if (errors != 0) {
-        printf("test_random: test 2 failed\n");
+        printf("random: test 2 failed\n");
         return 2;
     }
 
@@ -62,7 +65,7 @@ int test_random(void) {
         }
     }
     if (errors != 0) {
-        printf("test_random: test 3 failed\n");
+        printf("random: test 3 failed\n");
         return 2;
     }
 
@@ -86,45 +89,7 @@ int test_random(void) {
         }
     }
     if (errors != 0) {
-        printf("test_random: test 4 failed\n");
-        return 2;
-    }
-
-    int input5[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int expect5[10] = {2, 10, 1, 4, 7, 9, 3, 5, 8, 6};
-    ilist l = 0;
-    for (int i = 0; i < 10; i++) {
-        ilist_append(&l, input5[i]);
-    }
-    if (ilist_len(l) != 10) {
-        printf("rnd: fail: ilist_len: expect %10d: got %10d\n", 10, ilist_len(l));
-        errors++;
-    } else {
-        for (int i = 0; i < 10; i++) {
-            int got = l[i];
-            if (got != input5[i]) {
-                printf("rnd: fail: %3d: expect %10d: got %10d\n", i, expect5[i], got);
-                errors++;
-            }
-        }
-        if (errors == 0) {
-            ilist_scramble(l);
-            if (ilist_len(l) != 10) {
-                printf("rnd: fail: ilist_len: expect %10d: got %10d\n", 10, ilist_len(l));
-                errors++;
-            } else {
-                for (int i = 0; i < 10; i++) {
-                    int got = l[i];
-                    if (got != expect5[i]) {
-                        printf("rnd: fail: %3d: expect %10d: got %10d\n", i, expect5[i], got);
-                        errors++;
-                    }
-                }
-            }
-        }
-    }
-    if (errors != 0) {
-        printf("test_random: test 5 failed\n");
+        printf("random: test 4 failed\n");
         return 2;
     }
 

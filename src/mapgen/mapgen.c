@@ -30,7 +30,7 @@
 #include "ilist.h"
 #include "ilist_test.h"
 #include "rlist.h"
-#include "prng_test.h"
+#include "sfc32_test.h"
 #include "random.h"
 #include "random_test.h"
 
