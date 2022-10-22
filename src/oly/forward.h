@@ -7,8 +7,8 @@
 #define OLYTAG_FORWARD_H
 
 #include <stdio.h>
-#include "ilist.h"
 #include "types.h"
+#include "vectors/ilist.h"
 
 void add_aura(int who, int aura);
 void add_unformed_sup(int pl);

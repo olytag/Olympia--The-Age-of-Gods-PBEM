@@ -11,6 +11,7 @@
 #include    "oly.h"
 #include    <sys/stat.h>
 #include "forward.h"
+#include "memory/memory.h"
 
 /*
  *  pretty_data_files:  include parenthesisted names in the data files,
@@ -114,7 +115,7 @@ int main(int argc, char **argv) {
                 break;
 
             case 'R':        /* test random number generator */
-                printf("error: '%s -R' has been replaced with 'random/random_test\n", argv[0]);
+                printf("error: '%s -R' has been replaced with 'random/random_test'\n", argv[0]);
                 exit(2);
 
             case 'S':        /* save database when done */
@@ -122,13 +123,8 @@ int main(int argc, char **argv) {
                 break;
 
             case 't':
-                i = test_ilist();
-                if (i != 0) {
-                    printf("test ilist: failed\n");
-                    exit(2);
-                }
-                printf("test ilist: passed\n");
-                exit(0);
+                printf("error: '%s -t' has been replaced with 'vectors/ilist_test'\n", argv[0]);
+                exit(2);
 
             case 'T':
                 time_self = TRUE;
@@ -431,11 +427,7 @@ int main(int argc, char **argv) {
 
     stage(NULL);
 
-    {
-        extern int malloc_size, realloc_size;
-
-        printf("\tmalloc, realloc = %d, %d\n", malloc_size, realloc_size);
-    }
+    printf("\tmalloc, realloc = %d, %d\n", my_malloc_size, my_realloc_size);
 
     exit(0);
 }
