@@ -6,101 +6,107 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNEW_TRADE")
 
 if (LINUX)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOLYTAG_CC_LINUX -m32")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOLYTAG_CC_LINUX -DLINUX -m32")
 endif ()
 
 if (WIN32)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOLYTAG_CC_WINDOWS")
 endif ()
 
+add_executable(checkcode
+        src/checkcode/main.c)
+target_include_directories(checkcode PRIVATE src/checkcode)
+
 add_executable(mapgen
-        mapgen/mapgen.c mapgen/mapgen.h
-        mapgen/z.c mapgen/z.h
-        mapgen/ilist.c mapgen/ilist.h mapgen/ilist_test.c mapgen/ilist_test.h
-        mapgen/rlist.c mapgen/rlist.h
-        mapgen/prng.c mapgen/prng.h mapgen/prng_test.c mapgen/prng_test.h
-        mapgen/random.c mapgen/random.h mapgen/random_test.c mapgen/random_test.h
-        )
-target_include_directories(mapgen PRIVATE mapgen/)
+        src/mapgen/mapgen.c src/mapgen/mapgen.h
+        src/mapgen/z.c src/mapgen/z.h
+        src/mapgen/ilist.c src/mapgen/ilist.h
+        src/mapgen/ilist_test.c src/mapgen/ilist_test.h
+        src/mapgen/rlist.c src/mapgen/rlist.h
+        src/mapgen/prng.c src/mapgen/prng.h
+        src/mapgen/prng_test.c src/mapgen/prng_test.h
+        src/mapgen/random.c src/mapgen/random.h
+        src/mapgen/random_test.c src/mapgen/random_test.h)
+target_include_directories(mapgen PRIVATE src/mapgen)
 
 add_executable(oly
-        src/main.c
+        src/oly/main.c
 
-        src/add.c
-        src/adv.c
-        src/alchem.c
-        src/art.c
-        src/artifacts.c src/artifacts.h
-        src/basic.c
-        src/beast.c
-        src/build.c src/build.h
-        src/buy.c
-        src/c1.c
-        src/c2.c
-        src/check.c
-        src/cloud.c
-        src/code.c src/code.h
-        src/combat.c src/combat.h
-        src/day.c
-        src/dir.c src/dir.h
-        src/display.c src/display.h
-        src/eat.c src/eat.h
-        src/effect.c src/effect.h
-        src/etc.h
-        src/faery.c
-        src/garr.c src/garr.h
-        src/gate.c
-        src/glob.c
-        src/gm.c
-        src/hades.c
-        src/hero.c
-        src/immed.c
-        src/input.c
-        src/io.c
-        src/kill.c src/kill.h
-        src/loc.c src/loc.h
-        src/loop.h
-        src/lore.c
-        src/make.c
-        src/map.c
-        src/mining.c
-        src/move.c
-        src/necro.c
-        src/npc.c
-        src/order.c src/order.h
-        src/perm.c
-        src/produce.c
-        src/quest.c src/quest.h
-        src/ranger.c
-        src/relig.c src/relig.h
-        src/report.c
-        src/savage.c
-        src/scry.c
-        src/seed.c
-        src/shipcraft.c
-        src/sout.c src/sout.h
-        src/stack.c src/stack.h
-        src/stealth.c
-        src/storm.c
-        src/summary.c
-        src/swear.c src/swear.h
-        src/times.c
-        src/trading.c
-        src/u.c src/u.h
-        src/use.c src/use.h
-        src/win.c
-        src/z.c src/z.h
-        src/ilist.c src/ilist.h
+        src/oly/add.c
+        src/oly/adv.c
+        src/oly/alchem.c
+        src/oly/art.c
+        src/oly/artifacts.c src/oly/artifacts.h
+        src/oly/basic.c
+        src/oly/beast.c
+        src/oly/build.c src/oly/build.h
+        src/oly/buy.c
+        src/oly/c1.c
+        src/oly/c2.c
+        src/oly/check.c
+        src/oly/cloud.c
+        src/oly/code.c src/oly/code.h
+        src/oly/combat.c src/oly/combat.h
+        src/oly/day.c
+        src/oly/dir.c src/oly/dir.h
+        src/oly/display.c src/oly/display.h
+        src/oly/eat.c src/oly/eat.h
+        src/oly/effect.c src/oly/effect.h
+        src/oly/etc.h
+        src/oly/faery.c
+        src/oly/garr.c src/oly/garr.h
+        src/oly/gate.c
+        src/oly/glob.c
+        src/oly/gm.c
+        src/oly/hades.c
+        src/oly/hero.c
+        src/oly/immed.c
+        src/oly/input.c
+        src/oly/io.c
+        src/oly/kill.c src/oly/kill.h
+        src/oly/loc.c src/oly/loc.h
+        src/oly/loop.h
+        src/oly/lore.c
+        src/oly/make.c
+        src/oly/map.c
+        src/oly/mining.c
+        src/oly/move.c
+        src/oly/necro.c
+        src/oly/npc.c
+        src/oly/order.c src/oly/order.h
+        src/oly/perm.c
+        src/oly/produce.c
+        src/oly/quest.c src/oly/quest.h
+        src/oly/ranger.c
+        src/oly/relig.c src/oly/relig.h
+        src/oly/report.c
+        src/oly/savage.c
+        src/oly/scry.c
+        src/oly/seed.c
+        src/oly/shipcraft.c
+        src/oly/sout.c src/oly/sout.h
+        src/oly/stack.c src/oly/stack.h
+        src/oly/stealth.c
+        src/oly/storm.c
+        src/oly/summary.c
+        src/oly/swear.c src/oly/swear.h
+        src/oly/times.c
+        src/oly/trading.c
+        src/oly/u.c src/oly/u.h
+        src/oly/use.c src/oly/use.h
+        src/oly/win.c
+        src/oly/z.c src/oly/z.h
+        src/oly/ilist.c src/oly/ilist.h
 
-        src/helpers.c
-        src/os_windows.c src/os_linux.c src/os_mac.c
-        src/types.h src/forward.h
-        src/prng.c src/prng.h
-        src/random_test.c
-        )
-target_include_directories(oly PRIVATE src/)
+        src/oly/helpers.c
+        src/oly/os_windows.c src/oly/os_linux.c src/oly/os_mac.c
+        src/oly/types.h src/oly/forward.h
+        src/oly/prng.c src/oly/prng.h
+        src/oly/random_test.c)
+target_include_directories(oly PRIVATE src/oly)
 
 add_executable(prng_test
-        src/prng.c src/prng.h
-        src/prng_test.c)
-target_include_directories(prng_test PRIVATE src/)
+        src/prng_test/main.c
+
+        src/oly/prng.c src/oly/prng.h)
+target_include_directories(prng_test PRIVATE src/prng_test src/oly)
