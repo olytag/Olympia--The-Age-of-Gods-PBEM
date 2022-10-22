@@ -97,11 +97,12 @@ add_executable(mapgen
         src/mapgen/z.c src/mapgen/z.h
         src/mapgen/ilist.c src/mapgen/ilist.h
         src/mapgen/ilist_test.c src/mapgen/ilist_test.h
-        src/mapgen/rlist.c src/mapgen/rlist.h
         src/mapgen/prng.c src/mapgen/prng.h
         src/mapgen/prng_test.c src/mapgen/sfc32_test.h
         src/mapgen/random.c src/mapgen/random.h
-        src/mapgen/random_test.c src/mapgen/random_test.h)
+        src/mapgen/random_test.c src/mapgen/random_test.h
+        src/vectors/roads.c src/vectors/roads.h
+        src/vectors/tiles.c src/vectors/tiles.h)
 target_include_directories(mapgen PRIVATE src/mapgen)
 
 
