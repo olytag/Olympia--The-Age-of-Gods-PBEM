@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include "prng.h"
-#include "prng_test.h"
+#include "sfc32_test.h"
 
 int test_prng(void) {
     // set stdout to flush like stderr

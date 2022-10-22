@@ -4,9 +4,12 @@
 // Please see the LICENSE file in the root directory of this repository for further information.
 
 #include <stdio.h>
-#include "prng.h"
+#include "sfc32.h"
 
 int main(void) {
+    // set stdout to flush like stderr
+    setbuf(stdout, NULL);
+
     sfc32 *s = sfc32_init(0, 12345, 0, 1);
     uint32_t expect[11] = {
             235160590,
@@ -26,7 +29,7 @@ int main(void) {
     for (int i = 0; expect[i] != 0; i++) {
         uint32_t got = sfc32_next(s);
         if (got != expect[i]) {
-            printf("sfc32: fail: expect %10u: got %10u\n", expect[i], got);
+            printf("sfc32: expect %10u: got %10u\n", expect[i], got);
             errors++;
         }
     }

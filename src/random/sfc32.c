@@ -6,24 +6,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <malloc.h>
-#include "prng.h"
-
-// rnd replaces the rnd() from z.c.
-// it returns a psuedo-random value in the range of low...high
-int rnd(int low, int high) {
-    static sfc32 *state = 0;
-    if (state == 0) {
-        state = sfc32_init(0, 12345, 0, 1);
-    }
-    int n = (int)(sfc32_next(state));
-    if (n < 0) {
-        n = -n;
-    }
-    n = n % (high - low + 1) + low;
-    //printf("rnd(%d,%d) %d\n", low, high, n);
-    return n;
-}
-
+#include "sfc32.h"
 
 
 // sfc32_seed seeds a PRNG.

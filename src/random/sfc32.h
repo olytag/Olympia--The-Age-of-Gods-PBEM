@@ -3,8 +3,8 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#ifndef OLYTAG_PRNG_H
-#define OLYTAG_PRNG_H
+#ifndef OLYTAG_RANDOM_SFC32_H
+#define OLYTAG_RANDOM_SFC32_H
 
 // mdhender: a simple random number generator for testing
 
@@ -43,4 +43,4 @@ uint32_t sfc32_next(sfc32 *state);
 // sfc32_init returns an initialized PRNG.
 sfc32 *sfc32_init(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
 
-#endif //OLYTAG_PRNG_H
+#endif //OLYTAG_SFC32_H
