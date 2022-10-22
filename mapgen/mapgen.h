@@ -48,7 +48,6 @@ void gate_stone_circles(void);
 int is_port_city(long row, long col);
 int island_allowed(long row, long col);
 //void link_roads(struct tile *from, struct tile *to, long hidden, char *name);
-void load_seed(void);
 void make_appropriate_subloc(long row, long col, int unused);
 void make_gates(void);
 void make_graveyards(void);

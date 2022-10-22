@@ -6,6 +6,7 @@
 #ifndef OLYTAG_Z_H
 #define OLYTAG_Z_H
 
+#include <stdio.h>
 
 #define	TRUE	1
 #define	FALSE	0
@@ -47,19 +48,19 @@ extern char *getlin_ew(FILE *);
 extern long i_strncmp(char *s, char *t, long n);
 extern long i_strcmp(char *s, char *t);
 extern long fuzzy_strcmp(char *, char *);
-extern long rnd(long low, long high);
 
-/*
- *  Assertion verifier
- */
 
-extern void asfail(char *file, long line, char *cond);
-
-#ifdef __STDC__
-#define	assert(p)	if(!(p)) asfail(__FILE__, __LINE__, #p);
-#else
-#define	assert(p)	if(!(p)) asfail(__FILE__, __LINE__, "p");
-#endif
+///*
+// *  Assertion verifier
+// */
+//
+//extern void asfail(char *file, long line, char *cond);
+//
+//#ifdef __STDC__
+//#define	assert(p)	if(!(p)) asfail(__FILE__, __LINE__, #p);
+//#else
+//#define	assert(p)	if(!(p)) asfail(__FILE__, __LINE__, "p");
+//#endif
 
 
 extern long readfile(char *path);

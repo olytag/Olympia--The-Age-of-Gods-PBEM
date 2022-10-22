@@ -3,20 +3,24 @@ project(olytag C)
 include_directories(src)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DLINUX -DNEW_TRADE -L /tmp/olytag/build/unix")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNEW_TRADE")
 
-add_executable(ilist_test
-        mapgen/ilist_test.c
-        mapgen/rnd.c
-        mapgen/lists.c mapgen/lists.h
-        )
-target_include_directories(ilist_test PRIVATE mapgen/)
+if (LINUX)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOLYTAG_CC_LINUX -m32")
+endif ()
+
+if (WIN32)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOLYTAG_CC_WINDOWS")
+endif ()
 
 add_executable(mapgen
         mapgen/mapgen.c mapgen/mapgen.h
         mapgen/z.c mapgen/z.h
-        mapgen/rnd.c
-        mapgen/lists.c mapgen/lists.h)
+        mapgen/ilist.c mapgen/ilist.h mapgen/ilist_test.c mapgen/ilist_test.h
+        mapgen/rlist.c mapgen/rlist.h
+        mapgen/prng.c mapgen/prng.h mapgen/prng_test.c mapgen/prng_test.h
+        mapgen/random.c mapgen/random.h mapgen/random_test.c mapgen/random_test.h
+        )
 target_include_directories(mapgen PRIVATE mapgen/)
 
 #add_executable(oly
