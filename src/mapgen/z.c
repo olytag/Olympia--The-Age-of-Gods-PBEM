@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "z.h"
-#include "random.h"
+#include "random/random.h"
 
 // #define bcopy(a,b,n)       memcpy(b, a, n)
 // #define bzero(a,  n)       memset(a, 0, n)

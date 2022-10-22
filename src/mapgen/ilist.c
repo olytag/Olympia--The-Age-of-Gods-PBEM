@@ -18,7 +18,7 @@
 #include <string.h>
 #include "ilist.h"
 #include "z.h"
-#include "random.h"
+#include "random/random.h"
 
 
 #define ILIST_ALLOC 6 // doubles with each realloc
