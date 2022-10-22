@@ -10,5 +10,8 @@
 // rnd returns a pseudo-random value in the range of low...high
 int rnd(int low, int high);
 
+void load_seed(char *seedFileName);
+
+void save_seed(char *seedFileName);
 
 #endif //OLYTAG_RANDOM_RANDOM_H
