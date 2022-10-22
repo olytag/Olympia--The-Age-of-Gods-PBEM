@@ -1,3 +1,10 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_ORDER_H
+#define OLYTAG_ORDER_H
 
 extern char *top_order(int player, int who);
 
@@ -24,3 +31,5 @@ extern int new_ent(int kind, int sk);
 extern void list_pending_orders_sup(int who, int num, int show_empty);
 
 extern int stop_order(int pl, int who);
+
+#endif //OLYTAG_ORDER_H

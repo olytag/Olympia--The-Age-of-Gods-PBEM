@@ -1,10 +1,20 @@
 
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
 #include    <stdio.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
+
 
 extern double pow(double, double);
+
+static void reseed_monster_provinces(void);
 
 /*
  *  0	not on the ocean
@@ -785,8 +795,7 @@ lose_monsters(int mtype, char *msg, int max_loss, int chance) {
             }next_char;
 }
 
-static void
-reseed_monster_provinces() {
+static void reseed_monster_provinces(void) {
     int where, who, found, item;
     int provinces = 0, monsters = 0;
     int create_new_beasts(int where, int sk);
@@ -1067,7 +1076,7 @@ increment_current_piety() {
                             if (staff_bonus) {
                                 wout(who, "Your god rewards you with %s piety for the parts "
                                           "of the Staff of the Sun you hold.", nice_num(pow(2, staff_bonus)));
-                                add_piety(who, pow(2, staff_bonus));
+                                add_piety(who, pow(2, staff_bonus), 0); // mdhender: added 0 to compile
                             };
                         }next_char;
                 /*

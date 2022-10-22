@@ -1,3 +1,8 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
 /*
  *  Basic magic
  */
@@ -7,6 +12,7 @@
 #include    <math.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 void
 add_aura(int who, int aura) {
@@ -184,8 +190,7 @@ v_hinder_med(struct command *c) {
 }
 
 
-void
-hinder_med_omen(int who, int other) {
+void hinder_med_omen(int who, int other) {
 
     if (rnd(1, 100) < 50) { return; }
 
@@ -338,7 +343,7 @@ d_reveal_mage(struct command *c) {
                         }
 
                         if (c->use_exp > exp_journeyman) {
-                            list_skill_sup(c->who, e);
+                            list_skill_sup(c->who, e, "");
                         } else {
                             wout(c->who, "%s", box_name(e->skill));
                         }

@@ -1,10 +1,17 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    <sys/types.h>
 #include    <dirent.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
+
 
 int monster_subloc_init = FALSE;
 int population_init = FALSE;
@@ -4015,7 +4022,7 @@ write_all_boxes() {
     }
 
     system(sout("rm -rf %s/fact", libdir));
-    mkdir(sout("%s/fact", libdir), 0755);
+    makedir(sout("%s/fact", libdir), 0755);
 
     write_kind(T_loc, "loc");
     write_kind(T_item, "item");
@@ -4588,7 +4595,7 @@ save_logdir() {
     char *s, *t;
 
     system(sout("rm -rf %s/save/%d", libdir, sysclock.turn));
-    mkdir(sout("%s/save", libdir), 0755);
+    makedir(sout("%s/save", libdir), 0755);
 
     s = sout("%s/log", libdir);
     t = sout("%s/save/%d", libdir, sysclock.turn);
@@ -4610,7 +4617,7 @@ save_logdir() {
         perror("");
     }
 
-    mkdir(sout("%s/log", libdir), 0755);
+    makedir(sout("%s/log", libdir), 0755);
 }
 
 

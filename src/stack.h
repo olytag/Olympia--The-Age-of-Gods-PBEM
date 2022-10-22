@@ -1,3 +1,10 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_STACK_H
+#define OLYTAG_STACK_H
 
 extern int here_preceeds(int a, int b);
 
@@ -34,3 +41,5 @@ extern int stack_contains_priest(int who);
 extern int contains_mu_undead(int who);
 
 extern int stack_contains_mu_undead(int who);
+
+#endif //OLYTAG_STACK_H

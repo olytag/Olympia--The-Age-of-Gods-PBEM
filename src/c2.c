@@ -1,9 +1,15 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    <time.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 int
@@ -731,7 +737,7 @@ v_board(struct command *c) {
     };
 
     if (!valid_box(owner) ||
-        !(ship_fee = calc_entrance_fee(rp_subloc(ship)->control,
+        !(ship_fee = calc_entrance_fee(&rp_subloc(ship)->control,
                                        c, owner))) {
         wout(c->who, "%s is not being operated as a ferry "
                      "(no boarding FEE is set).",

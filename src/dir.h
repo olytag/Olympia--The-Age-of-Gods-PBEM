@@ -1,4 +1,10 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
+#ifndef OLYTAG_DIR_H
+#define OLYTAG_DIR_H
 
 struct exit_view {
     int direction;        /* which direction does the exit go */
@@ -58,3 +64,5 @@ parse_exit_dir(struct command *c, int where, char *zero_arg);
 extern struct exit_view **exits_from_loc_nsew(int, int);
 
 extern struct exit_view **exits_from_loc_nsew_select(int, int, int, int);
+
+#endif //OLYTAG_DIR_H

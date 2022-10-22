@@ -1,3 +1,11 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_EFFECT_H
+#define OLYTAG_EFFECT_H
+
 /*
  *  EFFECT.H
  *  Tue Aug  6 12:09:42 1996 -- Scott Turner
@@ -38,3 +46,5 @@ extern void delete_effect(int what, int type, int st);
     e = (struct effect *) ll_l[ll_i];
 
 #define    next_effect    } assert(ll_check == 29); ilist_reclaim(&ll_l); }
+
+#endif //OLYTAG_EFFECT_H

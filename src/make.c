@@ -1,7 +1,12 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 /*
@@ -31,24 +36,28 @@
 
 #define    WHERE_SHIP    (-1)
 
+#ifndef OLY_FORWARD_struct_make
+#define OLY_FORWARD_struct_make
 struct make {
     int item;
     int inp1;
-    int inp1_factor;        /* # of inp1 needed to make 1 */
+    int inp1_factor; /* # of inp1 needed to make 1 */
     int inp2;
-    int inp2_factor;        /* # of inp2 needed to make 1 */
+    int inp2_factor; /* # of inp2 needed to make 1 */
     int inp3;
-    int inp3_factor;        /* # of inp3 needed to make 1 */
+    int inp3_factor; /* # of inp3 needed to make 1 */
     int req_skill;
-    int worker;        /* worker needed */
+    int worker;      /* worker needed */
     char *got_em;
-    int public;        /* does everyone see us make this */
-    int where;        /* place required for production */
+    int public;      /* does everyone see us make this */
+    int where;       /* place required for production */
     int aura;        /* aura per unit required */
-    int factor;        /* multiplying qty factor, usuall 1 */
+    int factor;      /* multiplying qty factor, usuall 1 */
     int days;        /* days to make each thing */
-}
-        make_tbl[] =
+};
+#endif //OLY_FORWARD_struct_make
+
+struct make make_tbl[] =
         {
 
 /*
@@ -430,8 +439,7 @@ d_generic_make(struct command *c, struct make *t) {
 }
 
 
-int
-i_generic_make(struct command *c, struct make *t) {
+int i_generic_make(struct command *c, struct make *t) {
     int where = subloc(c->who);
 
     out(c->who, "%s %s.", cap(t->got_em),
