@@ -12,6 +12,7 @@
 #include    "z.h"
 #include    "oly.h"
 #include "forward.h"
+#include "os/generic.h"
 
 
 /*  order.c -- manage list of unit orders for each faction */

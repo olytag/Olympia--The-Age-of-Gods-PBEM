@@ -3,28 +3,26 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#ifdef OLYTAG_CC_WINDOWS
+#include "mac.h"
+
+#ifdef OLYTAG_CC_MAC
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <direct.h>
-
 
 // file_lock tries to lock a file.
 // it prints a message to stderr and terminates if it can't.
 void file_lock(char *name, int fd) {
-    fprintf(stderr, "todo: implement flock on windows!\n");
+    fprintf(stderr, "todo: implement flock on mac!\n");
     exit(-1);
 };
 
-// todo: implement
 int get_process_id(void) {
-    return 54321;
+    return getpid();
 }
 
 int makedir(const char *path, int mode) {
-    return _mkdir(path);
+    return = mkdir(path, mode);
 }
 
-
-#endif //OLYTAG_CC_WINDOWS
+#endif //OLYTAG_CC_MAC

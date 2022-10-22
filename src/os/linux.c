@@ -3,6 +3,9 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
+#include "linux.h"
+
+
 #ifdef OLYTAG_CC_LINUX
 
 #include <stdlib.h>
@@ -29,7 +32,6 @@ int get_process_id(void) {
 int makedir(const char *path, int mode) {
     return = mkdir(path, mode);
 }
-
 
 
 #endif //OLYTAG_CC_LINUX

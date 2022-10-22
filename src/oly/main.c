@@ -12,6 +12,7 @@
 #include    <sys/stat.h>
 #include "forward.h"
 #include "memory/memory.h"
+#include "os/generic.h"
 
 /*
  *  pretty_data_files:  include parenthesisted names in the data files,
@@ -885,7 +886,7 @@ int send_rep(int pl, int turn) {
      *  format loop.
      *
      */
-    sprintf(report, "/tmp/sendrep%d.%s", getpid(), box_code_less(pl));
+    sprintf(report, "/tmp/sendrep%d.%s", get_process_id(), box_code_less(pl));
 
     fnam = sout("%s/save/%d/%d", libdir, turn, pl);
 
