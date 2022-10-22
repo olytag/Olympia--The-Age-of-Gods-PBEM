@@ -81,26 +81,27 @@ add_executable(oly
         src/oly/use.c src/oly/use.h
         src/oly/win.c
         src/oly/z.c src/oly/z.h
-        src/oly/ilist.c src/oly/ilist.h
 
         src/oly/helpers.c
         src/oly/os_windows.c src/oly/os_linux.c src/oly/os_mac.c
         src/oly/types.h src/oly/forward.h
 
+        src/memory/memory.c src/memory/memory.h
         src/random/sfc32.c src/random/sfc32.h
-        src/random/random.c src/random/random.h)
+        src/random/random.c src/random/random.h
+        src/vectors/ilist.c src/vectors/ilist.h)
 target_include_directories(oly PRIVATE src/oly)
 
 
 add_executable(mapgen
         src/mapgen/mapgen.c src/mapgen/mapgen.h
         src/mapgen/z.c src/mapgen/z.h
-        src/mapgen/ilist.c src/mapgen/ilist.h
-        src/mapgen/ilist_test.c src/mapgen/ilist_test.h
-
-        src/random/sfc32.c src/random/sfc32.h
+        src/memory/memory.c src/memory/memory.h
         src/random/random.c src/random/random.h
+        src/vectors/ilist.c src/vectors/ilist.h
         src/vectors/roads.c src/vectors/roads.h
+        src/vectors/tiles.c src/vectors/tiles.h
+        src/random/sfc32.c src/random/sfc32.h
         src/vectors/tiles.c src/vectors/tiles.h)
 target_include_directories(mapgen PRIVATE src/mapgen)
 
@@ -110,10 +111,19 @@ add_executable(checkcode
 target_include_directories(checkcode PRIVATE src/checkcode)
 
 
+add_executable(ilist_test
+        src/vectors/ilist_test.c
+        src/vectors/ilist.c src/vectors/ilist.h
+        src/memory/memory.c src/memory/memory.h
+        src/random/random.c src/random/random.h
+        src/random/sfc32.c src/random/sfc32.h)
+target_include_directories(ilist_test PRIVATE src/vectors)
+
+
 add_executable(random_test
         src/random/random_test.c
-        src/random/sfc32.c src/random/sfc32.h
-        src/random/random.c src/random/random.h)
+        src/random/random.c src/random/random.h
+        src/random/sfc32.c src/random/sfc32.h)
 target_include_directories(random_test PRIVATE src/random)
 
 

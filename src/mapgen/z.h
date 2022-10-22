@@ -38,9 +38,6 @@ extern char lower_array[];
 #define	min(a,b)	((a) < (b) ? (a) : (b))
 #endif
 
-extern void *my_malloc(unsigned size);
-extern void *my_realloc(void *ptr, unsigned size);
-extern void my_free(void *ptr);
 extern char *str_save(char *);
 
 extern char *getlin(FILE *);

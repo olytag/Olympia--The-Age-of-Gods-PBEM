@@ -6,8 +6,8 @@
 #ifndef OLYTAG_Z_H
 #define OLYTAG_Z_H
 
-#include "ilist.h"
 #include "random/random.h"
+#include "vectors/ilist.h"
 
 /* VLN#define	SYSV
 */
@@ -41,12 +41,6 @@ extern char lower_array[];
 #define	max(a,b)	((a) > (b) ? (a) : (b))
 #define	min(a,b)	((a) < (b) ? (a) : (b))
 #endif
-
-extern void *my_malloc(unsigned size);
-
-extern void *my_realloc(void *ptr, unsigned size);
-
-extern void my_free(void *ptr);
 
 extern char *str_save(char *);
 

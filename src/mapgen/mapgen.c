@@ -24,14 +24,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <getopt.h>
 #include "z.h"
 #include "mapgen.h"
-#include "ilist.h"
-#include "ilist_test.h"
+#include "memory/memory.h"
+#include "random/random.h"
+#include "vectors/ilist.h"
 #include "vectors/roads.h"
 #include "vectors/tiles.h"
-#include "random/random.h"
 
 #define        SEED_FILE    "randseed"
 
@@ -258,26 +257,6 @@ long rc_to_region(long row, long col) {
 }
 
 int main(int argc, char **argv) {
-    for (int opt = getopt(argc, argv, "t:"); opt != EOF; opt = getopt(argc, argv, "t:")) {
-        switch (opt) {
-            case 't':
-                if (strcmp(optarg, "ilist") == 0) { // test ilist
-                    if (0 != test_ilist()) {
-                        printf("test %s: failed\n", optarg);
-                        exit(2);
-                    }
-                } else {
-                    printf("error: unknown option \"-%c %s\"\n", opt, optarg);
-                    exit(2);
-                }
-                printf("test %s: passed\n", optarg);
-                exit(0);
-            default:
-                printf("error: unknown option '%c'\n", opt);
-                exit(2);
-        }
-    }
-
     clear_alloc_flag();
     dir_assert();
     open_fps();

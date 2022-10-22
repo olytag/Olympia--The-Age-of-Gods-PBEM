@@ -3,25 +3,17 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-/*
- *  Reallocing array handler
- *
- *  Length is stored in ilist[0], maximum in ilist[1].
- *  The user-visible ilist is shifted to &ilist[2], so
- *  that iterations can proceed from index 0.
- */
-
-// todo: when we use malloc instead of my_alloc we get segfaults.
 
 #include <assert.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stddef.h>
 #include "ilist.h"
-#include "z.h"
+#include "memory/memory.h"
 #include "random/random.h"
 
 
 #define ILIST_ALLOC 6 // doubles with each realloc
+
 
 
 /*
@@ -228,5 +220,3 @@ void ilist_scramble(ilist l) {
         }
     }
 }
-
-

@@ -6,11 +6,9 @@
 #include <stdio.h>
 #include <string.h>
 #include "ilist.h"
-#include "ilist_test.h"
 
-// test_ilist runs the test suite for ilist.
-// it returns non-zero if there were errors.
-int test_ilist(void) {
+
+int main(void) {
     // set stdout to flush like stderr
     setbuf(stdout, NULL);
 
@@ -19,11 +17,11 @@ int test_ilist(void) {
     ilist x;
     memset(&x, 0, sizeof(x));
     if (0 != ilist_len(x)) {
-        printf("test_ilist: ilist_len: expected %d, got %d\n", 0, ilist_len(x));
+        printf("ilist: ilist_len: expected %d, got %d\n", 0, ilist_len(x));
         errors++;
     }
     if (errors != 0) {
-        printf("test_ilist: test 0 failed\n");
+        printf("ilist: test 0 failed\n");
         return 2;
     }
 
@@ -43,19 +41,19 @@ int test_ilist(void) {
         ilist_append(&x, input1[i]);
     }
     if (100 != ilist_len(x)) {
-        printf("test_ilist: ilist_len: expected %d, got %d\n", 100, ilist_len(x));
+        printf("ilist: ilist_len: expected %d, got %d\n", 100, ilist_len(x));
         errors++;
     } else {
         for (int i = 0; i < 100; i++) {
             int got = x[i];
             if (got != input1[i]) {
-                printf("test_ilist: %3d: expected %3d, got %3d\n", i, input1[i], got);
+                printf("ilist: %3d: expected %3d, got %3d\n", i, input1[i], got);
                 errors++;
             }
         }
     }
     if (errors != 0) {
-        printf("test_ilist: test 1 failed\n");
+        printf("ilist: test 1 failed\n");
         return 2;
     }
 
@@ -99,16 +97,16 @@ int test_ilist(void) {
         ilist_prepend(&x, input2[i]);
         int gotLength = ilist_len(x);
         if (gotLength != expectedLength2[i]) {
-            printf("test_ilist: prepend: %3d: expected length %3d, got %3d\n", i, expectedLength2[i], gotLength);
+            printf("ilist: prepend: %3d: expected length %3d, got %3d\n", i, expectedLength2[i], gotLength);
             errors++;
         } else {
             int gotValue = x[0];
             if (gotValue != expectedValue2[i]) {
-                printf("test_ilist: prepend: %3d: expected value %3d, got %3d\n", i, expectedValue2[i], gotValue);
+                printf("ilist: prepend: %3d: expected value %3d, got %3d\n", i, expectedValue2[i], gotValue);
                 errors++;
             } else {
                 if (x[gotLength - 1] != 99) {
-                    printf("test_ilist: %3d: prepend: expected value %3d, got %3d\n", i, 99, x[gotLength - 1]);
+                    printf("ilist: %3d: prepend: expected value %3d, got %3d\n", i, 99, x[gotLength - 1]);
                     errors++;
                 }
             }
@@ -116,50 +114,50 @@ int test_ilist(void) {
     }
 
     if (ilist_len(x) != 200) {
-        printf("test_ilist: delete: pre: expected value %3d, got %3d\n", 200, ilist_len(x));
+        printf("ilist: delete: pre: expected value %3d, got %3d\n", 200, ilist_len(x));
         errors++;
     }
     ilist_delete(&x, 100);
     if (ilist_len(x) != 199) {
-        printf("test_ilist: delete: expected value %3d, got %3d\n", 199, ilist_len(x));
+        printf("ilist: delete: expected value %3d, got %3d\n", 199, ilist_len(x));
         errors++;
     }
     if (errors != 0) {
-        printf("test_ilist: test 3 failed\n");
+        printf("ilist: test 3 failed\n");
         return 2;
     }
 
     if (ilist_len(x) != 199) {
-        printf("test_ilist: append: pre: expected value %3d, got %3d\n", 199, ilist_len(x));
+        printf("ilist: append: pre: expected value %3d, got %3d\n", 199, ilist_len(x));
         errors++;
     }
     if (x[0] != 999) {
-        printf("test_ilist: append: pre: expected value %3d, got %3d\n", 999, x[0]);
+        printf("ilist: append: pre: expected value %3d, got %3d\n", 999, x[0]);
         errors++;
     }
     if (x[ilist_len(x) - 1] != 99) {
-        printf("test_ilist: append: pre: expected value %3d, got %3d\n", 99, x[ilist_len(x) - 1]);
+        printf("ilist: append: pre: expected value %3d, got %3d\n", 99, x[ilist_len(x) - 1]);
         errors++;
     }
     ilist_append(&x, 15);
     if (ilist_len(x) != 200) {
-        printf("test_ilist: append: expected value %3d, got %3d\n", 200, ilist_len(x));
+        printf("ilist: append: expected value %3d, got %3d\n", 200, ilist_len(x));
         errors++;
     }
     if (x[0] != 999) {
-        printf("test_ilist: append: expected value %3d, got %3d\n", 999, x[0]);
+        printf("ilist: append: expected value %3d, got %3d\n", 999, x[0]);
         errors++;
     }
     if (x[ilist_len(x) - 2] != 99) {
-        printf("test_ilist: append: expected value %3d, got %3d\n", 99, x[ilist_len(x) - 1]);
+        printf("ilist: append: expected value %3d, got %3d\n", 99, x[ilist_len(x) - 1]);
         errors++;
     }
     if (x[ilist_len(x) - 1] != 15) {
-        printf("test_ilist: append: expected value %3d, got %3d\n", 15, x[ilist_len(x) - 1]);
+        printf("ilist: append: expected value %3d, got %3d\n", 15, x[ilist_len(x) - 1]);
         errors++;
     }
     if (errors != 0) {
-        printf("test_ilist: test 4 failed\n");
+        printf("ilist: test 4 failed\n");
         return 2;
     }
 
@@ -168,48 +166,49 @@ int test_ilist(void) {
     for (int i = 0; i < 4; i++) {
         int got = ilist_lookup(x, input5[i]);
         if (got != expected5[i]) {
-            printf("test_ilist: lookup: %3d: expected value %3d, got %3d\n", i, expected5[i], got);
+            printf("ilist: lookup: %3d: expected value %3d, got %3d\n", i, expected5[i], got);
             errors++;
         }
     }
     if (errors != 0) {
-        printf("test_ilist: test 5 failed\n");
+        printf("ilist: test 5 failed\n");
         return 2;
     }
 
     ilist y = ilist_copy(x);
     if (ilist_len(x) != ilist_len(y)) {
-        printf("test_ilist: copy: expected length %3d, got %3d\n", ilist_len(x), ilist_len(y));
+        printf("ilist: copy: expected length %3d, got %3d\n", ilist_len(x), ilist_len(y));
         errors++;
     } else {
         for (int i = 0; i < ilist_len(x); i++) {
             if (&x[i] == &y[i]) {
-                printf("test_ilist: copy: expected address x[%3d] != address y[%3d]\n", i, i);
+                printf("ilist: copy: expected address x[%3d] != address y[%3d]\n", i, i);
                 errors++;
             } else if (x[i] != y[i]) {
-                printf("test_ilist: copy: expected value %3d, got %3d\n", x[i], y[i]);
+                printf("ilist: copy: expected value %3d, got %3d\n", x[i], y[i]);
                 errors++;
             }
         }
     }
     if (errors != 0) {
-        printf("test_ilist: test 6 failed\n");
+        printf("ilist: test 6 failed\n");
         return 2;
     }
 
     ilist_clear(&x);
     if (0 != ilist_len(x)) {
-        printf("test_ilist: clear: x: expected length %3d, got %3d\n", 0, ilist_len(x));
+        printf("ilist: clear: x: expected length %3d, got %3d\n", 0, ilist_len(x));
         errors++;
     }
     if (200 != ilist_len(y)) {
-        printf("test_ilist: clear: y: expected length %3d, got %3d\n", 0, ilist_len(y));
+        printf("ilist: clear: y: expected length %3d, got %3d\n", 0, ilist_len(y));
         errors++;
     }
     if (errors != 0) {
-        printf("test_ilist: test 7 failed\n");
+        printf("ilist: test 7 failed\n");
         return 2;
     }
 
+    printf("ilist: passed\n");
     return 0;
 }
