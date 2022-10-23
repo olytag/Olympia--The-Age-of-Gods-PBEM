@@ -32,6 +32,7 @@
 #include "vectors/rlist.h"
 #include "vectors/tlist.h"
 
+
 #define        SEED_FILE    "randseed"
 
 
@@ -172,7 +173,7 @@ char *terr_s[] = {
 #define    MAX_INSIDE    500        /* max continents/regions */
 
 char *inside_names[MAX_INSIDE];
-tlist inside_list[MAX_INSIDE]; // struct tile **inside_list[MAX_INSIDE];	/* ilist of provinces in each region */
+tlist inside_list[MAX_INSIDE]; // tlist of provinces in each region
 long inside_gates_to[MAX_INSIDE];    /* for info gathering only */
 long inside_gates_from[MAX_INSIDE];    /* for info gathering only */
 long inside_num_cities[MAX_INSIDE];    /* for info gathering only */
@@ -2573,7 +2574,7 @@ void gate_stone_circles(void) {
     long row, col;
 
     l = random_tile_from_each_region();
-    ilist_clear((ilist *) &circs);
+    tlist_clear(&circs);
 
     fprintf(stderr, "\nRing of stones:\n");
 
@@ -3119,7 +3120,7 @@ void place_sublocations(void) {
     for (row = 0; row < MAX_ROW; row++) {
         for (col = 0; col < MAX_COL; col++) {
             if (map[row][col] && map[row][col]->terrain != terr_ocean) {
-                ilist_append((ilist *) &l, row * 1000 + col);
+                ilist_append(&l, row * 1000 + col);
             }
         }
     }
@@ -3150,7 +3151,7 @@ void place_sublocations(void) {
         }
     }
 
-    ilist_reclaim((ilist *) &l);
+    ilist_reclaim(&l);
 }
 
 #else

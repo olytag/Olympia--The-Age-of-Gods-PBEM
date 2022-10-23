@@ -5,218 +5,219 @@
 
 
 #include <assert.h>
-#include <string.h>
+#include <malloc.h>
 #include <stddef.h>
 #include "ilist.h"
-#include "memory/memory.h"
 #include "random/random.h"
 
 
-#define ILIST_ALLOC 6 // doubles with each realloc
+#define ILIST_ALLOC 6
 
 
+typedef struct tiles_vector {
+    int capacity;
+    int length;
+    int list[1];
+} tiles_vector_t;
 
-/*
- *  Mon Apr  3 11:47:28 2000 -- Scott Turner
- *
- *  Add w/o duplication.
- *
- */
-void ilist_add(ilist *l, int n) {
-    if (ilist_lookup(*l, n) == -1) {
-        ilist_append(l, n);
+
+// ilist_cap returns the capacity of the list.
+int ilist_cap(ilist l) {
+    if (l == 0) {
+        return 0;
     }
-};
-
-
-void ilist_append(ilist *l, int n) {
-    int *base;
-
-    if (*l == NULL) {
-        base = my_malloc(sizeof(**l) * ILIST_ALLOC);
-        base[1] = ILIST_ALLOC;
-
-        *l = &base[2];
-    } else {
-        base = (*l) - 2;
-        assert(&base[2] == *l);
-
-        if (base[0] + 2 >= base[1]) {
-            base[1] *= 2;
-            base = my_realloc(base, base[1] * sizeof(*base));
-            *l = &base[2];
-        }
-    }
-
-    base[base[0] + 2] = n;
-    base[0]++;
+    tiles_vector_t *base = (tiles_vector_t *) (((char *) l) - offsetof(tiles_vector_t, list));
+    return base->capacity;
 }
 
 
-void ilist_clear(ilist *l) {
-    int *base;
-
-    if (*l != NULL) {
-        base = (*l) - 2;
-        base[0] = 0;
+// ilist_len returns the length of the list.
+int ilist_len(ilist l) {
+    if (l == 0) {
+        return 0;
     }
+    tiles_vector_t *base = (tiles_vector_t *) (((char *) l) - offsetof(tiles_vector_t, list));
+    return base->length;
+}
+
+
+ilist *ilist_add(ilist *l, int n) {
+    if (ilist_lookup(*l, n) == -1) {
+        return ilist_append(l, n);
+    }
+    return l;
+};
+
+
+ilist *ilist_append(ilist *l, int n) {
+    tiles_vector_t *base;
+    if (*l == 0) {
+        base = calloc(1, sizeof(tiles_vector_t) + ILIST_ALLOC * sizeof(int));
+        assert(base != 0);
+        base->capacity = ILIST_ALLOC;
+        *l = base->list;
+    }
+    base = (tiles_vector_t *) (((char *) (*l)) - offsetof(tiles_vector_t, list));
+    if (base->length + 2 >= base->capacity) {
+        base->capacity *= 2;
+        base = realloc(base, sizeof(tiles_vector_t) + base->capacity * sizeof(int));
+        assert(base != 0);
+        *l = base->list;
+    }
+
+    base->list[base->length] = n;
+    base->length = base->length + 1;
+
+    return l;
+}
+
+
+ilist *ilist_clear(ilist *l) {
+    if (l == 0 || *l == 0) {
+        return l;
+    }
+    tiles_vector_t *base = (tiles_vector_t *) (((char *) (*l)) - offsetof(tiles_vector_t, list));
+    base->length = 0;
+    for (int i = 0; i < base->capacity; i++) {
+        base->list[i] = 0;
+    }
+
+    return l;
 }
 
 
 ilist ilist_copy(ilist l) {
-    int *base;
-    int *copy_base;
-
-    if (l == NULL) {
-        return NULL;
+    if (l == 0) {
+        return 0;
     }
 
-    base = l - 2;
-    assert(&base[2] == l);
+    tiles_vector_t *base = (tiles_vector_t *) (((char *) l) - offsetof(tiles_vector_t, list));
 
-    copy_base = my_malloc(base[1] * sizeof(*base));
-    memcpy(copy_base, base, (size_t) ((base[0] + 2) * sizeof(*base)));
+    tiles_vector_t *cp = calloc(1, sizeof(tiles_vector_t) + base->capacity * sizeof(int));
+    assert(cp != 0);
 
-    return &copy_base[2];
+    cp->capacity = base->capacity;
+    cp->length = base->length;
+    for (int i = 0; i < base->length; i++) {
+        cp->list[i] = base->list[i];
+    }
+
+    return cp->list;
 }
 
 
-void ilist_delete(ilist *l, int i) {
-    int *base;
-    int j;
-
-    assert(i >= 0 && i < ilist_len(*l));        /* bounds check */
-    base = (*l) - 2;
-
-    for (j = i + 2; j <= base[0]; j++) {
-        base[j] = base[j + 1];
+ilist *ilist_delete(ilist *l, int index) {
+    if (l == 0 || *l == 0) {
+        return l;
     }
 
-    base[0]--;
+    tiles_vector_t *base = (tiles_vector_t *) (((char *) (*l)) - offsetof(tiles_vector_t, list));
+    assert(0 <= index && index < base->length);        /* bounds check */
+
+    for (int i = index; i < base->length; i++) {
+        base->list[i] = base->list[i + 1];
+    }
+    base->list[base->length] = 0;
+    base->length = base->length - 1;
+
+    return l;
 }
-
-
-//void ilist_insert(ilist *l, int pos, int n) {
-//    int *base;
-//    int i;
-//
-//    if (*l == NULL)
-//    {
-//        base = my_malloc(sizeof(**l) * ILIST_ALLOC);
-//        base[1] = ILIST_ALLOC;
-//
-//        *l = &base[2];
-//    }
-//    else
-//    {
-//        base = (*l)-2;
-//        assert(&base[2] == *l);
-//
-//        if (base[0] + 2 >= base[1])
-//        {
-//            base[1] *= 2;
-//            base = my_realloc(base, base[1] * sizeof(*base));
-//            *l = &base[2];
-//        }
-//    }
-//
-//    base[0]++;
-//    pos += 2;
-//
-//    for (i = base[0]+1; i > pos; i--)
-//        base[i] = base[i-1];
-//
-//    base[pos] = n;
-//}
 
 
 int ilist_lookup(ilist l, int n) {
-    if (l == NULL) { return -1; }
-
-    int end = ((int *) (l))[-2];
-    for (int i = 0; i < end; ++i) {
-        if (*(l++) == n) { return i; }
+    if (l == 0) {
+        return -1;
     }
 
-    return -1;
-}
+    tiles_vector_t *base = (tiles_vector_t *) (((char *) l) - offsetof(tiles_vector_t, list));
 
-
-void ilist_prepend(ilist *l, int n) {
-    int *base;
-
-    if (*l == NULL) {
-        base = my_malloc(sizeof(**l) * ILIST_ALLOC);
-        base[1] = ILIST_ALLOC;
-
-        *l = &base[2];
-    } else {
-        base = (*l) - 2;
-        assert(&base[2] == *l);
-
-        if (base[0] + 2 >= base[1]) {
-            base[1] *= 2;
-            base = my_realloc(base, base[1] * sizeof(*base));
-            *l = &base[2];
+    for (int i = 0; i < base->length; ++i) {
+        if (base->list[i] == n) {
+            return i;
         }
     }
 
-    base[0]++;
-    for (int i = base[0] + 1; i > 2; i--) {
-        base[i] = base[i - 1];
+    return -1 * base->length;
+}
+
+
+ilist *ilist_prepend(ilist *l, int n) {
+    tiles_vector_t *base;
+    if (*l == 0) {
+        base = calloc(1, sizeof(tiles_vector_t) + ILIST_ALLOC * sizeof(int));
+        assert(base != 0);
+        base->capacity = ILIST_ALLOC;
+        *l = base->list;
     }
-    base[2] = n;
+    base = (tiles_vector_t *) (((char *) (*l)) - offsetof(tiles_vector_t, list));
+    if (base->length + 2 >= base->capacity) {
+        base->capacity *= 2;
+        base = realloc(base, sizeof(tiles_vector_t) + base->capacity * sizeof(int));
+        assert(base != 0);
+        *l = base->list;
+    }
+
+    base->length = base->length + 1;
+    for (int*p = base->list + base->length; p != base->list; p--) {
+        *p = *(p-1);
+    }
+    base->list[0] = n;
+
+    return l;
 }
 
 
 void ilist_reclaim(ilist *l) {
-    if (*l != NULL) {
-        int *base = (*l) - 2;
-        my_free(base);
+    if (l == 0 || *l == 0) {
+        return;
     }
-    *l = NULL;
+    tiles_vector_t *base = (tiles_vector_t *) (((char *) (*l)) - offsetof(tiles_vector_t, list));
+    *l = 0;
+    free(base);
 }
 
 
-void ilist_rem_value(ilist *l, int n) {
-    for (int i = ilist_len(*l) - 1; i >= 0; i--) {
-        if ((*l)[i] == n) {
+ilist *ilist_rem_value(ilist *l, int n) {
+    if (l == 0 || *l == 0) {
+        return l;
+    }
+    tiles_vector_t *base = (tiles_vector_t *) (((char *) (*l)) - offsetof(tiles_vector_t, list));
+    for (int i = base->length - 1; i >= 0; i--) {
+        if (base->list[i] == n) {
             ilist_delete(l, i);
         }
     }
+    return l;
 }
 
 
-void ilist_rem_value_uniq(ilist *l, int n) {
-    for (int i = ilist_len(*l) - 1; i >= 0; i--) {
-        if ((*l)[i] == n) {
-            ilist_delete(l, i);
-            break;
+ilist *ilist_rem_value_uniq(ilist *l, int n) {
+    if (l == 0 || *l == 0) {
+        return l;
+    }
+    tiles_vector_t *base = (tiles_vector_t *) (((char *) (*l)) - offsetof(tiles_vector_t, list));
+    for (int i = base->length - 1; i >= 0; i--) {
+        if (base->list[i] == n) {
+            return ilist_delete(l, i);
         }
     }
+    return l;
 }
 
 
-/*
- *  Knuth, The Art of Computer Programming, Vol. 2 (Addison Wesley).
- *  Essentially, to shuffle A[1]...A[N]:
- *  1) put I = 1;
- *  2) generate a random number R in the range I..N;
- *  3) if R is not I, swap A[R] and A[I];
- *  4) I <- I+1;
- *  5) if I is less than N go to step 2
- */
-
-
-void ilist_scramble(ilist l) {
-    int len = ilist_len(l) - 1;
-
-    for (int i = 0; i < len; i++) {
-        int r = rnd(i, len);
+// Knuth, The Art of Computer Programming, Vol. 2 (Addison Wesley).
+ilist ilist_scramble(ilist l) {
+    if (l == 0) {
+        return l;
+    }
+    tiles_vector_t *base = (tiles_vector_t *) (((char *) l) - offsetof(tiles_vector_t, list));
+    for (int i = 0; i < base->length-1; i++) {
+        int r = rnd(i, base->length-1);
         if (r != i) {
-            int tmp = l[i];
-            l[i] = l[r];
-            l[r] = tmp;
+            int tmp = base->list[i];
+            base->list[i] = base->list[r];
+            base->list[r] = tmp;
         }
     }
+    return l;
 }
