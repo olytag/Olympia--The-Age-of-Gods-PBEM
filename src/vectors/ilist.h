@@ -6,28 +6,22 @@
 #ifndef OLYTAG_VECTORS_ILIST_H
 #define OLYTAG_VECTORS_ILIST_H
 
-/*
- *  'ilist' reallocing array definitions
- */
-
 typedef int *ilist;
 
-#define ilist_len(a)        (((int *)(a)) == NULL ? 0 : ((int *)(a))[-2])
+int ilist_cap(ilist l);
+int ilist_len(ilist l);
 
-void ilist_add(ilist *l, int n);
-void ilist_append(ilist *l, int n);
-void ilist_clear(ilist *l);
+ilist *ilist_add(ilist *l, int n);
+ilist *ilist_append(ilist *l, int n);
+ilist *ilist_clear(ilist *l);
 ilist ilist_copy(ilist l);
 // ilist_delete removes the i'th entry from the list
-void ilist_delete(ilist *l, int i);
-void ilist_insert(ilist *l, int pos, int n);
+ilist *ilist_delete(ilist *l, int index);
 int ilist_lookup(ilist l, int n);
-void ilist_prepend(ilist *l, int n);
+ilist *ilist_prepend(ilist *l, int n);
 void ilist_reclaim(ilist *l);
-void ilist_rem_value(ilist *l, int n);
-void ilist_rem_value_uniq(ilist *l, int n);
-void ilist_scramble(ilist l);
+ilist *ilist_rem_value(ilist *l, int n);
+ilist *ilist_rem_value_uniq(ilist *l, int n);
+ilist ilist_scramble(ilist l);
 
-int test_ilist(void);
-
-#endif //OLYTAG_ILIST_H
+#endif //OLYTAG_VECTORS_ILIST_H

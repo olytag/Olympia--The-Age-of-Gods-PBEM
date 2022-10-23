@@ -3,8 +3,8 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#ifndef OLYTAG_VECTOR_TLIST_H
-#define OLYTAG_VECTOR_TLIST_H
+#ifndef OLYTAG_VECTORS_TLIST_H
+#define OLYTAG_VECTORS_TLIST_H
 
 #include "mapgen/tile.h"
 
@@ -26,4 +26,4 @@ tlist *tlist_rem_value(tlist *l, tile_t *t);
 tlist *tlist_rem_value_uniq(tlist *l, tile_t *t);
 tlist tlist_scramble(tlist l);
 
-#endif //OLYTAG_VECTOR_TLIST_H
+#endif //OLYTAG_VECTORS_TLIST_H

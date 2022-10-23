@@ -117,7 +117,6 @@ target_include_directories(checkcode PRIVATE src/checkcode)
 
 add_executable(ilist_test
         src/vectors/ilist_test.c
-        src/memory/memory.c src/memory/memory.h
         src/random/random.c src/random/random.h
         src/random/sfc32.c src/random/sfc32.h
         src/vectors/ilist.c src/vectors/ilist.h)

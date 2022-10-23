@@ -3,8 +3,8 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#ifndef OLYTAG_VECTOR_RLIST_H
-#define OLYTAG_VECTOR_RLIST_H
+#ifndef OLYTAG_VECTORS_RLIST_H
+#define OLYTAG_VECTORS_RLIST_H
 
 #include "mapgen/road.h"
 
@@ -26,4 +26,4 @@ rlist *rlist_rem_value(rlist *l, road_t *t);
 rlist *rlist_rem_value_uniq(rlist *l, road_t *t);
 rlist rlist_scramble(rlist l);
 
-#endif //OLYTAG_VECTOR_RLIST_H
+#endif //OLYTAG_VECTORS_RLIST_H
