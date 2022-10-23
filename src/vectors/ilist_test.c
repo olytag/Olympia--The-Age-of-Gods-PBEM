@@ -201,7 +201,7 @@ int main(void) {
         errors++;
     }
     if (200 != ilist_len(y)) {
-        printf("ilist: clear: y: expected length %3d, got %3d\n", 0, ilist_len(y));
+        printf("ilist: clear: y: expected length %3d, got %3d\n", 200, ilist_len(y));
         errors++;
     }
     if (errors != 0) {

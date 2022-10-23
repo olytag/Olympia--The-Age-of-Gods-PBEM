@@ -3,8 +3,8 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#ifndef OLYTAG_VECTORS_INTS_H
-#define OLYTAG_VECTORS_INTS_H
+#ifndef OLYTAG_VECTORS_ILIST_H
+#define OLYTAG_VECTORS_ILIST_H
 
 /*
  *  'ilist' reallocing array definitions

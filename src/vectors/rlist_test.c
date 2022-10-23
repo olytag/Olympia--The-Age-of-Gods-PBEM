@@ -69,31 +69,92 @@ int main(void) {
         assert(expectedValue3[i] = input3[i]);
     }
     for (int i = 0; i < 100; i++) {
-        rlist_append(&x, input3[i]);
+        rlist_prepend(&x, input3[i]);
         int gotLength = rlist_len(x);
         if (gotLength != expectedLength3[i]) {
-            printf("rlist: append: %3d: expected length %3d, got %3d\n", 101+i, expectedLength3[i], gotLength);
+            printf("rlist: prepend: %3d: expected length %3d, got %3d\n", 101 + i, expectedLength3[i], gotLength);
             errors++;
-        }
-    }
-    if (errors == 0) {
-        road_t *gotValue = x[0];
-        if (expectedValue2[0] != gotValue) {
-            printf("rlist: append: %3d: expected value %p, got %p\n", 0, expectedValue2[0], gotValue);
-            errors++;
-        }
-    }
-    if (errors == 0) {
-        for (int i = 0; i < 100; i++) {
-            road_t *gotValue = x[100+i];
+        } else {
+            road_t *gotValue = x[0];
             if (expectedValue3[i] != gotValue) {
-                printf("rlist: %3d: append: expected value %p, got %p\n", 100+i, expectedValue3[i], gotValue);
+                printf("rlist: %3d: prepend: bol: expected value %p, got %p\n", 100 + i, expectedValue3[i], gotValue);
+                errors++;
+            } else {
+                if (expectedValue2[99] != x[gotLength - 1]) {
+                    printf("ilist: %3d: prepend: eol: expected value %p, got %p\n", i, expectedValue2[99], x[gotLength - 1]);
+                    errors++;
+                }
+            }
+        }
+    }
+    if (200 != rlist_len(x)) {
+        printf("rlist: prepend: length: expected value %3d, got %3d\n", rlist_len(x), 200);
+        errors++;
+    }
+    if (errors != 0) {
+        printf("rlist: test 3 failed\n");
+        return 2;
+    }
+
+    if (200 != rlist_len(x)) {
+        printf("rlist: delete: pre: expected value %3d, got %3d\n", rlist_len(x), 200);
+        errors++;
+    }
+    rlist_delete(&x, 100);
+    if (199 != rlist_len(x)) {
+        printf("rlist: delete: expected value %3d, got %3d\n", rlist_len(x), 199);
+        errors++;
+    }
+    if (errors != 0) {
+        printf("ilist: test 4 failed\n");
+        return 2;
+    }
+
+    road_t *input5[4] = {x[22], x[44], x[113], x[151]};
+    int expected5[4] = {22, 44, 113, 151};
+    for (int i = 0; i < 4; i++) {
+        int got = rlist_lookup(x, input5[i]);
+        if (expected5[i] != got) {
+            printf("rlist: lookup: %3d: expected value %3d, got %3d\n", i, expected5[i], got);
+            errors++;
+        }
+    }
+    if (errors != 0) {
+        printf("rlist: test 5 failed\n");
+        return 2;
+    }
+
+    rlist y = rlist_copy(x);
+    if (rlist_len(x) != rlist_len(y)) {
+        printf("rlist: copy: expected length %3d, got %3d\n", rlist_len(x), rlist_len(y));
+        errors++;
+    } else {
+        for (int i = 0; i < rlist_len(x); i++) {
+            if (&x[i] == &y[i]) {
+                printf("rlist: copy: expected address x[%3d] != address y[%3d]\n", i, i);
+                errors++;
+            } else if (x[i] != y[i]) {
+                printf("rlist: copy: expected value %p, got %p\n", x[i], y[i]);
                 errors++;
             }
         }
     }
     if (errors != 0) {
-        printf("rlist: test 3 failed\n");
+        printf("rlist: test 6 failed\n");
+        return 2;
+    }
+
+    rlist_clear(&x);
+    if (0 != rlist_len(x)) {
+        printf("rlist: clear: x: expected length %3d, got %3d\n", 0, rlist_len(x));
+        errors++;
+    }
+    if (199 != rlist_len(y)) {
+        printf("rlist: clear: y: expected length %3d, got %3d\n", 199, rlist_len(y));
+        errors++;
+    }
+    if (errors != 0) {
+        printf("rlist: test 7 failed\n");
         return 2;
     }
 
