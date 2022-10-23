@@ -30,7 +30,7 @@
 #include "random/random.h"
 #include "vectors/ilist.h"
 #include "vectors/rlist.h"
-#include "vectors/tiles.h"
+#include "vectors/tlist.h"
 
 #define        SEED_FILE    "randseed"
 
@@ -166,41 +166,13 @@ char *terr_s[] = {
 };
 
 #include "road.h"
-
-struct tile {
-    char save_char;
-    long region;
-    char *name;
-    long terrain;
-    long hidden;
-    long city;
-    long mark;
-    long inside;
-    long color;            /* map coloring for */
-    long row, col;            /* map tile we're inside */
-    long depth;
-
-    long safe_haven;
-    long sea_lane;
-    long uldim_flag;
-    long summerbridge_flag;
-    long region_boundary;
-    long major_city;
-
-    ilist subs;
-
-    ilist gates_dest;        /* gates from here */
-    ilist gates_num;        /* gates from here */
-    ilist gates_key;
-
-    rlist roads; // struct road **roads;
-};
+#include "tile.h"
 
 
 #define    MAX_INSIDE    500        /* max continents/regions */
 
 char *inside_names[MAX_INSIDE];
-tiles_list inside_list[MAX_INSIDE]; // struct tile **inside_list[MAX_INSIDE];	/* ilist of provinces in each region */
+tlist inside_list[MAX_INSIDE]; // struct tile **inside_list[MAX_INSIDE];	/* ilist of provinces in each region */
 long inside_gates_to[MAX_INSIDE];    /* for info gathering only */
 long inside_gates_from[MAX_INSIDE];    /* for info gathering only */
 long inside_num_cities[MAX_INSIDE];    /* for info gathering only */
@@ -800,7 +772,7 @@ void print_inside_locs(long n) {
     long i;
     long count = 0;
 
-    for (i = 0; i < tiles_list_len(inside_list[n]); i++) {
+    for (i = 0; i < tlist_len(inside_list[n]); i++) {
         count++;
 
         if (count == 1) {
@@ -1666,7 +1638,7 @@ void print_continent(long i) {
 
     sprintf(coord, "(%ld,%ld)", p->row, p->col);
     sprintf(gates, "%ld/%ld", inside_gates_from[i], inside_gates_to[i]);
-    sprintf(nprovs, "%d", tiles_list_len(inside_list[i]));
+    sprintf(nprovs, "%d", tlist_len(inside_list[i]));
     sprintf(ncities, "%ld", inside_num_cities[i]);
 
     fprintf(stderr, "%-25s  %8s  %6s  %7s  %s\n",
@@ -1827,7 +1799,7 @@ void set_regions() {
     for (row = 0; row < MAX_ROW; row++) {
         for (col = 0; col < MAX_COL; col++) {
             if (map[row][col] && map[row][col]->inside) {
-                tiles_list_append(&inside_list[map[row][col]->inside], map[row][col]);
+                tlist_append(&inside_list[map[row][col]->inside], map[row][col]);
             }
         }
     }
@@ -2316,10 +2288,10 @@ void dump_gates(void) {
 
 
 struct tile **random_tile_from_each_region(void) {
-    static tiles_list l = NULL; // static struct tile **l = NULL;
+    static tlist l = NULL; // static struct tile **l = NULL;
     long i, j;
 
-    ilist_clear((ilist *) &l);
+    tlist_clear(&l);
 /*printf("VLN inside_list = %ld\n",inside_top);*/
 
     for (i = 1; i <= inside_top; i++) {
@@ -2331,27 +2303,27 @@ struct tile **random_tile_from_each_region(void) {
             continue;
         }
 
-        j = rnd(0, tiles_list_len(inside_list[i]) - 1);
+        j = rnd(0, tlist_len(inside_list[i]) - 1);
 
-        tiles_list_append(&l, inside_list[i][j]);
+        tlist_append(&l, inside_list[i][j]);
     }
 
-    ilist_scramble((ilist) l);
+    tlist_scramble(l);
 
     return l;
 }
 
 // struct tile **shift_tour_endpoints(struct tile **l) {
 
-struct tile **shift_tour_endpoints(tiles_list l) {
+struct tile **shift_tour_endpoints(tlist l) {
     static struct tile **other = NULL;
     long i;
     struct tile *p;
     struct tile *q;
 
-    ilist_clear((ilist *) &other);
+    tlist_clear(&other);
 
-    for (i = 0; i < tiles_list_len(l); i++) {
+    for (i = 0; i < tlist_len(l); i++) {
         p = adjacent_tile_terr(l[i]->row, l[i]->col);
 
         if (p == NULL) {
@@ -2367,9 +2339,9 @@ struct tile **shift_tour_endpoints(tiles_list l) {
         if (q == NULL || q->terrain == terr_ocean) {
             fprintf(stderr, "couldn't shift tour (%ld,%ld)\n",
                     l[i]->row, l[i]->col);
-            tiles_list_append(&other, l[i]);
+            tlist_append(&other, l[i]);
         } else {
-            tiles_list_append(&other, q);
+            tlist_append(&other, q);
         }
     }
 
@@ -2495,17 +2467,17 @@ void gate_province_islands(long times) {
 
 void gate_continental_tour(void) {
     long i;
-    tiles_list l; // struct tile **l;
-    tiles_list m; // struct tile **m;
+    tlist l; // struct tile **l;
+    tlist m; // struct tile **m;
 
     l = random_tile_from_each_region();
     m = shift_tour_endpoints(l);
 
-    assert(tiles_list_len(l) == tiles_list_len(m));
+    assert(tlist_len(l) == tlist_len(m));
 
     fprintf(stderr, "\nContinental gate tour:\n");
 
-    for (i = 0; i < tiles_list_len(l) - 1; i++) {
+    for (i = 0; i < tlist_len(l) - 1; i++) {
         fprintf(stderr, "\t(%2ld,%2ld) -> (%2ld,%2ld)\n",
                 l[i]->row, l[i]->col, m[i + 1]->row, m[i + 1]->col);
 
@@ -2574,11 +2546,11 @@ void gate_land_ring(long rings) {
 
 //struct tile *choose_random_stone_circle(struct tile **l, struct tile *avoid1, struct tile *avoid2) {
 
-struct tile *choose_random_stone_circle(tiles_list l, struct tile *avoid1, struct tile *avoid2) {
+struct tile *choose_random_stone_circle(tlist l, struct tile *avoid1, struct tile *avoid2) {
     long i;
 
     do {
-        i = rnd(0, tiles_list_len(l) - 1);
+        i = rnd(0, tlist_len(l) - 1);
     } while (l[i] == avoid1 || l[i] == avoid2);
 
     return l[i];
@@ -2592,10 +2564,10 @@ struct tile *choose_random_stone_circle(tiles_list l, struct tile *avoid1, struc
  */
 
 void gate_stone_circles(void) {
-    tiles_list l; // struct tile **l;
+    tlist l; // struct tile **l;
     long i, j;
     long n;
-    static tiles_list circs = NULL; // static struct tile **circs = NULL;
+    static tlist circs = NULL; // static struct tile **circs = NULL;
     struct tile *first;
     struct tile *second;
     long row, col;
@@ -2605,16 +2577,16 @@ void gate_stone_circles(void) {
 
     fprintf(stderr, "\nRing of stones:\n");
 
-    for (i = 0; i < tiles_list_len(l); i++) {
+    for (i = 0; i < tlist_len(l); i++) {
         n = create_a_subloc(l[i]->row, l[i]->col, 1, terr_stone_cir);
-        tiles_list_append(&circs, subloc[n]);
+        tlist_append(&circs, subloc[n]);
 
         fprintf(stderr, "	(%2ld,%2ld) in %s\n",
                 l[i]->row, l[i]->col,
                 inside_names[l[i]->inside]);
     }
 
-    for (i = 0; i < tiles_list_len(circs); i++) {
+    for (i = 0; i < tlist_len(circs); i++) {
         first = choose_random_stone_circle(circs, circs[i], NULL);
         second = choose_random_stone_circle(circs, circs[i], first);
 
@@ -2625,7 +2597,7 @@ void gate_stone_circles(void) {
     clear_province_marks();
     mark_bad_locs();
 
-    for (i = 0; i < tiles_list_len(circs); i++) {
+    for (i = 0; i < tlist_len(circs); i++) {
         for (j = 1; j <= 5; j++) {
             random_province(&row, &col, 0);
             new_gate(circs[i], map[row][col],
@@ -2666,7 +2638,7 @@ void mark_bad_locs(void) {
 
     for (i = 1; i <= inside_top; i++) {
         if (strcmp(inside_names[i], "Impassable Mountains") == 0) {
-            for (j = 0; j < tiles_list_len(inside_list[i]); j++) {
+            for (j = 0; j < tlist_len(inside_list[i]); j++) {
                 inside_list[i][j]->mark = 1;
             }
         }
@@ -3090,20 +3062,20 @@ void make_graveyards(void) {
             continue;
         }
 
-        n = tiles_list_len(inside_list[i]);
+        n = tlist_len(inside_list[i]);
 
         if (n < 10) {
             continue;
         }
 
-        l = tiles_list_copy(inside_list[i]);
-        tiles_list_scramble(l);
+        l = tlist_copy(inside_list[i]);
+        tlist_scramble(l);
 
         for (j = 0; j < n / 10; j++) {
             create_a_graveyard(l[j]->row, l[j]->col);
         }
 
-        tiles_list_reclaim(&l);
+        tlist_reclaim(&l);
     }
 }
 

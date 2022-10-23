@@ -99,13 +99,14 @@ add_executable(mapgen
         src/mapgen/mapgen.c src/mapgen/mapgen.h
         src/mapgen/z.c src/mapgen/z.h
         src/mapgen/road.h
+        src/mapgen/tile.h
         src/memory/memory.c src/memory/memory.h
         src/random/random.c src/random/random.h
         src/vectors/ilist.c src/vectors/ilist.h
         src/vectors/rlist.c src/vectors/rlist.h
-        src/vectors/tiles.c src/vectors/tiles.h
+        src/vectors/tlist.c src/vectors/tlist.h
         src/random/sfc32.c src/random/sfc32.h
-        src/vectors/tiles.c src/vectors/tiles.h src/mapgen/road.h)
+        src/vectors/tlist.c src/vectors/tlist.h)
 target_include_directories(mapgen PRIVATE src/mapgen)
 
 
@@ -132,7 +133,6 @@ target_include_directories(random_test PRIVATE src/random)
 
 add_executable(rlist_test
         src/vectors/rlist_test.c
-        src/memory/memory.c src/memory/memory.h
         src/random/random.c src/random/random.h
         src/random/sfc32.c src/random/sfc32.h
         src/vectors/rlist.c src/vectors/rlist.h)
@@ -143,4 +143,13 @@ add_executable(sfc32_test
         src/random/sfc32_test.c
         src/random/sfc32.c src/random/sfc32.h)
 target_include_directories(sfc32_test PRIVATE src/random)
+
+
+add_executable(tlist_test
+        src/vectors/tlist_test.c
+        src/random/random.c src/random/random.h
+        src/random/sfc32.c src/random/sfc32.h
+        src/vectors/tlist.c src/vectors/tlist.h)
+target_include_directories(tlist_test PRIVATE src/vectors)
+
 
