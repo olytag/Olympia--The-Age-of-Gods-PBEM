@@ -29,7 +29,7 @@
 #include "memory/memory.h"
 #include "random/random.h"
 #include "vectors/ilist.h"
-#include "vectors/roads.h"
+#include "vectors/rlist.h"
 #include "vectors/tiles.h"
 
 #define        SEED_FILE    "randseed"
@@ -165,12 +165,7 @@ char *terr_s[] = {
         NULL
 };
 
-struct road {
-    long ent_num;
-    char *name;
-    long to_loc;
-    long hidden;
-};
+#include "road.h"
 
 struct tile {
     char save_char;
@@ -198,7 +193,7 @@ struct tile {
     ilist gates_num;        /* gates from here */
     ilist gates_key;
 
-    road_list roads; // struct road **roads;
+    rlist roads; // struct road **roads;
 };
 
 
@@ -729,7 +724,7 @@ void add_road(struct tile *from, long to_loc, long hidden, char *name) {
     r->hidden = hidden;
     r->name = name;
 
-    road_list_append(&from->roads, r);
+    rlist_append(&from->roads, r);
 }
 
 
@@ -959,7 +954,7 @@ void print_subloc_gates(long n) {        /* and inside buildings... */
     long i;
     long count = 0;
 
-    for (i = 0; i < road_list_len(subloc[n]->roads); i++) {
+    for (i = 0; i < rlist_len(subloc[n]->roads); i++) {
         count++;
         if (count == 1) {
             fprintf(loc_fp, " hl ");
@@ -2028,7 +2023,7 @@ void print_inside_sublocs(long flag, long row, long col) {
     long i;
     long count = 0;
 
-    for (i = 0; i < road_list_len(map[row][col]->roads); i++) {
+    for (i = 0; i < rlist_len(map[row][col]->roads); i++) {
         count++;
         if (count == 1) {
             if (flag) {
@@ -2231,7 +2226,7 @@ void dump_roads(void) {
     for (row = 0; row < MAX_ROW; row++) {
         for (col = 0; col < MAX_COL; col++) {
             if (map[row][col]) {
-                for (j = 0; j < road_list_len(map[row][col]->roads); j++) {
+                for (j = 0; j < rlist_len(map[row][col]->roads); j++) {
                     fprintf(road_fp, "%ld road 0\n",
                             map[row][col]->roads[j]->ent_num);
                     if (map[row][col]->roads[j]->name) {
@@ -2254,7 +2249,7 @@ void dump_roads(void) {
     }
 
     for (i = 1; i <= top_subloc; i++) {
-        for (j = 0; j < road_list_len(subloc[i]->roads); j++) {
+        for (j = 0; j < rlist_len(subloc[i]->roads); j++) {
             fprintf(road_fp, "%ld road 0\n",
                     subloc[i]->roads[j]->ent_num);
             if (subloc[i]->roads[j]->name) {
