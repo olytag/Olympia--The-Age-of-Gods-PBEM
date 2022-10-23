@@ -98,13 +98,14 @@ target_include_directories(oly PRIVATE src/oly)
 add_executable(mapgen
         src/mapgen/mapgen.c src/mapgen/mapgen.h
         src/mapgen/z.c src/mapgen/z.h
+        src/mapgen/road.h
         src/memory/memory.c src/memory/memory.h
         src/random/random.c src/random/random.h
         src/vectors/ilist.c src/vectors/ilist.h
         src/vectors/roads.c src/vectors/roads.h
         src/vectors/tiles.c src/vectors/tiles.h
         src/random/sfc32.c src/random/sfc32.h
-        src/vectors/tiles.c src/vectors/tiles.h)
+        src/vectors/tiles.c src/vectors/tiles.h src/mapgen/road.h)
 target_include_directories(mapgen PRIVATE src/mapgen)
 
 
@@ -127,6 +128,15 @@ add_executable(random_test
         src/random/random.c src/random/random.h
         src/random/sfc32.c src/random/sfc32.h)
 target_include_directories(random_test PRIVATE src/random)
+
+
+add_executable(roadsv_test
+        src/vectors/roadsv_test.c
+        src/vectors/roads.c src/vectors/roads.c
+        src/memory/memory.c src/memory/memory.h
+        src/random/random.c src/random/random.h
+        src/random/sfc32.c src/random/sfc32.h src/vectors/roadsv_test.c)
+target_include_directories(roadsv_test PRIVATE src/vectors)
 
 
 add_executable(sfc32_test

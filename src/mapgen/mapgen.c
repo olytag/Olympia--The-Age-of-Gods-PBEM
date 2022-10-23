@@ -165,12 +165,7 @@ char *terr_s[] = {
         NULL
 };
 
-struct road {
-    long ent_num;
-    char *name;
-    long to_loc;
-    long hidden;
-};
+#include "road.h"
 
 struct tile {
     char save_char;
