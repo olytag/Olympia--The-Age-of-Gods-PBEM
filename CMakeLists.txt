@@ -102,7 +102,7 @@ add_executable(mapgen
         src/memory/memory.c src/memory/memory.h
         src/random/random.c src/random/random.h
         src/vectors/ilist.c src/vectors/ilist.h
-        src/vectors/roads.c src/vectors/roads.h
+        src/vectors/rlist.c src/vectors/rlist.h
         src/vectors/tiles.c src/vectors/tiles.h
         src/random/sfc32.c src/random/sfc32.h
         src/vectors/tiles.c src/vectors/tiles.h src/mapgen/road.h)
@@ -116,10 +116,10 @@ target_include_directories(checkcode PRIVATE src/checkcode)
 
 add_executable(ilist_test
         src/vectors/ilist_test.c
-        src/vectors/ilist.c src/vectors/ilist.h
         src/memory/memory.c src/memory/memory.h
         src/random/random.c src/random/random.h
-        src/random/sfc32.c src/random/sfc32.h)
+        src/random/sfc32.c src/random/sfc32.h
+        src/vectors/ilist.c src/vectors/ilist.h)
 target_include_directories(ilist_test PRIVATE src/vectors)
 
 
@@ -130,13 +130,13 @@ add_executable(random_test
 target_include_directories(random_test PRIVATE src/random)
 
 
-add_executable(roadsv_test
-        src/vectors/roadsv_test.c
-        src/vectors/roads.c src/vectors/roads.c
+add_executable(rlist_test
+        src/vectors/rlist_test.c
         src/memory/memory.c src/memory/memory.h
         src/random/random.c src/random/random.h
-        src/random/sfc32.c src/random/sfc32.h src/vectors/roadsv_test.c)
-target_include_directories(roadsv_test PRIVATE src/vectors)
+        src/random/sfc32.c src/random/sfc32.h
+        src/vectors/rlist.c src/vectors/rlist.h)
+target_include_directories(rlist_test PRIVATE src/vectors)
 
 
 add_executable(sfc32_test
