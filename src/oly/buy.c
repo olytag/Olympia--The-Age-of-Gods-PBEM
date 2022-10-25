@@ -3,11 +3,12 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/tr_list.h"
 
 static int buyer_comp(const void *, const void *);
 static int seller_comp(const void *, const void *);
@@ -60,15 +61,14 @@ market_here(int who) {
 
 void
 clear_all_trades(int who) {
-    struct trade *t;
+    struct trade *t = 0;
+    trade_loop(who, t)
+    {
+        my_free(t);
+    }
+    trade_next;
 
-    loop_trade(who, t)
-                {
-                    my_free(t);
-                }
-    next_trade;
-
-    ilist_clear((ilist *) &bx[who]->trades);
+    tr_list_clear(&bx[who]->trades);
 }
 
 
@@ -98,10 +98,10 @@ static struct trade **
 seller_list(int where, int except) {
     static struct trade **l = NULL;
     int i;
-    struct trade *t;
+    struct trade *t = 0;
     int count = 0;
 
-    ilist_clear((ilist *) &l);
+    tr_list_clear(&l);
 
     loop_char_here(where, i)
             {
@@ -112,14 +112,14 @@ seller_list(int where, int except) {
                     continue;
                 }
 
-                loop_trade(i, t)
-                            {
-                                if (t->kind == SELL) {
-                                    t->sort = count++;
-                                    ilist_append((ilist *) &l, (int) t);
-                                }
-                            }
-                next_trade;
+                trade_loop(i, t)
+                {
+                    if (t->kind == SELL) {
+                        t->sort = count++;
+                        tr_list_append(&l, t);
+                    }
+                }
+                trade_next;
             }
     next_char_here;
 
@@ -132,21 +132,21 @@ seller_list(int where, int except) {
         qsort(l, (unsigned) ilist_len(l), sizeof(int), seller_comp);
 #endif // NEW_TRADE
 
-    loop_trade(where, t)
-                {
-                    if (t->kind == SELL) {
-                        ilist_append((ilist *) &l, (int) t);
-                    }
-                }
-    next_trade;
+    trade_loop(where, t)
+    {
+        if (t->kind == SELL) {
+            tr_list_append(&l, t);
+        }
+    }
+    trade_next;
 
 #ifdef NEW_TRADE
     /*
      *  Sort after everyone, not excluding the city itself.
      *
      */
-    if (ilist_len(l) > 0) {
-        qsort(l, (unsigned) ilist_len(l), sizeof(int), seller_comp);
+    if (tr_list_len(l) > 0) {
+        qsort(l, tr_list_len(l), sizeof(struct trade *), seller_comp);
     }
 #endif // NEW_TRADE
 
@@ -158,9 +158,9 @@ static struct trade **
 buyer_list(int where, int except) {
     static struct trade **l = NULL;
     int i;
-    struct trade *t;
+    struct trade *t = 0;
 
-    ilist_clear((ilist *) &l);
+    tr_list_clear(&l);
 
     loop_char_here(where, i)
             {
@@ -171,31 +171,31 @@ buyer_list(int where, int except) {
                     continue;
                 }
 
-                loop_trade(i, t)
-                            {
-                                if (t->kind == BUY) {
-                                    ilist_append((ilist *) &l, (int) t);
-                                }
-                            }
-                next_trade;
+                trade_loop(i, t)
+                {
+                    if (t->kind == BUY) {
+                        tr_list_append(&l, t);
+                    }
+                }
+                trade_next;
             }
     next_char_here;
 
-    loop_trade(where, t)
-                {
-                    if (t->kind == BUY) {
-                        ilist_append((ilist *) &l, (int) t);
-                    }
-                }
-    next_trade;
+    trade_loop(where, t)
+    {
+        if (t->kind == BUY) {
+            tr_list_append(&l, t);
+        }
+    }
+    trade_next;
 
 #ifdef NEW_TRADE
     /*
      *  Sort everyone -- buyers high to low.
      *
      */
-    if (ilist_len(l) > 0) {
-        qsort(l, (unsigned) ilist_len(l), sizeof(int), buyer_comp);
+    if (tr_list_len(l) > 0) {
+        qsort(l, tr_list_len(l), sizeof(struct trade *), buyer_comp);
     }
 #endif // NEW_TRADE
 
@@ -588,7 +588,7 @@ resolve_trades_here(int where) {
      *
      */
     cur_buyer = 0;
-    while (cur_buyer < ilist_len(buyers)) {
+    while (cur_buyer < tr_list_len(buyers)) {
         /*
          *  Success tracks whether we actually made a trade.
          *
@@ -609,7 +609,7 @@ resolve_trades_here(int where) {
          *
          */
         for (cur_seller = 0;
-             cur_seller < ilist_len(sellers) && buyers[cur_buyer]->qty > 0;
+             cur_seller < tr_list_len(sellers) && buyers[cur_buyer]->qty > 0;
              cur_seller++) {
             if (sellers[cur_seller]->who != buyers[cur_buyer]->who &&
                 sellers[cur_seller]->item == buyers[cur_buyer]->item &&
@@ -621,7 +621,7 @@ resolve_trades_here(int where) {
                  */
                 cost = 0;
                 for (next_buyer = cur_buyer + 1;
-                     next_buyer < ilist_len(buyers); next_buyer++) {
+                     next_buyer < tr_list_len(buyers); next_buyer++) {
                     if (buyers[next_buyer]->who != sellers[cur_seller]->who &&
                         buyers[next_buyer]->item == buyers[cur_buyer]->item &&
                         buyers[next_buyer]->qty > 0 &&
@@ -722,7 +722,7 @@ match_trades(int who)
     if (!market_here(who))
         return;
 
-    loop_trade(who, t)
+    trade_loop(who, t)
     {
         assert(t->who == who);
 
@@ -747,7 +747,7 @@ match_trades(int who)
             scan_trades(t, buyers);
         }
     }
-    next_trade;
+    trade_next;
 }
 
 void
@@ -821,7 +821,7 @@ investigate_possible_trade(int who, int item, int old_has)
 
     if (item == item_gold)
     {
-        loop_trade(who, t)
+        trade_loop(who, t)
         {
             if (t->kind != BUY)
                 continue;
@@ -832,11 +832,11 @@ investigate_possible_trade(int who, int item, int old_has)
                 break;
             }
         }
-        next_trade;
+        trade_next;
     }
     else
     {
-        loop_trade(who, t)
+        trade_loop(who, t)
         {
 #if 0
             if (t->kind != SELL)
@@ -851,7 +851,7 @@ investigate_possible_trade(int who, int item, int old_has)
                 break;
             }
         }
-        next_trade;
+        trade_next;
     }
 
     if (check)
@@ -861,17 +861,17 @@ investigate_possible_trade(int who, int item, int old_has)
 
 struct trade *
 find_trade(int who, int kind, int item) {
-    struct trade *t;
+    struct trade *t = 0;
     struct trade *ret = NULL;
 
-    loop_trade(who, t)
-                {
-                    if (t->kind == kind && t->item == item) {
-                        ret = t;
-                        break;
-                    }
-                }
-    next_trade;
+    trade_loop(who, t)
+    {
+        if (t->kind == kind && t->item == item) {
+            ret = t;
+            break;
+        }
+    }
+    trade_next;
 
     return ret;
 }
@@ -890,7 +890,7 @@ new_trade(int who, int kind, int item) {
         ret->kind = kind;
         ret->item = item;
 
-        ilist_append((ilist *) &bx[who]->trades, (int) ret);
+        tr_list_append(&bx[who]->trades, ret);
     }
 
     return ret;
@@ -1049,7 +1049,7 @@ list_market_items(int who, struct trade **l, int first) {
     int i;
     int qty;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < tr_list_len(l); i++) {
         if (l[i]->cloak >= 2) {
             continue;
         }
@@ -1114,35 +1114,35 @@ market_report(int who, int where) {
         struct trade *t;
         int flag = TRUE;
 
-        loop_trade(where, t)
-                    {
-                        if (t->kind == PRODUCE && t->month_prod) {
-                            if (flag) {
-                                out(who, "");
-                                flag = FALSE;
-                            }
+        trade_loop(where, t)
+        {
+            if (t->kind == PRODUCE && t->month_prod) {
+                if (flag) {
+                    out(who, "");
+                    flag = FALSE;
+                }
 
-                            tagout(who, "<tag type=produces loc=%d "
-                                        "item=%d month=%d>",
-                                   where, t->item, t->month_prod);
-                            wout(who, "%s produces %s on month %d.",
-                                 just_name(where),
-                                 plural_item_name(t->item, 2),
-                                 t->month_prod);
-                        }
-                    }
-        next_trade;
+                tagout(who, "<tag type=produces loc=%d "
+                            "item=%d month=%d>",
+                       where, t->item, t->month_prod);
+                wout(who, "%s produces %s on month %d.",
+                     just_name(where),
+                     plural_item_name(t->item, 2),
+                     t->month_prod);
+            }
+        }
+        trade_next;
     }
 
     l = buyer_list(where, 0);
 
-    if (ilist_len(l) > 0) {
+    if (tr_list_len(l) > 0) {
         first = list_market_items(who, l, first);
     }
 
     l = seller_list(where, 0);
 
-    if (ilist_len(l) > 0) {
+    if (tr_list_len(l) > 0) {
         first = list_market_items(who, l, first);
     }
 
@@ -1161,43 +1161,43 @@ list_pending_trades(int who, int num) {
     int first = TRUE;
     struct trade *t;
 
-    loop_trade(num, t)
-                {
-                    if (t->kind != BUY && t->kind != SELL) {
-                        continue;
-                    }
+    trade_loop(num, t)
+    {
+        if (t->kind != BUY && t->kind != SELL) {
+            continue;
+        }
 
-                    if (first) {
-                        tagout(who, "<tag type=pending_trades id=%d>", who);
+        if (first) {
+            tagout(who, "<tag type=pending_trades id=%d>", who);
 
-                        out(who, "");
-                        out(who, "Pending trades:");
-                        out(who, "");
-                        indent += 3;
-                        first = FALSE;
+            out(who, "");
+            out(who, "Pending trades:");
+            out(who, "");
+            indent += 3;
+            first = FALSE;
 
-                        out(who, "%5s  %7s  %5s   %s",
-                            "trade", "price", "qty", "item");
-                        out(who, "%5s  %7s  %5s   %s",
-                            "-----", "-----", "---", "----");
-                    }
+            out(who, "%5s  %7s  %5s   %s",
+                "trade", "price", "qty", "item");
+            out(who, "%5s  %7s  %5s   %s",
+                "-----", "-----", "---", "----");
+        }
 
-                    tagout(who, "<tag type=trade id=%d kind=%d "
-                                "cost=%d num=%d item=%d>",
-                           who,
-                           t->kind,
-                           (t->cost),
-                           (t->qty),
-                           (t->item));
+        tagout(who, "<tag type=trade id=%d kind=%d "
+                    "cost=%d num=%d item=%d>",
+               who,
+               t->kind,
+               (t->cost),
+               (t->qty),
+               (t->item));
 
-                    out(who, "%5s  %7s  %5s   %s",
-                        t->kind == BUY ? "buy" : "sell",
-                        comma_num(t->cost),
-                        comma_num(t->qty),
-                        box_name(t->item));
-                    tagout(who, "</tag type=trade>");
-                }
-    next_trade;
+        out(who, "%5s  %7s  %5s   %s",
+            t->kind == BUY ? "buy" : "sell",
+            comma_num(t->cost),
+            comma_num(t->qty),
+            box_name(t->item));
+        tagout(who, "</tag type=trade>");
+    }
+    trade_next;
 
     if (!first) {
         indent -= 3;
@@ -1257,13 +1257,14 @@ update_city_trade(int where, int kind, int item, int qty, int cost, int month) {
 void
 delete_city_trade(int where, int item) {
     struct trade *e;
-    loop_trade(where, e)
-                {
-                    if (e->item == item) {
-                        ilist_rem_value((ilist *) &bx[where]->trades, (int) e);
-                        my_free(e);
-                    };
-                }next_trade;
+    trade_loop(where, e)
+    {
+        if (e->item == item) {
+            tr_list_rem_value(&bx[where]->trades, e);
+            my_free(e);
+        };
+    }
+    trade_next;
 };
 
 /*
@@ -1350,15 +1351,15 @@ trade_suffuse_ring(int where) {
     int found = FALSE;
     int item;
 
-    loop_trade(where, t)
-                {
-                    if (subkind(t->item) == sub_magic_artifact &&
-                        rp_item_artifact(t->item)->type == ART_DESTROY &&
-                        t->kind == SELL && t->qty > 0) {
-                        found = TRUE;
-                    }
-                }
-    next_trade;
+    trade_loop(where, t)
+    {
+        if (subkind(t->item) == sub_magic_artifact &&
+            rp_item_artifact(t->item)->type == ART_DESTROY &&
+            t->kind == SELL && t->qty > 0) {
+            found = TRUE;
+        }
+    }
+    trade_next;
 
     if (found || rnd(1, 3) < 3) {
         return;
@@ -1397,16 +1398,17 @@ trade_suffuse_ring(int where) {
  */
 void
 add_scrolls(int where) {
-    struct trade *t;
+    struct trade *t = 0;
     int i, found = 0, skill_count = 0, which, new, subkind;
     char tmp[80];
 
-    loop_trade(where, t)
-                {
-                    if (rp_item_magic(t->item) && rp_item_magic(t->item)->may_study) {
-                        found++;
-                    };
-                }next_trade;
+    trade_loop(where, t)
+    {
+        if (rp_item_magic(t->item) && rp_item_magic(t->item)->may_study) {
+            found++;
+        };
+    }
+    trade_next;
 
     if (found >= options.num_books) { return; }
 

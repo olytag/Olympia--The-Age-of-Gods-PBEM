@@ -4,9 +4,12 @@
 // Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
+#include "vectors/item_ent_list.h"
 
 
 int
@@ -49,6 +52,8 @@ here_precedes(int a, int b) {
             return FALSE;
 
     assert(FALSE);
+    /* NOT REACHED */
+    exit(2);
 }
 
 
@@ -650,12 +655,13 @@ contains_mu_undead(int i) {
      *  Check inventory for undead.
      *
      */
-    loop_inv(i, j)
+    inventory_loop(i, j)
                 {
                     if (subkind(j->item) == sub_undead || subkind(j->item) == sub_demon_lord) {
                         return 1;
                     }
-                }next_inv;
+                }
+    inventory_next;
 
     return 0;
 };

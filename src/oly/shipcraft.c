@@ -591,7 +591,7 @@ void
 ship_summary(int pl) {
     int first = 0, sc, sw, i;
 
-    loop_known(p_player(pl)->locs, i)
+    known_sparse_loop(p_player(pl)->locs, i)
             {
                 if (valid_box(i) && subkind(i) == sub_ship) {
                     struct entity_ship *ship = rp_ship(i);
@@ -637,7 +637,8 @@ ship_summary(int pl) {
                     tagout(pl, "</tag type=ship>");
 
                 };
-            }next_known;
+            }
+    known_sparse_next;
 
     if (first) { tagout(pl, "</tag type=ship_report pl=%d>", pl); }
 

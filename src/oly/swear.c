@@ -3,12 +3,14 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
+#include <stdio.h>
 #include <stdlib.h> // mdhender: added for qsort()
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "loop.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
+#include "vectors/skill_ent_list.h"
 
 int
 lord(int n) {
@@ -91,7 +93,6 @@ void
 set_lord(int who, int new_lord, int k, int lev) {
     int old_pl;
     int new_pl;
-    extern int int_comp();
 
     old_pl = player(who);
 
@@ -305,7 +306,8 @@ unit_deserts(int who, int to_who, int loy_check, int k, int lev) {
                                          skill_school(e->skill)) != -1) {
                             forget_skill(who, e->skill);
                         }
-                    }next_char_skill_known;
+                    }
+        next_char_skill_known;
     };
 
     /*
@@ -974,6 +976,8 @@ d_rally(struct command *c) {
 
     flush_unit_orders(player(mob), mob);
     interrupt_order(mob);
+
+    return 0; // todo: should this return something?
 }
 
 

@@ -1229,7 +1229,7 @@ void output_html_map(int pl) {
      *
      *  Have to figure out min/max values for x and y.
      */
-    loop_known(p_player(pl)->known, i)
+    known_sparse_loop(p_player(pl)->known, i)
             {
                 if (kind(i) == T_loc &&
                     loc_depth(i) == LOC_province &&
@@ -1241,9 +1241,10 @@ void output_html_map(int pl) {
                     if (region_row(i) < miny) { miny = region_row(i); }
                     if (region_row(i) > maxy) { maxy = region_row(i); }
                 };
-            }next_known;
+            }
+    known_sparse_next;
 
-    loop_known(p_player(pl)->locs, i)
+    known_sparse_loop(p_player(pl)->locs, i)
             {
                 if (kind(i) == T_loc &&
                     loc_depth(i) == LOC_province &&
@@ -1255,7 +1256,8 @@ void output_html_map(int pl) {
                     if (region_row(i) < miny) { miny = region_row(i); }
                     if (region_row(i) > maxy) { maxy = region_row(i); }
                 };
-            }next_known;
+            }
+    known_sparse_next;
 
     if (system(sout("cd %s;map3.pl map.html %d %d %d %d full",
                     info, minx, maxx, miny, maxy)) != 0) {

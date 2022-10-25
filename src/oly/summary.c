@@ -8,6 +8,9 @@
 #include    "z.h"
 #include    "oly.h"
 #include "forward.h"
+#include "vectors/entity_player_list.h"
+#include "vectors/item_ent_list.h"
+#include "vectors/skill_ent_list.h"
 
 
 #define    SHOW_TOP    FALSE
@@ -307,13 +310,13 @@ summary_men() {
 
     loop_char(i)
             {
-                loop_inv(i, e)
+                inventory_loop(i, e)
                             {
                                 if (man_item(e->item)) {
                                     bx[player(i)]->temp += e->qty;
                                 }
                             }
-                next_inv;
+                inventory_next;
             }
     next_char;
 
@@ -378,11 +381,12 @@ summary_provinces() {
             {
                 clear_temps(T_loc);
 
-                loop_known(p_player(pl)->known, i)
+                // todo: fix bug with sparse vs entity_player *
+                known_sparse_loop(p_player(pl)->known, i)
                         {
                             bx[i]->temp++;
                         }
-                next_known;
+                known_sparse_next;
 
                 loop_loc(i)
                         {
@@ -425,11 +429,11 @@ summary_sublocs()
     {
         clear_temps(T_loc);
 
-        loop_known(p_player(pl)->known, i)
+        known_sparse_loop(p_player(pl)->known, i)
         {
             bx[i]->temp++;
         }
-        next_known;
+        known_sparse_next;
 
         loop_loc(i)
         {

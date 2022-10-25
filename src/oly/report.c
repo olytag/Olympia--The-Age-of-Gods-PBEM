@@ -3,14 +3,17 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <sys/types.h>
-#include    <dirent.h>
-#include    <string.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <string.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/accept_ent_list.h"
+#include "vectors/entity_player_list.h"
+#include "vectors/item_ent_list.h"
 
 
 /*
@@ -29,11 +32,9 @@ char *tab_to(int where) {
     return "";
 };
 
-static int
-output_order_comp(a, b)
-        int *a;
-        int *b;
-{
+static int output_order_comp(const void *q1, const void *q2) {
+    int *a = (int *)q1;
+    int *b = (int *)q2;
 
     if (bx[*a]->output_order != bx[*b]->output_order) {
         return bx[*a]->output_order - bx[*b]->output_order;
@@ -267,7 +268,7 @@ show_item_skills(int who, int num) {
     struct item_magic *p;
     int first = 1;
 
-    loop_inv(num, e)
+    inventory_loop(num, e)
                 {
                     p = rp_item_magic(e->item);
 
@@ -278,7 +279,8 @@ show_item_skills(int who, int num) {
                         };
                         show_item_skills_sup(who, e->item, p);
                     }
-                }next_inv;
+                }
+    inventory_next;
 
     if (!first) {
         tagout(who, "</tag type=item_skill_section>");
@@ -352,8 +354,8 @@ show_char_inventory(int who, int num, char *prefix) {
     int count = 0;
     int total_weight = 0;
 
-    if (ilist_len(bx[num]->items) > 0) {
-        qsort(bx[num]->items, ilist_len(bx[num]->items),
+    if (ie_list_len(bx[num]->items) > 0) {
+        qsort(bx[num]->items, ie_list_len(bx[num]->items),
               sizeof(int), inv_item_comp);
     }
 
@@ -361,7 +363,7 @@ show_char_inventory(int who, int num, char *prefix) {
         tagout(who, "<tag type=inventory_section unit=%d>", who);
     }
 
-    loop_inv(num, e)
+    inventory_loop(num, e)
                 {
                     weight = item_weight(e->item) * e->qty;
 
@@ -394,7 +396,7 @@ show_char_inventory(int who, int num, char *prefix) {
                     count++;
                     total_weight += weight;
                 }
-    next_inv;
+    inventory_next;
 
     if (count > 0) {
         out(who, "%s%9s  %-30s %9s", prefix,
@@ -898,12 +900,12 @@ show_unclaimed(int who, int num) {
     struct item_ent *e;
     int weight;
 
-    if (ilist_len(bx[num]->items) > 0) {
-        qsort(bx[num]->items, ilist_len(bx[num]->items),
+    if (ie_list_len(bx[num]->items) > 0) {
+        qsort(bx[num]->items, ie_list_len(bx[num]->items),
               sizeof(int), inv_item_comp);
     }
 
-    loop_inv(num, e)
+    inventory_loop(num, e)
                 {
                     weight = item_weight(e->item) * e->qty;
 
@@ -923,7 +925,7 @@ show_unclaimed(int who, int num) {
                         comma_num(weight),
                         extra_item_info(0, e->item, e->qty));
                 }
-    next_inv;
+    inventory_next;
 
     if (rp_player(who)->first_tower == FALSE) {
         if (first) {
@@ -962,7 +964,7 @@ sum_fighters(int who) {
     int sum = 0;
     struct item_ent *t;
 
-    loop_inv(who, t)
+    inventory_loop(who, t)
                 {
                     if (man_item(t->item) && is_fighter(t->item)) {
                         int val;
@@ -974,7 +976,7 @@ sum_fighters(int who) {
                         }
                     }
                 }
-    next_inv;
+    inventory_next;
 
     return sum;
 }
@@ -1703,7 +1705,7 @@ gen_include_sup(int pl) {
     ilist_clear(&char_l);
     ilist_clear(&loc_l);
 
-    loop_known(p_player(pl)->output, n)
+    known_sparse_loop(p_player(pl)->output, n)
             {
                 switch (n) {
                     case OUT_BANNER:
@@ -1793,7 +1795,7 @@ gen_include_sup(int pl) {
                         assert(FALSE);
                 }
             }
-    next_known;
+    known_sparse_next;
 
     out(pl, "#include %d", OUT_BANNER);
     out(pl, "");
@@ -1904,7 +1906,7 @@ turn_end_loc_reports() {
 
                 p = p_player(pl);
 
-                loop_known(p->locs, i)
+                known_sparse_loop(p->locs, i)
                         {
                             if (!valid_box(i)) {    /* loc doesn't exit anymore */
                                 continue;
@@ -1924,7 +1926,7 @@ turn_end_loc_reports() {
                                 show_loc(pl, i);
                             }
                         }
-                next_known;
+                known_sparse_next;
             }
     next_player;
 
@@ -2200,7 +2202,7 @@ list_accepts(int who, int num) {
     out(who, "");
     indent += 3;
 
-    for (i = 0; i < ilist_len(accept); i++) {
+    for (i = 0; i < ae_list_len(accept); i++) {
         print_accept_sup(num, accept[i], FALSE);
         flag = FALSE;
     };
@@ -2213,7 +2215,7 @@ list_accepts(int who, int num) {
      */
     if (player(num) != num) {
         accept = p_char(player(num))->accept;
-        for (i = 0; i < ilist_len(accept); i++) {
+        for (i = 0; i < ae_list_len(accept); i++) {
             print_accept_sup(num, accept[i], TRUE);
             flag = FALSE;
         };

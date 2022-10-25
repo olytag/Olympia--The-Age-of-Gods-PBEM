@@ -8,6 +8,8 @@
 #include    "z.h"
 #include    "oly.h"
 #include "forward.h"
+#include "vectors/exit_view_list.h"
+#include "vectors/item_ent_list.h"
 
 
 int
@@ -34,7 +36,7 @@ struct exit_view *
 get_exit_dir(struct exit_view **l, int dir) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->direction == dir) {    /* && l[i]->hidden == FALSE? */
             return l[i];
         }
@@ -64,9 +66,9 @@ choose_npc_direction(int who, int where, int dir,
      *  Don't try to go someplace we can't enter.
      *
      */
-    for (i = 0; i < ilist_len(l);) {
+    for (i = 0; i < ev_list_len(l);) {
         if (!peaceful_enter(who, where, l[i]->destination)) {
-            ilist_delete((ilist *) &l, i);
+            ev_list_delete(&l, i);
         } else {
             i++;
         };
@@ -78,9 +80,9 @@ choose_npc_direction(int who, int where, int dir,
        *
        */
     if (avoid_garrisons) {
-        for (i = 0; i < ilist_len(l);) {
+        for (i = 0; i < ev_list_len(l);) {
             if (garrison_here(l[i]->destination)) {
-                ilist_delete((ilist *) &l, i);
+                ev_list_delete(&l, i);
             } else {
                 i++;
             }
@@ -88,9 +90,9 @@ choose_npc_direction(int who, int where, int dir,
     };
 
     if (avoid_cities) {
-        for (i = 0; i < ilist_len(l);) {
+        for (i = 0; i < ev_list_len(l);) {
             if (city_here(l[i]->destination)) {
-                ilist_delete((ilist *) &l, i);
+                ev_list_delete(&l, i);
             } else {
                 i++;
             }
@@ -98,16 +100,16 @@ choose_npc_direction(int who, int where, int dir,
     };
 
     if (avoid_civ) {
-        for (i = 0; i < ilist_len(l);) {
+        for (i = 0; i < ev_list_len(l);) {
             if (has_item(l[i]->destination, item_peasant) > 100) {
-                ilist_delete((ilist *) &l, i);
+                ev_list_delete(&l, i);
             } else {
                 i++;
             }
         };
     };
 
-    if (ilist_len(l) == 0) {
+    if (ev_list_len(l) == 0) {
         return NULL;
     }
 
@@ -124,7 +126,7 @@ choose_npc_direction(int who, int where, int dir,
         }
     };
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (!l[i]->impassable && !l[i]->hidden && !l[i]->magic_barrier) {
             return l[i];
         }
@@ -467,7 +469,7 @@ static int auto_drop(int who) {
     struct item_ent *e;
     int found_item = 0;
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     if (e->item != item_gold &&
                         !subkind(e->item) == sub_trade_good &&
@@ -476,7 +478,8 @@ static int auto_drop(int who) {
                         queue(who, "drop %s %d", box_code_less(e->item), e->qty);
                         found_item = 1;
                     };
-                }next_inv;
+                }
+    inventory_next;
     return found_item;
 };
 
@@ -729,7 +732,7 @@ find_weak_garrison(int who, long (*strength_function)(int)) {
      *  Any garrisons to attack?
      *
      */
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (!peaceful_enter(who, where, l[i]->destination) &&
             strength_function(controls_loc(l[i]->destination)) <= my_strength) {
             queue(who, "move %s", box_code_less(l[i]->destination));
@@ -890,7 +893,8 @@ smart_estimate(int who) {
                                     };
                                     combat_total += num * (item_attack(e->item) + item_defense(e->item));
                                 };
-                            }next_sorted_inv;
+                            }
+                next_sorted_inv;
                 /*
                  *  Plus the noble himself.
                  *
@@ -1073,7 +1077,7 @@ auto_smart(int who) {
                 use_skill(who, sk_defense_tactics);
                 return;
             };
-            queue(who, "wait time 7");
+            queue(who, "wait time 7"); // todo: unreachable code
             return;
         };
         return;
@@ -2048,13 +2052,14 @@ d_npc_breed(struct command *c) {
         rp_char(new)->npc_prog = rp_char(c->who)->npc_prog;
         gen_item(new, item, num / 2);
         consume_item(c->who, item, num / 2);
-        loop_inv(c->who, e)
+        inventory_loop(c->who, e)
                     {
                         if (!item_attack(e->item) && e->qty > 1) {
                             consume_item(c->who, e->item, e->qty / 2);
                             gen_item(new, e->item, e->qty / 2);
                         };
-                    }next_inv;
+                    }
+        inventory_next;
         wout(gm_player, "Splitting into %s and %s.", box_name(c->who), box_name(new));
     };
 

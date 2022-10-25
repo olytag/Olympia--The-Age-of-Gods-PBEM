@@ -3,12 +3,14 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <string.h>
+#include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/item_ent_list.h"
+#include "vectors/tr_list.h"
 
 
 /*  check.c -- check database integrity and effect minor repairs */
@@ -438,7 +440,7 @@ check_item_counts() {
 
     loop_boxes(i)
                 {
-                    loop_inv(i, e)
+                    inventory_loop(i, e)
                                 {
                                     if (kind(e->item) != T_item) {
                                         fprintf(stderr, "\t%s has non-item %s\n",
@@ -470,7 +472,7 @@ check_item_counts() {
 
                                     bx[e->item]->temp += e->qty;
                                 }
-                    next_inv;
+                    inventory_next;
                 }
     next_box;
 
@@ -569,7 +571,7 @@ check_city() {
 
     loop_city(city)
             {
-                loop_trade(city, t)
+                trade_loop(city, t)
                             {
                                 if (t->kind == SELL &&
                                     item_unique(t->item) &&
@@ -577,7 +579,8 @@ check_city() {
                                     fprintf(stderr, "%s trying to sell %s which it doesn't have.\n",
                                             box_name(city), box_name(t->item));
                                 }
-                            }next_trade;
+                            }
+                trade_next;
 
             }next_city;
 }
@@ -676,7 +679,7 @@ void check_db(void) {
     loop_city(i)
             {
                 struct item_ent *e;
-                loop_inv(i, e)
+                inventory_loop(i, e)
                             {
                                 if (item_unique(e->item) &&
                                     !find_trade(i, SELL, e->item) &&
@@ -685,7 +688,8 @@ void check_db(void) {
                                             box_name(e->item), box_name(i));
                                     destroy_unique_item(i, e->item);
                                 };
-                            }next_inv;
+                            }
+                inventory_next;
             }next_city;
 
 #if 0

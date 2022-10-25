@@ -4,12 +4,15 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <string.h>
+#include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/item_ent_list.h"
+#include "vectors/exit_view_list.h"
+#include "vectors/tr_list.h"
 
 
 extern double pow(double, double);
@@ -35,7 +38,7 @@ near_rocky_coast(int where) {
 
     l = exits_from_loc_nsew(0, where);
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (subkind(l[i]->destination) != sub_ocean) {
             if (subkind(l[i]->destination == sub_mountain)) {
                 return 2;
@@ -143,7 +146,7 @@ give_stack_losses(int who, int evac_levels) {
          evac_levels == 1 ? "" : "s");
     loop_stack(who, i)
             {
-                loop_inv(i, e)
+                inventory_loop(i, e)
                             {
                                 /*
                                  *  1-20 % per level evacuated.
@@ -182,7 +185,8 @@ give_stack_losses(int who, int evac_levels) {
                                  *
                                  */
                                 consume_item(i, e->item, losses);
-                            }next_inv;
+                            }
+                inventory_next;
                 /*
                  *  An evacuating noble takes 1-20 points damage as well.
                  *
@@ -265,10 +269,11 @@ evacuate(int where, int exit, int evac_levels) {
      *  Jeez, there can be stuff in the inventory!
      *
      */
-    loop_inv(where, e)
+    inventory_loop(where, e)
                 {
                     move_item(where, exit, e->item, e->qty);
-                }next_inv;
+                }
+    inventory_next;
 
 };
 
@@ -699,7 +704,7 @@ increment_current_aura() {
                     struct item_ent *e;
                     int n, staff_bonus;
 
-                    loop_inv(who, e)
+                    inventory_loop(who, e)
                                 {
                                     if (n = item_aura_bonus(e->item)) {
                                         if (p->cur_aura < ma) {
@@ -708,7 +713,7 @@ increment_current_aura() {
                                         }
                                     };
                                 }
-                    next_inv;
+                    inventory_next;
 
                     /*
                      *  If he's holding some pieces of the Sun Staff, he
@@ -716,12 +721,13 @@ increment_current_aura() {
                      *
                      */
                     staff_bonus = 0;
-                    loop_inv(who, e)
+                    inventory_loop(who, e)
                                 {
                                     if (subkind(e->item) == sub_special_staff) {
                                         ++staff_bonus;
                                     }
-                                }next_inv;
+                                }
+                    inventory_next;
                     if (staff_bonus) {
                         for (n = 0; n < pow(2, staff_bonus); n++) {
                             if (p->cur_aura < ma) {
@@ -798,7 +804,6 @@ lose_monsters(int mtype, char *msg, int max_loss, int chance) {
 static void reseed_monster_provinces(void) {
     int where, who, found, item;
     int provinces = 0, monsters = 0;
-    int create_new_beasts(int where, int sk);
 
     loop_province(where)
                 {
@@ -972,11 +977,10 @@ adjust_monsters() {
  *  Comparison function for sort in increment_current_piety.
  *
  */
-static int
-followers_comp(a, b)
-        int *a;
-        int *b;
-{
+static int followers_comp(const void *q1, const void *q2) {
+    int *a = (int *)q1;
+    int *b = (int *)q2;
+
     int fa = ilist_len(rp_char(*b)->religion.followers);
     int fb = ilist_len(rp_char(*a)->religion.followers);
 
@@ -1018,13 +1022,14 @@ increment_current_piety() {
      */
     loop_char(who)
             {
-                loop_inv(who, e)
+                inventory_loop(who, e)
                             {
                                 if (e->item == item_angel) {
                                     consume_item(who, e->item, e->qty);
                                     wout(who, "Your angels return to the spiritual realm.");
                                 };
-                            }next_inv;
+                            }
+                inventory_next;
             }next_char;
 
     /*
@@ -1069,10 +1074,11 @@ increment_current_piety() {
                              *
                              */
                             staff_bonus = 0;
-                            loop_inv(who, e)
+                            inventory_loop(who, e)
                                         {
                                             if (subkind(e->item) == sub_special_staff) { ++staff_bonus; }
-                                        }next_inv;
+                                        }
+                            inventory_next;
                             if (staff_bonus) {
                                 wout(who, "Your god rewards you with %s piety for the parts "
                                           "of the Staff of the Sun you hold.", nice_num(pow(2, staff_bonus)));
@@ -1355,7 +1361,7 @@ noncreator_curse_erode() {
 
     loop_char(who)
             {
-                loop_inv(who, e)
+                inventory_loop(who, e)
                             {
                                 im = rp_item_magic(e->item);
                                 if (im == NULL) {
@@ -1404,7 +1410,7 @@ noncreator_curse_erode() {
                                     box_name(e->item));
 #endif
                             }
-                next_inv;
+                inventory_next;
             }
     next_char;
 }
@@ -1688,7 +1694,7 @@ men_starve(int who, int have) {
     ilist_clear(&cost);
     ilist_clear(&starve);
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     if (n = maint_cost(e->item, who)) {
                         ilist_append(&item, e->item);
@@ -1699,7 +1705,7 @@ men_starve(int who, int have) {
                         nmen += e->qty;
                     }
                 }
-    next_inv;
+    inventory_next;
 
     gold = have;
 
@@ -1778,14 +1784,14 @@ unit_maint_cost(int who, int towho) {
     int cost = 0;
     int num = 0, food = 0;
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     if (e->item != noble_item(who)) {   /* don't charge ni beasts */
                         cost += maint_cost(e->item, who) * e->qty;
                     }
                     num += e->qty;
                 }
-    next_inv;
+    inventory_next;
 
     /*
      *  Reduction for found food.
@@ -2529,9 +2535,6 @@ compute_civ_levels()
  *  Add a random animal part bounty to a city.
  *
  */
-struct trade *
-new_trade(int who, int kind, int item);
-
 static void
 add_bounty(int where) {
     int i, sum = 0, choice = 0, found, count = 0, qty;
@@ -2633,7 +2636,7 @@ update_bounties() {
                                     if (count > 3) {
                                         wout(gm_player, "Deleting excess bounty for %s in %s.",
                                              box_name(t->item), box_name(where));
-                                        ilist_rem_value((ilist *) &bx[where]->trades, (int) t);
+                                        tr_list_rem_value(&bx[where]->trades, t);
                                     };
                                 };
                             }next_trade;
@@ -2859,13 +2862,13 @@ change_faery_hills() {
                  *
                  */
                 l = exits_from_loc(0, i);
-                if (ilist_len(l) > 0) {
+                if (ev_list_len(l) > 0) {
                     total_open++;
                 } else {
                     total_closed++;
                 }
 
-                if (ilist_len(l) > 0 && rnd(1, 2) == 1) {
+                if (ev_list_len(l) > 0 && rnd(1, 2) == 1) {
                     close_faery_hill(i);
                     closed++;
                 };
@@ -2876,7 +2879,7 @@ change_faery_hills() {
                  *
                  */
                 l = exits_from_loc(0, i);
-                if (ilist_len(l) == 0 && rnd(1, 2) == 1) {
+                if (ev_list_len(l) == 0 && rnd(1, 2) == 1) {
                     open_faery_hill(i);
                     opened++;
                 };
@@ -3482,7 +3485,6 @@ daily_events() {
 
     if (ilist_len(weather_days) == 0) {
         int i;
-        extern int int_comp();
 
         for (i = 1; i <= MONTH_DAYS; i++) {
             ilist_append(&weather_days, i);

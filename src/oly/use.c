@@ -3,12 +3,17 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
+#include "vectors/item_ent_list.h"
+#include "vectors/skill_ent_list.h"
+#include "vectors/req_ent_list.h"
+#include "vectors/effect_list.h"
 
 
 struct use_tbl_ent {
@@ -390,7 +395,7 @@ may_use_skill(int who, int sk) {
      *  Items other than scrolls should take precedence, to preserve
      *  the one-shot scrolls.
      */
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     p = rp_item_magic(e->item);
                     if (p && ilist_lookup(p->may_use, sk) >= 0) {
@@ -401,7 +406,8 @@ may_use_skill(int who, int sk) {
                             ret = e->item;
                         }
                     }
-                }next_inv;
+                }
+    inventory_next;
 
     if (ret) {
         return ret;
@@ -485,12 +491,12 @@ meets_requirements(int who, int skill) {
     l = p->req;
 
     i = 0;
-    while (i < ilist_len(l)) {
+    while (i < req_ent_list_len(l)) {
         while (has_item(who, l[i]->item) < l[i]->qty &&
                l[i]->consume == REQ_OR) {
             i++;
 
-            if (i >= ilist_len(l)) {
+            if (i >= req_ent_list_len(l)) {
                 fprintf(stderr, "skill = %d\n", skill);
                 assert(FALSE);
             }
@@ -506,7 +512,7 @@ meets_requirements(int who, int skill) {
             return FALSE;
         }
 
-        while (l[i]->consume == REQ_OR && i < ilist_len(l)) {
+        while (l[i]->consume == REQ_OR && i < req_ent_list_len(l)) {
             i++;
         }
         i++;
@@ -532,12 +538,12 @@ consume_requirements(int who, int skill) {
     l = p->req;
 
     i = 0;
-    while (i < ilist_len(l)) {
+    while (i < req_ent_list_len(l)) {
         while (has_item(who, l[i]->item) < l[i]->qty &&
                l[i]->consume == REQ_OR) {
             i++;
 
-            if (i >= ilist_len(l)) {
+            if (i >= req_ent_list_len(l)) {
                 fprintf(stderr, "req list ends with REQ_OR, "
                                 "skill = %d\n", skill);
                 assert(FALSE);
@@ -551,7 +557,7 @@ consume_requirements(int who, int skill) {
         item = l[i]->item;
         qty = l[i]->qty;
 
-        while (l[i]->consume == REQ_OR && i < ilist_len(l)) {
+        while (l[i]->consume == REQ_OR && i < req_ent_list_len(l)) {
             i++;
         }
 
@@ -1064,7 +1070,7 @@ i_use(struct command *c) {
         return (*use_tbl[ent].interrupt)(c);
     }
 
-    // todo: should return a value
+    return 0; // todo: should return a value
 }
 
 /*
@@ -1368,6 +1374,9 @@ exp_s(int level) {
         default:
             assert(FALSE);
     }
+
+    /* NOT REACHED */
+    exit(2);
 }
 
 
@@ -1382,7 +1391,7 @@ rp_skill_ent(int who, int skill) {
         return NULL;
     }
 
-    for (i = 0; i < ilist_len(p->skills); i++) {
+    for (i = 0; i < skill_ent_list_len(p->skills); i++) {
         if (p->skills[i]->skill == skill) {
             return p->skills[i];
         }
@@ -1400,7 +1409,7 @@ p_skill_ent(int who, int skill) {
 
     p = p_char(who);
 
-    for (i = 0; i < ilist_len(p->skills); i++) {
+    for (i = 0; i < skill_ent_list_len(p->skills); i++) {
         if (p->skills[i]->skill == skill) {
             return p->skills[i];
         }
@@ -1409,7 +1418,7 @@ p_skill_ent(int who, int skill) {
     new = my_malloc(sizeof(*new));
     new->skill = skill;
 
-    ilist_append((ilist *) &p->skills, (int) new);
+    skill_ent_list_append(&p->skills, new);
 
     return new;
 }
@@ -1439,7 +1448,7 @@ forget_skill(int who, int skill) {
         return FALSE;
     }
 
-    ilist_rem_value((ilist *) &p->skills, (int) t);
+    skill_ent_list_rem_value(&p->skills, t);
     wout(who, "Forgot %s.", box_code(skill));
 
     /*
@@ -1523,7 +1532,7 @@ has_subskill(int who, int subskill) {
      *  Run through all his ART_SKILL artifacts :-(
      *
      */
-    loop_inv(who, i)
+    inventory_loop(who, i)
                 {
                     struct entity_artifact *a = is_artifact(i->item);
                     if (a) {
@@ -1532,7 +1541,8 @@ has_subskill(int who, int subskill) {
                             return a->param1;
                         }
                     };
-                }next_inv;
+                }
+    inventory_next;
 
     return 0;
 }
@@ -1601,11 +1611,10 @@ skill_school(int sk) {
  *  Skills we don't know are pushed to the end
  */
 
-static int
-rep_skill_comp(a, b)
-        struct skill_ent **a;
-        struct skill_ent **b;
-{
+static int rep_skill_comp(const void *q1, const void *q2) {
+    struct skill_ent **a = (struct skill_ent **)q1;
+    struct skill_ent **b = (struct skill_ent **)q2;
+
     int pa;        /* parent skill of a */
     int pb;        /* parent skill of b */
 
@@ -1636,11 +1645,9 @@ rep_skill_comp(a, b)
 }
 
 
-static int
-flat_skill_comp(a, b)
-        struct skill_ent **a;
-        struct skill_ent **b;
-{
+static int flat_skill_comp(const void *q1, const void *q2) {
+    struct skill_ent **a = (struct skill_ent **)q1;
+    struct skill_ent **b = (struct skill_ent **)q2;
 
     return (*a)->skill - (*b)->skill;
 }
@@ -1699,7 +1706,7 @@ void list_skill_sup(int who, struct skill_ent *e, char *prefix) {
          *
          */
         ef = effects(who);
-        for (i = 0; i < ilist_len(ef); i++) {
+        for (i = 0; i < effect_list_len(ef); i++) {
             if (ef[i]->type == ef_cs &&
                 ef[i]->subtype == e->skill) {
                 rounds = sout("%s %d", rounds, ef[i]->data);
@@ -1733,14 +1740,14 @@ list_skills(int who, int num, char *prefix) {
         goto list_skills_end;
     }
 
-    if (ilist_len(rp_char(num)->skills) < 1) {
+    if (skill_ent_list_len(rp_char(num)->skills) < 1) {
         goto list_skills_end;
     }
 
-    l = (struct skill_ent **) ilist_copy((ilist) rp_char(num)->skills);
-    qsort(l, ilist_len(l), sizeof(int), rep_skill_comp);
+    l = skill_ent_list_copy(rp_char(num)->skills);
+    qsort(l, skill_ent_list_len(l), sizeof(int), rep_skill_comp);
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < skill_ent_list_len(l); i++) {
         if (l[i]->know != SKILL_know) {
             continue;
         }
@@ -1766,7 +1773,7 @@ list_skills(int who, int num, char *prefix) {
         }
     }
 
-    ilist_reclaim((ilist *) &l);
+    skill_ent_list_reclaim(&l);
 
     list_skills_end:
 
@@ -1786,7 +1793,6 @@ list_skills(int who, int num, char *prefix) {
 
 static char *
 fractional_skill_qualifier(struct skill_ent *p) {
-    extern char *np_req_s();
     int frac;
     char *explanation = "";
 
@@ -1831,14 +1837,14 @@ list_partial_skills(int who, int num, char *prefix) {
         return;
     }
 
-    if (ilist_len(rp_char(num)->skills) < 1) {
+    if (skill_ent_list_len(rp_char(num)->skills) < 1) {
         return;
     }
 
-    l = (struct skill_ent **) ilist_copy((ilist) rp_char(num)->skills);
-    qsort(l, ilist_len(l), sizeof(int), flat_skill_comp);
+    l = skill_ent_list_copy(rp_char(num)->skills);
+    qsort(l, skill_ent_list_len(l), sizeof(int), flat_skill_comp);
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < skill_ent_list_len(l); i++) {
         if (l[i]->know == SKILL_know) {
             continue;
         }
@@ -1860,7 +1866,7 @@ list_partial_skills(int who, int num, char *prefix) {
         indent -= 3;
     }
 
-    ilist_reclaim((ilist *) &l);
+    skill_ent_list_reclaim(&l);
 }
 
 
@@ -2003,7 +2009,7 @@ being_taught(int who, int sk, int *item, int *teach_bonus) {
         struct item_ent *e;
         struct item_magic *p;
 
-        loop_inv(who, e)
+        inventory_loop(who, e)
                     {
                         p = rp_item_magic(e->item);
                         if (p && ilist_lookup(p->may_study, sk) >= 0 &&
@@ -2016,7 +2022,8 @@ being_taught(int who, int sk, int *item, int *teach_bonus) {
                                    subkind(e->item) == sub_book) {
                             ret_generic = e->item;
                         };
-                    }next_inv;
+                    }
+        inventory_next;
     }
 
     /*
@@ -2113,7 +2120,7 @@ may_study(int who, int sk)
         int ret = 0;
         int scroll = 0;
 
-        loop_inv(who, e)
+        inventory_loop(who, e)
         {
             p = rp_item_magic(e->item);
             if (p && ilist_lookup(p->may_study, sk) >= 0)
@@ -2124,7 +2131,7 @@ may_study(int who, int sk)
                     ret = e->item;
             }
         }
-        next_inv;
+        inventory_next;
 
         if (ret)
             return ret;

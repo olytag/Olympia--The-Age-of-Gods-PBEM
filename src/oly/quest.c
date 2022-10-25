@@ -3,11 +3,12 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <string.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include <string.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/item_ent_list.h"
 
 
 int subloc_player = 0;
@@ -75,12 +76,13 @@ monstermark(int unit) {
     long val = 0;
     struct item_ent *e;
 
-    loop_inv(unit, e)
+    inventory_loop(unit, e)
                 {
                     if (item_attack(e->item) && item_defense(e->item)) {
                         val += e->qty * MM(e->item);
                     }
-                }next_inv;
+                }
+    inventory_next;
 
     val += char_attack(unit) + char_defense(unit);
 

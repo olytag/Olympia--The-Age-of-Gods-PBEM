@@ -3,16 +3,18 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
+#include <stdio.h>
 #include <string.h>
-#include    <sys/types.h>
-#include    <dirent.h>
+#include <sys/types.h>
+#include <dirent.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
 #include "os/generic.h"
+#include "vectors/cs_list.h"
+
 
 #define        MAX_ERR        50
 
@@ -172,7 +174,6 @@ init_eat_vars() {
 static char *
 crack_address_sup(char *s) {
     char *t;
-    extern char *strchr();
 
     if (t = strchr(s, '<')) {
         char *u;
@@ -827,7 +828,7 @@ show_post(char **l, int cmd) {
 
     out_alt_who = OUT_SHOW_POSTS;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < cs_list_len(l); i++) {
         if (strncmp(l[i], "=-=-", 4) == 0) {
             out(eat_pl, "> %s", l[i]);
         } else {
@@ -1646,11 +1647,7 @@ do_eat_command(struct command *c, FILE *fp) {
     n_queued++;
 
     if (c->cmd == cmd_wait) {
-        extern char *parse_wait_args();
-        extern char *clear_wait_parse();
-        char *s;
-
-        s = parse_wait_args(c);
+        char *s = parse_wait_args(c);
 
         if (s) {
             err(EAT_ERR, sout("Bad WAIT: %s", s));
@@ -1698,9 +1695,9 @@ do_eat_command(struct command *c, FILE *fp) {
                     break;
                 }
 
-                ilist_append((ilist *) &l, (int) str_save(s));
+                cs_list_append(&l, str_save(s));
             } else {
-                ilist_append((ilist *) &l, (int) str_save(s));
+                cs_list_append(&l, str_save(s));
 
                 if (--count <= 0) {
                     break;
@@ -2200,7 +2197,7 @@ v_format(struct command *c) {
      *  ALT
      *
      */
-    for (i = 1; i < ilist_len(c->parse) && c->parse[i]; i++) {
+    for (i = 1; i < cs_list_len(c->parse) && c->parse[i]; i++) {
         out_alt_who = EAT_OKAY;
         if (strcasecmp("HTML", c->parse[i]) == 0) {
             p_player(plyr)->format |= HTML;

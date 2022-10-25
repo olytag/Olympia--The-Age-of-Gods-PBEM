@@ -12,11 +12,15 @@
  *	then we disallow a castle defending a person
  */
 
-#include    <stdio.h>
-#include    <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
+#include "vectors/fight_list.h"
+#include "vectors/item_ent_list.h"
+#include "vectors/skill_ent_list.h"
 
 
 #define    allied(a, b)    (is_defend((a),(b)))
@@ -108,9 +112,9 @@ static int round;
  *  attack value.  If a non-fighter, it always loses.
  *
  */
-int combat_comp(a, b)
-        struct item_ent **a, **b;
-{
+int combat_comp(const void *q1, const void *q2) {
+    const struct item_ent **a = (const struct item_ent **)q1;
+    const struct item_ent **b = (const struct item_ent **)q2;
     int a_attack = item_attack((*a)->item);
     int a_defense = item_defense((*a)->item);
     int b_attack = item_attack((*b)->item);
@@ -294,6 +298,7 @@ fort_covers(int n) {
 
             if (s == NULL) { return 0; }
 
+            // todo: consider using lround() from math.h
             return (s->forts / (float) s->hulls) * SHIP_FORTS_PROTECT + 0.5;
 
         };
@@ -322,7 +327,7 @@ is_siege_engine(int item) {
 static int
 siege_engine_useful(struct fight **l) {
 
-    assert(ilist_len(l) > 0);
+    assert(fight_list_len(l) > 0);
 
     if (l[0]->kind == FK_fort && l[0]->num > 0) {
         return TRUE;
@@ -335,19 +340,21 @@ siege_engine_useful(struct fight **l) {
 static int
 lead_char_pos(struct fight **l) {
 
-    assert(ilist_len(l) > 0);
+    assert(fight_list_len(l) > 0);
 
     if (l[0]->kind == FK_noble) {
         return 0;
     }
 
-    assert(ilist_len(l) > 0);
+    assert(fight_list_len(l) > 0);
 
     if (l[1]->kind == FK_noble) {
         return 1;
     }
 
     assert(FALSE);
+    /* NOT REACHED */
+    exit(2);
 }
 
 
@@ -383,7 +390,7 @@ dump_fighters(struct fight **l) {
 
     out(combat_pl, "side:  %s", box_name(lead_char(l)));
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         s = sout("bh=%d ms=%d ins=%d pris=%d sav=%d at=%d df=%d",
                  l[i]->behind, l[i]->missile, l[i]->inside,
                  l[i]->prisoner, l[i]->sav_num, l[i]->attack,
@@ -423,7 +430,7 @@ static void
 init_prot(struct fight **l) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->num > 0) {
             switch (l[i]->kind) {
                 case FK_fort:
@@ -464,11 +471,11 @@ init_prot(struct fight **l) {
         }
     }
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         l[i]->nprot = 0;
     }
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->protects >= 0 && l[i]->num) {
             l[l[i]->protects]->nprot++;
         }
@@ -611,7 +618,7 @@ init_attack_defense(struct fight **l) {
     struct fight *f;
     int mk;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         f = l[i];
 
         switch (f->kind) {
@@ -734,7 +741,7 @@ add_to_fight_list(struct fight ***l, int unit, int kind, int num,
     new->ally = ally;
     new->inside = inside;
 
-    ilist_append((ilist *) l, (int) new);
+    fight_list_append(l, new);
 }
 
 /*
@@ -937,7 +944,7 @@ add_fight_stack(struct fight ***l, int who, int ally, int defender) {
 
     assert(kind(who) == T_char);
 
-    if (ilist_len(*l) > 0 && (*l)[0]->kind == FK_fort &&
+    if (fight_list_len(*l) > 0 && (*l)[0]->kind == FK_fort &&
         somewhere_inside((*l)[0]->unit, who)) {
         inside = TRUE;
     }
@@ -961,7 +968,7 @@ static int
 contains_unit(struct fight **l, int unit) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind == FK_noble && l[i]->unit == unit) { return 1; }
     }
 
@@ -1111,7 +1118,9 @@ construct_guard_fight_list(int target, int attacker, struct fight
                     continue;
                 }
 
-                if (ilist_lookup((ilist) l_a, i) >= 0) {
+                // todo: this is just not right...
+                //       the list should hold fighter pointers, not integers
+                if (fight_list_lookup(l_a, i) >= 0) {
                     continue;
                 }
 
@@ -1139,11 +1148,11 @@ static void
 reclaim_fight_list(struct fight ***l) {
     int i;
 
-    for (i = 0; i < ilist_len(*l); i++) {
+    for (i = 0; i < fight_list_len(*l); i++) {
         my_free((*l)[i]);
     }
 
-    ilist_reclaim((ilist *) l);
+    fight_list_reclaim(l);
 }
 
 
@@ -1152,7 +1161,7 @@ advance_behind(struct fight **l) {
     int i;
     int least = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->behind &&
             l[i]->kind != FK_fort &&
             (l[i]->behind < least || least == 0)) {
@@ -1161,7 +1170,7 @@ advance_behind(struct fight **l) {
     }
 
     if (least) {
-        for (i = 0; i < ilist_len(l); i++) {
+        for (i = 0; i < fight_list_len(l); i++) {
             if (l[i]->behind == least) {
                 l[i]->behind = 0;
 
@@ -1218,7 +1227,7 @@ total_non_damage(struct fight **l) {
     int i;
     int sum = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         sum += num_non_damage(l[i]);
     }
 
@@ -1244,7 +1253,7 @@ total_combat_sum(struct fight **l) {
     int i;
     int sum = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         sum += combat_sum(l[i]);
     }
 
@@ -1285,7 +1294,7 @@ special_total_combat_sum(struct fight **l) {
     int i;
     int sum = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         sum += special_combat_sum(l[i]);
     }
 
@@ -1374,7 +1383,7 @@ static int
 contains_priest(struct fight **l) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind == FK_noble && is_priest(l[i]->unit)) { return 1; }
     }
 
@@ -1391,7 +1400,7 @@ static int
 contains_mu_or_undead(struct fight **l) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind == FK_fort) { continue; }
         if (l[i]->kind == FK_noble) {
             if (is_magician(l[i]->unit) && !char_hide_mage(l[i]->unit)) { return 1; }
@@ -1458,7 +1467,7 @@ static int
 total_defenders(struct fight **l, struct fight **enemy, int type) {
     int i, sum = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         sum += num_defenders(l[i], enemy, type);
     }
 
@@ -1471,7 +1480,7 @@ total_defenders(struct fight **l, struct fight **enemy, int type) {
      */
     while (type != SPECIAL && type != UNCANNY &&
            sum == 0 && advance_behind(l)) {
-        for (i = 0; i < ilist_len(l); i++) {
+        for (i = 0; i < fight_list_len(l); i++) {
             sum += num_defenders(l[i], enemy, type);
         }
     }
@@ -1498,7 +1507,8 @@ has_magic_combat_attack(int who) {
                     (skill_flags(e->skill) & COMBAT_SKILL)) {
                     num_attacks++;
                 }
-            }next_char_skill;
+            }
+    next_char_skill;
 
     return num_attacks;
 };
@@ -1522,7 +1532,7 @@ toughest_defender(struct fight **l, struct fight **enemy, int type) {
      */
     i = total_defenders(l, enemy, type);
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (num_defenders(l[i], enemy, type) && l[i]->attack > best_attack) {
             best_attack = l[i]->attack;
             ret = l[i];
@@ -1539,12 +1549,14 @@ static struct fight *
 find_defender(struct fight **l, int man, struct fight **enemy, int type) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         man -= num_defenders(l[i], enemy, type);
         if (man <= 0) { return l[i]; }
     }
 
     assert(FALSE);
+    /* NOT REACHED */
+    exit(2);
 }
 
 static int
@@ -1635,7 +1647,7 @@ do_magic_combat_attack(struct fight **l_a, struct fight *f, struct fight **l_b, 
         case sk_drain_mana:
             if (rnd(1, 100) > 75 ||
                 contains_mu_or_undead(l_b) || contains_priest(l_b)) {
-                for (i = 0; i < ilist_len(l_b); i++) {
+                for (i = 0; i < fight_list_len(l_b); i++) {
                     if (l_b[i]->kind == FK_noble) {
                         int amount = char_cur_aura(l_b[i]->unit);
                         if (amount > skill_piety(skill)) {
@@ -1657,7 +1669,7 @@ do_magic_combat_attack(struct fight **l_a, struct fight *f, struct fight **l_b, 
 
         case sk_raise_soldiers:
             if (!charge_aura(f->unit, skill_piety(skill))) { return 0; }
-            for (i = 0; i < ilist_len(l_a) && max_raise > 0; i++) {
+            for (i = 0; i < fight_list_len(l_a) && max_raise > 0; i++) {
                 if (l_a[i]->kind != FK_noble && l_a[i]->num < l_a[i]->sav_num) {
                     int num_to_raise = l_a[i]->sav_num - l_a[i]->num;
                     if (num_to_raise > max_raise) { num_to_raise = max_raise; }
@@ -1726,7 +1738,7 @@ do_fiery_attack(struct fight **l_a, struct fight *f, struct fight **l_b) {
     struct fight *g;
     int i, sum = 0, man, num_defend, j;
 
-    loop_inv(f->unit, e)
+    inventory_loop(f->unit, e)
                 {
                     if (item_use_key(e->item) == use_fiery_potion) {
                         print_special_banner();
@@ -1749,7 +1761,8 @@ do_fiery_attack(struct fight **l_a, struct fight *f, struct fight **l_b) {
                         };
                         break;
                     };
-                }next_inv;
+                }
+    inventory_next;
 
     return sum;
 };
@@ -1813,7 +1826,7 @@ static int
 total_attackers(struct fight **l, struct fight **enemy, int type) {
     int i, sum = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         sum += num_attackers(l[i], enemy, type);
     }
 
@@ -1825,7 +1838,7 @@ total_attackers(struct fight **l, struct fight **enemy, int type) {
      *
      */
     if (type == MELEE && sum == 0 && advance_behind(l)) {
-        for (i = 0; i < ilist_len(l); i++) {
+        for (i = 0; i < fight_list_len(l); i++) {
             sum += num_attackers(l[i], enemy, type);
         }
     }
@@ -1841,12 +1854,14 @@ static struct fight *
 find_attacker(struct fight **l, int man, struct fight **enemy, int type) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         man -= num_attackers(l[i], enemy, type);
         if (man <= 0) { return l[i]; }
     }
 
     assert(FALSE);
+    /* NOT REACHED */
+    exit(2);
 }
 
 /*
@@ -1857,7 +1872,7 @@ static int
 count_siege_towers(struct fight **l) {
     int i, num = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind == item_siege_tower) {
             num += l[i]->num;
         }
@@ -2536,7 +2551,7 @@ static int
 special_attacks(struct fight **l_a, struct fight **l_b, int type) {
     int i, total_attacks = 0;
 
-    for (i = 0; i < ilist_len(l_a); i++) {
+    for (i = 0; i < fight_list_len(l_a); i++) {
         total_attacks += special_attack(l_a, i, l_b, type);
     }
 
@@ -2560,7 +2575,7 @@ resolve_dead(struct fight **l_a) {
     int damage;
     struct fight *g;
 
-    for (i = 0; i < ilist_len(l_a); i++) {
+    for (i = 0; i < fight_list_len(l_a); i++) {
         g = l_a[i];
 
         /*
@@ -2660,7 +2675,7 @@ static int
 side_has_skill(struct fight **l, int sk) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind == FK_noble && has_skill(l[i]->unit, sk)) {
             return TRUE;
         }
@@ -2735,7 +2750,7 @@ deduct_dead(struct fight **l_a, struct fight **l_b, int inherit) {
  *  First deduct all of the dead men
  */
 
-    for (i = 0; i < ilist_len(l_a); i++) {
+    for (i = 0; i < fight_list_len(l_a); i++) {
         unit = l_a[i]->unit;
         item = l_a[i]->kind;
 
@@ -2815,7 +2830,7 @@ deduct_dead(struct fight **l_a, struct fight **l_b, int inherit) {
  *
  */
 
-    for (i = 0; i < ilist_len(l_a); i++) {
+    for (i = 0; i < fight_list_len(l_a); i++) {
         if (l_a[i]->kind == FK_noble &&
             subkind(l_a[i]->unit) == sub_garrison &&
             l_a[i]->nprot < 1) {
@@ -2834,7 +2849,7 @@ deduct_dead(struct fight **l_a, struct fight **l_b, int inherit) {
  *  Now apply any wounds the nobles received, possibly killing them.
  */
 
-    for (i = 0; i < ilist_len(l_a); i++) {
+    for (i = 0; i < fight_list_len(l_a); i++) {
         if (l_a[i]->kind != FK_noble) {  /* Not a noble. */
             continue;
         }
@@ -2874,7 +2889,7 @@ determine_noble_wounds(struct fight **l) {
     return;
 #endif // HERO
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind != FK_noble) {
             continue;
         }
@@ -2908,7 +2923,7 @@ static void
 check_fatal_survive(struct fight **l) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind != FK_noble) {
             continue;
         }
@@ -2932,7 +2947,7 @@ structure_damage(struct fight **l) {
     int unit;
 
 
-    if (ilist_len(l) > 0 && l[0]->kind == FK_fort) {
+    if (fight_list_len(l) > 0 && l[0]->kind == FK_fort) {
         int damage = l[0]->sav_num - l[0]->num;
 
         unit = l[0]->unit;
@@ -3021,7 +3036,7 @@ determine_prisoners(struct fight **l_a, struct fight **l_b) {
  *  take prisoners, then kill the would-be prisoner.
  */
 
-    for (i = 0; i < ilist_len(l_b); i++) {
+    for (i = 0; i < fight_list_len(l_b); i++) {
         if (l_b[i]->kind != FK_noble) {
             continue;
         }
@@ -3092,7 +3107,7 @@ take_prisoners(int winner, struct fight **l) {
      *  we need to change this condition.
      *
      */
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->prisoner && l[i]->new_health > 0) {
             take_prisoner(winner, l[i]->unit);
         }
@@ -3197,11 +3212,11 @@ static void
 demote_units(int winner, struct fight **l) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind != FK_noble ||
             l[i]->prisoner ||
             !alive(l[i]->unit) ||
-            !stack_leader(l[i]->unit) == l[i]->unit) {
+            !stack_leader(l[i]->unit) == l[i]->unit) { // todo: should be !(... == ...), maybe?
             continue;
         }
 
@@ -3214,7 +3229,7 @@ static char *
 combat_display_with(struct fight **l) {
     int i;
 
-    for (i = 1; i < ilist_len(l); i++) {
+    for (i = 1; i < fight_list_len(l); i++) {
         if (l[i]->kind == FK_noble) {
             if (l[0]->kind == FK_fort) {
                 return ", owner:";
@@ -3242,7 +3257,7 @@ show_side_units(struct fight **l) {
 
     indent += 3;
 
-    for (i = 1; i < ilist_len(l); i++) {
+    for (i = 1; i < fight_list_len(l); i++) {
         if (l[i]->kind == FK_noble) {
             if (l[i]->ally) {
                 combat_ally = ", ally";
@@ -3264,7 +3279,7 @@ static void
 out_side(struct fight **l, char *s) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind == FK_noble) {
             wout(l[i]->unit, "%s", s);
         }
@@ -3283,8 +3298,8 @@ static void
 combat_banner(struct fight **l_a, struct fight **l_b) {
     int i;
 
-    assert(ilist_len(l_a) > 0);
-    assert(ilist_len(l_b) > 0);
+    assert(fight_list_len(l_a) > 0);
+    assert(fight_list_len(l_b) > 0);
 
     wout(VECT, "%s attacks %s!",
          box_name(lead_char(l_a)),
@@ -3297,7 +3312,7 @@ combat_banner(struct fight **l_a, struct fight **l_b) {
 
     wout(lead_char(l_a), "Attack %s.", box_name(l_b[0]->unit));
 
-    for (i = lead_char_pos(l_a) + 1; i < ilist_len(l_a); i++) {
+    for (i = lead_char_pos(l_a) + 1; i < fight_list_len(l_a); i++) {
         if (l_a[i]->kind == FK_noble) {
             wout(l_a[i]->unit,
                  "%s leads us in an attack against %s.",
@@ -3309,7 +3324,7 @@ combat_banner(struct fight **l_a, struct fight **l_b) {
         }
     }
 
-    for (i = 0; i < ilist_len(l_b); i++) {
+    for (i = 0; i < fight_list_len(l_b); i++) {
         if (l_b[i]->kind == FK_noble) {
             if (l_b[i]->ally) {
                 wout(l_b[i]->unit, "%s attacks %s!  We rush "
@@ -3349,7 +3364,7 @@ tally_side_losses(struct fight **l) {
 
     clear_temps(T_item);
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind > 0) {
             bx[l[i]->kind]->temp += l[i]->sav_num - l[i]->num;
         }
@@ -3372,10 +3387,10 @@ tally_personal_losses(struct fight **l, int pos) {
     int i;
     char *s = NULL;
 
-    assert(ilist_len(l) > pos);
+    assert(fight_list_len(l) > pos);
     assert(l[pos]->kind == FK_noble);
 
-    for (i = pos + 1; i < ilist_len(l) && l[i]->unit == l[pos]->unit; i++) {
+    for (i = pos + 1; i < fight_list_len(l) && l[i]->unit == l[pos]->unit; i++) {
         if (l[i]->kind > 0 && l[i]->num < l[i]->sav_num) {
             s = comma_append(s, just_name_qty(l[i]->kind,
                                               l[i]->sav_num - l[i]->num));
@@ -3441,7 +3456,7 @@ show_side_results(struct fight **l) {
         first = FALSE;
     }
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind != FK_noble) {
             continue;
         }
@@ -3475,7 +3490,7 @@ best_here_pos(struct fight **l, int where) {
     int best = 99999;
     int n;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind != FK_noble) {
             continue;
         }
@@ -3523,7 +3538,7 @@ combat_stop_movement(int who, struct fight **l) {
         return;
     }
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind == FK_noble && char_moving(l[i]->unit)) {
             interrupt_order(l[i]->unit);
 
@@ -3875,13 +3890,13 @@ run_combat(struct fight ***lap, struct fight ***lbp) {
          *  Now remove any scry_offense effects
          *
          */
-        for (i = 0; i < ilist_len(l_a); i++) {
+        for (i = 0; i < fight_list_len(l_a); i++) {
             if (l_a[i]->kind == FK_noble) {
                 delete_effect(l_a[i]->unit, ef_scry_offense, 0);
             }
         }
 
-        for (i = 0; i < ilist_len(l_b); i++) {
+        for (i = 0; i < fight_list_len(l_b); i++) {
             if (l_b[i]->kind == FK_noble) {
                 delete_effect(l_b[i]->unit, ef_scry_offense, 0);
             }
@@ -3895,7 +3910,7 @@ run_combat(struct fight ***lap, struct fight ***lbp) {
      *  be dead.
      *
      */
-    for (i = 0; i < ilist_len(l_a); i++) {
+    for (i = 0; i < fight_list_len(l_a); i++) {
         if (l_a[i]->tmp_num2) {
             if (l_a[i]->num < l_a[i]->tmp_num2) { l_a[i]->tmp_num2 = l_a[i]->num; }
             l_a[i]->num -= l_a[i]->tmp_num2;
@@ -3904,7 +3919,7 @@ run_combat(struct fight ***lap, struct fight ***lbp) {
         }
     };
 
-    for (i = 0; i < ilist_len(l_b); i++) {
+    for (i = 0; i < fight_list_len(l_b); i++) {
         if (l_b[i]->tmp_num2) {
             if (l_b[i]->num < l_b[i]->tmp_num2) { l_b[i]->tmp_num2 = l_b[i]->num; }
             l_b[i]->num -= l_b[i]->tmp_num2;
@@ -3963,8 +3978,8 @@ combat_top(struct fight ***lap, struct fight ***lbp) {
         show_to_garrison = TRUE;
     }
 
-    assert(ilist_len(l_a) > 0);
-    assert(ilist_len(l_b) > 0);
+    assert(fight_list_len(l_a) > 0);
+    assert(fight_list_len(l_b) > 0);
 
     combat_banner(l_a, l_b);
 
@@ -4063,7 +4078,7 @@ set_second_waits(struct fight **l, int already_waiting) {
  *  we set second_wait for them.
  */
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < fight_list_len(l); i++) {
         if (l[i]->kind == FK_noble && l[i]->unit != already_waiting) {
             c = p_command(l[i]->unit);
 
@@ -4142,7 +4157,7 @@ regular_combat(int a, int b, int seize_slot, int already_waiting) {
 
     lead_a = lead_char(l_a);
 
-    if (is_loc_or_ship(b) && ilist_len(l_b) < 1) {
+    if (is_loc_or_ship(b) && fight_list_len(l_b) < 1) {
         out(lead_a, "%s is unoccupied.", box_name(b));
 
         if (seize_slot) {
@@ -4159,8 +4174,8 @@ regular_combat(int a, int b, int seize_slot, int already_waiting) {
         goto done;
     }
 
-    assert(ilist_len(l_a) > 0);
-    assert(ilist_len(l_b) > 0);
+    assert(fight_list_len(l_a) > 0);
+    assert(fight_list_len(l_b) > 0);
 
     if (seize_slot) {
         l_a[lead_char_pos(l_a)]->seize_slot = TRUE;
@@ -4371,11 +4386,11 @@ attack_guard_units(int a, int b) {
     ready_fight_list(l_a);
     ready_fight_list(l_b);
 
-    if (ilist_len(l_b) <= 0) {
+    if (fight_list_len(l_b) <= 0) {
         return TRUE;
     }        /* no guards */
 
-    assert(ilist_len(l_a) > 0);
+    assert(fight_list_len(l_a) > 0);
 
     result = combat_top(&l_a, &l_b);
 
@@ -4912,6 +4927,7 @@ int do_trap_attack(int who, int num_attacks, int chance) {
 
     reclaim_fight_list(&l_a);
 
+    return 0; // todo: should this return a value?
 };
 
 /*

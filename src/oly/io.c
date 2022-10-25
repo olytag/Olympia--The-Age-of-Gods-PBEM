@@ -12,6 +12,15 @@
 #include    "oly.h"
 #include "forward.h"
 #include "os/generic.h"
+#include "vectors/entity_player_list.h"
+#include "vectors/admit_list.h"
+#include "vectors/skill_ent_list.h"
+#include "vectors/effect_list.h"
+#include "vectors/eb_list.h"
+#include "vectors/item_ent_list.h"
+#include "vectors/tr_list.h"
+#include "vectors/req_ent_list.h"
+#include "vectors/accept_ent_list.h"
 
 
 int monster_subloc_init = FALSE;
@@ -400,8 +409,8 @@ convert_skill(int skill) {
  *	assert(c == 'na');
  */
 
-#define    linehash(t)    (strlen(t) < 2 ? 0 : ((t[0]) << 8 | (t[1])))
-#define    t_string(t)    (strlen(t) >= 4 ? &t[3] : "")
+#define    linehash(t)    (strlen(t) < 2 ? 0 : (((t)[0]) << 8 | ((t)[1])))
+#define    t_string(t)    (strlen(t) >= 4 ? &(t)[3] : "")
 
 
 /*
@@ -674,7 +683,7 @@ static void
 admit_print(FILE *fp, struct entity_player *p) {
     int i;
 
-    for (i = 0; i < ilist_len(p->admits); i++) {
+    for (i = 0; i < admit_list_len(p->admits); i++) {
         admit_print_sup(fp, p->admits[i]);
     }
 }
@@ -733,7 +742,7 @@ admit_scan(char *s, int box_num, struct entity_player *pp) {
         return;
     }
 
-    ilist_append((ilist *) &(pp->admits), (int) p);
+    admit_list_append(&(pp->admits), p);
 }
 
 
@@ -786,7 +795,8 @@ known_print(FILE *fp, char *header, sparse kn) {
     int count = 0;
     int first = TRUE;
 
-    loop_known(kn, i)
+    // todo: fix bug with types sparse vs entity_player *
+    known_sparse_loop(kn, i)
             {
                 if (!valid_box(i)) {
                     continue;
@@ -803,7 +813,7 @@ known_print(FILE *fp, char *header, sparse kn) {
 
                 fprintf(fp, "%d ", i);
             }
-    next_known;
+    known_sparse_next;
 
     if (!first) {
         fprintf(fp, "\n");
@@ -853,7 +863,7 @@ skill_list_print(FILE *fp, char *header, struct skill_ent **l) {
     int i;
     int count = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < skill_ent_list_len(l); i++) {
         if (valid_box(l[i]->skill)) {
             count++;
             if (count == 1) {
@@ -898,7 +908,7 @@ skill_list_scan(char *s, struct skill_ent ***l, int box_num) {
 
         new->skill = convert_skill(new->skill);
         if (valid_box(new->skill)) {
-            ilist_append((ilist *) l, (int) new);
+            skill_ent_list_append( l,  new);
         } else {
             fprintf(stderr, "skill_list_scan(%d): bad skill %d\n",
                     box_num, new->skill);
@@ -924,7 +934,7 @@ effect_list_print(FILE *fp, char *header, struct effect **l) {
     int i;
     int count = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < effect_list_len(l); i++) {
         count++;
         if (count == 1) {
             fputs(header, fp);
@@ -958,7 +968,7 @@ effect_list_scan(char *s, struct effect ***l) {
                &new->days,
                &new->data);
 
-        ilist_append((ilist *) l, (int) new);
+        effect_list_append( l,  new);
 
         if (s[strlen(s) - 1] == '\\') {    /* another entry follows */
             s = readlin_ew();
@@ -978,7 +988,7 @@ build_list_print(FILE *fp, char *header, struct entity_build **l) {
     int i;
     int count = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < eb_list_len(l); i++) {
         count++;
         if (count == 1) {
             fputs(header, fp);
@@ -1005,12 +1015,12 @@ build_list_scan(char *s, struct entity_build ***l) {
     while (1) {
         new = my_malloc(sizeof(*new));
         sscanf(s, "%d %d %d %d",
-               &new->type,
-               &new->build_materials,
+               &new->type, // todo: bug length too small
+               &new->build_materials, // todo: bug length too small
                &new->effort_required,
                &new->effort_given);
 
-        ilist_append((ilist *) l, (int) new);
+        eb_list_append( l,  new);
 
         if (s[strlen(s) - 1] == '\\') {    /* another entry follows */
             s = readlin_ew();
@@ -1025,7 +1035,7 @@ item_list_print(FILE *fp, char *header, struct item_ent **l) {
     int i;
     int count = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ie_list_len(l); i++) {
         if (valid_box(l[i]->item) && l[i]->qty > 0) {
             count++;
             if (count == 1) {
@@ -1059,7 +1069,7 @@ item_list_scan(char *s, struct item_ent ***l, int box_num) {
         sscanf(s, "%d %d", &new->item, &new->qty);
 
         if (valid_box(new->item)) {
-            ilist_append((ilist *) l, (int) new);
+            ie_list_append( l,  new);
         } else {
             fprintf(stderr, "item_list_scan(%d): bad item %d\n",
                     box_num, new->item);
@@ -1082,7 +1092,7 @@ trade_list_print(FILE *fp, char *header, struct trade **l) {
     int i;
     int count = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < tr_list_len(l); i++) {
         if (valid_box(l[i]->item)) {
 /*
  *  Weed out completed or cleared BUY and SELL trades, but don't
@@ -1148,7 +1158,7 @@ trade_list_scan(char *s, struct trade ***l, int box_num) {
         new->who = box_num;
 
         if (valid_box(new->item)) {
-            ilist_append((ilist *) l, (int) new);
+            tr_list_append( l,  new);
         } else {
             fprintf(stderr, "trade_list_scan(%d): bad item %d\n",
                     box_num, new->item);
@@ -1170,7 +1180,7 @@ req_list_print(FILE *fp, char *header, struct req_ent **l) {
     int i;
     int count = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < req_ent_list_len(l); i++) {
         if (valid_box(l[i]->item)) {
             count++;
             if (count == 1) {
@@ -1205,7 +1215,7 @@ req_list_scan(char *s, struct req_ent ***l, int box_num) {
         new->consume = consume;
 
         if (valid_box(new->item)) {
-            ilist_append((ilist *) l, (int) new);
+            req_ent_list_append( l,  new);
         } else {
             fprintf(stderr, "req_list_scan(%d): bad item %d\n",
                     box_num, new->item);
@@ -1273,7 +1283,7 @@ scan_loc_info(struct loc_info *p, int box_num) {
                 break;
 
             case 'hl':
-                boxlist_scan(t, box_num, (ilist *) &(p->here_list));
+                boxlist_scan(t, box_num,  &(p->here_list));
                 break;
 
             case 0:
@@ -1413,7 +1423,9 @@ scan_magic(struct char_magic *p, int box_num) {
             case 'kw':
                 p->knows_weather = atoi(t);
                 break;
-            case 'pr':  /* Old "prayer" flag */             break;
+
+            case 'pr':  /* Old "prayer" flag */
+                break;
 
             case 'vi':
                 known_scan(t, &p->visions, box_num);
@@ -1508,7 +1520,7 @@ static void
 accept_print(FILE *fp, struct entity_char *p) {
     int i;
 
-    for (i = 0; i < ilist_len(p->accept); i++) {
+    for (i = 0; i < ae_list_len(p->accept); i++) {
         accept_print_sup(fp, p->accept[i]);
     }
 }
@@ -1631,7 +1643,7 @@ accept_scan(char *s, struct entity_char *pp) {
 
     sscanf(s, "%d %d %d", &p->item, &p->from_who, &p->qty);
 
-    ilist_append((ilist *) &(pp->accept), (int) p);
+    ae_list_append( &(pp->accept),  p);
 }
 
 static void
@@ -2226,12 +2238,12 @@ scan_subloc(struct entity_subloc *p, int box_num) {
                 break;
 
             case 'nc':
-                boxlist_scan(t, box_num, (ilist *) &(p->near_cities));
+                boxlist_scan(t, box_num, &(p->near_cities));
                 break;
 
             case 'bs':
 /*
-	  boxlist_scan(t, box_num, (ilist *) &(p->bound_storms));
+	  boxlist_scan(t, box_num, &(p->bound_storms));
 */
                 break;
 
@@ -2774,7 +2786,8 @@ scan_player(struct entity_player *p, int box_num) {
             case 'ci':
                 p->compuserve = atoi(t);
                 break;
-            case 'ti':      /* ignore it... */              break;
+            case 'ti':      /* ignore it... */
+                break;
             case 'bm':
                 p->broken_mailer = atoi(t);
                 break;
@@ -2783,7 +2796,7 @@ scan_player(struct entity_player *p, int box_num) {
                 break;
             case 'na': {
                 p->nation = atoi(t);
-                /* temp fix */
+                /* temp fix */ // todo: fix temp fix
                 if (p->nation <= 1002 && p->nation >= 1000) { p->nation -= 3; }
                 break;
             };

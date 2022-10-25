@@ -3,11 +3,13 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <unistd.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include <unistd.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/item_ent_list.h"
+#include "vectors/exit_view_list.h"
 
 
 /*
@@ -57,7 +59,7 @@ has_holy_symbol(int who) {
 
     if (!is_priest(who)) { return FALSE; }
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     if (subkind(e->item) == sub_holy_symbol) {
                         if (rp_item_magic(e->item)->religion == is_priest(who)) {
@@ -67,7 +69,8 @@ has_holy_symbol(int who) {
                             found = FALSE;
                         };
                     };
-                }next_inv;
+                }
+    inventory_next;
     return found;
 };
 
@@ -86,13 +89,14 @@ has_holy_plant(int who) {
 
     assert(rp_relig_skill(is_priest(who)));
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     if (e->item == holy_plant(who)) {
                         found = TRUE;
                         break;
                     };
-                }next_inv;
+                }
+    inventory_next;
 
     return found;
 };
@@ -1436,7 +1440,7 @@ d_find_hidden_features(struct command *c) {
      *  Otherwise reveal them all.
      *
      */
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->hidden) { find_hidden_exit(c->who, l, i); }
     }
 
@@ -2036,7 +2040,7 @@ d_calm_peasants(struct command *c) {
                  *  And remove angry peasants from noble's inventory.
                  *
                  */
-                loop_inv(i, e)
+                inventory_loop(i, e)
                             {
                                 if (e->item == item_angry_peasant) {
                                     /*
@@ -2048,7 +2052,8 @@ d_calm_peasants(struct command *c) {
                                     wout(i, "%s calms your angry peasants.", box_name(c->who));
                                     continue;
                                 };
-                            }next_inv;
+                            }
+                inventory_next;
             }next_here;
     wout(c->who, "You calm the angry peasants in %s.", box_name(where));
     return TRUE;
@@ -2283,7 +2288,7 @@ d_find_all_hidden_features(struct command *c) {
      *  Otherwise reveal them all.
      *
      */
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->hidden) { find_hidden_exit(c->who, l, i); }
     }
 

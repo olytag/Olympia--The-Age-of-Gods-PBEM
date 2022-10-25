@@ -4,15 +4,17 @@
 // Please see the LICENSE file in the root directory of this repository for further information.
 
 #include <stdarg.h>
-#include    <stdio.h>
-#include    <sys/types.h>
-#include    <dirent.h>
-#include    <string.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <string.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
 #include "os/generic.h"
+#include "vectors/cs_list.h"
+#include "vectors/order_list_list.h"
 
 
 /*  order.c -- manage list of unit orders for each faction */
@@ -26,7 +28,7 @@ p_order_head(int pl, int who) {
 
     p = p_player(pl);
 
-    for (i = 0; i < ilist_len(p->orders); i++) {
+    for (i = 0; i < order_list_list_len(p->orders); i++) {
         if (p->orders[i]->unit == who) {
             return p->orders[i];
         }
@@ -35,7 +37,7 @@ p_order_head(int pl, int who) {
     new = my_malloc(sizeof(*new));
     new->unit = who;
 
-    ilist_append((ilist *) &p->orders, (int) new);
+    order_list_list_append(&p->orders, new);
 
     return new;
 }
@@ -52,7 +54,7 @@ rp_order_head(int pl, int who) {
         return NULL;
     }
 
-    for (i = 0; i < ilist_len(p->orders); i++) {
+    for (i = 0; i < order_list_list_len(p->orders); i++) {
         if (p->orders[i]->unit == who) {
             return p->orders[i];
         }
@@ -68,7 +70,7 @@ top_order(int pl, int who) {
 
     p = rp_order_head(pl, who);
 
-    if (p && ilist_len(p->l) > 0) {
+    if (p && cs_list_len(p->l) > 0) {
         return p->l[0];
     }
 
@@ -134,12 +136,12 @@ pop_order(int pl, int who) {
     p = rp_order_head(pl, who);
 
     assert(p != NULL);
-    assert(ilist_len(p->l) > 0);
+    assert(cs_list_len(p->l) > 0);
 
 #if 1
     my_free(p->l[0]);
 #endif
-    ilist_delete((ilist *) &p->l, 0);
+    cs_list_delete(&p->l, 0);
 }
 
 
@@ -165,7 +167,7 @@ queue_order(int pl, int who, char *s) {
     struct order_list *p;
 
     p = p_order_head(pl, who);
-    ilist_append((ilist *) &p->l, (int) str_save(s));
+    cs_list_append(&p->l, str_save(s));
 }
 
 
@@ -174,7 +176,7 @@ prepend_order(int pl, int who, char *s) {
     struct order_list *p;
 
     p = p_order_head(pl, who);
-    ilist_prepend((ilist *) &p->l, (int) str_save(s));
+    cs_list_prepend(&p->l, str_save(s));
 }
 
 
@@ -220,13 +222,13 @@ save_player_orders(int pl) {
         return;
     }
 
-    for (i = 0; i < ilist_len(p->orders); i++) {
+    for (i = 0; i < order_list_list_len(p->orders); i++) {
         if (!valid_box(p->orders[i]->unit) ||
             kind(p->orders[i]->unit) == T_deadchar) {
             continue;
         }
 
-        for (j = 0; j < ilist_len(p->orders[i]->l); j++) {
+        for (j = 0; j < cs_list_len(p->orders[i]->l); j++) {
             if (fp == NULL) {
                 fnam = sout("%s/orders/%d", libdir, pl);
                 fp = fopen(fnam, "w");
@@ -452,8 +454,8 @@ orders_template_sup(int who, int num, int pl) {
 
     l = rp_order_head(pl, num);
 
-    if (l != NULL && ilist_len(l->l) > 0) {
-        for (i = 0; i < ilist_len(l->l); i++) {
+    if (l != NULL && cs_list_len(l->l) > 0) {
+        for (i = 0; i < cs_list_len(l->l); i++) {
             out(who, "%-20s%s",
                 eat_leading_trailing_whitespace(l->l[i]),
                 (valid_box(num) &&
@@ -483,7 +485,7 @@ orders_other(int who, int pl) {
         return;
     }
 
-    for (i = 0; i < ilist_len(p->orders); i++) {
+    for (i = 0; i < order_list_list_len(p->orders); i++) {
         if (pl == p->orders[i]->unit ||
             !valid_box(p->orders[i]->unit) ||
             kind(p->orders[i]->unit) == T_deadchar) {
@@ -503,7 +505,7 @@ orders_other(int who, int pl) {
                     rp_order_head(pl, p->orders[i]->unit);
 
             if ((c == NULL || c->state == DONE) &&
-                (l == NULL || ilist_len(l->l) == 0)) {
+                (l == NULL || cs_list_len(l->l) == 0)) {
                 continue;
             }
         }

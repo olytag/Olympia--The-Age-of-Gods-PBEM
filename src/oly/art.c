@@ -27,10 +27,12 @@
  *  Teleport Through Artifact
  *
  */
-#include    <stdio.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
+#include "vectors/item_ent_list.h"
 
 
 int
@@ -65,13 +67,13 @@ max_eff_aura(int who) {
         struct item_ent *e;
         int n;
 
-        loop_inv(who, e)
+        inventory_loop(who, e)
                     {
                         if (n = item_aura_bonus(e->item)) {
                             a += n;
                         }
                     }
-        next_inv;
+        inventory_next;
     }
 
     return a;
@@ -267,6 +269,8 @@ d_destroy_art(struct command *c) {
                box_name(c->who), box_name(item));
 
     destroy_unique_item(c->who, item);
+
+    return 0; // todo: should this return something?
 };
 
 int
@@ -428,7 +432,7 @@ d_reveal_arts(struct command *c) {
         return TRUE;
     };
 
-    loop_inv(target, e)
+    inventory_loop(target, e)
                 {
                     if (item_unique(e->item) &&
                         is_artifact(e->item)) {
@@ -436,7 +440,8 @@ d_reveal_arts(struct command *c) {
                              box_name(e->item));
                         num++;
                     };
-                }next_inv;
+                }
+    inventory_next;
 
     if (!num) {
         wout(c->who, "%s is carrying no artifacts.", box_name(target));
@@ -472,6 +477,8 @@ v_deep_identify(struct command *c) {
 
     artifact_identify("You study the aura of this artifact "
                       "and identify it as: ", c);
+
+    return 0; // todo: should this return something?
 };
 
 /*
@@ -809,7 +816,7 @@ v_forge_art_x(struct command *c) {
     }
     c->d = rare_item;
 
-    if (!has_item(c->who, rare_item) >= 1) {
+    if (!has_item(c->who, rare_item) >= 1) { // todo: should be !(... >= 1), maybe?
         wout(c->who, "Requires %s.", box_name_qty(rare_item, 1));
         return FALSE;
     }
@@ -835,7 +842,7 @@ d_forge_art_x(struct command *c) {
         return FALSE;
     }
 
-    if (!has_item(c->who, rare_item) >= 1) {
+    if (!has_item(c->who, rare_item) >= 1) { // todo: should be !(... >= 1), maybe?
         wout(c->who, "Requires %s.", box_name_qty(rare_item, 1));
         return FALSE;
     }

@@ -5,9 +5,12 @@
 
 #include    <stdio.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
 #include "forward.h"
+#include "vectors/exit_view_list.h"
+#include "vectors/item_ent_list.h"
 
 
 #if 0
@@ -257,10 +260,7 @@ new_storm(int new, int sk, int aura, int where) {
 }
 
 
-void
-storm_report(pl)
-        int pl;
-{
+void storm_report(int pl) {
     int first = TRUE;
     int owner;
     int where;
@@ -655,7 +655,7 @@ parse_storm_dir(struct command *c, int storm) {
         {
             struct exit_view *ret = NULL;
 
-            for (i = 0; i < ilist_len(l); i++) {
+            for (i = 0; i < ev_list_len(l); i++) {
                 if (l[i]->destination == c->a) {
                     ret = l[i];
                 }
@@ -690,7 +690,7 @@ parse_storm_dir(struct command *c, int storm) {
         return FALSE;
     }
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->direction == dir) {
             return l[i];
         }
@@ -1269,6 +1269,8 @@ fog_excuse() {
         default:
             assert(FALSE);
     }
+    /* NOT REACHED */
+    exit(2);
 }
 
 
@@ -1316,7 +1318,7 @@ d_death_fog(struct command *c) {
 
     aura = min(aura, p->storm_str);
 
-    loop_inv(target, e)
+    inventory_loop(target, e)
                 {
                     /*
                      *   Quit if we've run out of aura.
@@ -1338,7 +1340,8 @@ d_death_fog(struct command *c) {
                              fog_excuse());
                         aura_used += amount;
                     };
-                }next_inv;
+                }
+    inventory_next;
 
     if (aura_used == 0) {
         wout(c->who, "%s has no vulnerable men.",
@@ -1424,6 +1427,7 @@ d_banish_corpses(struct command *c) {
          plural_item_name(item_corpse, sum));
 
     consume_item(target, item_corpse, sum);
+    // todo: i and n are uninitialized here
     wout(i, "%s banished our %s!", box_name(c->who),
          plural_item_name(item_corpse, n));
 

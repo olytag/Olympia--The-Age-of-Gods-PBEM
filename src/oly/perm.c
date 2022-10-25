@@ -3,12 +3,14 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <string.h>
+#include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/admit_list.h"
+#include "vectors/cs_list.h"
 
 
 static struct admit *
@@ -19,7 +21,7 @@ rp_admit(int pl, int targ) {
     assert(kind(pl) == T_player);
     p = p_player(pl);
 
-    for (i = 0; i < ilist_len(p->admits); i++) {
+    for (i = 0; i < admit_list_len(p->admits); i++) {
         if (p->admits[i]->targ == targ) {
             return p->admits[i];
         }
@@ -38,7 +40,7 @@ p_admit(int pl, int targ) {
     assert(kind(pl) == T_player);
     p = p_player(pl);
 
-    for (i = 0; i < ilist_len(p->admits); i++) {
+    for (i = 0; i < admit_list_len(p->admits); i++) {
         if (p->admits[i]->targ == targ) {
             return p->admits[i];
         }
@@ -47,7 +49,7 @@ p_admit(int pl, int targ) {
     new = my_malloc(sizeof(*new));
     new->targ = targ;
 
-    ilist_append((ilist *) &p->admits, (int) new);
+    admit_list_append(&p->admits, new);
 
     return new;
 }
@@ -169,11 +171,9 @@ v_admit(struct command *c) {
 }
 
 
-static int
-admit_comp(a, b)
-        struct admit **a;
-        struct admit **b;
-{
+static int admit_comp(const void *q1, const void *q2) {
+    struct admit **a = (struct admit **)q1;
+    struct admit **b = (struct admit **)q2;
 
     return (*a)->targ - (*b)->targ;
 }
@@ -230,11 +230,11 @@ print_admit(int pl) {
 
     p = p_player(pl);
 
-    if (ilist_len(p->admits) > 0) {
-        qsort(p->admits, ilist_len(p->admits), sizeof(int), admit_comp);
+    if (admit_list_len(p->admits) > 0) {
+        qsort(p->admits, admit_list_len(p->admits), sizeof(int), admit_comp);
     }
 
-    for (i = 0; i < ilist_len(p->admits); i++) {
+    for (i = 0; i < admit_list_len(p->admits); i++) {
         if (valid_box(p->admits[i]->targ)) {
             if (first) {
                 tagout(pl, "<tag type=header>");
@@ -303,7 +303,6 @@ clear_att(int who, int disp) {
 void
 set_att(int who, int targ, int disp) {
     struct att_ent *p;
-    extern int int_comp();
 
     p = p_disp(who);
 
@@ -415,11 +414,7 @@ int find_nation(char *name) {
  *  Added support for hostile to monsters.
  *
  */
-int
-is_hostile(who, targ)
-        int who;
-        int targ;
-{
+int is_hostile(int who, int targ) {
     struct att_ent *p;
 
     if (player(who) == player(targ)) {
@@ -494,11 +489,7 @@ is_hostile(who, targ)
 }
 
 
-int
-is_defend(who, targ)
-        int who;
-        int targ;
-{
+int is_defend(int who, int targ) {
     struct att_ent *p;
     int pl;
 
@@ -705,7 +696,6 @@ print_att_sup(int who, ilist l, char *header, int *first) {
     int i;
     int count = 0;
     char buf[LEN];
-    extern int int_comp();
 
     if (ilist_len(l) == 0) {
         return;

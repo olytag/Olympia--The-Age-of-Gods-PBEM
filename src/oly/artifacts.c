@@ -9,10 +9,12 @@
  *  Code to generate and use artifacts.
  *
  */
-#include    <stdio.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/item_ent_list.h"
+
 
 #define COMMON 1000
 #define UNUSUAL 10
@@ -658,7 +660,7 @@ best_artifact(int who, int type, int param2, int uses) {
     int best = 0;
     int best_val = 0;
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     if (is_artifact(e->item)) {
                         if (rp_item_artifact(e->item)->type == type &&
@@ -669,7 +671,8 @@ best_artifact(int who, int type, int param2, int uses) {
                             best = e->item;
                         };
                     };
-                }next_inv;
+                }
+    inventory_next;
 
     return best;
 };
@@ -684,7 +687,7 @@ int
 has_artifact(int who, int type, int p1, int p2, int charges) {
     struct item_ent *e;
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     struct entity_artifact *a = is_artifact(e->item);
                     if (a) {
@@ -695,7 +698,8 @@ has_artifact(int who, int type, int p1, int p2, int charges) {
                             return e->item;
                         }
                     };
-                }next_inv;
+                }
+    inventory_next;
 
     return 0;
 };
@@ -710,7 +714,7 @@ int combat_artifact_bonus(int who, int part, int *unused) {
     struct item_ent *e;
     int best = 0;
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     struct entity_artifact *a = is_artifact(e->item);
                     if (a) {
@@ -719,7 +723,8 @@ int combat_artifact_bonus(int who, int part, int *unused) {
                             best = a->param1;
                         };
                     };
-                }next_inv;
+                }
+    inventory_next;
 
     return best;
 
@@ -778,13 +783,14 @@ v_art_destroy(struct command *c) {
             {
                 wout(num, "A golden glow suffuses the province.");
 
-                loop_inv(num, t)
+                inventory_loop(num, t)
                             {
                                 if (t->item == kind) {
                                     wout(num, "%s vanished!", box_name_qty(t->item, t->qty));
                                     consume_item(num, t->item, t->qty);
                                 }
-                            }next_inv;
+                            }
+                inventory_next;
 
                 if (subkind(num) == sub_ni && noble_item(num) == kind) {
                     kill_char(num, MATES, S_body);
@@ -1283,6 +1289,8 @@ v_identify(struct command *c) {
 
     artifact_identify("You carefully read the runes on this artifact "
                       "and identify it as: ", c);
+
+    return 0; // todo: should this return something?
 };
 
 

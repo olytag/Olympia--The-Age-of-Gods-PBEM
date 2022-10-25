@@ -3,11 +3,16 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <string.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include <string.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/accept_ent_list.h"
+#include "vectors/cs_list.h"
+#include "vectors/fe_list.h"
+#include "vectors/item_ent_list.h"
+#include "vectors/wa_list.h"
 
 
 int
@@ -32,14 +37,11 @@ v_explore(struct command *c) {
 
 static int
 find_lost_items(int who, int where) {
-    struct item_ent *e;
+    struct item_ent *e = 0;
     int item = 0;
     int chance;
-    /* From buy.c */
-    struct trade *
-    find_trade(int who, int kind, int item);
 
-    loop_inv(where, e)
+    inventory_loop(where, e)
                 {
                     if (!item_unique(e->item)) {
                         continue;
@@ -67,7 +69,7 @@ find_lost_items(int who, int where) {
                     item = e->item;
                     break;
                 }
-    next_inv;
+    inventory_next;
 
     if (loc_depth(where) >= LOC_subloc) {
         chance = 100;
@@ -497,11 +499,11 @@ VLN added second line to check.
     if (from_who == 0 && strncasecmp("clear", c->parse[1], 5) == 0) {
         int i;
 
-        for (i = 0; i < ilist_len(p->accept); i++) {
+        for (i = 0; i < ae_list_len(p->accept); i++) {
             my_free(p->accept[i]);
         }
 
-        ilist_reclaim((ilist *) &p->accept);
+        ae_list_reclaim( &p->accept);
 
         wout(c->who, "Accept list cleared.");
         return TRUE;
@@ -524,7 +526,7 @@ VLN added second line to check.
      *  Maybe you're already doing this?
      *
      */
-    for (i = 0; i < ilist_len(p->accept); i++) {
+    for (i = 0; i < ae_list_len(p->accept); i++) {
         if (p->accept[i]->item == item &&
             p->accept[i]->from_who == from_who &&
             p->accept[i]->qty == qty) {
@@ -539,7 +541,7 @@ VLN added second line to check.
     new->from_who = from_who;
     new->qty = qty;
 
-    ilist_append((ilist *) &p->accept, (int) new);
+    ae_list_append(&p->accept, new);
 
     return TRUE;
 }
@@ -552,7 +554,7 @@ will_accept_sup(int who, int item, int from, int qty) {
     p = rp_char(who);
 
     if (p) {
-        for (i = 0; i < ilist_len(p->accept); i++) {
+        for (i = 0; i < ae_list_len(p->accept); i++) {
             int item_match = (p->accept[i]->item == item ||
                               p->accept[i]->item == 0);
             int from_match = (p->accept[i]->from_who == from ||
@@ -1159,7 +1161,7 @@ static int
 flag_raised(int who, char *flag) {
     int i;
 
-    for (i = 0; i < ilist_len(flags); i++) {
+    for (i = 0; i < fe_list_len(flags); i++) {
         if (who != 0 &&
             player(flags[i]->who) != who &&
             flags[i]->who != who) {
@@ -1195,7 +1197,7 @@ int v_flag(struct command *c) {
     new->who = c->who;
     new->flag = str_save(flag);
 
-    ilist_append((ilist *) &flags, (int) new);
+    fe_list_append(&flags, new);
 
     return TRUE;
 }
@@ -1238,27 +1240,25 @@ static char *wait_tags[] = {
 };
 
 
-void
-clear_wait_parse(struct command *c) {
+void clear_wait_parse(struct command *c) {
     int i;
 
-    for (i = 0; i < ilist_len(c->wait_parse); i++) {
+    for (i = 0; i < wa_list_len(c->wait_parse); i++) {
         my_free(c->wait_parse[i]);
         c->wait_parse[i] = NULL;
     }
 
-    ilist_clear((ilist *) &c->wait_parse);
+    wa_list_clear(&c->wait_parse);
 }
 
 
-char *
-parse_wait_args(struct command *c) {
+char *parse_wait_args(struct command *c) {
     int tag;
     int i;
     char *tag_s;
     struct wait_arg *new;
 
-    assert(ilist_len(c->wait_parse) == 0);
+    assert(wa_list_len(c->wait_parse) == 0);
 
     i = 1;
     while (i <= numargs(c)) {
@@ -1290,7 +1290,7 @@ parse_wait_args(struct command *c) {
         }
 
         new = my_malloc(sizeof(*new));
-        ilist_append((ilist *) &c->wait_parse, (int) new);
+        wa_list_append( &c->wait_parse, new);
 
         new->tag = tag;
         new->a1 = 0;
@@ -1380,15 +1380,15 @@ check_wait_conditions(struct command *c) {
         where_ship = subloc(where_ship);
     }
 
-    if (ilist_len(c->wait_parse) < 1) {
+    if (wa_list_len(c->wait_parse) < 1) {
         if (ret = parse_wait_args(c)) {
             return ret;
         }
 
-        assert(ilist_len(c->wait_parse) > 0);
+        assert(wa_list_len(c->wait_parse) > 0);
     }
 
-    for (i = 0; i < ilist_len(c->wait_parse); i++) {
+    for (i = 0; i < wa_list_len(c->wait_parse); i++) {
         p = c->wait_parse[i];
 
         if (setnot) {

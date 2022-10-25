@@ -3,13 +3,14 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <time.h>
-#include    <string.h>
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
 
 
 int
@@ -188,7 +189,7 @@ void
 text_list_free(char **l) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < cs_list_len(l); i++) {
         my_free(l[i]);
     }
 }
@@ -199,7 +200,7 @@ line_length_check(char **l) {
     int i;
     int len = 0;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < cs_list_len(l); i++) {
         len = max(len, strlen(l[i]));
     }
 
@@ -231,7 +232,7 @@ parse_text_list(struct command *c) {
             if (i_strcmp(t, "end") == 0) {
                 done = TRUE;
             } else {
-                ilist_append((ilist *) &l, (int) str_save(order));
+                cs_list_append(&l, str_save(order));
             }
             pop_order(pl, c->who);
         }
@@ -245,7 +246,7 @@ parse_text_list(struct command *c) {
                 return NULL;
             }
 
-            ilist_append((ilist *) &l, (int) str_save(order));
+            cs_list_append(&l, str_save(order));
             pop_order(pl, c->who);
 
             lines--;
@@ -323,11 +324,11 @@ v_message(struct command *c) {
     indent += 3;
     first = TRUE;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < cs_list_len(l); i++) {
         wout(targ, "%s%s%s",
              first ? "\"" : "",
              l[i],
-             i + 1 == ilist_len(l) ? "\"" : "");
+             i + 1 == cs_list_len(l) ? "\"" : "");
 
         if (first) {
             first = FALSE;

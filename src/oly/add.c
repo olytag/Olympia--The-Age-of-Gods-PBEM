@@ -3,15 +3,16 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <sys/types.h>
-#include    <dirent.h>
-#include    <string.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <string.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
 #include "os/generic.h"
+#include "vectors/skill_ent_list.h"
 
 
 /*
@@ -147,7 +148,8 @@ nps_invested(int who) {
                     total += skill_np_req(e->skill);
                 }
                 if (skill_school(e->skill) == e->skill) { ++categories; }
-            }next_char_skill;
+            }
+    next_char_skill;
 
     /*
      *  Loyalty
@@ -391,19 +393,19 @@ make_new_players_sup(char *acct, FILE *fp) {
 
     faction = fetch_inp(fp);
     if (faction == NULL) {
-        fprintf(stderr, "%s: Unable to add %s <%s>n", acct, full_name, email);
+        fprintf(stderr, "%s: Unable to add %s <%s>n", acct, full_name, email); // todo: uninitialized values
         fprintf(stderr, "    partial read of faction.");
         return FALSE;
     }
     character = fetch_inp(fp);
     if (character == NULL) {
-        fprintf(stderr, "%s: Unable to add %s <%s>n", acct, full_name, email);
+        fprintf(stderr, "%s: Unable to add %s <%s>n", acct, full_name, email); // todo: uninitialized values
         fprintf(stderr, "    partial read of character.");
         return FALSE;
     }
     full_name = fetch_inp(fp);
     if (full_name == NULL) {
-        fprintf(stderr, "%s: Unable to add %s <%s>n", acct, full_name, email);
+        fprintf(stderr, "%s: Unable to add %s <%s>n", acct, full_name, email); // todo: uninitialized values
         fprintf(stderr, "    partial read of full_name.");
         return FALSE;
     }

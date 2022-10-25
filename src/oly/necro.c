@@ -3,11 +3,13 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
+#include <stdio.h>
 #include <string.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/item_ent_list.h"
+#include "vectors/skill_ent_list.h"
 
 
 static int
@@ -395,14 +397,14 @@ random_body_here(int where) {
 
     ilist_clear(&l);
 
-    loop_inv(where, e)
+    inventory_loop(where, e)
                 {
                     if (subkind(e->item) == sub_dead_body &&
                         sysclock.turn > p_char(e->item)->death_time.turn) {
                         ilist_append(&l, e->item);
                     }
                 }
-    next_inv;
+    inventory_next;
 
     if (ilist_len(l) == 0) {
         return 0;

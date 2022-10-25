@@ -3,11 +3,12 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <unistd.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include <unistd.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/item_ent_list.h"
 
 /*
  *  Mining-related skills and functions.
@@ -214,7 +215,6 @@ struct entity_mine
 void
 create_mine_info(int mine) {
     int i, j;
-    ilist *el = NULL;
     struct item_ent *new;
 
     assert(!p_loc(mine)->mine_info);
@@ -231,7 +231,7 @@ create_mine_info(int mine) {
      *
      */
     for (i = 0; i < MINE_MAX; i++) {
-        el = (ilist *) &(p_loc(mine)->mine_info->mc[i].items);
+        struct item_ent ***el = &(p_loc(mine)->mine_info->mc[i].items);
         p_loc(mine)->mine_info->shoring[i] = NO_SHORING;
         for (j = 0; j < MINE_PRODUCTS; j++) {
             int qty = rnd(mine_qties[i].mins[j], mine_qties[i].maxs[j]);
@@ -239,7 +239,7 @@ create_mine_info(int mine) {
                 new = my_malloc(sizeof(*new));
                 new->item = mine_products[j];
                 new->qty = qty;
-                ilist_append(el, (int) new);
+                ie_list_append(el, new);
             };
         };
     };
@@ -261,7 +261,7 @@ mine_has_item(int mine, int depth, int item) {
     assert(depth >= 0);
     if (depth >= MINE_MAX) { depth = MINE_MAX - 1; }
 
-    for (i = 0; i < ilist_len(mi->mc[depth].items); i++) {
+    for (i = 0; i < ie_list_len(mi->mc[depth].items); i++) {
         if (mi->mc[depth].items[i]->item == item) {
             return mi->mc[depth].items[i]->qty;
         }
@@ -286,7 +286,7 @@ mine_sub_item(int mine, int depth, int item, int amount) {
     assert(depth >= 0);
     if (depth >= MINE_MAX) { depth = MINE_MAX - 1; }
 
-    for (i = 0; i < ilist_len(mi->mc[depth].items); i++) {
+    for (i = 0; i < ie_list_len(mi->mc[depth].items); i++) {
         if (mi->mc[depth].items[i]->item == item) {
             mi->mc[depth].items[i]->qty -= amount;
             return;
