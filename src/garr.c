@@ -1,8 +1,14 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 /*
@@ -595,8 +601,6 @@ garrison_summary(int pl) {
     int taxr;
     int first = TRUE;
     struct item_ent *e;
-    int inv_item_comp(struct item_ent **a, struct item_ent **b);
-    char *extra_item_info(int who, int item, int qty);
 
     ilist_clear(&l);
 

@@ -1,3 +1,10 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_LOOP_H
+#define OLYTAG_LOOP_H
 
 /*
  *  loop.h -- abstracted loops
@@ -420,3 +427,4 @@
 
 #define    next_follower    } assert(ll_check == 28); ilist_reclaim(&ll_l); }
 
+#endif //OLYTAG_LOOP_H

@@ -1,3 +1,10 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_LOC_H
+#define OLYTAG_LOC_H
 
 extern int loc_owner(int where);
 
@@ -33,3 +40,4 @@ extern int count_loc_structures(int where, int a, int b);
 
 #define    city_here(a)    subloc_here((a), sub_city)
 
+#endif //OLYTAG_LOC_H

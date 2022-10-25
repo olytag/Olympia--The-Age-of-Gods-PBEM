@@ -1,10 +1,17 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    <sys/types.h>
 #include    <dirent.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
+
 
 /*
  *  Mon Oct 11 07:06:02 1999 -- Scott Turner
@@ -279,18 +286,15 @@ show_item_skills(int who, int num) {
 }
 
 
-int
-inv_item_comp(a, b)
-        struct item_ent **a;
-        struct item_ent **b;
-{
+int inv_item_comp(const void *q1, const void *q2) {
+    const struct item_ent **a = (const struct item_ent **)q1;
+    const struct item_ent **b = (const struct item_ent **)q2;
 
     return (*a)->item - (*b)->item;
 }
 
 
-char *
-extra_item_info(int who, int item, int qty) {
+char *extra_item_info(int who, int item, int qty) {
     char buf[LEN];
     int lc, rc, fc;
     int at, df, mi;
@@ -418,8 +422,7 @@ show_char_inventory(int who, int num, char *prefix) {
  *	5.  ocean province	%s, in %s
  */
 
-char *
-char_rep_location(int who) {
+char *char_rep_location(int who) {
     int where = subloc(who);
     char *s = "";
     char *reg_name;
@@ -2020,8 +2023,7 @@ player_banner() {
     out_alt_who = 0;
 }
 
-int
-report_account_out(int pl, int who) {
+int report_account_out(int pl, int who) {
     char fnam[LEN];
     char cmd[LEN];
     FILE *fp;

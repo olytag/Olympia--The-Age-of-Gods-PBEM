@@ -1,7 +1,12 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 int
@@ -95,6 +100,7 @@ stack_leader(int who) {
         who = n;
         n = stack_parent(n);
 
+        // todo: count may not increment in release builds
         assert(count++ < 1000);        /* infinite loop check */
     }
 

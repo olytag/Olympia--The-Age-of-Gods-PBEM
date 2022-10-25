@@ -1,3 +1,10 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_U_H
+#define OLYTAG_U_H
 
 /*
  *  defines, prototypes and externs for u.c
@@ -153,3 +160,4 @@ extern int my_prisoner(int who, int pris);
 
 extern int beast_capturable(int who);
 
+#endif //OLYTAG_U_H

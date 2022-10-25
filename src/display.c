@@ -1,8 +1,15 @@
 
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
 #include    <stdio.h>
 #include    <string.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
+
 
 static char *liner_desc_char(int n);
 
@@ -1219,8 +1226,7 @@ show_loc_posts(int who, int where, int show_full_loc) {
 }
 
 
-static void
-show_weather(who, where) {
+static void show_weather(int who, int where) {
     int rain, wind, fog, mist;
 
     rain = weather_here(where, sub_rain);

@@ -1,8 +1,14 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 #define        MAX_PRI        5
@@ -131,8 +137,7 @@ remove_ctrl_chars(char *s) {
 }
 
 
-int
-parse_arg(int who, char *s) {
+int parse_arg(int who, char *s) {
     int n;
 
 /*
@@ -566,8 +571,7 @@ command_done(struct command *c) {
 }
 
 
-int
-finish_command(struct command *c) {
+int finish_command(struct command *c) {
     extern int cmd_wait;
 
     assert(c != NULL);

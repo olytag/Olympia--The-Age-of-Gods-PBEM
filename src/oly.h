@@ -1,7 +1,18 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
+#ifndef OLYTAG_OLY_H
+#define OLYTAG_OLY_H
+
 #include "oly3.h"
 
 typedef unsigned char uchar;
+#ifndef OLY_FORWARD_schar
+#define OLY_FORWARD_schar
 typedef signed char schar;
+#endif
 
 #define        DEFAULT_PASSWORD    "defpwd123"
 
@@ -716,7 +727,10 @@ typedef signed char schar;
 #define        S_soul        2       /* kill to a lost soul */
 #define        S_nothing    3       /* kill completely */
 
+#ifndef OLY_FORWARD_sparse
+#define OLY_FORWARD_sparse
 typedef ilist sparse;
+#endif
 
 typedef struct {
     short day;            /* day of month */
@@ -1083,18 +1097,19 @@ struct char_magic {
 #define        SKILL_learning    1    /* in the process of learning it */
 #define        SKILL_know    2    /* know it */
 
+#ifndef OLY_FORWARD_struct_skill_ent
+#define OLY_FORWARD_struct_skill_ent
 struct skill_ent {
     int skill;
-    int days_studied;        /* days studied * TOUGH_NUM */
-    int experience;        /* experience level with skill */
-    char know;            /* SKILL_xxx */
-
+    int days_studied;  /* days studied * TOUGH_NUM */
+    int experience;    /* experience level with skill */
+    char know;         /* SKILL_xxx */
 /*
  *  Not saved:
  */
-
-    char exp_this_month;        /* flag for add_skill_experience() */
+    char exp_this_month; /* flag for add_skill_experience() */
 };
+#endif //OLY_FORWARD_struct_skill_ent
 
 /*
  *  Thu Mar 20 12:05:50 1997 -- Scott Turner
@@ -1102,10 +1117,13 @@ struct skill_ent {
  *  Location control: whether or not we're open, fees.
  *
  */
+#ifndef OLY_FORWARD_loc_control_ent
+#define OLY_FORWARD_loc_control_ent
 struct loc_control_ent {
     int closed;
     int nobles, men, weight;
 };
+#endif
 
 struct item_ent {
     int item;
@@ -1423,6 +1441,8 @@ struct wait_arg {
     char *flag;
 };
 
+#ifndef OLY_FORWARD_struct_command
+#define OLY_FORWARD_struct_command
 struct command {
     int who;        /* entity this is under (redundant) */
     int wait;        /* time until completion */
@@ -1451,6 +1471,7 @@ struct command {
     struct wait_arg **wait_parse;    /* not saved */
     schar debug;        /* debugging check -- not saved */
 };
+#endif
 
 #define    numargs(c)    (ilist_len(c->parse) - 1)
 
@@ -2030,3 +2051,4 @@ extern ilist new_players;        /* new players added this turn */
 #define ALT (1 << 4)
 
 
+#endif //OLYTAG_OLY_H

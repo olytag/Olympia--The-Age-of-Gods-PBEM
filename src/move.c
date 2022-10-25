@@ -1,8 +1,14 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    <string.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
 
 static ilist ocean_chars = NULL;
@@ -742,8 +748,7 @@ pay_fine(struct command *c, int fine, int ruler) {
     return TRUE;
 }
 
-int
-calc_entrance_fee(struct loc_control_ent *control, struct command *c, int ruler) {
+int calc_entrance_fee(struct loc_control_ent *control, struct command *c, int ruler) {
     int w_cost = 0, m_cost = 0, n_cost = 0;
     vector_stack(c->who, 1);
 
@@ -1243,7 +1248,8 @@ peaceful_enter(int who, int from, int where) {
  */
 int
 check_peaceful_move(struct command *c, struct exit_view *v) {
-    int ruler = 0, pl;
+    int ruler = 0;
+    int pl; // todo: pl is uninitialized; we said no bug fixes
     struct loc_control_ent *control = NULL;
     int cost = 0, payee = 0;
     int where = subloc(c->who);
@@ -1637,6 +1643,7 @@ check_arrival_effects(int who, int where, int flying) {
      *  should happen.
      *
      */
+    // todo: cast to struct effect * from int
     loop_effects(where, e)
             {
                 /*
@@ -2717,7 +2724,7 @@ d_sail(struct command *c) {
  *  to indicate that the ship is no longer in transit.
  */
 
-i_sail(struct command *c) {
+int i_sail(struct command *c) {
     int ship = subloc(c->who);
 
     assert(is_ship(ship));

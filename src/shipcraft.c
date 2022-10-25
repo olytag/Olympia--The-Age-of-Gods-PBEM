@@ -1,13 +1,21 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
+
 /*
  *  Thu Jan  2 16:10:30 1997 -- Scott Turner
  *
  *  New shipcraft skills.
  *
  */
+#include <stdlib.h>
 #include    <stdio.h>
 #include    <unistd.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
+
 
 /*
  *  Fri Jan  3 09:25:12 1997 -- Scott Turner

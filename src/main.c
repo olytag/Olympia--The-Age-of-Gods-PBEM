@@ -1,3 +1,7 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    <unistd.h>
@@ -5,22 +9,8 @@
 #include    <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
-#include    <sys/types.h>
 #include    <sys/stat.h>
-
-void set_html_pass(int pl);
-
-void setup_html_dir(int pl);
-
-void write_factions();
-
-void write_forwards();
-
-void write_email();
-
-void write_totimes();
-
-void write_player_list();
+#include "forward.h"
 
 /*
  *  pretty_data_files:  include parenthesisted names in the data files,
@@ -37,14 +27,11 @@ int time_self = FALSE;        /* print timing info */
 int save_flag = FALSE;
 int acct_flag = FALSE;
 
-main(argc, argv)
-        int argc;
-        char **argv;
-{
+int main(int argc, char **argv) {
     extern int optind, opterr;
     extern char *optarg;
     int errflag = 0;
-    int c;
+    int c, i;
     int run_flag = FALSE;
     int add_flag = FALSE;
     int eat_flag = FALSE;
@@ -57,7 +44,7 @@ main(argc, argv)
     int map_test_flag = FALSE;
     int unspool_first_flag = FALSE;
 
-    printf("\tsizeof(struct box) = %d\n", sizeof(struct box));
+    printf("\tsizeof(struct box) = %d\n", (int)sizeof(struct box));
     setbuf(stderr, NULL);
 
     umask(S_IRWXO);
@@ -127,7 +114,12 @@ main(argc, argv)
                 break;
 
             case 'R':        /* test random number generator */
-                test_random();
+                i = test_random();
+                if (i != 0) {
+                    printf("test random: failed\n");
+                    exit(2);
+                }
+                printf("test random: passed\n");
                 exit(0);
 
             case 'S':        /* save database when done */
@@ -135,7 +127,12 @@ main(argc, argv)
                 break;
 
             case 't':
-                ilist_test();
+                i = test_ilist();
+                if (i != 0) {
+                    printf("test ilist: failed\n");
+                    exit(2);
+                }
+                printf("test ilist: passed\n");
                 exit(0);
 
             case 'T':
@@ -275,7 +272,7 @@ main(argc, argv)
 
     if (map_flag) {
         int load_cmap();
-        void print_map();
+        //void print_map();
         if (load_cmap()) {
             print_map(stdout);
         }
@@ -356,8 +353,8 @@ main(argc, argv)
          */
         if (unspool_first_flag) {
             setbuf(stdout, NULL);
-            mkdir(sout("%s/orders", libdir), 0755);
-            mkdir(sout("%s/spool", libdir), 0777);
+            makedir(sout("%s/orders", libdir), 0755);
+            makedir(sout("%s/spool", libdir), 0777);
             chmod(sout("%s/spool", libdir), 0777);
             read_spool(mail_now);
         };
@@ -449,7 +446,7 @@ main(argc, argv)
 }
 
 
-call_init_routines() {
+void call_init_routines(void) {
 
     init_lower();
     dir_assert();
@@ -612,7 +609,7 @@ v_nationlist(struct command *c) {
  *  Add DM to all the lists.
  *
  */
-write_nations_lists() {
+void write_nations_lists(void) {
     FILE *fp;
     char *fnam;
     int i;
@@ -715,7 +712,7 @@ void write_player_list() {
 }
 
 
-write_forward_sup(int who_for, int target, FILE *fp) {
+void write_forward_sup(int who_for, int target, FILE *fp) {
     int pl;
     char *s, *u;
 
@@ -768,7 +765,7 @@ void write_forwards() {
 }
 
 
-write_faction_sup(int who_for, int target, FILE *fp) {
+void write_faction_sup(int who_for, int target, FILE *fp) {
     int pl;
     char *s, *u;
 
@@ -870,8 +867,7 @@ format_string(int i) {
  *  Added a loop over all the formats.
  *
  */
-int
-send_rep(int pl, int turn) {
+int send_rep(int pl, int turn) {
     struct entity_player *p;
     char report[LEN];
     FILE *fp;
@@ -881,7 +877,7 @@ send_rep(int pl, int turn) {
     char *cmd;
     int split_lines = player_split_lines(pl);
     int split_bytes = player_split_bytes(pl);
-    int formats = p_player(pl)->format;
+    int formats = (int)(p_player(pl)->format);
     int i;
     char *email;
 
@@ -1010,7 +1006,7 @@ send_rep(int pl, int turn) {
     return TRUE;
 }
 
-mail_reports() {
+void mail_reports(void) {
     int pl;
     int i;
 
@@ -1056,7 +1052,7 @@ preprocess(char *in, char *out, char *args) {
  *  Add stuff to write out the %d.pre file.
  *
  */
-setup_html_all() {
+void setup_html_all(void) {
     int pl;
     char fnam[LEN];
     char fnam2[LEN];
@@ -1070,7 +1066,7 @@ setup_html_all() {
         fprintf(stderr, "Can't open %s for writing?", fnam);
         fp = stderr;
     };
-    fprintf(fp, "<TABLE CELLSPACING=0 CELLPADDING=5 WIDTH=\"100%\" "
+    fprintf(fp, "<TABLE CELLSPACING=0 CELLPADDING=5 WIDTH=\"100%%\" "
                 "BGCOLOR=\"#48D1CC\" >\n");
 
     /* write and execute only for self. */
@@ -1112,9 +1108,7 @@ setup_html_all() {
     /* copy_public_turns(); */
 }
 
-void setup_html_dir(pl)
-        int pl;
-{
+void setup_html_dir(int pl) {
     char fnam[LEN];
     char fnam2[LEN];
     FILE *fp;
@@ -1122,7 +1116,7 @@ void setup_html_dir(pl)
     /* read and execute for all. */
     umask(S_IWGRP | S_IWOTH);
     sprintf(fnam, "%s/%d/%s", options.html_path, game_number, box_code_less(pl));
-    mkdir(fnam, 0777);
+    makedir(fnam, 0777);
     umask(S_IWGRP | S_IXGRP | S_IWOTH | S_IXOTH);
 
     sprintf(fnam2, "%s/.htaccess", fnam);
@@ -1226,7 +1220,7 @@ void output_html_map(int pl) {
      *
      */
     umask(S_IWGRP | S_IWOTH);
-    (void) mkdir(info, 0777);
+    (void) makedir(info, 0777);
     umask(S_IWOTH | S_IXOTH);
 
     /*
@@ -1306,3 +1300,4 @@ copy_public_turns()
     next_player;
 }
 #endif
+

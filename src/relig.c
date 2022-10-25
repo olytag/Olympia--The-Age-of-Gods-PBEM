@@ -1,11 +1,14 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
 #include    <unistd.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
 
-void
-add_piety(int who, int amount, int use_limit);
 
 /*
  *  Wed Oct 30 11:54:25 1996 -- Scott Turner

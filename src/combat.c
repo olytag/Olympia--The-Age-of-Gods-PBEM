@@ -1,3 +1,7 @@
+// olytag - Olympia: The Age of Gods
+//
+// Copyright (c) 2022 by the OlyTag authors.
+// Please see the LICENSE file in the root directory of this repository for further information.
 
 /*
  *  ideas:  ->inside indicates slot of fort we're in
@@ -12,6 +16,8 @@
 #include    <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
+#include "forward.h"
+
 
 #define    allied(a, b)    (is_defend((a),(b)))
 
