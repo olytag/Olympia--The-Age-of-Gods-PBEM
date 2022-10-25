@@ -3,11 +3,18 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include	<stdlib.h>
-#include	<stdio.h>
-#include	<string.h>
-#include <io.h>
-#include	"z.h"
+#include <assert.h>
+#include <unistd.h>
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "z.h"
+#include "random.h"
 
 // #define bcopy(a,b,n)       memcpy(b, a, n)
 // #define bzero(a,  n)       memset(a, 0, n)

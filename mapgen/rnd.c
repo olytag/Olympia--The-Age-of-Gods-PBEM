@@ -303,22 +303,3 @@ void save_seed()
 		close(fd);
 	}
 }
-
-long rnd(long low, long high)
-{
-	unsigned long range = high - low;
-	unsigned long mask = 0;
-	unsigned long num;
-	long r;
-
-	for (r = range; r; r >>= 1)
-		mask |= r;
-
-	do {
-		MD5(digest, digest, sizeof(digest));
-		num = digest[0] & mask;
-	} while (num > range);
-
-	return num + low;
-}
-
