@@ -3,5 +3,5 @@
 *.md                text eol=lf
 .gitattributes      text eol=lf
 .gitignore          text eol=lf
-CMakeFiles.txt      text eol=lf
+CMakeLists.txt      text eol=lf
 LICENSE             text eol=lf

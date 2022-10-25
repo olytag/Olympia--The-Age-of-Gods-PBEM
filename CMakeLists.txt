@@ -3,39 +3,177 @@ project(olytag C)
 include_directories(src)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNEW_TRADE")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNEW_TRADE -Wno-multichar")
 
 if (LINUX)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOLYTAG_CC_LINUX -m32")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOLYTAG_CC_LINUX -DLINUX -m32")
 endif ()
 
 if (WIN32)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOLYTAG_CC_WINDOWS")
 endif ()
 
-add_executable(mapgen
-        mapgen/mapgen.c mapgen/mapgen.h
-        mapgen/z.c mapgen/z.h
-        mapgen/ilist.c mapgen/ilist.h mapgen/ilist_test.c mapgen/ilist_test.h
-        mapgen/rlist.c mapgen/rlist.h
-        mapgen/prng.c mapgen/prng.h mapgen/prng_test.c mapgen/prng_test.h
-        mapgen/random.c mapgen/random.h mapgen/random_test.c mapgen/random_test.h
-        )
-target_include_directories(mapgen PRIVATE mapgen/)
 
-#add_executable(oly
-#        src/add.c src/adv.c src/alchem.c src/art.c src/basic.c src/beast.c src/build.c src/buy.c
-#        src/check.c src/c1.c src/c2.c src/cloud.c src/code.c src/combat.c src/day.c src/dir.c
-#        src/display.c src/eat.c src/faery.c src/garr.c src/gate.c src/glob.c src/gm.c src/hades.c
-#        src/immed.c src/input.c src/io.c src/loc.c src/lore.c src/main.c src/make.c src/move.c
-#        src/necro.c src/npc.c src/order.c src/perm.c src/produce.c src/quest.c src/relig.c
-#        src/report.c src/savage.c src/scry.c src/seed.c src/sout.c src/stack.c src/stealth.c
-#        src/storm.c src/summary.c src/swear.c src/u.c src/use.c src/effect.c src/trading.c
-#        src/shipcraft.c src/mining.c src/win.c src/kill.c src/ranger.c src/times.c
-#        src/artifacts.c src/map.c src/hero.c
-#
-#        src/loop.h src/code.h src/dir.h src/display.h src/etc.h src/garr.h src/loc.h src/order.h
-#        src/sout.h src/stack.h src/swear.h src/u.h src/use.h src/effect.h src/relig.h src/combat.h
-#        src/quest.h src/build.h src/kill.h src/artifacts.h src/eat.h
-#        )
-#target_include_directories(oly PRIVATE src/)
+add_executable(oly
+        src/oly/main.c
+
+        src/oly/add.c
+        src/oly/adv.c
+        src/oly/alchem.c
+        src/oly/art.c
+        src/oly/artifacts.c src/oly/artifacts.h
+        src/oly/basic.c
+        src/oly/beast.c
+        src/oly/build.c src/oly/build.h
+        src/oly/buy.c
+        src/oly/c1.c
+        src/oly/c2.c
+        src/oly/check.c
+        src/oly/cloud.c
+        src/oly/code.c src/oly/code.h
+        src/oly/combat.c src/oly/combat.h
+        src/oly/day.c
+        src/oly/dir.c src/oly/dir.h
+        src/oly/display.c src/oly/display.h
+        src/oly/eat.c src/oly/eat.h
+        src/oly/effect.c src/oly/effect.h
+        src/oly/etc.h
+        src/oly/faery.c
+        src/oly/garr.c src/oly/garr.h
+        src/oly/gate.c
+        src/oly/glob.c
+        src/oly/gm.c
+        src/oly/hades.c
+        src/oly/hero.c
+        src/oly/immed.c
+        src/oly/input.c
+        src/oly/io.c
+        src/oly/kill.c src/oly/kill.h
+        src/oly/loc.c src/oly/loc.h
+        src/oly/loop.h
+        src/oly/lore.c
+        src/oly/make.c
+        src/oly/map.c
+        src/oly/mining.c
+        src/oly/move.c
+        src/oly/necro.c
+        src/oly/npc.c
+        src/oly/order.c src/oly/order.h
+        src/oly/perm.c
+        src/oly/produce.c
+        src/oly/quest.c src/oly/quest.h
+        src/oly/ranger.c
+        src/oly/relig.c src/oly/relig.h
+        src/oly/report.c
+        src/oly/savage.c
+        src/oly/scry.c
+        src/oly/seed.c
+        src/oly/shipcraft.c
+        src/oly/sout.c src/oly/sout.h
+        src/oly/stack.c src/oly/stack.h
+        src/oly/stealth.c
+        src/oly/storm.c
+        src/oly/summary.c
+        src/oly/swear.c src/oly/swear.h
+        src/oly/times.c
+        src/oly/trading.c
+        src/oly/u.c src/oly/u.h
+        src/oly/use.c src/oly/use.h
+        src/oly/win.c
+        src/oly/z.c src/oly/z.h
+
+        src/oly/helpers.c
+        src/oly/types.h src/oly/forward.h
+
+        src/memory/memory.c src/memory/memory.h
+        src/os/generic.h
+        src/os/linux.c src/os/linux.h
+        src/os/mac.c src/os/mac.h
+        src/os/windows.c src/os/windows.h
+        src/random/sfc32.c src/random/sfc32.h
+        src/random/random.c src/random/random.h
+        src/vectors/accept_ent_list.c src/vectors/accept_ent_list.h
+        src/vectors/admit_list.c src/vectors/admit_list.h
+        src/vectors/cs_list.c src/vectors/cs_list.h
+        src/vectors/eb_list.c src/vectors/eb_list.h
+        src/vectors/effect_list.c src/vectors/effect_list.h
+        src/vectors/entity_player_list.c src/vectors/entity_player_list.h
+        src/vectors/exit_view_list.c src/vectors/exit_view_list.h
+        src/vectors/fe_list.c src/vectors/fe_list.h
+        src/vectors/fight_list.c src/vectors/fight_list.h
+        src/vectors/item_ent_list.c src/vectors/item_ent_list.h
+        src/vectors/order_list_list.c src/vectors/order_list_list.h
+        src/vectors/req_ent_list.c src/vectors/req_ent_list.h
+        src/vectors/skill_ent_list.c src/vectors/skill_ent_list.h
+        src/vectors/tr_list.c src/vectors/tr_list.h
+        src/vectors/wa_list.c src/vectors/wa_list.h
+        src/vectors/ilist.c src/vectors/ilist.h
+        src/vectors/rlist.c src/vectors/rlist.h
+        src/vectors/tlist.c src/vectors/tlist.h
+        src/vectors/vlist.c src/vectors/vlist.h)
+target_include_directories(oly PRIVATE src/oly)
+
+
+add_executable(mapgen
+        src/mapgen/mapgen.c src/mapgen/mapgen.h
+        src/mapgen/z.c src/mapgen/z.h
+        src/mapgen/road.h
+        src/mapgen/tile.h
+        src/memory/memory.c src/memory/memory.h
+        src/random/random.c src/random/random.h
+        src/random/sfc32.c src/random/sfc32.h
+        src/vectors/ilist.c src/vectors/ilist.h
+        src/vectors/rlist.c src/vectors/rlist.h
+        src/vectors/tlist.c src/vectors/tlist.h)
+target_include_directories(mapgen PRIVATE src/mapgen)
+
+
+add_executable(checkcode
+        src/checkcode/main.c)
+target_include_directories(checkcode PRIVATE src/checkcode)
+
+
+add_executable(ilist_test
+        src/vectors/ilist_test.c
+        src/random/random.c src/random/random.h
+        src/random/sfc32.c src/random/sfc32.h
+        src/vectors/ilist.c src/vectors/ilist.h)
+target_include_directories(ilist_test PRIVATE src/vectors)
+
+
+add_executable(random_test
+        src/random/random_test.c
+        src/random/random.c src/random/random.h
+        src/random/sfc32.c src/random/sfc32.h)
+target_include_directories(random_test PRIVATE src/random)
+
+
+add_executable(rlist_test
+        src/vectors/rlist_test.c
+        src/random/random.c src/random/random.h
+        src/random/sfc32.c src/random/sfc32.h
+        src/vectors/rlist.c src/vectors/rlist.h)
+target_include_directories(rlist_test PRIVATE src/vectors)
+
+
+add_executable(sfc32_test
+        src/random/sfc32_test.c
+        src/random/sfc32.c src/random/sfc32.h)
+target_include_directories(sfc32_test PRIVATE src/random)
+
+
+add_executable(tlist_test
+        src/vectors/tlist_test.c
+        src/random/random.c src/random/random.h
+        src/random/sfc32.c src/random/sfc32.h
+        src/vectors/tlist.c src/vectors/tlist.h)
+target_include_directories(tlist_test PRIVATE src/vectors)
+
+
+add_executable(vlist_test
+        src/vectors/vlist_test.c
+        src/random/random.c src/random/random.h
+        src/random/sfc32.c src/random/sfc32.h
+        src/vectors/vlist.c src/vectors/vlist.h)
+target_include_directories(vlist_test PRIVATE src/vectors)
+
