@@ -3,18 +3,18 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
+#include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <sys/file.h>
-#include    <string.h>
-#include    <stdlib.h>
+#include <stdlib.h>
 #include <time.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
 #include "os/generic.h"
+#include "vectors/cs_list.h"
+#include "vectors/item_ent_list.h"
 
 
 /*
@@ -254,6 +254,9 @@ int loc_depth(int n) {
             fprintf(stderr, "subkind is %d\n", subkind(n));
             assert(FALSE);
     }
+
+    /* NOT REACHED */
+    exit(2);
 }
 
 
@@ -319,7 +322,7 @@ take_unit_items(int from, int inherit, int how_many) {
         gen_item(from, noble_item(from), 1);
     }
 
-    loop_inv(from, e)
+    inventory_loop(from, e)
                 {
                     /*
                      *  Thu Mar 29 12:30:23 2001 -- Scott Turner
@@ -426,7 +429,7 @@ take_unit_items(int from, int inherit, int how_many) {
                         move_item(from, 0, e->item, e->qty - qty);
                     }
                 }
-    next_inv;
+    inventory_next;
 
 
 /*
@@ -841,12 +844,13 @@ count_generic(int who, int stack, int (*func)(int)) {
                 }next_char_here;
     } else {
         sum += func(who);
-        loop_inv(who, e)
+        inventory_loop(who, e)
                     {
                         if (func(e->item)) {
                             sum += e->qty;
                         }
-                    }next_inv;
+                    }
+        inventory_next;
     };
     return sum;
 };
@@ -919,7 +923,7 @@ count_fighters_2(int who, int attack_min) {
     int man_limit = calc_man_limit(who, FALSE);
     int beast_limit = calc_beast_limit(who, FALSE);
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     if (item_attack(e->item) >= attack_min) {
                         if (item_animal(e->item)) {
@@ -928,7 +932,8 @@ count_fighters_2(int who, int attack_min) {
                             men += e->qty;
                         }
                     }
-                }next_inv;
+                }
+    inventory_next;
 
     if (beasts > beast_limit) { beasts = beast_limit; }
     if (men > man_limit) { men = man_limit; }
@@ -971,7 +976,7 @@ count_any_real(int who, int ignore_ninjas, int ignore_angels) {
     }
 #endif
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     if ((ignore_ninjas && e->item == item_ninja) ||
                         (ignore_angels &&
@@ -986,7 +991,7 @@ count_any_real(int who, int ignore_ninjas, int ignore_angels) {
                         sum += e->qty;
                     }
                 }
-    next_inv;
+    inventory_next;
 
     return sum;
 }
@@ -1265,11 +1270,11 @@ determine_unit_weights(int who, struct weights *w, int mountains) {
 
     add_item_weight(who, 1, w, mountains);
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     add_item_weight(e->item, e->qty, w, mountains);
                 }
-    next_inv;
+    inventory_next;
 
 }
 
@@ -1623,7 +1628,7 @@ has_item(int who, int item) {
 #endif
     assert(valid_box(item));
 
-    for (i = 0; i < ilist_len(bx[who]->items); i++) {
+    for (i = 0; i < ie_list_len(bx[who]->items); i++) {
         if (bx[who]->items[i]->item == item) {
             return bx[who]->items[i]->qty;
         }
@@ -1653,7 +1658,7 @@ add_item(int who, int item, int qty) {
         }
     }
 
-    for (i = 0; i < ilist_len(bx[who]->items); i++) {
+    for (i = 0; i < ie_list_len(bx[who]->items); i++) {
         if (bx[who]->items[i]->item == item) {
             old = bx[who]->items[i]->qty;
 
@@ -1670,7 +1675,7 @@ add_item(int who, int item, int qty) {
     new->item = item;
     new->qty = qty;
 
-    ilist_append((ilist *) &bx[who]->items, (int) new);
+    ie_list_append(&bx[who]->items, new);
 
 #ifndef NEW_TRADE
     investigate_possible_trade(who, item, 0);
@@ -1686,7 +1691,7 @@ sub_item(int who, int item, int qty) {
     assert(valid_box(item));
     assert(qty >= 0);
 
-    for (i = 0; i < ilist_len(bx[who]->items); i++) {
+    for (i = 0; i < ie_list_len(bx[who]->items); i++) {
         if (bx[who]->items[i]->item == item) {
             if (bx[who]->items[i]->qty < qty) {
                 return FALSE;
@@ -1971,7 +1976,7 @@ has_use_key(int who, int key) {
     int ret = 0;
     struct item_magic *p;
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     p = rp_item_magic(e->item);
 
@@ -1983,7 +1988,7 @@ has_use_key(int who, int key) {
                         break;
                     }
                 }
-    next_inv;
+    inventory_next;
 
     return ret;
 }

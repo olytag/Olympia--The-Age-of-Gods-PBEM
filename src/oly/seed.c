@@ -8,6 +8,7 @@
 #include    "z.h"
 #include    "oly.h"
 #include "forward.h"
+#include "vectors/exit_view_list.h"
 
 
 /*
@@ -80,7 +81,7 @@ prop_city_near_list(int city) {
 
                     l = exits_from_loc_nsew(0, where);
 
-                    for (i = 0; i < ilist_len(l); i++) {
+                    for (i = 0; i < ev_list_len(l); i++) {
                         dest = l[i]->destination;
 
                         if (loc_depth(dest) != LOC_province) {
@@ -225,7 +226,7 @@ compute_dist_generic(int terr) {
 
                     l = exits_from_loc_nsew(0, where);
 
-                    for (i = 0; i < ilist_len(l); i++) {
+                    for (i = 0; i < ev_list_len(l); i++) {
                         if (loc_depth(l[i]->destination) != LOC_province) {
                             continue;
                         }
@@ -250,7 +251,7 @@ compute_dist_generic(int terr) {
 
                         l = exits_from_loc_nsew(0, where);
 
-                        for (i = 0; i < ilist_len(l); i++) {
+                        for (i = 0; i < ev_list_len(l); i++) {
                             dest = l[i]->destination;
 
                             if (loc_depth(dest) != LOC_province) {
@@ -310,7 +311,7 @@ compute_dist_gate() {
 
                     l = exits_from_loc_nsew(0, where);
 
-                    for (i = 0; i < ilist_len(l); i++) {
+                    for (i = 0; i < ev_list_len(l); i++) {
                         if (loc_depth(l[i]->destination) != LOC_province) {
                             continue;
                         }
@@ -335,7 +336,7 @@ compute_dist_gate() {
 
                         l = exits_from_loc_nsew(0, where);
 
-                        for (i = 0; i < ilist_len(l); i++) {
+                        for (i = 0; i < ev_list_len(l); i++) {
                             dest = l[i]->destination;
 
                             if (loc_depth(dest) != LOC_province) {
@@ -404,7 +405,7 @@ compute_nearby_graves() {
                         if (bx[where]->temp == sequence) {
                             l = exits_from_loc(0, where);
 
-                            for (i = 0; i < ilist_len(l); i++) {
+                            for (i = 0; i < ev_list_len(l); i++) {
                                 dest = province(l[i]->destination);
 
                                 if (!l[i]->water && bx[dest]->temp == 0) {
@@ -446,7 +447,7 @@ compute_nearby_graves() {
                         if (bx[where]->temp == sequence) {
                             l = exits_from_loc(0, where);
 
-                            for (i = 0; i < ilist_len(l); i++) {
+                            for (i = 0; i < ev_list_len(l); i++) {
                                 dest = province(l[i]->destination);
 
                                 if (bx[dest]->temp == 0) {
@@ -495,11 +496,9 @@ compute_dist() {
 }
 
 
-int
-int_comp(a, b)
-        int *a;
-        int *b;
-{
+int int_comp(const void *q1, const void *q2) {
+    int *a = (int *)q1;
+    int *b = (int *)q2;
 
     return *a - *b;
 }
@@ -1223,8 +1222,6 @@ seed_population() {
             }next_city;
 
 };
-
-void seed_orcs();
 
 void
 seed_initial_locations() {

@@ -3,11 +3,12 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/skill_ent_list.h"
 
 
 int gold_common_magic = 0;
@@ -29,11 +30,9 @@ int gold_opium = 0;
 int gold_claim = 0;
 int gold_times = 0;
 
-static int
-skill_use_comp(a, b)
-        int *a;
-        int *b;
-{
+static int skill_use_comp(const void *q1, const void *q2) {
+    int *a = (int *)q1;
+    int *b = (int *)q2;
     struct entity_skill *pa;
     struct entity_skill *pb;
 
@@ -103,11 +102,9 @@ gm_show_skill_use_counts(int pl) {
 }
 
 
-static int
-skills_known_comp(a, b)
-        int *a;
-        int *b;
-{
+static int skills_known_comp(const void *q1, const void *q2) {
+    int *a = (int *)q1;
+    int *b = (int *)q2;
 
     return bx[*b]->temp - bx[*a]->temp;
 }
@@ -565,7 +562,7 @@ gm_show_gate_stats(int pl) {
 
     loop_player(i)
             {
-                loop_known(p_player(i)->known, j)
+                known_sparse_loop(p_player(i)->known, j)
                         {
                             if (kind(j) != T_gate) {
                                 continue;
@@ -573,7 +570,7 @@ gm_show_gate_stats(int pl) {
 
                             bx[j]->temp++;
                         }
-                next_known;
+                known_sparse_next;
             }
     next_player;
 
@@ -630,7 +627,7 @@ gm_show_locs_visited(int pl) {
 
     loop_player(i)
             {
-                loop_known(p_player(i)->known, j)
+                known_sparse_loop(p_player(i)->known, j)
                         {
                             if (kind(j) != T_loc) {
                                 continue;
@@ -638,7 +635,7 @@ gm_show_locs_visited(int pl) {
 
                             bx[j]->temp++;
                         }
-                next_known;
+                known_sparse_next;
             }
     next_player;
 
@@ -766,12 +763,9 @@ gm_loyalty_stats(int pl) {
 }
 
 
-static int
-region_occupy_comp(a, b)
-        int *a;
-        int *b;
-{
-
+static int region_occupy_comp(const void *q1, const void *q2) {
+    int *a = (int *)q1;
+    int *b = (int *)q2;
     return bx[*b]->temp - bx[*a]->temp;
 }
 
@@ -831,12 +825,9 @@ gm_land_stats(int pl) {
 }
 
 
-static int
-wealth_list_comp(a, b)
-        int *a;
-        int *b;
-{
-
+static int wealth_list_comp(const void *q1, const void *q2) {
+    int *a = (int *)q1;
+    int *b = (int *)q2;
     return bx[*b]->temp - bx[*a]->temp;
 }
 
@@ -883,12 +874,9 @@ gm_faction_wealth(int pl) {
 }
 
 
-static int
-nobles_list_comp(a, b)
-        int *a;
-        int *b;
-{
-
+static int nobles_list_comp(const void *q1, const void *q2) {
+    int *a = (int *)q1;
+    int *b = (int *)q2;
     return bx[*b]->temp - bx[*a]->temp;
 }
 

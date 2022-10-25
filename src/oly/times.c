@@ -10,6 +10,7 @@
 #include    "z.h"
 #include    "oly.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
 
 
 /*
@@ -404,7 +405,7 @@ v_rumor(struct command *c) {
         return FALSE;
     }
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < cs_list_len(l); i++) {
         if (strncmp(l[i], "===-", 4) == 0) {
             fprintf(rumor_fp, "> %s\n", l[i]);
         } else {
@@ -446,7 +447,7 @@ v_press(struct command *c) {
         return FALSE;
     }
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < cs_list_len(l); i++) {
         if (strncmp(l[i], "===-", 4) == 0) {
             fprintf(press_fp, "> %s\n", l[i]);
         } else {
@@ -500,7 +501,7 @@ void times_index() {
      *
      */
     for (i = sysclock.turn - 1; i > 0; i--) {
-        fprintf(fp, "<A HREF=\"%02d.html\">%02d</A>\n", i);
+        fprintf(fp, "<A HREF=\"%02d.html\">%02d</A>\n", i, i);
     };
     fclose(fp);
 };

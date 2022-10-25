@@ -3,11 +3,15 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <string.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include <string.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
+#include "vectors/skill_ent_list.h"
+#include "vectors/exit_view_list.h"
+#include "vectors/tr_list.h"
 
 
 void
@@ -370,7 +374,7 @@ v_ct(struct command *c) {
     loop_loc(i)
             {
                 if (subkind(i) == sub_city) {
-                    ilist_clear((ilist *) &bx[i]->trades);
+                    tr_list_clear(&bx[i]->trades);
                 }
             }
     next_loc;
@@ -391,7 +395,7 @@ v_seedmarket(struct command *c) {
             }
     next_city;
 
-    return TRUE;  /* ??? */
+    return TRUE;  /* ??? */ // todo: huh, what?
 
     seed_common_tradegoods();
     seed_rare_tradegoods();
@@ -529,7 +533,7 @@ fix_gates() {
 
                     l = exits_from_loc_nsew(0, where);
 
-                    for (i = 0; i < ilist_len(l); i++) {
+                    for (i = 0; i < ev_list_len(l); i++) {
                         if (loc_depth(l[i]->destination) != LOC_province) {
                             continue;
                         }
@@ -558,7 +562,7 @@ fix_gates() {
 
                         l = exits_from_loc_nsew(0, where);
 
-                        for (i = 0; i < ilist_len(l); i++) {
+                        for (i = 0; i < ev_list_len(l); i++) {
                             dest = l[i]->destination;
 
                             if (loc_depth(dest) != LOC_province) {

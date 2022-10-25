@@ -3,12 +3,14 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <string.h>
+#include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
+#include "vectors/item_ent_list.h"
 
 
 /*
@@ -675,10 +677,10 @@ garrison_summary(int pl) {
         /* Output inventories for any garrisons w/ inventory. */
         first = TRUE;
         garr = l[i];
-        if (ilist_len(bx[garr]->items) > 0) {
-            qsort(bx[garr]->items, ilist_len(bx[garr]->items),
+        if (ie_list_len(bx[garr]->items) > 0) {
+            qsort(bx[garr]->items, ie_list_len(bx[garr]->items),
                   sizeof(int), inv_item_comp);
-            loop_inv(garr, e)
+            inventory_loop(garr, e)
                         {
                             if (first) {
                                 tagout(pl, "<tag type=garr_inv id=%d>", garr);
@@ -698,7 +700,8 @@ garrison_summary(int pl) {
                                    comma_num(item_weight(e->item) * e->qty),
                                    extra_item_info(i, e->item, e->qty));
                             tagout(pl, "</tag type=inventory>");
-                        }next_inv;
+                        }
+            inventory_next;
         };
         if (!first) {
             out(pl, "");
@@ -842,6 +845,9 @@ v_decree(struct command *c) {
         default:
             assert(FALSE);
     }
+
+    /* NOT REACHED */
+    exit(2);
 }
 
 void
@@ -903,7 +909,7 @@ v_ungarrison(struct command *c) {
     vector_add(where);
     wout(VECT, "%s is disbanded by %s.", box_name(garr), box_name(c->who));
 
-    loop_inv(garr, e)
+    inventory_loop(garr, e)
                 {
                     if (first) {
                         first = FALSE;
@@ -915,7 +921,7 @@ v_ungarrison(struct command *c) {
 
                     move_item(garr, c->who, e->item, e->qty);
                 }
-    next_inv;
+    inventory_next;
 
     if (!first) {
         indent -= 3;

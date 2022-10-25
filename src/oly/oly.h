@@ -1473,7 +1473,8 @@ struct command {
 };
 #endif
 
-#define    numargs(c)    (ilist_len(c->parse) - 1)
+
+#define    numargs(c)    (cs_list_len(c->parse) - 1)
 
 /*
  *  How long a command has been running

@@ -20,10 +20,11 @@
  *  The actual effect structure is defined in oly.h
  *
  */
-#include    <stdio.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/effect_list.h"
 
 
 /*
@@ -36,7 +37,6 @@
 int
 add_effect(int what, int t, int st, int duration, int value) {
     int i;
-    ilist *el = NULL;
     struct effect **e = NULL;
     struct effect *new;
     /*
@@ -50,7 +50,7 @@ add_effect(int what, int t, int st, int duration, int value) {
      *
      */
     e = effects(what);
-    el = (ilist *) &effects(what);
+    effect_list_t *el = &effects(what);
 
     /*
      *  Allocate and fill in the new effect.
@@ -65,7 +65,7 @@ add_effect(int what, int t, int st, int duration, int value) {
      *  Now append it to the effects list.
      *
      */
-    ilist_append(el, (int) new);
+    effect_list_append(el, new);
     return 1;
 };
 
@@ -79,7 +79,6 @@ add_effect(int what, int t, int st, int duration, int value) {
 void
 delete_effect(int what, int type, int st) {
     int i;
-    ilist *el = NULL;
     struct effect **e = NULL;
 
     /*
@@ -93,13 +92,13 @@ delete_effect(int what, int type, int st) {
      *
      */
     e = effects(what);
-    el = (ilist *) &effects(what);
+    effect_list_t *el = &effects(what);
 
     if (e == NULL) { return; }
 
-    for (i = ilist_len(e) - 1; i >= 0; i--) {
+    for (i = effect_list_len(e) - 1; i >= 0; i--) {
         if (e[i]->type == type && (!st || e[i]->subtype == st)) {
-            ilist_delete(el, i);
+            effect_list_delete(el, i);
             return;
         };
     };
@@ -115,7 +114,6 @@ delete_effect(int what, int type, int st) {
 void
 delete_all_effects(int what, int type, int st) {
     int i;
-    ilist *el = NULL;
     struct effect **e = NULL;
 
     /*
@@ -130,16 +128,16 @@ delete_all_effects(int what, int type, int st) {
      */
     e = effects(what);
     if (e == NULL) { return; }
-    el = (ilist *) &effects(what);
+    effect_list_t *el = &effects(what);
 
     /*
      *  We go through this backwards so that ilist_delete doesn't
      *  break the rest of the loop.
      *
      */
-    for (i = ilist_len(e) - 1; i >= 0; i--) {
+    for (i = effect_list_len(e) - 1; i >= 0; i--) {
         if (e[i]->type == type && (!st || e[i]->subtype == st)) {
-            ilist_delete(el, i);
+            effect_list_delete(el, i);
         };
     };
     return;
@@ -154,7 +152,6 @@ delete_all_effects(int what, int type, int st) {
  */
 void update_effects(int what) {
     int i;
-    ilist *el = NULL;
     struct effect **e = NULL;
 
     /*
@@ -168,7 +165,7 @@ void update_effects(int what) {
      *
      */
     e = effects(what);
-    el = (ilist *) &effects(what);
+    effect_list_t *el = &effects(what);
     /*
      *  Possibly no effects, in which case we're done.
      *
@@ -181,7 +178,7 @@ void update_effects(int what) {
      *  the list.
      *
      */
-    for (i = ilist_len(e) - 1; i >= 0; i--) {
+    for (i = effect_list_len(e) - 1; i >= 0; i--) {
         /*
          *  Special cases.
          *
@@ -193,7 +190,7 @@ void update_effects(int what) {
             e[i]->type == ef_hide_item) {
             if (e[i]->days % 30 == 0 && rnd(1, 100) < (e[i]->days / 30)) {
                 wout(what, "You have a nagging feeling you've forgotten something.");
-                ilist_delete(el, i);
+                effect_list_delete(el, i);
             };
             e[i]->days++;
             continue;
@@ -243,7 +240,7 @@ void update_effects(int what) {
          *
          */
         --e[i]->days;
-        if (e[i]->days == 0) { ilist_delete(el, i); }
+        if (e[i]->days == 0) { effect_list_delete(el, i); }
     };
 
     /*
@@ -283,7 +280,7 @@ int get_effect(int what, int t, int st, int v) {
      *  Look for the effect.
      *
      */
-    for (i = 0; i < ilist_len(e); i++) {
+    for (i = 0; i < effect_list_len(e); i++) {
         if (e[i]->type == t &&
             (!st || e[i]->subtype == st) &&
             (!v || e[i]->data == v)) {
@@ -324,7 +321,7 @@ int get_all_effects(int what, int t, int st, int v) {
      *  Look for the effect.
      *
      */
-    for (i = 0; i < ilist_len(e); i++) {
+    for (i = 0; i < effect_list_len(e); i++) {
         if (e[i]->type == t &&
             (!st || e[i]->subtype == st) &&
             (!v || e[i]->data == v)) {

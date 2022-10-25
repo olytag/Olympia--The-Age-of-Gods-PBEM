@@ -3,11 +3,12 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <unistd.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include <unistd.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/tr_list.h"
 
 
 /*
@@ -518,8 +519,8 @@ update_market(int where) {
                         wout(gm_player, "Deleting good %s from %s.",
                              box_name(t->item),
                              box_name(where));
-                        ilist_rem_value((ilist *) &bx[where]->trades, (int) t);
-                        ilist_rem_value((ilist *) &bx[where]->trades, (int) new);
+                        tr_list_rem_value(&bx[where]->trades, t);
+                        tr_list_rem_value(&bx[where]->trades, new);
                         continue;
                     };
 
@@ -594,7 +595,7 @@ update_market(int where) {
                      *
                      */
                     if (t->qty == 0) {
-                        ilist_rem_value((ilist *) &bx[where]->trades, (int) t);
+                        tr_list_rem_value(&bx[where]->trades, t);
                         continue;
                     };
 
@@ -827,6 +828,8 @@ d_smuggle_goods(struct command *c) {
         wout(c->who, "You are no longer smuggling goods.");
         return TRUE;
     };
+
+    return 0; // todo: should this return something?
 };
 
 /*

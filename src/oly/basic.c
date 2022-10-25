@@ -7,12 +7,13 @@
  *  Basic magic
  */
 
-#include    <stdio.h>
-#include    <string.h>
-#include    <math.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/skill_ent_list.h"
 
 void
 add_aura(int who, int aura) {

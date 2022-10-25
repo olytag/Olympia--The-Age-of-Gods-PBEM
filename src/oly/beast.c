@@ -3,10 +3,13 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
+#include "vectors/exit_view_list.h"
+#include "vectors/item_ent_list.h"
 
 
 int
@@ -51,7 +54,7 @@ v_bird_spy(struct command *c) {
 
         l = exits_from_loc(c->who, where);
 
-        for (i = 0; i < ilist_len(l); i++) {
+        for (i = 0; i < ev_list_len(l); i++) {
             if (l[i]->destination == targ) {
                 okay = TRUE;
             }
@@ -485,7 +488,7 @@ get_random_beast(int target, int *from) {
                         *from = i;
                     };
                 };
-                loop_inv(i, e)
+                inventory_loop(i, e)
                             {
                                 if (item_animal(e->item)) {
                                     sum += e->qty;
@@ -494,8 +497,10 @@ get_random_beast(int target, int *from) {
                                         *from = i;
                                     };
                                 };
-                            }next_inv;
-            }next_stack;
+                            }
+                inventory_next;
+            }
+    next_stack;
 
     return choice;
 };

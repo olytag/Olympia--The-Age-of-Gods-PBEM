@@ -4,11 +4,14 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <string.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/item_ent_list.h"
+#include "vectors/cs_list.h"
 
 
 static char *liner_desc_char(int n);
@@ -241,7 +244,7 @@ with_inventory_string(int who) {
     mk = noble_item(who);
     with[0] = '\0';
 
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     if (mk == e->item || !item_prominent(e->item)) {
                         continue;
@@ -255,7 +258,7 @@ with_inventory_string(int who) {
 
                     strcat(with, just_name_qty(e->item, e->qty));
                 }
-    next_inv;
+    inventory_next;
 
     return sout("%s", with);
 }
@@ -772,6 +775,9 @@ liner_desc(int n) {
         default:
             assert(FALSE);
     }
+
+    /* NOT REACHED */
+    exit(2);
 }
 
 
@@ -1170,7 +1176,7 @@ show_loc_posts(int who, int where, int show_full_loc) {
                 }
 
                 if (rp_misc(post) == NULL ||
-                    ilist_len(rp_misc(post)->post_txt) < 1) {
+                    cs_list_len(rp_misc(post)->post_txt) < 1) {
                     assert(FALSE);    /* what happened to the post? */
                     continue;
                 }
@@ -1199,11 +1205,11 @@ show_loc_posts(int who, int where, int show_full_loc) {
 
                 first = TRUE;
 
-                for (i = 0; i < ilist_len(l); i++) {
+                for (i = 0; i < cs_list_len(l); i++) {
                     wout(who, "%s%s%s",
                          first ? "\"" : "",
                          l[i],
-                         i + 1 == ilist_len(l) ? "\"" : "");
+                         i + 1 == cs_list_len(l) ? "\"" : "");
 
                     if (first) {
                         first = FALSE;

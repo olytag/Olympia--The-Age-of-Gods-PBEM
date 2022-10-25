@@ -89,15 +89,31 @@
 #define    next_stack    } assert(ll_check == 20); ilist_reclaim(&ll_l); }
 
 
-#define    loop_known(kn, i) \
-{ int ll_i; \
-  int ll_check = 3; \
-  extern int int_comp(); \
-    qsort(kn, ilist_len(kn), sizeof(int), int_comp); \
-    for (ll_i = 0; ll_i < ilist_len(kn); ll_i++) { \
-        i = kn[ll_i];
+#define known_entity_player_loop(ep, i) \
+{ int ll_check = 3; \
+  qsort(ep, entity_player_list_len(kn), sizeof(int), int_comp); \
+  for (int ll_i = 0; ll_i < entity_player_list_len(ep); ll_i++) { \
+    (i) = (ep)[ll_i];
 
-#define    next_known    } assert(ll_check == 3); }
+#define known_entity_player_next \
+      } assert(ll_check == 3); }
+
+#define known_sparse_loop(kn, i) \
+{ int ll_check = 3; \
+  qsort(kn, ilist_len(kn), sizeof(int), int_comp); \
+  for (int ll_i = 0; ll_i < ilist_len(kn); ll_i++) { \
+    (i) = (kn)[ll_i];
+
+#define known_sparse_next \
+      } assert(ll_check == 3); }
+
+//#define    loop_known(kn, i) \
+//{ int ll_check = 3; \
+//    qsort(kn, entity_player_list_len(kn), sizeof(int), int_comp); \
+//    for (int ll_i = 0; ll_i < entity_player_list_len(kn); ll_i++) { \
+//        (i) = (kn)[ll_i];
+//
+//#define    next_known    } assert(ll_check == 3); }
 
 /*
  *  Iterate over all valid boxes.  i is instantiated with the entity
@@ -303,63 +319,86 @@
  *  Iterate struct item_ent *e over who's inventory
  */
 
-#define    loop_inv(who, e) \
-{ int ll_i; \
-  int ll_check = 11; \
-  struct item_ent ll_copy; \
-  struct item_ent **ll_l = NULL; \
+#define inventory_loop(who, e) \
+{   int ie_check = 11; \
     assert(valid_box(who)); \
-    ll_l = (struct item_ent **) ilist_copy((ilist) bx[who]->items); \
-    for (ll_i = 0; ll_i < ilist_len(ll_l); ll_i++) \
-        if (valid_box(ll_l[ll_i]->item) && ll_l[ll_i]->qty > 0) { \
-            ll_copy = *ll_l[ll_i]; \
-            e = &ll_copy;
+    struct item_ent **ie_l = ie_list_copy(bx[who]->items); \
+    for (int ie_i = 0; ie_i < ie_list_len(ie_l); ie_i++) { \
+        if (valid_box(ie_l[ie_i]->item) && ie_l[ie_i]->qty > 0) { \
+            struct item_ent ie_copy = *ie_l[ie_i]; \
+            (e) = ie_l[ie_i];
 
-#define    next_inv   } assert(ll_check == 11); ilist_reclaim((ilist *) &ll_l); }
+#define inventory_next \
+        } \
+    } \
+    assert(ie_check == 11); \
+    ie_list_reclaim(&ie_l); \
+}
+
+//#define    loop_inv(who, e) \
+//{ int ll_i; \
+//  int ll_check = 11; \
+//  struct item_ent ll_copy; \
+//  struct item_ent **ll_l = NULL; \
+//    assert(valid_box(who)); \
+//    ll_l = (struct item_ent **) ilist_copy((ilist) bx[who]->items); \
+//    for (ll_i = 0; ll_i < ilist_len(ll_l); ll_i++) \
+//        if (valid_box(ll_l[ll_i]->item) && ll_l[ll_i]->qty > 0) { \
+//            ll_copy = *ll_l[ll_i]; \
+//            e = &ll_copy;
+//
+//#define    next_inv   } assert(ll_check == 11); ilist_reclaim((ilist *) &ll_l); }
 
 
 #define    loop_char_skill(who, e) \
-{ int ll_i; \
-  int ll_check = 15; \
-  struct skill_ent **ll_l = NULL; \
-    assert(valid_box(who)); \
-    if (rp_char(who)) \
-       ll_l = (struct skill_ent **) ilist_copy((ilist) rp_char(who)->skills); \
-       for (ll_i = 0; ll_i < ilist_len(ll_l); ll_i++) { \
-         e = ll_l[ll_i];
+{ int ll_check = 15;               \
+  struct skill_ent **ll_l = 0;     \
+  assert(valid_box(who)); \
+  if (rp_char(who)) {ll_l = skill_ent_list_copy(rp_char(who)->skills);} \
+    for (int ll_i = 0; ll_i < skill_ent_list_len(ll_l); ll_i++) { \
+      (e) = ll_l[ll_i];
 
-#define    next_char_skill \
-        } assert(ll_check == 15); ilist_reclaim((ilist *) &ll_l); }
+#define    next_char_skill } assert(ll_check == 15); skill_ent_list_reclaim(&ll_l); }
 
 
 #define    loop_char_skill_known(who, e) \
-{ int ll_i; \
-  int ll_check = 16; \
+{ int ll_check = 16; \
   struct skill_ent **ll_l = NULL; \
-    assert(valid_box(who)); \
+  assert(valid_box(who)); \
     if (rp_char(who)) \
-       ll_l = (struct skill_ent **) ilist_copy((ilist) rp_char(who)->skills); \
-       for (ll_i = 0; ll_i < ilist_len(ll_l); ll_i++) \
+       ll_l = skill_ent_list_copy(rp_char(who)->skills); \
+       for (int ll_i = 0; ll_i < skill_ent_list_len(ll_l); ll_i++) \
           if (ll_l[ll_i]->know == SKILL_know) { \
-        e = ll_l[ll_i];
+            (e) = ll_l[ll_i];
 
-#define    exit_char_skill_known \
-        { assert(ll_check == 16); ilist_reclaim((ilist *) &ll_l); }
-#define    next_char_skill_known \
-        } assert(ll_check == 16); ilist_reclaim((ilist *) &ll_l); }
+#define    exit_char_skill_known { assert(ll_check == 16); skill_ent_list_reclaim(&ll_l); }
+#define    next_char_skill_known } assert(ll_check == 16); skill_ent_list_reclaim(&ll_l); }
 
+
+#define trade_loop(who, e) \
+{ int tr_check = 19; \
+  assert(valid_box(who)); \
+  struct trade **tr_l = tr_list_copy(bx[who]->trades); \
+    for (int tr_i = 0; tr_i < tr_list_len(tr_l); tr_i++) { \
+        if (valid_box(tr_l[tr_i]->item) && tr_l[tr_i]->qty > 0) { \
+            (e) = tr_l[tr_i];
+
+#define trade_next \
+        } \
+    } \
+    assert(tr_check == 19); \
+    tr_list_reclaim(&tr_l); \
+}
 
 #define    loop_trade(who, e) \
-{ int ll_i; \
-  int ll_check = 19; \
-  struct trade **ll_l = NULL; \
-    assert(valid_box(who)); \
-    ll_l = (struct trade **) ilist_copy((ilist) bx[who]->trades); \
-    for (ll_i = 0; ll_i < ilist_len(ll_l); ll_i++) \
+{ int ll_check = 19; \
+  assert(valid_box(who)); \
+  struct trade **ll_l = tr_list_copy(bx[who]->trades); \
+    for (int ll_i = 0; ll_i < tr_list_len(ll_l); ll_i++) \
         if (valid_box(ll_l[ll_i]->item) && ll_l[ll_i]->qty > 0) { \
-            e = ll_l[ll_i];
+            (e) = ll_l[ll_i];
 
-#define    next_trade  } assert(ll_check == 19); ilist_reclaim((ilist *) &ll_l); }
+#define    next_trade  } assert(ll_check == 19); tr_list_reclaim(&ll_l); }
 
 
 #define    loop_prov_dest(where, i) \
@@ -397,20 +436,16 @@
  *
  */
 #define    loop_sorted_inv(who, e) \
-{ int ll_i; \
-  int ll_check = 27; \
-  extern int combat_comp(); \
-  struct item_ent ll_copy; \
-  struct item_ent **ll_l = NULL; \
+{ int ll_check = 27; \
     assert(valid_box(who)); \
-    ll_l = (struct item_ent **) ilist_copy((ilist) bx[who]->items); \
-    qsort(ll_l, ilist_len(ll_l), sizeof(int), combat_comp); \
-    for (ll_i = 0; ll_i < ilist_len(ll_l); ll_i++) \
+    struct item_ent **ll_l = ie_list_copy(bx[who]->items); \
+    qsort(ll_l, ie_list_len(ll_l), sizeof(int), combat_comp); \
+    for (int ll_i = 0; ll_i < ie_list_len(ll_l); ll_i++) \
         if (valid_box(ll_l[ll_i]->item) && ll_l[ll_i]->qty > 0) { \
-            ll_copy = *ll_l[ll_i]; \
+            struct item_ent ll_copy = *ll_l[ll_i]; \
             e = &ll_copy;
 
-#define    next_sorted_inv   } assert(ll_check == 27); ilist_reclaim((ilist *) &ll_l); }
+#define    next_sorted_inv   } assert(ll_check == 27); ie_list_reclaim(&ll_l); }
 
 /*
  *  Loop over a priest's followers.

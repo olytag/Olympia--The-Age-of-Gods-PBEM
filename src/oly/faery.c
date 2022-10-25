@@ -3,11 +3,13 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <unistd.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include <unistd.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/exit_view_list.h"
+#include "vectors/item_ent_list.h"
 
 
 int faery_region = 0;
@@ -399,7 +401,7 @@ do_wild_hunt(int where) {
      *
      */
     leave_stack(who);
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     /*
                      *  Delete all "man items"
@@ -408,7 +410,8 @@ do_wild_hunt(int where) {
                     if (man_item(e->item)) {
                         (void) drop_item(who, e->item, e->qty);
                     };
-                }next_inv;
+                }
+    inventory_next;
 
     move_stack(who, dest);
     wout(who, "in %s!", box_name(dest));
@@ -450,7 +453,7 @@ link_opener(int who, int where, int sk) {
     loop_subkind(sub_faery_hill, i)
             {
                 l = exits_from_loc(0, i);
-                if (ilist_len(l) == 0) {
+                if (ev_list_len(l) == 0) {
                     hill = i;
                     break;
                 };
@@ -573,7 +576,7 @@ v_use_faery_artifact(struct command *c) {
      */
     if (subkind(subloc(c->who)) == sub_faery_hill) {
         l = exits_from_loc(0, subloc(c->who));
-        if (ilist_len(l) == 0) {
+        if (ev_list_len(l) == 0) {
             /*
              *  Inside a closed hill, let's reopen it.
              *

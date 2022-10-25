@@ -3,11 +3,16 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <string.h>
-#include    "z.h"
-#include    "oly.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
+#include "vectors/exit_view_list.h"
+#include "vectors/vlist.h"
+#include "vectors/eb_list.h"
 
 
 /*
@@ -40,7 +45,7 @@ add_build(int what, int t, int bm, int er, int eg) {
      *  Now append it to the entity_builds list.
      *
      */
-    ilist_append((ilist *) &rp_subloc(what)->builds, (int) new);
+    eb_list_append(&rp_subloc(what)->builds, new);
     return 1;
 };
 
@@ -67,8 +72,8 @@ delete_build(int what, int type) {
     e = rp_subloc(what)->builds;
     if (e == NULL) { return; }
 
-    for (i = ilist_len(e) - 1; i >= 0; i--) {
-        if (e[i]->type == type) { ilist_delete((ilist *) &rp_subloc(what)->builds, i); }
+    for (i = eb_list_len(e) - 1; i >= 0; i--) {
+        if (e[i]->type == type) { eb_list_delete(&rp_subloc(what)->builds, i); }
         return;
     };
 };
@@ -99,7 +104,7 @@ struct entity_build *get_build(int what, int t) {
      *  Look for the build.
      *
      */
-    for (i = 0; i < ilist_len(e); i++) {
+    for (i = 0; i < eb_list_len(e); i++) {
         if (e[i]->type == t) { return e[i]; }
     }
 
@@ -431,7 +436,7 @@ city_loc_okay(struct command *c, int where) {
      */
     l = exits_from_loc_nsew(0, where);
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         here = l[i]->destination;
         if (loc_depth(here) != LOC_province) { continue; }
         if (habitable(here) && has_item(here, item_peasant) < 100) {
@@ -1490,6 +1495,8 @@ repair_points(int k) {
     }
 
     assert(FALSE);
+    /* NOT REACHED */
+    exit(2);
 }
 
 

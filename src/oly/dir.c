@@ -4,9 +4,11 @@
 // Please see the LICENSE file in the root directory of this repository for further information.
 
 #include    <stdio.h>
+#include <stdlib.h>
 #include    "z.h"
 #include    "oly.h"
 #include "forward.h"
+#include "vectors/exit_view_list.h"
 
 
 int max_map_row = 0;
@@ -295,6 +297,8 @@ exit_distance(int loc1, int loc2) {
                     "w_d=%d, d_d=%d\n",
                     subkind_s[subkind(loc2)], loc1, loc2, w_d, d_d);
             assert(FALSE);
+            /* NOT REACHED */
+            exit(2);
     }
 
     return dist;
@@ -512,7 +516,7 @@ add_province_exit(int who, int where, int dest, int dir, struct exit_view ***l) 
         v->magic_barrier = TRUE;
     }
 
-    ilist_append((ilist *) l, (int) v);
+    ev_list_append(l, v);
 }
 
 
@@ -561,7 +565,7 @@ extra_routes(int who, int where, struct exit_view ***l) {
                         v->water = TRUE;
                     }
 
-                    ilist_append((ilist *) l, (int) v);
+                    ev_list_append( l,  v);
                 }
             }
     next_here;
@@ -629,9 +633,7 @@ subloc_exits(int who, int where, struct exit_view ***l) {
     struct entity_subloc *p;
 
     if (is_port_city(where)) {
-        int p;
-
-        p = province(where);
+        int p = province(where);
 
         for (dir = 1; dir <= 4; dir++) {
             n = location_direction(p, dir);
@@ -747,11 +749,11 @@ exits_from_loc(int who, int where) {
     static struct exit_view **l = NULL;
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         my_free(l[i]);
     }
 
-    ilist_clear((ilist *) &l);
+    ev_list_clear(&l);
 
     switch (loc_depth(where)) {
         case LOC_province:
@@ -788,11 +790,11 @@ exits_from_loc_nsew(int who, int where) {
         return NULL;
     }
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         my_free(l[i]);
     }
 
-    ilist_clear((ilist *) &l);
+    ev_list_clear( &l);
 
     province_exits(who, where, &l);
 
@@ -810,18 +812,18 @@ exits_from_loc_nsew_select(int who, int where, int land, int rand) {
         return NULL;
     }
 
-    ilist_clear((ilist *) &ret);
+    ev_list_clear(&ret);
     l = exits_from_loc_nsew(who, where);
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (((land & LAND) && !l[i]->water) ||
             ((land & WATER) && l[i]->water)) {
-            ilist_append((ilist *) &ret, (int) l[i]);
+            ev_list_append(&ret,  l[i]);
         }
     }
 
     if (rand) {
-        ilist_scramble((ilist) ret);
+        ev_list_scramble(ret);
     }
 
     return ret;
@@ -844,7 +846,7 @@ has_ocean_access(int where) {
 
     l = exits_from_loc(0, where);
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->water) {
             if (l[i]->impassable) {
                 if (ret == 0) {
@@ -1096,14 +1098,14 @@ list_exits(int who, int where) {
 
     sprintf(first, "Routes leaving %s: ", just_name(where));
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->road == 0 &&
             (l[i]->direction != DIR_IN || see_all(who) == 2)) {
             list_exits_sup(who, where, l[i], first);
         }
     }
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->road) {
             list_road_sup(who, where, l[i], first);
         }
@@ -1146,7 +1148,7 @@ list_sailable_routes(int who, int ship) {
 
     tagout(who, "<tag type=sail_routes id=%d>", outer_loc);
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->direction > 0 &&
             (l[i]->direction != DIR_IN || see_all(who) == 2) &&
             l[i]->water) {
@@ -1154,7 +1156,7 @@ list_sailable_routes(int who, int ship) {
         }
     }
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->road && l[i]->water) {
             list_road_sup(who, outer_loc, l[i], first);
         }
@@ -1176,7 +1178,7 @@ count_hidden_exits(struct exit_view **l) {
     int sum = 0;
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->hidden) {
             sum++;
         }
@@ -1190,7 +1192,7 @@ int
 hidden_count_to_index(int which, struct exit_view **l) {
     int i;
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->hidden) {
             which--;
         }
@@ -1202,6 +1204,8 @@ hidden_count_to_index(int which, struct exit_view **l) {
     }
 
     assert(FALSE);
+    /* NOT REACHED */
+    exit(2);
 }
 
 
@@ -1214,7 +1218,7 @@ find_hidden_exit(int who, struct exit_view **l, int which) {
     }
 
     assert(valid_box(who));
-    assert(which < ilist_len(l));
+    assert(which < ev_list_len(l));
     assert(l[which]->hidden);
 
     if (l[which]->road) {

@@ -3,7 +3,7 @@ project(olytag C)
 include_directories(src)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNEW_TRADE")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNEW_TRADE -Wno-multichar")
 
 if (LINUX)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOLYTAG_CC_LINUX -DLINUX -m32")
@@ -86,12 +86,31 @@ add_executable(oly
         src/oly/types.h src/oly/forward.h
 
         src/memory/memory.c src/memory/memory.h
+        src/os/generic.h
         src/os/linux.c src/os/linux.h
         src/os/mac.c src/os/mac.h
         src/os/windows.c src/os/windows.h
         src/random/sfc32.c src/random/sfc32.h
         src/random/random.c src/random/random.h
-        src/vectors/ilist.c src/vectors/ilist.h src/os/generic.h)
+        src/vectors/accept_ent_list.c src/vectors/accept_ent_list.h
+        src/vectors/admit_list.c src/vectors/admit_list.h
+        src/vectors/cs_list.c src/vectors/cs_list.h
+        src/vectors/eb_list.c src/vectors/eb_list.h
+        src/vectors/effect_list.c src/vectors/effect_list.h
+        src/vectors/entity_player_list.c src/vectors/entity_player_list.h
+        src/vectors/exit_view_list.c src/vectors/exit_view_list.h
+        src/vectors/fe_list.c src/vectors/fe_list.h
+        src/vectors/fight_list.c src/vectors/fight_list.h
+        src/vectors/item_ent_list.c src/vectors/item_ent_list.h
+        src/vectors/order_list_list.c src/vectors/order_list_list.h
+        src/vectors/req_ent_list.c src/vectors/req_ent_list.h
+        src/vectors/skill_ent_list.c src/vectors/skill_ent_list.h
+        src/vectors/tr_list.c src/vectors/tr_list.h
+        src/vectors/wa_list.c src/vectors/wa_list.h
+        src/vectors/ilist.c src/vectors/ilist.h
+        src/vectors/rlist.c src/vectors/rlist.h
+        src/vectors/tlist.c src/vectors/tlist.h
+        src/vectors/vlist.c src/vectors/vlist.h)
 target_include_directories(oly PRIVATE src/oly)
 
 
@@ -102,10 +121,9 @@ add_executable(mapgen
         src/mapgen/tile.h
         src/memory/memory.c src/memory/memory.h
         src/random/random.c src/random/random.h
+        src/random/sfc32.c src/random/sfc32.h
         src/vectors/ilist.c src/vectors/ilist.h
         src/vectors/rlist.c src/vectors/rlist.h
-        src/vectors/tlist.c src/vectors/tlist.h
-        src/random/sfc32.c src/random/sfc32.h
         src/vectors/tlist.c src/vectors/tlist.h)
 target_include_directories(mapgen PRIVATE src/mapgen)
 
@@ -151,4 +169,11 @@ add_executable(tlist_test
         src/vectors/tlist.c src/vectors/tlist.h)
 target_include_directories(tlist_test PRIVATE src/vectors)
 
+
+add_executable(vlist_test
+        src/vectors/vlist_test.c
+        src/random/random.c src/random/random.h
+        src/random/sfc32.c src/random/sfc32.h
+        src/vectors/vlist.c src/vectors/vlist.h)
+target_include_directories(vlist_test PRIVATE src/vectors)
 

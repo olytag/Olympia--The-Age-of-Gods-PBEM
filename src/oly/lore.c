@@ -3,12 +3,15 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <string.h>
+#include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/item_ent_list.h"
+#include "vectors/req_ent_list.h"
+#include "vectors/skill_ent_list.h"
 
 
 static void
@@ -102,7 +105,7 @@ do_skill_header(int who, int num, int use_texi) {
     first = 1;
     if (rp_skill(num) && rp_skill(num)->req) {
         l = rp_skill(num)->req;
-        for (i = 0; i < ilist_len(l); i++) {
+        for (i = 0; i < req_ent_list_len(l); i++) {
             consume_string = "";
             continuation_string = "";
             if (l[i]->consume == REQ_NO) {
@@ -414,11 +417,9 @@ queue_lore(int who, int num, int anyway) {
 }
 
 
-static int
-lore_comp(a, b)
-        int *a;
-        int *b;
-{
+static int lore_comp(const void *q1, const void *q2) {
+    int *a = (int *)q1;
+    int *b = (int *)q2;
 
     return *a - *b;
 }
@@ -586,7 +587,7 @@ scan_char_item_lore() {
 
     loop_char(who)
             {
-                loop_inv(who, e)
+                inventory_loop(who, e)
                             {
                                 lore = item_lore(e->item);
 
@@ -594,7 +595,7 @@ scan_char_item_lore() {
                                     queue_lore(who, e->item, FALSE);
                                 }
                             }
-                next_inv;
+                inventory_next;
             }
     next_char;
 }

@@ -3,12 +3,14 @@
 // Copyright (c) 2022 by the OlyTag authors.
 // Please see the LICENSE file in the root directory of this repository for further information.
 
-#include    <stdio.h>
-#include    <string.h>
+#include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
-#include    "z.h"
-#include    "oly.h"
+#include "z.h"
+#include "oly.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
+#include "vectors/effect_list.h"
 
 
 #define        MAX_PRI        5
@@ -34,7 +36,7 @@ parse_line(char **l, char *s) {
     char *p;
     char *prev;
 
-    ilist_clear((ilist *) &l);
+    cs_list_clear( &l);
 
     while (*s) {
         while (*s && iswhite(*s)) {        /* eat whitespace */
@@ -87,7 +89,7 @@ parse_line(char **l, char *s) {
             p--;
         }
 
-        ilist_append((ilist *) &l, (int) prev);        /* note cast! */
+        cs_list_append(&l, prev);
     }
 
     return l;
@@ -233,7 +235,7 @@ oly_parse_cmd(struct command *c, char *s) {
 
     c->parse = parse_line(c->parse, c->parsed_line);
 
-    if (ilist_len(c->parse) > 0) {
+    if (cs_list_len(c->parse) > 0) {
         int i;
 
         i = find_command(c->parse[0]);
@@ -272,7 +274,7 @@ oly_parse(struct command *c, char *s) {
         return FALSE;
     }
 
-    switch (min(ilist_len(c->parse), 9)) {
+    switch (min(cs_list_len(c->parse), 9)) {
         case 9:
             c->h = parse_arg(c->who, c->parse[8]);
         case 8:
@@ -298,14 +300,14 @@ oly_parse(struct command *c, char *s) {
 void
 cmd_shift(struct command *c) {
 
-    if (ilist_len(c->parse) > 1) {
+    if (cs_list_len(c->parse) > 1) {
 /*
  *  Deleted argument need not be freed, since it's just a
  *  pointer into another string.  It was never allocated
  *  itself.
  */
 
-        ilist_delete((ilist *) &c->parse, 1);
+        cs_list_delete(&c->parse, 1);
     }
 
     c->a = c->b;
@@ -327,7 +329,6 @@ cmd_shift(struct command *c) {
 int
 check_allow(struct command *c, char *allow) {
     int t;
-    extern char *strchr();
 
     if (allow == NULL) {
         return TRUE;
@@ -437,11 +438,9 @@ exec_precedence(int who) {
 }
 
 
-static int
-exec_comp(a, b)
-        int *a;
-        int *b;
-{
+static int exec_comp(const void *q1, const void *q2) {
+    int *a = (int *)q1;
+    int *b = (int *)q2;
 
     return bx[*a]->temp - bx[*b]->temp;
 }
@@ -642,7 +641,8 @@ do_urchin_spies(struct command *c) {
                          box_name(c->who),
                          c->line);
                 };
-            }next_effect;
+            }
+    next_effect;
 };
 
 void

@@ -9,6 +9,10 @@
 #include    "z.h"
 #include    "oly.h"
 #include "forward.h"
+#include "vectors/cs_list.h"
+#include "vectors/effect_list.h"
+#include "vectors/exit_view_list.h"
+#include "vectors/item_ent_list.h"
 
 
 static ilist ocean_chars = NULL;
@@ -160,7 +164,7 @@ discover_road(int who, int where, struct exit_view *v) {
 
     l = exits_from_loc(who, v->destination);
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->road && l[i]->destination == where) {
             set_known(who, l[i]->road);
             set_known(who, v->road);
@@ -199,7 +203,7 @@ parse_exit_dir(struct command *c, int where, char *zero_arg) {
             struct exit_view *ret = NULL;
             struct exit_view *impass_ret = NULL;
 
-            for (i = 0; i < ilist_len(l); i++) {
+            for (i = 0; i < ev_list_len(l); i++) {
                 if (l[i]->destination == c->a &&
                     (l[i]->hidden == FALSE || see_all(c->who))) {
                     if (l[i]->impassable) {
@@ -243,7 +247,7 @@ parse_exit_dir(struct command *c, int where, char *zero_arg) {
         return NULL;
     }
 
-    for (i = 0; i < ilist_len(l); i++) {
+    for (i = 0; i < ev_list_len(l); i++) {
         if (l[i]->direction == dir &&
             (l[i]->hidden == FALSE || see_all(c->who))) {
             if (dir == DIR_IN && zero_arg) {
@@ -264,7 +268,7 @@ parse_exit_dir(struct command *c, int where, char *zero_arg) {
      *
      */
     if (dir == DIR_OUT) {
-        for (i = 0; i < ilist_len(l); i++) {
+        for (i = 0; i < ev_list_len(l); i++) {
             if (l[i]->direction == DIR_UP &&
                 (l[i]->hidden == FALSE || see_all(c->who))) {
                 wout(c->who, "(assuming 'move up')");
@@ -275,7 +279,7 @@ parse_exit_dir(struct command *c, int where, char *zero_arg) {
 
 
     if (dir == DIR_IN) {
-        for (i = 0; i < ilist_len(l); i++) {
+        for (i = 0; i < ev_list_len(l); i++) {
             if (l[i]->direction == DIR_DOWN &&
                 (l[i]->hidden == FALSE || see_all(c->who))) {
                 wout(c->who, "(assuming 'move down')");
@@ -297,16 +301,18 @@ parse_exit_dir(struct command *c, int where, char *zero_arg) {
 static void
 kill_random_mount(int who) {
     struct item_ent *e;
-    loop_inv(who, e)
+    inventory_loop(who, e)
                 {
                     if (item_ride_cap(e->item) >= 100) {
                         wout(who, "The forced ride kills one %s.", just_name(e->item));
                         sub_item(who, e->item, 1);
                         return;
                     };
-                }next_inv;
+                }
+    inventory_next;
     assert(FALSE);
-    return;
+    /* NOT REACHED */
+    exit(2);
 };
 
 #define FORCED_RIDE 2
@@ -2606,7 +2612,7 @@ v_sail(struct command *c) {
             struct exit_view **choices =
                     exits_from_loc_nsew_select(c->who, outer_loc, WATER, 1);
 
-            if (ilist_len(choices)) {
+            if (ev_list_len(choices)) {
                 if (choices[0]->destination != v->destination) {
                     wout(c->who, "Somehow you sail off in an unintended direction.");
                     v = choices[0];

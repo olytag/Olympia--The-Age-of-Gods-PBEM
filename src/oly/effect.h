@@ -37,14 +37,12 @@ extern void delete_effect(int what, int type, int st);
  * 
  */
 #define    loop_effects(what, e) \
-{ int ll_i; \
-  ilist ll_l = NULL, el = NULL; \
-  int ll_check = 29; \
-  el = (ilist) effects(what); \
-  ll_l = ilist_copy(el); \
-  for (ll_i = 0; ll_i < ilist_len(ll_l); ll_i++) {  \
-    e = (struct effect *) ll_l[ll_i];
+{ int ll_check = 29; \
+  effect_list_t el = effects(what); \
+  effect_list_t ll_l = effect_list_copy(el); \
+  for (int ll_i = 0; ll_i < effect_list_len(ll_l); ll_i++) {  \
+    (e) = ll_l[ll_i];
 
-#define    next_effect    } assert(ll_check == 29); ilist_reclaim(&ll_l); }
+#define    next_effect    } assert(ll_check == 29); effect_list_reclaim(&ll_l); }
 
 #endif //OLYTAG_EFFECT_H
